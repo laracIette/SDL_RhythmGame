@@ -12,3 +12,7 @@
 			6. Coin
 			7. Hammer
 			8. Chainsaw
+			
+		isUp (boolean)
+		
+		time (unsigned int)
