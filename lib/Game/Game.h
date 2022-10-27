@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../Player/Player.h"
-#include "../Target/Target.h"
 
 class Game
 {
@@ -13,9 +12,6 @@ class Game
     SDL_Event event;
 
     Player *player;
-
-    std::vector<Target *> targets;
-    bool newTargetLock;
 
 public:
     Game();

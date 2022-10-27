@@ -4,17 +4,10 @@
 
 struct KeyboardEvents
 {
-    static const int KEYS{ 8 };
+    static const int KEYS{ 1 };
 
     SDL_KeyCode keyCode[KEYS]{
-        SDLK_LEFT,
-        SDLK_RIGHT,
-        SDLK_UP,
-        SDLK_DOWN,
-        SDLK_a,
-        SDLK_d,
-        SDLK_w,
-        SDLK_s
+        SDLK_SPACE
     };
 
     bool keyPressed[KEYS]{ false };

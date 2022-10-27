@@ -21,9 +21,6 @@ Game::Game()
 
     player = new Player();
 
-    targets.push_back( new TargetUp() );
-    newTargetLock = false;
-
     map = new Map( "assets/Maps/test0.txt" );
 }
 
@@ -102,18 +99,6 @@ void Game::Update()
     lastFrameTime = currentTime;
 
     player->Input();
-
-    for( Target *target : targets )
-    {
-        target->Move();
-    }
-
-    if( currentTime >= 5000 && !newTargetLock )
-    {
-        newTargetLock = true;
-        targets.push_back( new TargetDown() );
-    }
-
 }
 
 
@@ -122,11 +107,6 @@ void Game::Render()
     SDL_RenderClear( window->renderer );
 
     player->Draw();
-
-    for( Target *target : targets )
-    {
-        target->Draw();
-    }
 
     SDL_RenderPresent( window->renderer );
 }

@@ -14,6 +14,7 @@ Map::Map( const char *path )
         switch( temp[0] - '0' )
         {
         case NOTE:
+        {
             Note noteTemp;
             noteTemp.type = NOTE;
 
@@ -42,9 +43,12 @@ Map::Map( const char *path )
                     nSteps++;
                 }
             }
+            hitObjects.push_back( noteTemp );
             break;
+        }
 
         case HOLD:
+        {
             Hold holdTemp;
             holdTemp.type = HOLD;
 
@@ -77,9 +81,12 @@ Map::Map( const char *path )
                     nSteps++;
                 }
             }
+            hitObjects.push_back( holdTemp );
             break;
+        }
 
         case DOUBLE:
+        {
             Double doubleTemp;
             doubleTemp.type = DOUBLE;
 
@@ -96,9 +103,12 @@ Map::Map( const char *path )
                     nTemp.clear();
                 }
             }
+            hitObjects.push_back( doubleTemp );
             break;
+        }
 
         case MASH:
+        {
             Mash mashTemp;
             mashTemp.type = MASH;
 
@@ -127,9 +137,12 @@ Map::Map( const char *path )
                     nSteps++;
                 }
             }
+            hitObjects.push_back( mashTemp );
             break;
+        }
 
         case GHOST:
+        {
             Ghost ghostTemp;
             ghostTemp.type = GHOST;
 
@@ -158,9 +171,12 @@ Map::Map( const char *path )
                     nSteps++;
                 }
             }
+            hitObjects.push_back( ghostTemp );
             break;
+        }
 
         case COIN:
+        {
             Coin coinTemp;
             coinTemp.type = COIN;
 
@@ -189,9 +205,12 @@ Map::Map( const char *path )
                     nSteps++;
                 }
             }
+            hitObjects.push_back( coinTemp );
             break;
+        }
 
         case HAMMER:
+        {
             Hammer hammerTemp;
             hammerTemp.type = HAMMER;
 
@@ -220,9 +239,12 @@ Map::Map( const char *path )
                     nSteps++;
                 }
             }
+            hitObjects.push_back( hammerTemp );
             break;
+        }
 
         case CHAINSAW:
+        {
             Chainsaw chainsawTemp;
             chainsawTemp.type = CHAINSAW;
 
@@ -239,7 +261,9 @@ Map::Map( const char *path )
                     nTemp.clear();
                 }
             }
+            hitObjects.push_back( chainsawTemp );
             break;
+        }
 
         default:
             break;
@@ -250,8 +274,14 @@ Map::Map( const char *path )
     {
         hitObject.isHit = false;
     }
+
 }
 
 Map::~Map()
 {
+}
+
+void Map::Draw()
+{
+
 }

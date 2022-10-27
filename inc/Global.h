@@ -74,3 +74,5 @@ static T rad( T d )
 {
     return d * M_PI / 180;
 }
+
+extern float velocity;

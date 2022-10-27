@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../inc/Global.h"
-#include "../HitObject/HitObject.h"
+#include "../../inc/HitObject.h"
 
 class Map
 {
@@ -10,4 +10,6 @@ class Map
 public:
     Map( const char *path );
     ~Map();
+
+    void Draw();
 };
