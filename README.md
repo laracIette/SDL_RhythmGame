@@ -1,4 +1,4 @@
-# SDL_MuseDash_1
+# SDL_RythmGame
 
 	HitObject properties :
 
