@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "../Map/Map.h"
 
 vec2<int> mouse;
 unsigned int deltaTime;
@@ -6,6 +7,8 @@ unsigned int deltaTime;
 Window *window;
 
 Events events;
+
+Map *map;
 
 Game::Game()
 {
@@ -20,6 +23,8 @@ Game::Game()
 
     targets.push_back( new TargetUp() );
     newTargetLock = false;
+
+    map = new Map( "assets/Maps/test0.txt" );
 }
 
 Game::~Game()

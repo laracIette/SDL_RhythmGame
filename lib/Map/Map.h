@@ -6,9 +6,8 @@
 class Map
 {
     std::vector<HitObject> hitObjects;
-    std::fstream file;
 
 public:
-    Map();
+    Map( const char *path );
     ~Map();
 };

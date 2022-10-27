@@ -10,6 +10,8 @@ SDL:
 	lib/Player/Player.cpp \
 	lib/Image/Image.cpp \
 	lib/Target/Target.cpp \
+	lib/HitObject/HitObject.cpp \
+	lib/Map/Map.cpp \
 	-lSDL2main \
 	-lSDL2 \
 	-lSDL2_image
