@@ -3,9 +3,12 @@
 struct HitObject
 {
     unsigned int time;
-    bool up;
-    bool isSlider;
     unsigned int endTime;
+
+    unsigned char type;
+
+    bool isUp;
+
 
     bool isHit;
 };
