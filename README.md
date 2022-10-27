@@ -15,4 +15,4 @@
 			
 		isUp (boolean)
 		
-		time (unsigned int)
+		time, endTime (unsigned int)
