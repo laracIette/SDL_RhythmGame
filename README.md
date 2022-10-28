@@ -22,6 +22,8 @@
 		8. Chainsaw :
 			
 
-	isUp (boolean)
-
-	time, endTime (unsigned int)
+	bool : isUp
+	unsigned int : time, endTime
+	unsigned char : type, direction
+	
+	type;direction;time;...
