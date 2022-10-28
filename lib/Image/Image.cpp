@@ -1,8 +1,11 @@
 #include "Image.h"
 
-Image::Image( const char *path, SDL_Rect src, Rect dest )
+Image::Image( std::string path, SDL_Rect src, Rect dest )
 {
-    tex = TextureManager::LoadTexture( path );
+
+    const char *newPath = const_cast<char *>( path.c_str() );
+
+    tex = TextureManager::LoadTexture( const_cast<char *>( path.c_str() ) );
     this->src = src;
     this->dest = dest;
 }

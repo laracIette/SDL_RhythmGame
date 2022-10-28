@@ -10,7 +10,7 @@ class Image
     Rect dest;
 
 public:
-    Image( const char *path, SDL_Rect src, Rect dest );
+    Image( std::string path, SDL_Rect src, Rect dest );
     ~Image();
 
     void Draw();
