@@ -4,14 +4,23 @@
 
 	Type (unsigned char):
 
-		1. Note
-		2. Hold
-		3. Double
-		4. Mash
-		5. Ghost
-		6. Coin
-		7. Hammer
-		8. Chainsaw
+		1. Note :
+			isUp
+		2. Hold :
+			isUp
+			endTime
+		3. Double :
+			
+		4. Mash :
+			endTime
+		5. Ghost :
+			isUp
+		6. Coin :
+			isUp
+		7. Hammer :
+			isUp
+		8. Chainsaw :
+			
 
 	isUp (boolean)
 
