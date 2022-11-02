@@ -5,11 +5,12 @@
 
 class Map
 {
-    std::vector<HitObject> hitObjects;
+    std::vector<HitObject *> hitObjects;
 
 public:
     Map( const char *path );
     ~Map();
 
+    void Update();
     void Draw();
 };

@@ -2,9 +2,6 @@
 
 Image::Image( std::string path, SDL_Rect src, Rect dest )
 {
-
-    const char *newPath = const_cast<char *>( path.c_str() );
-
     tex = TextureManager::LoadTexture( const_cast<char *>( path.c_str() ) );
     this->src = src;
     this->dest = dest;

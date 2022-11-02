@@ -1,14 +1,11 @@
 #include "Game.h"
-#include "../Map/Map.h"
 
 vec2<int> mouse;
 unsigned int deltaTime;
+Events events;
+float velocity;
 
 Window *window;
-
-Events events;
-
-Map *map;
 
 Game::Game()
 {
@@ -31,6 +28,7 @@ Game::~Game()
 void Game::Init()
 {
     deltaTime = 0;
+    velocity = 0.2f;
 }
 
 void Game::HandleEvents()
@@ -99,6 +97,7 @@ void Game::Update()
     lastFrameTime = currentTime;
 
     player->Input();
+    map->Update();
 }
 
 
@@ -107,6 +106,7 @@ void Game::Render()
     SDL_RenderClear( window->renderer );
 
     player->Draw();
+    map->Draw();
 
     SDL_RenderPresent( window->renderer );
 }

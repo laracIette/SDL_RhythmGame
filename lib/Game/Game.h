@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Player/Player.h"
+#include "../Map/Map.h"
 
 class Game
 {
@@ -12,6 +13,7 @@ class Game
     SDL_Event event;
 
     Player *player;
+    Map *map;
 
 public:
     Game();

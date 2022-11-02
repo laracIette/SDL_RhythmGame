@@ -22,6 +22,13 @@ enum HitObjectTypes {
     CHAINSAW
 };
 
+enum Directions {
+    RIGHT = 1,
+    LEFT,
+    UP,
+    DOWN
+};
+
 extern int WIDTH;
 extern int HEIGHT;
 

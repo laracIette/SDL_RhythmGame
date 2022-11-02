@@ -15,10 +15,11 @@ Map::Map( const char *path )
         {
         case NOTE:
         {
-            Note noteTemp;
-            noteTemp.type = NOTE;
+            Note *noteTemp{ new Note() };
+            noteTemp->type = NOTE;
+            noteTemp->direction = temp[2];
 
-            for( int i{ 2 }; i < temp.size(); ++i )
+            for( int i{ 4 }; i < temp.size(); ++i )
             {
                 if( (temp[i] != ';') )
                 {
@@ -29,11 +30,11 @@ Map::Map( const char *path )
                     switch( nSteps )
                     {
                     case 0:
-                        noteTemp.time = strTo<unsigned int>( nTemp );
+                        noteTemp->time = strTo<unsigned int>( nTemp );
                         break;
 
                     case 1:
-                        noteTemp.isUp = strTo<bool>( nTemp );
+                        noteTemp->isUp = strTo<bool>( nTemp );
                         break;
 
                     default:
@@ -49,10 +50,11 @@ Map::Map( const char *path )
 
         case HOLD:
         {
-            Hold holdTemp;
-            holdTemp.type = HOLD;
+            Hold *holdTemp{ new Hold() };
+            holdTemp->type = HOLD;
+            holdTemp->direction = temp[2];
 
-            for( int i{ 2 }; i < temp.size(); ++i )
+            for( int i{ 4 }; i < temp.size(); ++i )
             {
                 if( (temp[i] != ';') )
                 {
@@ -63,15 +65,15 @@ Map::Map( const char *path )
                     switch( nSteps )
                     {
                     case 0:
-                        holdTemp.time = strTo<unsigned int>( nTemp );
+                        holdTemp->time = strTo<unsigned int>( nTemp );
                         break;
 
                     case 1:
-                        holdTemp.isUp = strTo<bool>( nTemp );
+                        holdTemp->isUp = strTo<bool>( nTemp );
                         break;
 
                     case 2:
-                        holdTemp.endTime = strTo<unsigned int>( nTemp );
+                        holdTemp->endTime = strTo<unsigned int>( nTemp );
                         break;
 
                     default:
@@ -87,10 +89,11 @@ Map::Map( const char *path )
 
         case DOUBLE:
         {
-            Double doubleTemp;
-            doubleTemp.type = DOUBLE;
+            Double *doubleTemp{ new Double() };
+            doubleTemp->type = DOUBLE;
+            doubleTemp->direction = temp[2];
 
-            for( int i{ 2 }; i < temp.size(); ++i )
+            for( int i{ 4 }; i < temp.size(); ++i )
             {
                 if( (temp[i] != ';') )
                 {
@@ -98,7 +101,7 @@ Map::Map( const char *path )
                 }
                 else
                 {
-                    doubleTemp.time = strTo<unsigned int>( nTemp );
+                    doubleTemp->time = strTo<unsigned int>( nTemp );
 
                     nTemp.clear();
                 }
@@ -109,10 +112,11 @@ Map::Map( const char *path )
 
         case MASH:
         {
-            Mash mashTemp;
-            mashTemp.type = MASH;
+            Mash *mashTemp{ new Mash() };
+            mashTemp->type = MASH;
+            mashTemp->direction = temp[2];
 
-            for( int i{ 2 }; i < temp.size(); ++i )
+            for( int i{ 4 }; i < temp.size(); ++i )
             {
                 if( (temp[i] != ';') )
                 {
@@ -123,11 +127,11 @@ Map::Map( const char *path )
                     switch( nSteps )
                     {
                     case 0:
-                        mashTemp.time = strTo<unsigned int>( nTemp );
+                        mashTemp->time = strTo<unsigned int>( nTemp );
                         break;
 
                     case 1:
-                        mashTemp.endTime = strTo<unsigned int>( nTemp );
+                        mashTemp->endTime = strTo<unsigned int>( nTemp );
                         break;
 
                     default:
@@ -143,10 +147,11 @@ Map::Map( const char *path )
 
         case GHOST:
         {
-            Ghost ghostTemp;
-            ghostTemp.type = GHOST;
+            Ghost *ghostTemp{ new Ghost() };
+            ghostTemp->type = GHOST;
+            ghostTemp->direction = temp[2];
 
-            for( int i{ 2 }; i < temp.size(); ++i )
+            for( int i{ 4 }; i < temp.size(); ++i )
             {
                 if( (temp[i] != ';') )
                 {
@@ -157,11 +162,11 @@ Map::Map( const char *path )
                     switch( nSteps )
                     {
                     case 0:
-                        ghostTemp.time = strTo<unsigned int>( nTemp );
+                        ghostTemp->time = strTo<unsigned int>( nTemp );
                         break;
 
                     case 1:
-                        ghostTemp.isUp = strTo<bool>( nTemp );
+                        ghostTemp->isUp = strTo<bool>( nTemp );
                         break;
 
                     default:
@@ -177,10 +182,11 @@ Map::Map( const char *path )
 
         case COIN:
         {
-            Coin coinTemp;
-            coinTemp.type = COIN;
+            Coin *coinTemp{ new Coin() };
+            coinTemp->type = COIN;
+            coinTemp->direction = temp[2];
 
-            for( int i{ 2 }; i < temp.size(); ++i )
+            for( int i{ 4 }; i < temp.size(); ++i )
             {
                 if( (temp[i] != ';') )
                 {
@@ -191,11 +197,11 @@ Map::Map( const char *path )
                     switch( nSteps )
                     {
                     case 0:
-                        coinTemp.time = strTo<unsigned int>( nTemp );
+                        coinTemp->time = strTo<unsigned int>( nTemp );
                         break;
 
                     case 1:
-                        coinTemp.isUp = strTo<bool>( nTemp );
+                        coinTemp->isUp = strTo<bool>( nTemp );
                         break;
 
                     default:
@@ -211,10 +217,11 @@ Map::Map( const char *path )
 
         case HAMMER:
         {
-            Hammer hammerTemp;
-            hammerTemp.type = HAMMER;
+            Hammer *hammerTemp{ new Hammer() };
+            hammerTemp->type = HAMMER;
+            hammerTemp->direction = temp[2];
 
-            for( int i{ 2 }; i < temp.size(); ++i )
+            for( int i{ 4 }; i < temp.size(); ++i )
             {
                 if( (temp[i] != ';') )
                 {
@@ -225,11 +232,11 @@ Map::Map( const char *path )
                     switch( nSteps )
                     {
                     case 0:
-                        hammerTemp.time = strTo<unsigned int>( nTemp );
+                        hammerTemp->time = strTo<unsigned int>( nTemp );
                         break;
 
                     case 1:
-                        hammerTemp.isUp = strTo<bool>( nTemp );
+                        hammerTemp->isUp = strTo<bool>( nTemp );
                         break;
 
                     default:
@@ -245,10 +252,11 @@ Map::Map( const char *path )
 
         case CHAINSAW:
         {
-            Chainsaw chainsawTemp;
-            chainsawTemp.type = CHAINSAW;
+            Chainsaw *chainsawTemp{ new Chainsaw() };
+            chainsawTemp->type = CHAINSAW;
+            chainsawTemp->direction = temp[2];
 
-            for( int i{ 2 }; i < temp.size(); ++i )
+            for( int i{ 4 }; i < temp.size(); ++i )
             {
                 if( (temp[i] != ';') )
                 {
@@ -256,7 +264,7 @@ Map::Map( const char *path )
                 }
                 else
                 {
-                    chainsawTemp.time = strTo<unsigned int>( nTemp );
+                    chainsawTemp->time = strTo<unsigned int>( nTemp );
 
                     nTemp.clear();
                 }
@@ -270,9 +278,15 @@ Map::Map( const char *path )
         }
     }
 
-    for( HitObject hitObject : hitObjects )
+    for( HitObject *hitObject : hitObjects )
     {
-        hitObject.isHit = false;
+        hitObject->isHit = false;
+        hitObject->isShown = false;
+        hitObject->Init();
+        //std::cout << hitObject->direction << ' '
+        //          << hitObject->isHit << ' '
+        //          << hitObject->time << ' '
+        //          << hitObject->type << std::endl;
     }
 
 }
@@ -281,7 +295,18 @@ Map::~Map()
 {
 }
 
+void Map::Update()
+{
+    for( HitObject *hitObject : hitObjects )
+    {
+        hitObject->Move();
+    }
+}
+
 void Map::Draw()
 {
-
+    for( HitObject *hitObject : hitObjects )
+    {
+        hitObject->Draw();
+    }
 }
