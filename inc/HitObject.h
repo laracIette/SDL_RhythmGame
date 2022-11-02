@@ -132,8 +132,11 @@ public:
 
     void Init()
     {
-        float height{ getHitObjectOffsetHeight( isUp ) };
-        //SetHitObjectImage( height, "Ghosts/Ghost0" );
+        objectImage = new Image(
+            "assets/Skins/BaseSkin/HitObjects/Ghosts/Ghost0.png",
+            {0, 0, 50, 50},
+            {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), 50, 50}
+        );
     }
 };
 class Coin : public HitObject
@@ -143,8 +146,11 @@ public:
 
     void Init()
     {
-        float height{ getHitObjectOffsetHeight( isUp ) };
-        //SetHitObjectImage( height, "Coins/Coin0" );
+        objectImage = new Image(
+            "assets/Skins/BaseSkin/HitObjects/Coins/Coin0.png",
+            {0, 0, 25, 25},
+            {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), 25, 25}
+        );
     }
 };
 class Hammer : public HitObject
@@ -154,8 +160,11 @@ public:
 
     void Init()
     {
-        float height{ getHitObjectOffsetHeight( isUp ) };
-        //SetHitObjectImage( height, "Hammers/Hammer0" );
+        objectImage = new Image(
+            "assets/Skins/BaseSkin/HitObjects/Hammers/Hammer0.png",
+            {0, 0, 50, 50},
+            {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), 50, 50}
+        );
     }
 };
 class Chainsaw : public HitObject
@@ -164,6 +173,10 @@ public:
 
     void Init()
     {
-        //SetHitObjectImage( 0, "Chainsaws/Chainsaw0" );
+        objectImage = new Image(
+            "assets/Skins/BaseSkin/HitObjects/Chainsaws/Chainsaw0.png",
+            {0, 0, 50, 50},
+            {0, (float)HEIGHT/2 + (float)HEIGHT/10, 50, 50}
+        );
     }
 };
