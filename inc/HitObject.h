@@ -30,16 +30,6 @@ public:
 
     virtual void Init() {}
 
-
-    void SetHitObjectImage( float height, std::string path )
-    {
-        objectImage = new Image(
-            "assets/Skins/BaseSkin/HitObjects/" + path + ".png",
-            {0, 0, 50, 50},
-            {0, (float)HEIGHT/2 + height, 50, 50}
-        );
-    }
-
     virtual void Move()
     {
         objectImage->SetX( pos );
@@ -48,7 +38,7 @@ public:
     void Update()
     {
         pos = (float)WIDTH/6 + ((float)time - (float)currentTime)*velocity;
-        if( pos <= WIDTH )
+        if( !isShown && (pos <= WIDTH) )
         {
             isShown = true;
         }
@@ -71,8 +61,11 @@ public:
 
     void Init()
     {
-        float height{ getHitObjectOffsetHeight( isUp ) };
-        SetHitObjectImage( height, "Notes/Note0" );
+        objectImage = new Image(
+            "assets/Skins/BaseSkin/HitObjects/Notes/Note0.png",
+            {0, 0, 50, 50},
+            {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), 50, 50}
+        );
     }
 
 };
@@ -84,9 +77,11 @@ public:
 
     void Init()
     {
-        float height{ getHitObjectOffsetHeight( isUp ) };
-        SetHitObjectImage( height, "Holds/Hold0" );
-        objectImage->SetW( ((float)endTime - (float)time)*velocity + 50 );
+        objectImage = new Image(
+            "assets/Skins/BaseSkin/HitObjects/Holds/Hold0.png",
+            {0, 0, 50, 50},
+            {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), ((float)endTime - (float)time)*velocity + 50, 50}
+        );
     }
 
     void Move()
@@ -100,7 +95,11 @@ public:
 
     void Init()
     {
-        SetHitObjectImage( 0, "Doubles/Double0" );
+        objectImage = new Image(
+            "assets/Skins/BaseSkin/HitObjects/Doubles/Double0.png",
+            {0, 0, 50, 150},
+            {0, (float)HEIGHT/2, 50, 150}
+        );
     }
 };
 class Mash : public HitObject
@@ -110,7 +109,20 @@ public:
 
     void Init()
     {
-        SetHitObjectImage( 0, "Mashs/Mash0" );
+        objectImage = new Image(
+            "assets/Skins/BaseSkin/HitObjects/Mashs/Mash0.png",
+            {0, 0, 150, 150},
+            {0, (float)HEIGHT/2, 150, 150}
+        );
+    }
+
+    void Move()
+    {
+        if( (currentTime >= time) && (currentTime < endTime) )
+        {
+            pos = (float)WIDTH/6;
+        }
+        objectImage->SetX( pos );
     }
 };
 class Ghost : public HitObject
@@ -121,7 +133,7 @@ public:
     void Init()
     {
         float height{ getHitObjectOffsetHeight( isUp ) };
-        SetHitObjectImage( height, "Ghosts/Ghost0" );
+        //SetHitObjectImage( height, "Ghosts/Ghost0" );
     }
 };
 class Coin : public HitObject
@@ -132,7 +144,7 @@ public:
     void Init()
     {
         float height{ getHitObjectOffsetHeight( isUp ) };
-        SetHitObjectImage( height, "Coins/Coin0" );
+        //SetHitObjectImage( height, "Coins/Coin0" );
     }
 };
 class Hammer : public HitObject
@@ -143,7 +155,7 @@ public:
     void Init()
     {
         float height{ getHitObjectOffsetHeight( isUp ) };
-        SetHitObjectImage( height, "Hammers/Hammer0" );
+        //SetHitObjectImage( height, "Hammers/Hammer0" );
     }
 };
 class Chainsaw : public HitObject
@@ -152,6 +164,6 @@ public:
 
     void Init()
     {
-        SetHitObjectImage( 0, "Chainsaws/Chainsaw0" );
+        //SetHitObjectImage( 0, "Chainsaws/Chainsaw0" );
     }
 };
