@@ -10,7 +10,7 @@ class Player : public Image
 
 public:
     Player() : Image(
-        "assets/Skins/Player/Player0.png",
+        "assets/Skins/BaseSkin/Player/Player0.png",
         {0, 0, 40, 60},
         {(float)WIDTH/6, (float)HEIGHT/2, 40, 60}
     )

@@ -13,13 +13,13 @@ static float getHitObjectOffsetHeight( bool isUp )
 
 class HitObject
 {
+protected:
     Image *objectImage;
 
-public:
-    HitObject()
-    {
+    float pos;
 
-    }
+public:
+    HitObject() {}
     ~HitObject() {}
 
     unsigned int time;
@@ -34,20 +34,25 @@ public:
     void SetHitObjectImage( float height, std::string path )
     {
         objectImage = new Image(
-            "assets/Skins/HitObjects/" + path + ".png",
+            "assets/Skins/BaseSkin/HitObjects/" + path + ".png",
             {0, 0, 50, 50},
-            {1000, (float)HEIGHT/2 + height, 50, 50}
+            {0, (float)HEIGHT/2 + height, 50, 50}
         );
     }
 
-    void Move()
+    virtual void Move()
     {
-        float pos{ (float)WIDTH/6 + ((float)time - (float)currentTime)*velocity };
+        objectImage->SetX( pos );
+    }
+
+    void Update()
+    {
+        pos = (float)WIDTH/6 + ((float)time - (float)currentTime)*velocity;
         if( pos <= WIDTH )
         {
             isShown = true;
         }
-        objectImage->SetX( pos );
+        Move();
     }
 
     void Draw()
@@ -69,6 +74,7 @@ public:
         float height{ getHitObjectOffsetHeight( isUp ) };
         SetHitObjectImage( height, "Notes/Note0" );
     }
+
 };
 class Hold : public HitObject
 {
@@ -80,6 +86,12 @@ public:
     {
         float height{ getHitObjectOffsetHeight( isUp ) };
         SetHitObjectImage( height, "Holds/Hold0" );
+        objectImage->SetW( ((float)endTime - (float)time)*velocity + 50 );
+    }
+
+    void Move()
+    {
+        objectImage->SetX( pos + (objectImage->W()/2-objectImage->H()/2) );
     }
 };
 class Double : public HitObject

@@ -18,6 +18,8 @@ Game::Game()
 
     player = new Player();
 
+    velocity = 0.2f;
+
     map = new Map( "assets/Maps/test0.txt" );
 }
 
@@ -28,7 +30,6 @@ Game::~Game()
 void Game::Init()
 {
     deltaTime = 0;
-    velocity = 0.2f;
 }
 
 void Game::HandleEvents()

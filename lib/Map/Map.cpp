@@ -299,7 +299,7 @@ void Map::Update()
 {
     for( HitObject *hitObject : hitObjects )
     {
-        hitObject->Move();
+        hitObject->Update();
     }
 }
 
