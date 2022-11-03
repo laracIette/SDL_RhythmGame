@@ -7,13 +7,14 @@ class Game
 {
     bool isRunning;
 
-    unsigned int startTime;
     unsigned int lastFrameTime;
 
     SDL_Event event;
 
     Player *player;
     Map *map;
+
+    bool isStarted;
 
 public:
     Game();

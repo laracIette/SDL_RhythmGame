@@ -22,7 +22,12 @@ public:
     HitObject() {}
     ~HitObject() {}
 
-    unsigned int time;
+    float X() { return objectImage->X(); }
+    float Y() { return objectImage->Y(); }
+    float W() { return objectImage->W(); }
+    float H() { return objectImage->H(); }
+
+    unsigned int time, offsetTime;
     bool isHit;
     bool isShown;
 
@@ -37,7 +42,7 @@ public:
 
     void Update()
     {
-        pos = (float)WIDTH/6 + ((float)time - (float)currentTime)*velocity;
+        pos = (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity;
         if( !isShown && (pos <= WIDTH) )
         {
             isShown = true;
@@ -118,7 +123,7 @@ public:
 
     void Move()
     {
-        if( (currentTime >= time) && (currentTime < endTime) )
+        if( (currentTime >= time + offsetTime) && (currentTime < endTime + offsetTime) )
         {
             pos = (float)WIDTH/6;
         }

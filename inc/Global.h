@@ -57,18 +57,6 @@ struct Rect
     float x, y, w, h;
 };
 
-// function that converts a string to any type of number
-// note that floats with decimals doesn't work for the moment
-template<typename T>
-static T strTo( std::vector<char> vec )
-{
-    T n{ 0 };
-    for( char c : vec )
-    {
-        n = n*10 + (c-'0');
-    }
-    return n;
-}
 
 template<typename T>
 static T deg( T r )

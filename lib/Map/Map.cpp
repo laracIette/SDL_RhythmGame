@@ -2,9 +2,9 @@
 
 Map::Map( std::string path )
 {
-    std::ifstream file( path + "/easy.txt" );
+    std::ifstream file( path + "easy.txt" );
     std::string temp;
-    std::vector<char> nTemp;
+    std::string nTemp;
 
     unsigned char nSteps;
 
@@ -23,18 +23,18 @@ Map::Map( std::string path )
             {
                 if( (temp[i] != ';') )
                 {
-                    nTemp.push_back( temp[i] );
+                    nTemp += temp[i];
                 }
                 else
                 {
                     switch( nSteps )
                     {
                     case 0:
-                        noteTemp->time = strTo<unsigned int>( nTemp );
+                        noteTemp->time = std::stoi( nTemp );
                         break;
 
                     case 1:
-                        noteTemp->isUp = strTo<bool>( nTemp );
+                        noteTemp->isUp = std::stoi( nTemp );
                         break;
 
                     default:
@@ -58,22 +58,22 @@ Map::Map( std::string path )
             {
                 if( (temp[i] != ';') )
                 {
-                    nTemp.push_back( temp[i] );
+                    nTemp += temp[i];
                 }
                 else
                 {
                     switch( nSteps )
                     {
                     case 0:
-                        holdTemp->time = strTo<unsigned int>( nTemp );
+                        holdTemp->time = std::stoi( nTemp );
                         break;
 
                     case 1:
-                        holdTemp->isUp = strTo<bool>( nTemp );
+                        holdTemp->isUp = std::stoi( nTemp );
                         break;
 
                     case 2:
-                        holdTemp->endTime = strTo<unsigned int>( nTemp );
+                        holdTemp->endTime = std::stoi( nTemp );
                         break;
 
                     default:
@@ -97,11 +97,11 @@ Map::Map( std::string path )
             {
                 if( (temp[i] != ';') )
                 {
-                    nTemp.push_back( temp[i] );
+                    nTemp += temp[i];
                 }
                 else
                 {
-                    doubleTemp->time = strTo<unsigned int>( nTemp );
+                    doubleTemp->time = std::stoi( nTemp );
 
                     nTemp.clear();
                 }
@@ -120,18 +120,18 @@ Map::Map( std::string path )
             {
                 if( (temp[i] != ';') )
                 {
-                    nTemp.push_back( temp[i] );
+                    nTemp += temp[i];
                 }
                 else
                 {
                     switch( nSteps )
                     {
                     case 0:
-                        mashTemp->time = strTo<unsigned int>( nTemp );
+                        mashTemp->time = std::stoi( nTemp );
                         break;
 
                     case 1:
-                        mashTemp->endTime = strTo<unsigned int>( nTemp );
+                        mashTemp->endTime = std::stoi( nTemp );
                         break;
 
                     default:
@@ -155,18 +155,18 @@ Map::Map( std::string path )
             {
                 if( (temp[i] != ';') )
                 {
-                    nTemp.push_back( temp[i] );
+                    nTemp += temp[i];
                 }
                 else
                 {
                     switch( nSteps )
                     {
                     case 0:
-                        ghostTemp->time = strTo<unsigned int>( nTemp );
+                        ghostTemp->time = std::stoi( nTemp );
                         break;
 
                     case 1:
-                        ghostTemp->isUp = strTo<bool>( nTemp );
+                        ghostTemp->isUp = std::stoi( nTemp );
                         break;
 
                     default:
@@ -190,18 +190,18 @@ Map::Map( std::string path )
             {
                 if( (temp[i] != ';') )
                 {
-                    nTemp.push_back( temp[i] );
+                    nTemp += temp[i];
                 }
                 else
                 {
                     switch( nSteps )
                     {
                     case 0:
-                        coinTemp->time = strTo<unsigned int>( nTemp );
+                        coinTemp->time = std::stoi( nTemp );
                         break;
 
                     case 1:
-                        coinTemp->isUp = strTo<bool>( nTemp );
+                        coinTemp->isUp = std::stoi( nTemp );
                         break;
 
                     default:
@@ -225,18 +225,18 @@ Map::Map( std::string path )
             {
                 if( (temp[i] != ';') )
                 {
-                    nTemp.push_back( temp[i] );
+                    nTemp += temp[i];
                 }
                 else
                 {
                     switch( nSteps )
                     {
                     case 0:
-                        hammerTemp->time = strTo<unsigned int>( nTemp );
+                        hammerTemp->time = std::stoi( nTemp );
                         break;
 
                     case 1:
-                        hammerTemp->isUp = strTo<bool>( nTemp );
+                        hammerTemp->isUp = std::stoi( nTemp );
                         break;
 
                     default:
@@ -260,11 +260,11 @@ Map::Map( std::string path )
             {
                 if( (temp[i] != ';') )
                 {
-                    nTemp.push_back( temp[i] );
+                    nTemp += temp[i];
                 }
                 else
                 {
-                    chainsawTemp->time = strTo<unsigned int>( nTemp );
+                    chainsawTemp->time = std::stoi( nTemp );
 
                     nTemp.clear();
                 }
@@ -278,17 +278,19 @@ Map::Map( std::string path )
         }
     }
 
+    file.close();
+
     for( HitObject *hitObject : hitObjects )
     {
         hitObject->isHit = false;
         hitObject->isShown = false;
+        hitObject->offsetTime = 0;
         hitObject->Init();
-        //std::cout << hitObject->direction << ' '
-        //          << hitObject->isHit << ' '
-        //          << hitObject->time << ' '
-        //          << hitObject->type << std::endl;
     }
 
+    isPaused = true;
+
+    music = new SoundManager( path + "song.mp3" );
 }
 
 Map::~Map()
@@ -297,6 +299,8 @@ Map::~Map()
 
 void Map::Update()
 {
+    if( isPaused ) return;
+
     for( HitObject *hitObject : hitObjects )
     {
         hitObject->Update();
@@ -309,4 +313,43 @@ void Map::Draw()
     {
         hitObject->Draw();
     }
+
+}
+
+void Map::Start()
+{
+    isPaused = false;
+    for( HitObject *hitObject : hitObjects )
+    {
+        hitObject->offsetTime = currentTime;
+    }
+
+    music->SetVolume( 10 );
+    music->Play();
+}
+
+void Map::Pause()
+{
+    if( !isPaused )
+    {
+        isPaused = true;
+        pausedTime = currentTime;
+
+        music->Pause();
+    }
+    else
+    {
+        isPaused = false;
+        for( HitObject *hitObject : hitObjects )
+        {
+            hitObject->offsetTime += currentTime - pausedTime;
+        }
+
+        music->Resume();
+    }
+}
+
+void Map::Close()
+{
+    music->Close();
 }

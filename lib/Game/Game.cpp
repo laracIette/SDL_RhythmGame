@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "../SoundManager/SoundManager.h"
 
 vec2<int> mouse;
 unsigned int deltaTime;
@@ -8,14 +7,12 @@ float velocity;
 
 Window *window;
 
-SoundManager *music;
 
 Game::Game()
 {
     window = new Window();
 
     getTime( currentTime );
-    startTime = currentTime;
 
     isRunning = true;
 
@@ -23,9 +20,9 @@ Game::Game()
 
     velocity = 0.2f;
 
-    map = new Map( "assets/Maps/Plastic Smile - Kaori Ishihara" );
+    map = new Map( "assets/Maps/Plastic Smile - Kaori Ishihara/" );
 
-    music = new SoundManager();
+    isStarted = false;
 }
 
 Game::~Game()
@@ -35,9 +32,6 @@ Game::~Game()
 void Game::Init()
 {
     deltaTime = 0;
-
-    music->Init( "assets/Maps/Plastic Smile - Kaori Ishihara/song.mp3" );
-    music->Play( 1 );
 }
 
 void Game::HandleEvents()
@@ -68,6 +62,7 @@ void Game::HandleEvents()
                 if( event.key.keysym.sym != events.keyCode[i] ) continue;
 
                 events.keyPressed[i] = false;
+                events.keyLock[i] = false;
                 break;
             }
             break;
@@ -105,6 +100,19 @@ void Game::Update()
     deltaTime = currentTime-lastFrameTime;
     lastFrameTime = currentTime;
 
+    if( !isStarted && events.keyPressed[0] )
+    {
+        events.keyLock[0] = true;
+
+        isStarted = true;
+        map->Start();
+    }
+    if( isStarted && !events.keyLock[0] && events.keyPressed[0] )
+    {
+        events.keyLock[0] = true;
+        map->Pause();
+    }
+
     player->Input();
     map->Update();
 }
@@ -124,6 +132,7 @@ void Game::Clear()
 {
     SDL_DestroyWindow( window->window );
     SDL_DestroyRenderer( window->renderer );
+    map->Close();
     Mix_CloseAudio();
     SDL_Quit();
 }

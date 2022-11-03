@@ -5,12 +5,20 @@
 class SoundManager
 {
     Mix_Music *music;
+    int volume;
 
 public:
-    SoundManager();
+    SoundManager( std::string path );
     ~SoundManager();
 
-    void Init( const char *path );
+    void Play( int repeats = -1 );
+    void Pause();
+    void Resume();
+    void Rewind();
+    void SetVolume( int volume );
+    void Halt();
 
-    void Play( int repeats );
+    void Close();
+
+    int Volume() { return volume; }
 };

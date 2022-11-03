@@ -11,4 +11,6 @@ struct KeyboardEvents
     };
 
     bool keyPressed[KEYS]{ false };
+
+    bool keyLock[KEYS]{ false };
 };
