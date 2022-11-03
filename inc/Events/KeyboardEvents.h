@@ -10,6 +10,8 @@ struct KeyboardEvents
         SDLK_SPACE
     };
 
+    static const int Space{ 0 };
+
     bool keyPressed[KEYS]{ false };
 
     bool keyLock[KEYS]{ false };

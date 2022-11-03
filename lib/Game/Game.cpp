@@ -47,42 +47,42 @@ void Game::HandleEvents()
             break;
 
         case SDL_KEYDOWN:
-            for( int i{ 0 }; i < events.KEYS; ++i )
+            for( int i{ 0 }; i < events.keyboard.KEYS; ++i )
             {
-                if( event.key.keysym.sym != events.keyCode[i] ) continue;
+                if( event.key.keysym.sym != events.keyboard.keyCode[i] ) continue;
 
-                events.keyPressed[i] = true;
+                events.keyboard.keyPressed[i] = true;
                 break;
             }
             break;
 
         case SDL_KEYUP:
-            for( int i{ 0 }; i < events.KEYS; ++i )
+            for( int i{ 0 }; i < events.keyboard.KEYS; ++i )
             {
-                if( event.key.keysym.sym != events.keyCode[i] ) continue;
+                if( event.key.keysym.sym != events.keyboard.keyCode[i] ) continue;
 
-                events.keyPressed[i] = false;
-                events.keyLock[i] = false;
+                events.keyboard.keyPressed[i] = false;
+                events.keyboard.keyLock[i] = false;
                 break;
             }
             break;
 
         case SDL_MOUSEBUTTONDOWN:
-            for( int i{ 0 }; i < events.BUTTONS; ++i )
+            for( int i{ 0 }; i < events.mouse.BUTTONS; ++i )
             {
-                if( event.button.button != events.buttonCode[i] ) continue;
+                if( event.button.button != events.mouse.buttonCode[i] ) continue;
 
-                events.buttonPressed[i] = true;
+                events.mouse.buttonClicked[i] = true;
                 break;
             }
             break;
 
         case SDL_MOUSEBUTTONUP:
-            for( int i{ 0 }; i < events.BUTTONS; ++i )
+            for( int i{ 0 }; i < events.mouse.BUTTONS; ++i )
             {
-                if( event.button.button != events.buttonCode[i] ) continue;
+                if( event.button.button != events.mouse.buttonCode[i] ) continue;
 
-                events.buttonPressed[i] = false;
+                events.mouse.buttonClicked[i] = false;
                 break;
             }
             break;
@@ -100,16 +100,18 @@ void Game::Update()
     deltaTime = currentTime-lastFrameTime;
     lastFrameTime = currentTime;
 
-    if( !isStarted && events.keyPressed[0] )
+    if( !isStarted && events.Pressed( events.keyboard.Space ) )
     {
-        events.keyLock[0] = true;
+        events.SetKeyLock( events.keyboard.Space, true );
 
         isStarted = true;
         map->Start();
     }
-    if( isStarted && !events.keyLock[0] && events.keyPressed[0] )
+    if( isStarted
+     && !events.KeyLock( events.keyboard.Space )
+     && events.Pressed( events.keyboard.Space ) )
     {
-        events.keyLock[0] = true;
+        events.SetKeyLock( events.keyboard.Space, true );
         map->Pause();
     }
 

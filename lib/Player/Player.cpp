@@ -8,7 +8,7 @@ void Player::Input()
     upHit     = false;
     downHit   = false;
 
-    if( events.buttonPressed[0] && events.buttonPressed[1] )
+    if( events.Clicked( events.mouse.Left ) && events.Clicked( events.mouse.Right ) )
     {
         up   = false;
         down = false;
@@ -17,14 +17,14 @@ void Player::Input()
         downHit = true;
     }
 
-    else if( events.buttonPressed[0] )
+    else if( events.Clicked( events.mouse.Left ) )
     {
         up = true;
 
         upHit = true;
     }
 
-    else if( events.buttonPressed[1] )
+    else if( events.Clicked( events.mouse.Right ) )
     {
         downHit = true;
     }

@@ -12,6 +12,12 @@ struct MouseEvents
 
     };
 
-    bool buttonPressed[BUTTONS]{ false };
+    static const int Left{ 0 };
+    static const int Right{ 1 };
+
+    bool buttonClicked[BUTTONS]{ false };
+
+    bool buttonLock[BUTTONS]{ false };
+
 
 };

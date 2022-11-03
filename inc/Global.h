@@ -29,6 +29,7 @@ enum Directions {
     DOWN
 };
 
+
 extern int WIDTH;
 extern int HEIGHT;
 
