@@ -8,7 +8,7 @@ class Map
     std::vector<HitObject *> hitObjects;
 
 public:
-    Map( const char *path );
+    Map( std::string path );
     ~Map();
 
     void Update();

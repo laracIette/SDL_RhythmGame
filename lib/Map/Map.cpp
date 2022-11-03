@@ -1,8 +1,8 @@
 #include "Map.h"
 
-Map::Map( const char *path )
+Map::Map( std::string path )
 {
-    std::ifstream file( path );
+    std::ifstream file( path + "/easy.txt" );
     std::string temp;
     std::vector<char> nTemp;
 

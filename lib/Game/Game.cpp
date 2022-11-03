@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "../SoundManager/SoundManager.h"
 
 vec2<int> mouse;
 unsigned int deltaTime;
@@ -6,6 +7,8 @@ Events events;
 float velocity;
 
 Window *window;
+
+SoundManager *music;
 
 Game::Game()
 {
@@ -20,7 +23,9 @@ Game::Game()
 
     velocity = 0.2f;
 
-    map = new Map( "assets/Maps/test0.txt" );
+    map = new Map( "assets/Maps/Plastic Smile - Kaori Ishihara" );
+
+    music = new SoundManager();
 }
 
 Game::~Game()
@@ -30,6 +35,9 @@ Game::~Game()
 void Game::Init()
 {
     deltaTime = 0;
+
+    music->Init( "assets/Maps/Plastic Smile - Kaori Ishihara/song.mp3" );
+    music->Play( 1 );
 }
 
 void Game::HandleEvents()
@@ -116,5 +124,6 @@ void Game::Clear()
 {
     SDL_DestroyWindow( window->window );
     SDL_DestroyRenderer( window->renderer );
+    Mix_CloseAudio();
     SDL_Quit();
 }
