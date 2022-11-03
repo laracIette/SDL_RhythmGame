@@ -35,8 +35,6 @@ extern int HEIGHT;
 
 extern Window *window;
 
-extern vec2<int> mouse;
-
 
 static unsigned int getTime()
 {

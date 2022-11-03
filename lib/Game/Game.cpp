@@ -34,71 +34,13 @@ void Game::Init()
     deltaTime = 0;
 }
 
-void Game::HandleEvents()
-{
-    SDL_GetMouseState( &mouse.x, &mouse.y );
-
-    while( SDL_PollEvent( &event ) )
-    {
-        switch( event.type )
-        {
-        case SDL_QUIT:
-            isRunning = false;
-            break;
-
-        case SDL_KEYDOWN:
-            for( int i{ 0 }; i < events.keyboard.KEYS; ++i )
-            {
-                if( event.key.keysym.sym != events.keyboard.keyCode[i] ) continue;
-
-                events.keyboard.keyPressed[i] = true;
-                break;
-            }
-            break;
-
-        case SDL_KEYUP:
-            for( int i{ 0 }; i < events.keyboard.KEYS; ++i )
-            {
-                if( event.key.keysym.sym != events.keyboard.keyCode[i] ) continue;
-
-                events.keyboard.keyPressed[i] = false;
-                events.keyboard.keyLock[i] = false;
-                break;
-            }
-            break;
-
-        case SDL_MOUSEBUTTONDOWN:
-            for( int i{ 0 }; i < events.mouse.BUTTONS; ++i )
-            {
-                if( event.button.button != events.mouse.buttonCode[i] ) continue;
-
-                events.mouse.buttonClicked[i] = true;
-                break;
-            }
-            break;
-
-        case SDL_MOUSEBUTTONUP:
-            for( int i{ 0 }; i < events.mouse.BUTTONS; ++i )
-            {
-                if( event.button.button != events.mouse.buttonCode[i] ) continue;
-
-                events.mouse.buttonClicked[i] = false;
-                break;
-            }
-            break;
-
-
-        default:
-            break;
-        }
-    }
-}
-
-
 void Game::Update()
 {
+    if( events.HandleEvents() ) isRunning = false;
+
     deltaTime = currentTime-lastFrameTime;
     lastFrameTime = currentTime;
+
 
     if( !isStarted && events.Pressed( events.keyboard.Space ) )
     {

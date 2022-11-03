@@ -9,8 +9,6 @@ class Game
 
     unsigned int lastFrameTime;
 
-    SDL_Event event;
-
     Player *player;
     Map *map;
 
@@ -22,7 +20,6 @@ public:
 
     void Init();
 
-    void HandleEvents();
     void Update();
 
     void Render();

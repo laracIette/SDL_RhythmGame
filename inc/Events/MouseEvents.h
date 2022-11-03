@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL.h>
+#include "../Point.h"
 
 struct MouseEvents
 {
@@ -19,5 +20,6 @@ struct MouseEvents
 
     bool buttonLock[BUTTONS]{ false };
 
+    vec2<int> pos;
 
 };

@@ -22,7 +22,6 @@ int main( int argc, char *argv[] )
     while( game->Running() )
     {
         getTime( currentTime );
-        game->HandleEvents();
         game->Update();
 
         if( (currentTime - start) > (1000 * i / FPS) )
