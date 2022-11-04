@@ -6,8 +6,7 @@
 static float getHitObjectOffsetHeight( bool isUp )
 {
     if( isUp ) return -(float)HEIGHT/10;
-    else       return (float)HEIGHT/10;
-    return 0;
+    return (float)HEIGHT/10;
 }
 
 
@@ -17,6 +16,8 @@ protected:
     Image *objectImage;
 
     float pos;
+
+    char hitValue;
 
 public:
     HitObject() {}
@@ -33,6 +34,10 @@ public:
 
     unsigned char type, direction;
 
+    unsigned int difference;
+
+    bool isValueReturned;
+
     virtual void Init() {}
 
     virtual void Move()
@@ -40,14 +45,28 @@ public:
         objectImage->SetX( pos );
     }
 
-    void Update()
+    virtual void Hit() {}
+
+    char Update()
     {
+        if( !isValueReturned && isHit )
+        {
+            isValueReturned = true;
+            return hitValue;
+        }
+
+        difference = abs( (int)currentTime-(int)offsetTime-(int)time );
+
         pos = (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity;
-        if( !isShown && (pos <= WIDTH) )
+        if( !isShown && (pos <= WIDTH + W()/2) )
         {
             isShown = true;
         }
+
+        Hit();
         Move();
+
+        return -1;
     }
 
     void Draw()
@@ -56,6 +75,14 @@ public:
         {
             objectImage->Draw();
         }
+    }
+
+    bool Erase()
+    {
+        if( ((int)currentTime-(int)offsetTime-(int)time) > (int)hit.Time.Max )
+            return 1;
+
+        return 0;
     }
 };
 
@@ -71,6 +98,39 @@ public:
             {0, 0, 50, 50},
             {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), 50, 50}
         );
+    }
+
+    void Hit()
+    {
+        if( isHit )
+            return;
+
+        if( difference >= hit.Time.Max )
+            return;
+
+        if( !(events.Clicked( events.mouse.Left ) && isUp)
+         && !(events.Clicked( events.mouse.Right ) && !isUp) )
+            return;
+
+        isHit = true;
+
+        if( difference < hit.Time.Perfect )
+        {
+            hitValue = hit.Accuracy.Perfect;
+        }
+        else if( difference < hit.Time.Great )
+        {
+            hitValue = hit.Accuracy.Great;
+        }
+        else if( difference < hit.Time.Meh )
+        {
+            hitValue = hit.Accuracy.Meh;
+        }
+        else
+        {
+            hitValue = 0;
+        }
+
     }
 
 };
@@ -91,7 +151,7 @@ public:
 
     void Move()
     {
-        objectImage->SetX( pos + (objectImage->W()/2-objectImage->H()/2) );
+        objectImage->SetX( pos + (W()/2-H()/2) );
     }
 };
 class Double : public HitObject

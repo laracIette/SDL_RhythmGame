@@ -14,6 +14,10 @@ class Map
 
     bool isPaused;
 
+    std::vector<char> accuracyHits;
+
+    char tempAcc;
+
 public:
     Map( std::string path );
     ~Map();
@@ -25,4 +29,6 @@ public:
     void Pause();
 
     void Close();
+
+    float GetAccuracy();
 };

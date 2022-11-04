@@ -19,8 +19,8 @@ struct Events
             switch( event.type )
             {
             case SDL_QUIT:
-                return 1;;
-                break;
+                return 1;
+
 
             case SDL_KEYDOWN:
                 for( int i{ 0 }; i < keyboard.KEYS; ++i )
@@ -76,7 +76,7 @@ struct Events
     bool Clicked( unsigned char button ) { return mouse.buttonClicked[button]; }
 
     bool KeyLock( unsigned char key ) { return keyboard.keyLock[key]; }
-    bool ClicLock( unsigned char button ) { return mouse.buttonLock[button]; }
+    bool ButtonLock( unsigned char button ) { return mouse.buttonLock[button]; }
 
     void SetKeyLock( unsigned char key, bool lock ) { keyboard.keyLock[key] = lock; }
     void SetButtonLock( unsigned char button, bool lock ) { mouse.buttonLock[button] = lock; }

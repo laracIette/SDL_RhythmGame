@@ -29,6 +29,27 @@ enum Directions {
     DOWN
 };
 
+struct HitTime
+{
+    const unsigned int Perfect{ 50 };
+    const unsigned int Great{ 150 };
+    const unsigned int Meh{ 300 };
+
+    const unsigned int Max{ 450 };
+};
+struct HitAccuracy
+{
+    const char Perfect{ 1 };
+    const char Great{ 3 };
+    const char Meh{ 6 };
+};
+struct Hit
+{
+    HitTime Time;
+    HitAccuracy Accuracy;
+};
+
+extern Hit hit;
 
 extern int WIDTH;
 extern int HEIGHT;
@@ -70,3 +91,5 @@ static T rad( T d )
 }
 
 extern float velocity;
+
+#define CoutEndl( arg ) std::cout << arg << std::endl;
