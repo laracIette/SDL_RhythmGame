@@ -12,6 +12,7 @@ static float getHitObjectOffsetHeight( bool isUp )
 
 class HitObject
 {
+
 protected:
     Image *objectImage;
 
@@ -28,7 +29,13 @@ public:
     float W() { return objectImage->W(); }
     float H() { return objectImage->H(); }
 
+    void SetX( float x ) { objectImage->SetX( x ); }
+    void SetY( float y ) { objectImage->SetY( y ); }
+    void SetW( float w ) { objectImage->SetW( w ); }
+    void SetH( float h ) { objectImage->SetH( h ); }
+
     unsigned int time, offsetTime;
+
     bool isHit;
     bool isShown;
 
@@ -40,19 +47,24 @@ public:
 
     virtual void Init() {}
 
-    virtual void Move()
-    {
-        objectImage->SetX( pos );
-    }
+    virtual void Move() { SetX( pos ); }
 
     virtual void Hit() {}
 
     char Update()
     {
-        if( !isValueReturned && isHit )
+        if( isHit )
         {
-            isValueReturned = true;
-            return hitValue;
+            if( W() > 2 )
+            {
+                SetW( W() - 0.1 );
+                SetH( H() - 0.1 );
+            }
+            if( !isValueReturned )
+            {
+                isValueReturned = true;
+                return hitValue;
+            }
         }
 
         difference = abs( (int)currentTime-(int)offsetTime-(int)time );
@@ -151,7 +163,7 @@ public:
 
     void Move()
     {
-        objectImage->SetX( pos + (W()/2-H()/2) );
+        SetX( pos + (W()/2-H()/2) );
     }
 };
 class Double : public HitObject
@@ -187,7 +199,7 @@ public:
         {
             pos = (float)WIDTH/6;
         }
-        objectImage->SetX( pos );
+        SetX( pos );
     }
 };
 class Ghost : public HitObject
