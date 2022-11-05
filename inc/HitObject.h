@@ -16,12 +16,26 @@ class HitObject
 protected:
     Image *objectImage;
 
+    bool isHit;
+    bool isShown;
+    bool isValueReturned;
+    bool isHitValueReturned;
+
     float pos;
 
     char hitValue;
 
+
 public:
-    HitObject() {}
+    HitObject()
+    {
+        isHit            = false;
+        isShown          = false;
+        isValueReturned  = false;
+        isHitValueReturned = false;
+
+        offsetTime = 0;
+    }
     ~HitObject() {}
 
     float X() { return objectImage->X(); }
@@ -34,96 +48,37 @@ public:
     void SetW( float w ) { objectImage->SetW( w ); }
     void SetH( float h ) { objectImage->SetH( h ); }
 
+    char GetHitValue()
+    {
+        if( isHitValueReturned )
+        {
+            isHitValueReturned = false;
+            CoutEndl('v'<<(int)hitValue)
+            return hitValue;
+        }
+        return -1;
+    }
+
+    virtual bool IsHit() { return isHit; }
+
     unsigned int time, offsetTime;
 
-    bool isHit;
-    bool isShown;
+    bool isUp;
 
     unsigned char type, direction;
 
     unsigned int difference;
 
-    bool isValueReturned;
 
+// initialises the HitObject
     virtual void Init() {}
 
-    virtual void Move() { SetX( pos ); }
+// sets the pos of the HitObject
+    virtual void Pos() { pos = (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity; }
 
-    virtual void Hit() {}
-
-    char Update()
+// affects a value to hitValue
+    void CheckHitTiming()
     {
-        if( isHit )
-        {
-            if( W() > 2 )
-            {
-                SetW( W() - 0.1 );
-                SetH( H() - 0.1 );
-            }
-            if( !isValueReturned )
-            {
-                isValueReturned = true;
-                return hitValue;
-            }
-        }
-
-        difference = abs( (int)currentTime-(int)offsetTime-(int)time );
-
-        pos = (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity;
-        if( !isShown && (pos <= WIDTH + W()/2) )
-        {
-            isShown = true;
-        }
-
-        Hit();
-        Move();
-
-        return -1;
-    }
-
-    void Draw()
-    {
-        if( isShown )
-        {
-            objectImage->Draw();
-        }
-    }
-
-    bool Erase()
-    {
-        if( ((int)currentTime-(int)offsetTime-(int)time) > (int)hit.Time.Max )
-            return 1;
-
-        return 0;
-    }
-};
-
-class Note : public HitObject
-{
-public:
-    bool isUp;
-
-    void Init()
-    {
-        objectImage = new Image(
-            "assets/Skins/BaseSkin/HitObjects/Notes/Note0.png",
-            {0, 0, 50, 50},
-            {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), 50, 50}
-        );
-    }
-
-    void Hit()
-    {
-        if( isHit )
-            return;
-
-        if( difference >= hit.Time.Max )
-            return;
-
-        if( !(events.Clicked( events.mouse.Left ) && isUp)
-         && !(events.Clicked( events.mouse.Right ) && !isUp) )
-            return;
-
         isHit = true;
 
         if( difference < hit.Time.Perfect )
@@ -142,15 +97,100 @@ public:
         {
             hitValue = 0;
         }
+        isHitValueReturned = true;
+    }
 
+// returns true if hitting the right note side
+    bool CheckHitting()
+    {
+        if( (events.Clicked( events.mouse.Left ) && isUp)
+         || (events.Clicked( events.mouse.Right ) && !isUp) )
+            return 1;
+
+        return 0;
+    }
+
+
+// does specific things by type if isHit
+    virtual void DoThingsAfterHit()
+    {
+        if( W() > 2 )
+        {
+            SetW( W() - 0.1 );
+            SetH( H() - 0.1 );
+        }
+        if( !isValueReturned )
+        {
+            isValueReturned = true;
+            isHitValueReturned = true;
+        }
+
+    }
+
+    void Update()
+    {
+        difference = abs( (int)currentTime-(int)offsetTime-(int)time );
+
+        Pos();
+
+        if( !isShown && (pos <= WIDTH + W()/2) )
+        {
+            isShown = true;
+        }
+
+        SetX( pos );
+
+        if( !isHit && CheckHitting() && (difference < hit.Time.Max) )
+        {
+            CheckHitTiming();
+        }
+
+        if( isHit )
+        {
+            DoThingsAfterHit();
+        }
+    }
+
+    void Draw()
+    {
+        if( isShown )
+        {
+            objectImage->Draw();
+        }
+    }
+
+// returns true if the HitObject needs to be erased
+    virtual bool Erase()
+    {
+        if( ((int)currentTime-(int)offsetTime-(int)time) > (int)hit.Time.Max )
+            return 1;
+
+        return 0;
+    }
+};
+
+class Note : public HitObject
+{
+public:
+
+    void Init()
+    {
+        objectImage = new Image(
+            "assets/Skins/BaseSkin/HitObjects/Notes/Note0.png",
+            {0, 0, 50, 50},
+            {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), 50, 50}
+        );
     }
 
 };
 class Hold : public HitObject
 {
+    bool isHold;
+
+    bool isEndHitValueReturned;
+
 public:
     unsigned int endTime;
-    bool isUp;
 
     void Init()
     {
@@ -159,12 +199,56 @@ public:
             {0, 0, 50, 50},
             {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), ((float)endTime - (float)time)*velocity + 50, 50}
         );
+
+        isHold = true;
+        isEndHitValueReturned = false;
     }
 
-    void Move()
+    void Pos()
     {
-        SetX( pos + (W()/2-H()/2) );
+        pos = (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity + (W()/2-H()/2);
     }
+
+    void DoThingsAfterHit()
+    {
+        if( (hitValue > 0) && !isEndHitValueReturned && !CheckHitting() )
+        {
+            isEndHitValueReturned = true;
+            difference = abs( (int)currentTime-(int)offsetTime-(int)endTime );
+
+            if( difference < hit.Time.Perfect )
+            {
+                hitValue = hit.Accuracy.Perfect;
+            }
+            else if( difference < hit.Time.Great )
+            {
+                hitValue = hit.Accuracy.Great;
+            }
+            else if( difference < hit.Time.Meh )
+            {
+                hitValue = hit.Accuracy.Meh;
+            }
+            else
+            {
+                hitValue = 0;
+            }
+            isHitValueReturned = true;
+        }
+    }
+
+    bool IsHit()
+    {
+        return (isHit && isEndHitValueReturned) ;
+    }
+
+    bool Erase()
+    {
+        if( ((int)currentTime-(int)offsetTime-(int)endTime) > (int)hit.Time.Max )
+            return 1;
+
+        return 0;
+    }
+
 };
 class Double : public HitObject
 {
@@ -193,19 +277,21 @@ public:
         );
     }
 
-    void Move()
+    void Pos()
     {
         if( (currentTime >= time + offsetTime) && (currentTime < endTime + offsetTime) )
         {
             pos = (float)WIDTH/6;
         }
-        SetX( pos );
+        else
+        {
+            pos = (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity;
+        }
     }
 };
 class Ghost : public HitObject
 {
 public:
-    bool isUp;
 
     void Init()
     {
@@ -215,11 +301,11 @@ public:
             {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), 50, 50}
         );
     }
+
 };
 class Coin : public HitObject
 {
 public:
-    bool isUp;
 
     void Init()
     {
@@ -229,11 +315,11 @@ public:
             {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), 25, 25}
         );
     }
+
 };
 class Hammer : public HitObject
 {
 public:
-    bool isUp;
 
     void Init()
     {
@@ -243,6 +329,7 @@ public:
             {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), 50, 50}
         );
     }
+
 };
 class Chainsaw : public HitObject
 {

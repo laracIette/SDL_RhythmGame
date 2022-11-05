@@ -282,16 +282,14 @@ Map::Map( std::string path )
 
     for( HitObject *hitObject : hitObjects )
     {
-        hitObject->isHit = false;
-        hitObject->isShown = false;
-        hitObject->offsetTime = 0;
-        hitObject->isValueReturned = false;
         hitObject->Init();
     }
 
     isPaused = true;
 
     music = new SoundManager( path + "song.mp3" );
+
+    oldAcc = -1;
 }
 
 Map::~Map()
@@ -305,7 +303,9 @@ void Map::Update()
     int j{ 0 };
     for( int i{ 0 }; i < hitObjects.size(); ++i )
     {
-        tempAcc = hitObjects[j]->Update();
+        hitObjects[j]->Update();
+
+        tempAcc = hitObjects[j]->GetHitValue();
         if( tempAcc != -1 )
         {
             accuracyHits.push_back( tempAcc );
@@ -313,7 +313,7 @@ void Map::Update()
 
         if( hitObjects[j]->Erase() )
         {
-            if( !hitObjects[j]->isHit )
+            if( !hitObjects[j]->IsHit() )
             {
                 accuracyHits.push_back( 0 );
             }
@@ -321,6 +321,12 @@ void Map::Update()
         }
 
         j++;
+    }
+
+    if( GetAccuracy() != oldAcc )
+    {
+        oldAcc = GetAccuracy();
+        CoutEndl(oldAcc)
     }
 }
 
@@ -378,11 +384,14 @@ float Map::GetAccuracy()
 
     for( char acc : accuracyHits )
     {
-        numerator++;
-        if( acc != 0 ) denominator += acc;
+        if( acc == 1 )      numerator += 6;
+        else if( acc == 3 ) numerator += 2;
+        else if( acc == 6 ) numerator++;
+
+        denominator += 6;
     }
 
-    if( denominator == 0 ) return 0;
+    if( numerator == 0 ) return 0;
 
     return 100 * numerator / denominator;
 }

@@ -44,6 +44,6 @@ void Player::Input()
     }
 
 
-    if( upHit )   std::cout << "up\n";
-    if( downHit ) std::cout << "down\n";
+    //if( upHit )   CoutEndl("up")
+    //if( downHit ) CoutEndl("up")
 }

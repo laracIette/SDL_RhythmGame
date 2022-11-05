@@ -15,6 +15,7 @@ class Map
     bool isPaused;
 
     std::vector<char> accuracyHits;
+    float oldAcc;
 
     char tempAcc;
 
