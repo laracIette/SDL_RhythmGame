@@ -290,6 +290,8 @@ Map::Map( std::string path )
     music = new SoundManager( path + "song.mp3" );
 
     oldAcc = -1;
+
+    for( unsigned int &acc : accuracyHits ) acc = 0;
 }
 
 Map::~Map()
@@ -306,16 +308,17 @@ void Map::Update()
         hitObjects[j]->Update();
 
         tempAcc = hitObjects[j]->GetHitValue();
-        if( tempAcc != -1 )
-        {
-            accuracyHits.push_back( tempAcc );
-        }
+
+        if( tempAcc == 1 )      accuracyHits[0]++;
+        else if( tempAcc == 3 ) accuracyHits[1]++;
+        else if( tempAcc == 6 ) accuracyHits[2]++;
+        else if( tempAcc == 0 ) accuracyHits[3]++;
 
         if( hitObjects[j]->Erase() )
         {
             if( !hitObjects[j]->IsHit() )
             {
-                accuracyHits.push_back( 0 );
+                accuracyHits[3]++;
             }
             hitObjects.erase( hitObjects.begin() + j-- );
         }
@@ -378,20 +381,9 @@ void Map::Close()
 
 float Map::GetAccuracy()
 {
-    if( accuracyHits.size() == 0 ) return 100;
+    if( accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3] == 0 ) return 100;
 
-    float numerator{ 0 }, denominator{ 0 };
+    if( accuracyHits[0] + accuracyHits[1] + accuracyHits[2] == 0 ) return 0;
 
-    for( char acc : accuracyHits )
-    {
-        if( acc == 1 )      numerator += 6;
-        else if( acc == 3 ) numerator += 2;
-        else if( acc == 6 ) numerator++;
-
-        denominator += 6;
-    }
-
-    if( numerator == 0 ) return 0;
-
-    return 100 * numerator / denominator;
+    return 100 * (float)(6*accuracyHits[0] + 2*accuracyHits[1] + accuracyHits[2]) / (float)(6*(accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3]));
 }

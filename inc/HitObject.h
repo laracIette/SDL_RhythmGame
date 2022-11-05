@@ -25,13 +25,21 @@ protected:
 
     char hitValue;
 
-
 public:
+    unsigned char type, direction;
+
+    unsigned int time, offsetTime;
+
+    unsigned int difference;
+
+    bool isUp;
+
+
     HitObject()
     {
-        isHit            = false;
-        isShown          = false;
-        isValueReturned  = false;
+        isHit              = false;
+        isShown            = false;
+        isValueReturned    = false;
         isHitValueReturned = false;
 
         offsetTime = 0;
@@ -60,14 +68,6 @@ public:
     }
 
     virtual bool IsHit() { return isHit; }
-
-    unsigned int time, offsetTime;
-
-    bool isUp;
-
-    unsigned char type, direction;
-
-    unsigned int difference;
 
 
 // initialises the HitObject
