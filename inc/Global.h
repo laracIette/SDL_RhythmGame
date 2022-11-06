@@ -93,3 +93,16 @@ static T rad( T d )
 extern float velocity;
 
 #define CoutEndl( arg ) std::cout << arg << std::endl;
+
+template<typename T>
+static T highest( T a, T b )
+{
+    if( a > b ) return a;
+    return b;
+}
+template<typename T>
+static T lowest( T a, T b )
+{
+    if( a < b ) return a;
+    return b;
+}

@@ -15,7 +15,7 @@ class Map
     bool isPaused;
 
     unsigned int accuracyHits[4];
-    float oldAcc;
+    unsigned int oldAcc;
 
     char tempAcc;
 

@@ -289,7 +289,7 @@ Map::Map( std::string path )
 
     music = new SoundManager( path + "song.mp3" );
 
-    oldAcc = -1;
+    oldAcc = 0;
 
     for( unsigned int &acc : accuracyHits ) acc = 0;
 }
@@ -326,10 +326,10 @@ void Map::Update()
         j++;
     }
 
-    if( GetAccuracy() != oldAcc )
+    if( accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3] != oldAcc )
     {
-        oldAcc = GetAccuracy();
-        CoutEndl(oldAcc)
+        oldAcc = accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3];
+        CoutEndl(accuracyHits[0] << ' ' << accuracyHits[1] << ' ' << accuracyHits[2] << ' ' << accuracyHits[3] << ';' << GetAccuracy())
     }
 }
 

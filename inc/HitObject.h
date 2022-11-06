@@ -101,10 +101,10 @@ public:
     }
 
 // returns true if hitting the right note side
-    bool CheckHitting()
+    virtual bool CheckHitting()
     {
-        if( (events.Clicked( events.mouse.Left ) && isUp)
-         || (events.Clicked( events.mouse.Right ) && !isUp) )
+        if( (events.Pressed( events.rightKey1 ) && isUp)
+         || (events.Pressed( events.rightKey2 ) && !isUp) )
             return 1;
 
         return 0;
@@ -140,7 +140,7 @@ public:
 
         SetX( pos );
 
-        if( !isHit && CheckHitting() && (difference < hit.Time.Max) )
+        if( !isHit && (difference < hit.Time.Max) && CheckHitting() )
         {
             CheckHitTiming();
         }
@@ -216,23 +216,7 @@ public:
             isEndHitValueReturned = true;
             difference = abs( (int)currentTime-(int)offsetTime-(int)endTime );
 
-            if( difference < hit.Time.Perfect )
-            {
-                hitValue = hit.Accuracy.Perfect;
-            }
-            else if( difference < hit.Time.Great )
-            {
-                hitValue = hit.Accuracy.Great;
-            }
-            else if( difference < hit.Time.Meh )
-            {
-                hitValue = hit.Accuracy.Meh;
-            }
-            else
-            {
-                hitValue = 0;
-            }
-            isHitValueReturned = true;
+            CheckHitTiming();
         }
     }
 
@@ -252,6 +236,9 @@ public:
 };
 class Double : public HitObject
 {
+    bool isUpPressed, isDownPressed;
+    unsigned int upPressedTime, downPressedTime;
+
 public:
 
     void Init()
@@ -261,6 +248,34 @@ public:
             {0, 0, 50, 150},
             {0, (float)HEIGHT/2, 50, 150}
         );
+        isUpPressed = false;
+        isDownPressed = false;
+    }
+
+    bool CheckHitting()
+    {
+    // register moment for each click
+        if( !isUpPressed && events.Pressed( events.rightKey1 ) )
+        {
+            isUpPressed = true;
+            upPressedTime = currentTime;
+        }
+        if( !isDownPressed && events.Pressed( events.rightKey2 ) )
+        {
+            isDownPressed = true;
+            downPressedTime = currentTime;
+        }
+    // hitValue = highest difference from time
+        if( isUpPressed && isDownPressed )
+        {
+            difference = highest(
+                abs( (int)upPressedTime-(int)offsetTime-(int)time ),
+                abs( (int)downPressedTime-(int)offsetTime-(int)time )
+            );
+            return 1;
+        }
+
+        return 0;
     }
 };
 class Mash : public HitObject
@@ -279,13 +294,17 @@ public:
 
     void Pos()
     {
-        if( (currentTime >= time + offsetTime) && (currentTime < endTime + offsetTime) )
+        if( currentTime < (time + offsetTime) )
         {
-            pos = (float)WIDTH/6;
+            pos = (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity;
+        }
+        else if( currentTime >= (endTime + offsetTime) )
+        {
+            pos = (float)WIDTH/6 + ((float)endTime + (float)offsetTime - (float)currentTime)*velocity;
         }
         else
         {
-            pos = (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity;
+            pos = (float)WIDTH/6;
         }
     }
 };

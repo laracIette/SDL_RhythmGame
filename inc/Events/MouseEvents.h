@@ -5,16 +5,19 @@
 
 struct MouseEvents
 {
-    static const int BUTTONS{ 2 };
+    static const int BUTTONS{ 3 };
 
     unsigned char buttonCode[BUTTONS]{
         SDL_BUTTON_LEFT,
         SDL_BUTTON_RIGHT,
-
+        SDL_BUTTON_MIDDLE
     };
 
-    static const int Left{ 0 };
-    static const int Right{ 1 };
+    enum Buttons {
+        Left = 0,
+        Right,
+        Middle
+    };
 
     bool buttonClicked[BUTTONS]{ false };
 

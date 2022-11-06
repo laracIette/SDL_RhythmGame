@@ -10,6 +10,13 @@ struct Events
 
     SDL_Event event;
 
+    int leftKey1{ keyboard.D };
+    int leftKey2{ keyboard.F };
+    int rightKey1{ keyboard.H };
+    int rightKey2{ keyboard.J };
+
+    int flipKey{ keyboard.Space };
+
     int HandleEvents()
     {
         SDL_GetMouseState( &mouse.pos.x, &mouse.pos.y );
@@ -20,7 +27,6 @@ struct Events
             {
             case SDL_QUIT:
                 return 1;
-
 
             case SDL_KEYDOWN:
                 for( int i{ 0 }; i < keyboard.KEYS; ++i )
@@ -72,12 +78,14 @@ struct Events
         return 0;
     }
 
-    bool Pressed( unsigned char key ) { return keyboard.keyPressed[key]; }
-    bool Clicked( unsigned char button ) { return mouse.buttonClicked[button]; }
 
-    bool KeyLock( unsigned char key ) { return keyboard.keyLock[key]; }
-    bool ButtonLock( unsigned char button ) { return mouse.buttonLock[button]; }
+    bool Pressed( int key ) { return keyboard.keyPressed[key]; }
+    bool Clicked( int button ) { return mouse.buttonClicked[button]; }
 
-    void SetKeyLock( unsigned char key, bool lock ) { keyboard.keyLock[key] = lock; }
-    void SetButtonLock( unsigned char button, bool lock ) { mouse.buttonLock[button] = lock; }
+    bool KeyLock( int key ) { return keyboard.keyLock[key]; }
+    bool ButtonLock( int button ) { return mouse.buttonLock[button]; }
+
+    void SetKeyLock( int key, bool lock ) { keyboard.keyLock[key] = lock; }
+    void SetButtonLock( int button, bool lock ) { mouse.buttonLock[button] = lock; }
+
 };
