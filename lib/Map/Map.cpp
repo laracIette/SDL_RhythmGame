@@ -309,11 +309,12 @@ void Map::Update()
 
         tempAcc = hitObjects[j]->GetHitValue();
 
-        if( tempAcc != -1 ) accuracyHits[tempAcc]++;
+        if( tempAcc != -1 && (hitObjects[j]->type != COIN) ) accuracyHits[tempAcc]++;
+        else if( tempAcc == HitAccuracy::Perfect && (hitObjects[j]->type == COIN) ) CoutEndl("coin")
 
         if( hitObjects[j]->Erase() )
         {
-            if( !hitObjects[j]->IsHit() )
+            if( !hitObjects[j]->IsHit() && (hitObjects[j]->type != COIN) )
             {
                 accuracyHits[3]++;
             }

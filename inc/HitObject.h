@@ -421,6 +421,18 @@ public:
         );
     }
 
+    bool CheckHitting()
+    {
+        if( ( (events.Pressed( events.rightKey1 ) && isUp) || ((events.Pressed( events.rightKey2 ) && !isUp)) )
+         && difference < HitTime::Meh )
+        {
+            hitValue = HitAccuracy::Perfect;
+            isReturnHitValue = true;
+            isHit = true;
+        }
+        return 0;
+    }
+
 };
 class Hammer : public HitObject
 {
