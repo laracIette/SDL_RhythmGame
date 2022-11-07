@@ -307,6 +307,8 @@ void Map::Update()
     {
         hitObjects[j]->Update();
 
+        if( (hitObjects[j]->type == CHAINSAW) && hitObjects[j]->IsHit() ) CoutEndl("hit")
+
         tempAcc = hitObjects[j]->GetHitValue();
 
         if( tempAcc != -1 && (hitObjects[j]->type != COIN) ) accuracyHits[tempAcc]++;
@@ -314,7 +316,7 @@ void Map::Update()
 
         if( hitObjects[j]->Erase() )
         {
-            if( !hitObjects[j]->IsHit() && (hitObjects[j]->type != COIN) )
+            if( !hitObjects[j]->IsHit() && (hitObjects[j]->type != COIN) && (hitObjects[j]->type != CHAINSAW) )
             {
                 accuracyHits[3]++;
             }

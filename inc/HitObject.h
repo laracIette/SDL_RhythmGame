@@ -408,6 +408,9 @@ public:
     }
 
 };
+
+
+
 class Coin : public HitObject
 {
 public:
@@ -434,6 +437,9 @@ public:
     }
 
 };
+
+
+
 class Hammer : public HitObject
 {
 public:
@@ -448,8 +454,13 @@ public:
     }
 
 };
+
+
+
 class Chainsaw : public HitObject
 {
+    bool isHitLock;
+
 public:
 
     void Init()
@@ -459,5 +470,31 @@ public:
             {0, 0, 2500, 2500},
             {0, (float)HEIGHT/2 + (float)HEIGHT/10, 50, 50}
         );
+        isHitLock = false;
     }
+
+    bool CheckHitting()
+    {
+        if( (events.Pressed( events.rightKey1 ) && isUp)
+         || (events.Pressed( events.rightKey2 ) && !isUp)
+         || (!events.Pressed( events.rightKey2 ) && !events.Pressed( events.rightKey1 ) && !isUp)
+         && difference < HitTime::Great )
+        {
+            isHit = true;
+        }
+        return 0;
+    }
+
+    bool IsHit()
+    {
+        if( !isHitLock && isHit )
+        {
+            isHitLock = true;
+            return 1;
+        }
+
+        return 0;
+    }
+
+    void DoThingsAfterHit() {}
 };
