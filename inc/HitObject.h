@@ -10,12 +10,10 @@ static float getHitObjectOffsetHeight( bool isUp )
 }
 
 
-class HitObject
+class HitObject : public Image
 {
 
 protected:
-    Image *objectImage;
-
     bool isHit;
     bool isShown;
     bool isValueReturned;
@@ -35,7 +33,7 @@ public:
     bool isUp;
 
 
-    HitObject()
+    HitObject( std::string path, SDL_Rect src, Rect dest ) : Image( path, src, dest )
     {
         isHit            = false;
         isShown          = false;
@@ -44,17 +42,6 @@ public:
 
         offsetTime = 0;
     }
-    ~HitObject() {}
-
-    float X() { return objectImage->X(); }
-    float Y() { return objectImage->Y(); }
-    float W() { return objectImage->W(); }
-    float H() { return objectImage->H(); }
-
-    void SetX( float x ) { objectImage->SetX( x ); }
-    void SetY( float y ) { objectImage->SetY( y ); }
-    void SetW( float w ) { objectImage->SetW( w ); }
-    void SetH( float h ) { objectImage->SetH( h ); }
 
     char GetHitValue()
     {
@@ -151,11 +138,11 @@ public:
         }
     }
 
-    void Draw()
+    void DrawHitObject()
     {
         if( isShown )
         {
-            objectImage->Draw();
+            Draw();
         }
     }
 
@@ -174,14 +161,11 @@ public:
 class Note : public HitObject
 {
 public:
+    Note( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
 
     void Init()
     {
-        objectImage = new Image(
-            "assets/Skins/BaseSkin/HitObjects/Notes/Note0.png",
-            {0, 0, 2500, 2500},
-            {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), 50, 50}
-        );
+        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
     }
 
 };
@@ -197,13 +181,12 @@ class Hold : public HitObject
 public:
     unsigned int endTime;
 
+    Hold( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
+
     void Init()
     {
-        objectImage = new Image(
-            "assets/Skins/BaseSkin/HitObjects/Holds/Hold0.png",
-            {0, 0, 50, 50},
-            {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), ((float)endTime - (float)time)*velocity + 50, 50}
-        );
+        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
+        SetW( ((float)endTime - (float)time)*velocity + 50 );
 
         isHold = true;
         isEndHitValueReturned = false;
@@ -248,14 +231,10 @@ class Double : public HitObject
     unsigned int upPressedTime, downPressedTime;
 
 public:
+    Double( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
 
     void Init()
     {
-        objectImage = new Image(
-            "assets/Skins/BaseSkin/HitObjects/Doubles/Double0.png",
-            {0, 0, 50, 150},
-            {0, (float)HEIGHT/2, 50, 150}
-        );
         isUpPressed = false;
         isDownPressed = false;
     }
@@ -300,13 +279,10 @@ class Mash : public HitObject
 public:
     unsigned int endTime;
 
+    Mash( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
+
     void Init()
     {
-        objectImage = new Image(
-            "assets/Skins/BaseSkin/HitObjects/Mashs/Mash0.png",
-            {0, 0, 150, 150},
-            {0, (float)HEIGHT/2, 150, 150}
-        );
         hits = 0;
         isHitBlocked = false;
     }
@@ -397,14 +373,11 @@ public:
 class Ghost : public HitObject
 {
 public:
+    Ghost( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
 
     void Init()
     {
-        objectImage = new Image(
-            "assets/Skins/BaseSkin/HitObjects/Ghosts/Ghost0.png",
-            {0, 0, 50, 50},
-            {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), 50, 50}
-        );
+        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
     }
 
 };
@@ -414,14 +387,11 @@ public:
 class Coin : public HitObject
 {
 public:
+    Coin( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
 
     void Init()
     {
-        objectImage = new Image(
-            "assets/Skins/BaseSkin/HitObjects/Coins/Coin0.png",
-            {0, 0, 25, 25},
-            {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), 25, 25}
-        );
+        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
     }
 
     bool CheckHitting()
@@ -443,14 +413,11 @@ public:
 class Hammer : public HitObject
 {
 public:
+    Hammer( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
 
     void Init()
     {
-        objectImage = new Image(
-            "assets/Skins/BaseSkin/HitObjects/Hammers/Hammer0.png",
-            {0, 0, 50, 50},
-            {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), 50, 50}
-        );
+        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
     }
 
 };
@@ -462,14 +429,11 @@ class Chainsaw : public HitObject
     bool isHitLock;
 
 public:
+    Chainsaw( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
 
     void Init()
     {
-        objectImage = new Image(
-            "assets/Skins/BaseSkin/HitObjects/Chainsaws/Chainsaw0.png",
-            {0, 0, 2500, 2500},
-            {0, (float)HEIGHT/2 + (float)HEIGHT/10, 50, 50}
-        );
+        SetY( (float)HEIGHT/2 + (float)HEIGHT/10 );
         isHitLock = false;
     }
 
