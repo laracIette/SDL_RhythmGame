@@ -292,6 +292,11 @@ Map::Map( std::string path )
     oldAcc = 0;
 
     for( unsigned int &acc : accuracyHits ) acc = 0;
+
+    combo = 0;
+    highestCombo = 0;
+
+    score = 0;
 }
 
 Map::~Map()
@@ -307,23 +312,37 @@ void Map::Update()
     {
         hitObjects[j]->Update();
 
-        if( (hitObjects[j]->type == CHAINSAW) && hitObjects[j]->IsHit() ) CoutEndl("hit")
+        if( (hitObjects[j]->type == CHAINSAW) && hitObjects[j]->IsHit() )
+        {
+            combo = 0;
+            CoutEndl("hit")
+        }
 
         tempAcc = hitObjects[j]->GetHitValue();
 
-        if( tempAcc != -1 && (hitObjects[j]->type != COIN) ) accuracyHits[tempAcc]++;
-        else if( tempAcc == HitAccuracy::Perfect && (hitObjects[j]->type == COIN) ) CoutEndl("coin")
+        if( tempAcc != -1 && (hitObjects[j]->type != COIN) )
+        {
+            accuracyHits[tempAcc]++;
+            combo++;
+        }
+        else if( tempAcc == HitAccuracy::Perfect && (hitObjects[j]->type == COIN) )
+        {
+            CoutEndl("coin")
+        }
 
         if( hitObjects[j]->Erase() )
         {
             if( !hitObjects[j]->IsHit() && (hitObjects[j]->type != COIN) && (hitObjects[j]->type != CHAINSAW) )
             {
+                combo = 0;
                 accuracyHits[3]++;
             }
             hitObjects.erase( hitObjects.begin() + j-- );
         }
 
         j++;
+
+        if( combo > highestCombo ) highestCombo = combo;
     }
 
     if( accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3] != oldAcc )

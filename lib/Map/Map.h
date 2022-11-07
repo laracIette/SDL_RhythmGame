@@ -19,6 +19,10 @@ class Map
 
     char tempAcc;
 
+    unsigned int combo, highestCombo;
+
+    unsigned int score;
+
 public:
     Map( std::string path );
     ~Map();
