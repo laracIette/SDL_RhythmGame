@@ -6,7 +6,6 @@ Events events;
 float velocity;
 
 Window *window;
-Hit hit;
 
 Game::Game()
 {

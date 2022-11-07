@@ -19,7 +19,7 @@ protected:
     bool isHit;
     bool isShown;
     bool isValueReturned;
-    bool isHitValueReturned;
+    bool isReturnHitValue;
 
     float pos;
 
@@ -37,10 +37,10 @@ public:
 
     HitObject()
     {
-        isHit              = false;
-        isShown            = false;
-        isValueReturned    = false;
-        isHitValueReturned = false;
+        isHit            = false;
+        isShown          = false;
+        isValueReturned  = false;
+        isReturnHitValue = false;
 
         offsetTime = 0;
     }
@@ -58,9 +58,9 @@ public:
 
     char GetHitValue()
     {
-        if( isHitValueReturned )
+        if( isReturnHitValue )
         {
-            isHitValueReturned = false;
+            isReturnHitValue = false;
             CoutEndl('v'<<(int)hitValue)
             return hitValue;
         }
@@ -81,23 +81,23 @@ public:
     {
         isHit = true;
 
-        if( difference < hit.Time.Perfect )
+        if( difference < HitTime::Perfect )
         {
-            hitValue = hit.Accuracy.Perfect;
+            hitValue = HitAccuracy::Perfect;
         }
-        else if( difference < hit.Time.Great )
+        else if( difference < HitTime::Great )
         {
-            hitValue = hit.Accuracy.Great;
+            hitValue = HitAccuracy::Great;
         }
-        else if( difference < hit.Time.Meh )
+        else if( difference < HitTime::Meh )
         {
-            hitValue = hit.Accuracy.Meh;
+            hitValue = HitAccuracy::Meh;
         }
         else
         {
-            hitValue = 0;
+            hitValue = HitAccuracy::Miss;
         }
-        isHitValueReturned = true;
+        isReturnHitValue = true;
     }
 
 // returns true if hitting the right note side
@@ -122,14 +122,14 @@ public:
         if( !isValueReturned )
         {
             isValueReturned = true;
-            isHitValueReturned = true;
+            isReturnHitValue = true;
         }
 
     }
 
     void Update()
     {
-        difference = abs( (int)currentTime-(int)offsetTime-(int)time );
+        difference = abs( (int)currentTime - (int)offsetTime - (int)time );
 
         Pos();
 
@@ -140,7 +140,7 @@ public:
 
         SetX( pos );
 
-        if( !isHit && (difference < hit.Time.Max) && CheckHitting() )
+        if( !isHit && (difference < HitTime::Miss) && CheckHitting() )
         {
             CheckHitTiming();
         }
@@ -162,12 +162,14 @@ public:
 // returns true if the HitObject needs to be erased
     virtual bool Erase()
     {
-        if( ((int)currentTime-(int)offsetTime-(int)time) > (int)hit.Time.Max )
+        if( ((int)currentTime - (int)offsetTime - (int)time) > (int)HitTime::Miss )
             return 1;
 
         return 0;
     }
 };
+
+
 
 class Note : public HitObject
 {
@@ -177,12 +179,15 @@ public:
     {
         objectImage = new Image(
             "assets/Skins/BaseSkin/HitObjects/Notes/Note0.png",
-            {0, 0, 50, 50},
+            {0, 0, 2500, 2500},
             {0, (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ), 50, 50}
         );
     }
 
 };
+
+
+
 class Hold : public HitObject
 {
     bool isHold;
@@ -214,7 +219,7 @@ public:
         if( (hitValue > 0) && !isEndHitValueReturned && !CheckHitting() )
         {
             isEndHitValueReturned = true;
-            difference = abs( (int)currentTime-(int)offsetTime-(int)endTime );
+            difference = abs( (int)currentTime - (int)offsetTime - (int)endTime );
 
             CheckHitTiming();
         }
@@ -227,13 +232,16 @@ public:
 
     bool Erase()
     {
-        if( ((int)currentTime-(int)offsetTime-(int)endTime) > (int)hit.Time.Max )
+        if( ((int)currentTime - (int)offsetTime - (int)endTime) > (int)HitTime::Miss )
             return 1;
 
         return 0;
     }
 
 };
+
+
+
 class Double : public HitObject
 {
     bool isUpPressed, isDownPressed;
@@ -269,8 +277,8 @@ public:
         if( isUpPressed && isDownPressed )
         {
             difference = highest(
-                abs( (int)upPressedTime-(int)offsetTime-(int)time ),
-                abs( (int)downPressedTime-(int)offsetTime-(int)time )
+                abs( (int)upPressedTime - (int)offsetTime - (int)time ),
+                abs( (int)downPressedTime - (int)offsetTime - (int)time )
             );
             return 1;
         }
@@ -278,8 +286,17 @@ public:
         return 0;
     }
 };
+
+
+
 class Mash : public HitObject
 {
+    unsigned int hits;
+    unsigned int lastHitTime;
+
+    bool isHitBlocked;
+
+
 public:
     unsigned int endTime;
 
@@ -290,6 +307,8 @@ public:
             {0, 0, 150, 150},
             {0, (float)HEIGHT/2, 150, 150}
         );
+        hits = 0;
+        isHitBlocked = false;
     }
 
     void Pos()
@@ -307,7 +326,74 @@ public:
             pos = (float)WIDTH/6;
         }
     }
+
+    bool CheckHitting()
+    {
+        if( !events.Pressed( events.rightKey1 )
+         && !events.Pressed( events.rightKey2 ) )
+            return 0;
+
+        if( difference < HitTime::Meh )
+        {
+            isHit = true;
+
+            hitValue = HitAccuracy::Perfect;
+
+            lastHitTime = currentTime;
+        }
+
+        return 0;
+    }
+
+    void DoThingsAfterHit()
+    {
+        if( isHitBlocked )
+            return;
+
+        if( ((int)currentTime - (int)offsetTime - (int)endTime) > HitTime::Meh )
+        {
+            isReturnHitValue = true;
+            isHitBlocked = true;
+            return;
+        }
+
+        if( (currentTime - lastHitTime) > 333 )
+        {
+            isHitBlocked = true;
+            hitValue = HitAccuracy::Miss;
+            isReturnHitValue = true;
+        }
+
+        if( !events.Pressed( events.rightKey1 )
+         && !events.Pressed( events.rightKey2 ) )
+            return;
+
+        if( events.Pressed( events.rightKey1 ) && !events.KeyLock( events.rightKey1 ) )
+        {
+            hits++;
+            events.SetKeyLock( events.rightKey1, true );
+        }
+        if( events.Pressed( events.rightKey2 ) && !events.KeyLock( events.rightKey2 ) )
+        {
+            hits++;
+            events.SetKeyLock( events.rightKey2, true );
+        }
+
+        lastHitTime = currentTime;
+
+    }
+
+    bool Erase()
+    {
+        if( ((int)currentTime-(int)offsetTime-(int)endTime) > (int)HitTime::Miss )
+            return 1;
+
+        return 0;
+    }
 };
+
+
+
 class Ghost : public HitObject
 {
 public:
@@ -358,7 +444,7 @@ public:
     {
         objectImage = new Image(
             "assets/Skins/BaseSkin/HitObjects/Chainsaws/Chainsaw0.png",
-            {0, 0, 50, 50},
+            {0, 0, 2500, 2500},
             {0, (float)HEIGHT/2 + (float)HEIGHT/10, 50, 50}
         );
     }

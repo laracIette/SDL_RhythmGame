@@ -309,10 +309,7 @@ void Map::Update()
 
         tempAcc = hitObjects[j]->GetHitValue();
 
-        if( tempAcc == 1 )      accuracyHits[0]++;
-        else if( tempAcc == 3 ) accuracyHits[1]++;
-        else if( tempAcc == 6 ) accuracyHits[2]++;
-        else if( tempAcc == 0 ) accuracyHits[3]++;
+        if( tempAcc != -1 ) accuracyHits[tempAcc]++;
 
         if( hitObjects[j]->Erase() )
         {
@@ -349,7 +346,7 @@ void Map::Start()
         hitObject->offsetTime = currentTime;
     }
 
-    music->SetVolume( 2 );
+    music->SetVolume( 1 );
     music->Play();
 }
 
