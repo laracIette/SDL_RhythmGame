@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../lib/Image/Image.h"
+#include "../lib/Animation/Animation.h"
 #include "../lib/Animation/Animation.h"
 
 
@@ -11,7 +11,7 @@ static float getHitObjectOffsetHeight( bool isUp )
 }
 
 
-class HitObject : public Image
+class HitObject : public Animation
 {
 
 protected:
@@ -34,7 +34,7 @@ public:
     bool isUp;
 
 // HitObject inherits from Image
-    HitObject( std::string path, SDL_Rect src, Rect dest ) : Image( path, src, dest )
+    HitObject( std::string path, SDL_Rect src, Rect dest ) : Animation( path, src, dest )
     {
         isHit            = false;
         isShown          = false;
@@ -141,7 +141,7 @@ public:
     }
 
 // draws the HitObject if isShown is true
-    virtual void DrawHitObject()
+    void DrawHitObject()
     {
         if( isShown )
         {
@@ -163,25 +163,19 @@ public:
 
 class Note : public HitObject
 {
-    Animation *animation;
 
 public:
-    Note( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
+    Note()
+     : HitObject(
+        "assets/Skins/BaseSkin/HitObjects/Notes",
+        {0, 0, 2048, 2048},
+        {0, 0, 50, 50}
+    )
+    {}
 
     void Init()
     {
-        //SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
-        animation = new Animation();
-        animation->SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
-    }
-
-    void DrawHitObject()
-    {
-        animation->SetX( pos );
-        if( isShown )
-        {
-            animation->Draw();
-        }
+        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
     }
 
 };
@@ -197,7 +191,13 @@ class Hold : public HitObject
 public:
     unsigned int endTime;
 
-    Hold( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
+    Hold()
+     : HitObject(
+        "assets/Skins/BaseSkin/HitObjects/Holds",
+        {0, 0, 50, 50},
+        {0, 0, 0, 50}
+    )
+    {}
 
     void Init()
     {
@@ -247,7 +247,13 @@ class Double : public HitObject
     unsigned int upPressedTime, downPressedTime;
 
 public:
-    Double( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
+    Double()
+     : HitObject(
+        "assets/Skins/BaseSkin/HitObjects/Doubles",
+        {0, 0, 50, 150},
+        {0, (float)HEIGHT/2, 50, 150}
+    )
+    {}
 
     void Init()
     {
@@ -295,7 +301,13 @@ class Mash : public HitObject
 public:
     unsigned int endTime;
 
-    Mash( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
+    Mash()
+     : HitObject(
+        "assets/Skins/BaseSkin/HitObjects/Mashs",
+        {0, 0, 150, 150},
+        {0, (float)HEIGHT/2, 150, 150}
+    )
+    {}
 
     void Init()
     {
@@ -389,7 +401,13 @@ public:
 class Ghost : public HitObject
 {
 public:
-    Ghost( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
+    Ghost()
+     : HitObject(
+        "assets/Skins/BaseSkin/HitObjects/Ghosts",
+        {0, 0, 50, 50},
+        {0, 0, 50, 50}
+    )
+    {}
 
     void Init()
     {
@@ -403,7 +421,13 @@ public:
 class Coin : public HitObject
 {
 public:
-    Coin( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
+    Coin()
+     : HitObject(
+        "assets/Skins/BaseSkin/HitObjects/Coins",
+        {0, 0, 25, 25},
+        {0, 0, 25, 25}
+    )
+    {}
 
     void Init()
     {
@@ -429,7 +453,13 @@ public:
 class Hammer : public HitObject
 {
 public:
-    Hammer( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
+    Hammer()
+     : HitObject(
+        "assets/Skins/BaseSkin/HitObjects/Hammers",
+        {0, 0, 50, 50},
+        {0, 0, 50, 50}
+    )
+    {}
 
     void Init()
     {
@@ -445,11 +475,16 @@ class Chainsaw : public HitObject
     bool isHitLock;
 
 public:
-    Chainsaw( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
+    Chainsaw()
+     : HitObject(
+        "assets/Skins/BaseSkin/HitObjects/Chainsaws",
+        {0, 0, 2048, 2048},
+        {0, (float)HEIGHT/2 + (float)HEIGHT/10, 50, 50}
+    )
+    {}
 
     void Init()
     {
-        SetY( (float)HEIGHT/2 + (float)HEIGHT/10 );
         isHitLock = false;
     }
 

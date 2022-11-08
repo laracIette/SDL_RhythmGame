@@ -1,18 +1,19 @@
 #include "Animation.h"
 
+#include <filesystem>
 
-Animation::Animation()
+Animation::Animation( std::string path, SDL_Rect src, Rect dest )
 {
-    images.push_back( new Image(
-        "assets/Skins/BaseSkin/HitObjects/Notes/Note0.png",
-        {0, 0, 2048, 2048},
-        {0, 0, 50, 50}
-    ) );
-    images.push_back( new Image(
-        "assets/Skins/BaseSkin/HitObjects/Notes/Note1.png",
-        {0, 0, 50, 50},
-        {0, 0, 50, 50}
-    ) );
+    for( const auto &entry : std::filesystem::directory_iterator( path ) )
+    {
+        images.push_back(
+            new Image(
+                entry.path(),
+                src,
+                dest
+            )
+        );
+    }
 
     indice = 0;
     timeSinceLastImage = currentTime;
@@ -26,10 +27,9 @@ Animation::~Animation()
 
 void Animation::Draw()
 {
-
     images[indice]->Draw();
 
-    if( (currentTime - timeSinceLastImage) > 200 )
+    if( (currentTime - timeSinceLastImage) > 1000/10 )
     {
         timeSinceLastImage = currentTime;
         if( ++indice >= images.size() ) indice = 0;
@@ -53,6 +53,8 @@ float Animation::H()
 {
     return images[0]->H();
 }
+
+
 
 void Animation::SetX( float x )
 {

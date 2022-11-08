@@ -9,7 +9,7 @@ class Animation
     unsigned int timeSinceLastImage;
 
 public:
-    Animation();
+    Animation( std::string path, SDL_Rect src, Rect dest );
     ~Animation();
 
     void Draw();
