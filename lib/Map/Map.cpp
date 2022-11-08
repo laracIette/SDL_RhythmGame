@@ -15,11 +15,7 @@ Map::Map( std::string path )
         {
         case NOTE:
         {
-            Note *noteTemp{ new Note(
-                "assets/Skins/BaseSkin/HitObjects/Notes/Note0.png",
-                {0, 0, 2500, 2500},
-                {0, 0, 50, 50}
-            ) };
+            Note *noteTemp{ new Note() };
 
             noteTemp->type = NOTE;
             noteTemp->direction = temp[2];
@@ -55,11 +51,7 @@ Map::Map( std::string path )
 
         case HOLD:
         {
-            Hold *holdTemp{ new Hold(
-                "assets/Skins/BaseSkin/HitObjects/Holds/Hold0.png",
-                {0, 0, 50, 50},
-                {0, 0, 0, 50}
-            ) };
+            Hold *holdTemp{ new Hold() };
 
             holdTemp->type = HOLD;
             holdTemp->direction = temp[2];
@@ -99,11 +91,7 @@ Map::Map( std::string path )
 
         case DOUBLE:
         {
-            Double *doubleTemp{ new Double(
-                "assets/Skins/BaseSkin/HitObjects/Doubles/Double0.png",
-                {0, 0, 50, 150},
-                {0, (float)HEIGHT/2, 50, 150}
-            ) };
+            Double *doubleTemp{ new Double() };
             doubleTemp->type = DOUBLE;
             doubleTemp->direction = temp[2];
 
@@ -126,11 +114,7 @@ Map::Map( std::string path )
 
         case MASH:
         {
-            Mash *mashTemp{ new Mash(
-                "assets/Skins/BaseSkin/HitObjects/Mashs/Mash0.png",
-                {0, 0, 150, 150},
-                {0, (float)HEIGHT/2, 150, 150}
-            ) };
+            Mash *mashTemp{ new Mash() };
             mashTemp->type = MASH;
             mashTemp->direction = temp[2];
 
@@ -165,11 +149,7 @@ Map::Map( std::string path )
 
         case GHOST:
         {
-            Ghost *ghostTemp{ new Ghost(
-                "assets/Skins/BaseSkin/HitObjects/Ghosts/Ghost0.png",
-                {0, 0, 50, 50},
-                {0, 0, 50, 50}
-            ) };
+            Ghost *ghostTemp{ new Ghost() };
             ghostTemp->type = GHOST;
             ghostTemp->direction = temp[2];
 
@@ -204,11 +184,7 @@ Map::Map( std::string path )
 
         case COIN:
         {
-            Coin *coinTemp{ new Coin(
-                "assets/Skins/BaseSkin/HitObjects/Coins/Coin0.png",
-                {0, 0, 25, 25},
-                {0, 0, 25, 25}
-            ) };
+            Coin *coinTemp{ new Coin() };
             coinTemp->type = COIN;
             coinTemp->direction = temp[2];
 
@@ -243,11 +219,7 @@ Map::Map( std::string path )
 
         case HAMMER:
         {
-            Hammer *hammerTemp{ new Hammer(
-                "assets/Skins/BaseSkin/HitObjects/Hammers/Hammer0.png",
-                {0, 0, 50, 50},
-                {0, 0, 50, 50}
-            ) };
+            Hammer *hammerTemp{ new Hammer() };
             hammerTemp->type = HAMMER;
             hammerTemp->direction = temp[2];
 
@@ -282,11 +254,7 @@ Map::Map( std::string path )
 
         case CHAINSAW:
         {
-            Chainsaw *chainsawTemp{ new Chainsaw(
-                "assets/Skins/BaseSkin/HitObjects/Chainsaws/Chainsaw0.png",
-                {0, 0, 2500, 2500},
-                {0, 0, 50, 50}
-            ) };
+            Chainsaw *chainsawTemp{ new Chainsaw() };
             chainsawTemp->type = CHAINSAW;
             chainsawTemp->direction = temp[2];
 
@@ -331,6 +299,9 @@ Map::Map( std::string path )
     highestCombo = 0;
 
     score = 0;
+
+    offsetTime = 0;
+
 }
 
 Map::~Map()
@@ -397,10 +368,8 @@ void Map::Draw()
 void Map::Start()
 {
     isPaused = false;
-    for( HitObject *hitObject : hitObjects )
-    {
-        hitObject->offsetTime = currentTime;
-    }
+
+    offsetTime = currentTime;
 
     music->SetVolume( 1 );
     music->Play();
@@ -418,10 +387,9 @@ void Map::Pause()
     else
     {
         isPaused = false;
-        for( HitObject *hitObject : hitObjects )
-        {
-            hitObject->offsetTime += currentTime - pausedTime;
-        }
+
+        offsetTime += currentTime - pausedTime;
+
 
         music->Resume();
     }

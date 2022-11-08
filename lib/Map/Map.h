@@ -10,7 +10,7 @@ class Map
 
     SoundManager *music;
 
-    unsigned int offsetTime, pausedTime;
+    unsigned int pausedTime;
 
     bool isPaused;
 

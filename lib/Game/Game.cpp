@@ -1,7 +1,10 @@
 #include "Game.h"
 
 vec2<int> mouse;
+
 unsigned int deltaTime;
+unsigned int offsetTime;
+
 Events events;
 float velocity;
 
