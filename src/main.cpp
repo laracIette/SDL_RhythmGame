@@ -6,9 +6,12 @@ Game *game;
 int WIDTH{ 960 };
 int HEIGHT{ 720 };
 
+unsigned int FPS;
+
+
 int main( int argc, char *argv[] )
 {
-    const int FPS{ 60 };
+    FPS = 60;
 
     unsigned int start;
 

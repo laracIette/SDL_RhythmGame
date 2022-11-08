@@ -64,8 +64,13 @@ static void getTime( unsigned int &t )
     t = SDL_GetTicks();
 }
 
+extern unsigned int FPS;
+
+
 extern unsigned int currentTime;
 extern unsigned int deltaTime;
+extern unsigned int offsetTime;
+
 
 extern Events events;
 

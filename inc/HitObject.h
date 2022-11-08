@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../lib/Image/Image.h"
+#include "../lib/Animation/Animation.h"
 
 
 static float getHitObjectOffsetHeight( bool isUp )
@@ -26,7 +27,7 @@ protected:
 public:
     unsigned char type, direction;
 
-    unsigned int time, offsetTime;
+    unsigned int time;
 
     unsigned int difference;
 
@@ -142,7 +143,7 @@ public:
     }
 
 // draws the HitObject if isShown is true
-    void DrawHitObject()
+    virtual void DrawHitObject()
     {
         if( isShown )
         {
@@ -164,12 +165,23 @@ public:
 
 class Note : public HitObject
 {
+    Animation *animation;
+
 public:
     Note( std::string path, SDL_Rect src, Rect dest ) : HitObject( path, src, dest ) {}
 
     void Init()
     {
         SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
+        animation = new Animation();
+    }
+
+    void DrawHitObject()
+    {
+        if( isShown )
+        {
+            animation->Draw();
+        }
     }
 
 };

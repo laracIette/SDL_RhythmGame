@@ -17,7 +17,7 @@ Map::Map( std::string path )
         {
             Note *noteTemp{ new Note(
                 "assets/Skins/BaseSkin/HitObjects/Notes/Note0.png",
-                {0, 0, 2500, 2500},
+                {0, 0, 2048, 2048},
                 {0, 0, 50, 50}
             ) };
 
@@ -284,7 +284,7 @@ Map::Map( std::string path )
         {
             Chainsaw *chainsawTemp{ new Chainsaw(
                 "assets/Skins/BaseSkin/HitObjects/Chainsaws/Chainsaw0.png",
-                {0, 0, 2500, 2500},
+                {0, 0, 2048, 2048},
                 {0, 0, 50, 50}
             ) };
             chainsawTemp->type = CHAINSAW;
@@ -397,10 +397,8 @@ void Map::Draw()
 void Map::Start()
 {
     isPaused = false;
-    for( HitObject *hitObject : hitObjects )
-    {
-        hitObject->offsetTime = currentTime;
-    }
+
+    offsetTime = currentTime;
 
     music->SetVolume( 1 );
     music->Play();
@@ -418,10 +416,9 @@ void Map::Pause()
     else
     {
         isPaused = false;
-        for( HitObject *hitObject : hitObjects )
-        {
-            hitObject->offsetTime += currentTime - pausedTime;
-        }
+
+        offsetTime += currentTime - pausedTime;
+
 
         music->Resume();
     }

@@ -12,6 +12,7 @@ SDL:
 	lib/Image/Image.cpp \
 	lib/Map/Map.cpp \
 	lib/SoundManager/SoundManager.cpp \
+	lib/Animation/Animation.cpp \
 	-lSDL2main \
 	-lSDL2 \
 	-lSDL2_image \
