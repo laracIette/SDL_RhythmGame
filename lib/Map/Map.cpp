@@ -331,6 +331,9 @@ Map::Map( std::string path )
     highestCombo = 0;
 
     score = 0;
+
+    offsetTime = 0;
+
 }
 
 Map::~Map()

@@ -40,8 +40,6 @@ public:
         isShown          = false;
         isValueReturned  = false;
         isReturnHitValue = false;
-
-        offsetTime = 0;
     }
 
 // returns the hitValue if isReturnHitValue is true
@@ -172,12 +170,14 @@ public:
 
     void Init()
     {
-        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
+        //SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
         animation = new Animation();
+        animation->SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
     }
 
     void DrawHitObject()
     {
+        animation->SetX( pos );
         if( isShown )
         {
             animation->Draw();

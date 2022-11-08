@@ -13,4 +13,14 @@ public:
     ~Animation();
 
     void Draw();
+
+    float X();
+    float Y();
+    float W();
+    float H();
+
+    void SetX( float x );
+    void SetY( float y );
+    void SetW( float w );
+    void SetH( float h );
 };
