@@ -32,7 +32,7 @@ public:
 
     bool isUp;
 
-
+// HitObject inherits from Image
     HitObject( std::string path, SDL_Rect src, Rect dest ) : Image( path, src, dest )
     {
         isHit            = false;
@@ -43,6 +43,8 @@ public:
         offsetTime = 0;
     }
 
+// returns the hitValue if isReturnHitValue is true
+// else returns -1
     char GetHitValue()
     {
         if( isReturnHitValue )
@@ -114,6 +116,7 @@ public:
 
     }
 
+
     void Update()
     {
         difference = abs( (int)currentTime - (int)offsetTime - (int)time );
@@ -138,6 +141,7 @@ public:
         }
     }
 
+// draws the HitObject if isShown is true
     void DrawHitObject()
     {
         if( isShown )
