@@ -45,18 +45,18 @@ void Game::Update()
     lastFrameTime = currentTime;
 
 
-    if( !isStarted && events.Pressed( events.keyboard.Space ) )
+    if( !isStarted && events.Pressed( events.keyboard.Escape ) )
     {
-        events.SetKeyLock( events.keyboard.Space, true );
+        events.SetKeyLock( events.keyboard.Escape, true );
 
         isStarted = true;
         map->Start();
     }
     if( isStarted
-     && !events.KeyLock( events.keyboard.Space )
-     && events.Pressed( events.keyboard.Space ) )
+     && !events.KeyLock( events.keyboard.Escape )
+     && events.Pressed( events.keyboard.Escape ) )
     {
-        events.SetKeyLock( events.keyboard.Space, true );
+        events.SetKeyLock( events.keyboard.Escape, true );
         map->Pause();
     }
 

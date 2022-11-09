@@ -1,26 +1,29 @@
 #pragma once
 
-#include "../../inc/Global.h"
 #include "../Image/Image.h"
 
-class Player : public Image
+class Player
 {
-    bool up, down;
-    bool upHit, downHit, middleHit;
+    static const int nIMAGES{ 6 };
+
+    Image *images[nIMAGES];
+    bool isImageShown[nIMAGES]{ false };
+
+    enum ImagesStates {
+        HorizontalDefault = 0,
+        UpLeft,
+        UpRight,
+        DownLeft,
+        DownRight,
+        VerticalDefault
+    };
+
+    bool isHorizontal;
 
 public:
-    Player() : Image(
-        "assets/Skins/BaseSkin/Player/Player0.png",
-        {0, 0, 40, 60},
-        {(float)WIDTH/6, (float)HEIGHT/2, 40, 60}
-    )
-    {
-        up   = false;
-        down = true;
-
-        upHit     = false;
-        downHit   = false;
-    }
+    Player();
+    ~Player();
 
     void Input();
+    void Draw();
 };

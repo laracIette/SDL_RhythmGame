@@ -1,45 +1,64 @@
 #include "Player.h"
 
+Player::Player()
+{
+    for( int i{ 0 }; i < nIMAGES; ++i )
+    {
+        images[i] = new Image(
+            "assets/Skins/BaseSkin/Player/Player" + std::to_string( i ) + ".png",
+            {0, 0, 60, 60},
+            {(float)WIDTH/2, (float)HEIGHT/2, 60, 60}
+        );
+    }
+
+    isHorizontal = true;
+}
+Player::~Player()
+{
+}
+
 void Player::Input()
 {
-    up   = false;
-    down = true;
+    for( bool &b : isImageShown ) b = false;
 
-    upHit     = false;
-    downHit   = false;
-
-    if( events.Right1Pressed() && events.Right2Pressed() )
+    if( !events.KeyLock( events.flipKey ) && events.Pressed( events.flipKey ) )
     {
-        up   = false;
-        down = false;
+        events.SetKeyLock( events.flipKey, true );
 
-        upHit   = true;
-        downHit = true;
-    }
-
-    else if( events.Right1Pressed() )
-    {
-        up = true;
-
-        upHit = true;
-    }
-
-    else if( events.Right2Pressed() )
-    {
-        downHit = true;
+        (isHorizontal) ? isHorizontal = false : isHorizontal = true;
     }
 
 
-    if( up )
+    (isHorizontal) ? isImageShown[HorizontalDefault] = true
+                   : isImageShown[VerticalDefault] = true;
+
+
+
+    if( events.Left2Pressed() )
     {
-        SetY( HEIGHT/2 - HEIGHT/10 );
+        isImageShown[UpLeft] = true;
     }
-    else if( down )
+    if( events.Left1Pressed() )
     {
-        SetY( HEIGHT/2 + HEIGHT/10 );
+        isImageShown[DownLeft] = true;
     }
-    else
+
+
+    if( events.Right1Pressed() )
     {
-        SetY( HEIGHT/2 );
+        isImageShown[UpRight] = true;
+    }
+    if( events.Right2Pressed() )
+    {
+        isImageShown[DownRight] = true;
+    }
+
+}
+
+void Player::Draw()
+{
+    for( int i{ 0 }; i < nIMAGES; ++i )
+    {
+        if( isImageShown[i] ) images[i]->Draw();
     }
 }

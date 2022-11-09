@@ -12,12 +12,12 @@ struct Events
 
     int leftKey1{ keyboard.D };
     int leftKey2{ keyboard.F };
-    int rightKey1{ keyboard.H };
-    int rightKey2{ keyboard.J };
+    int rightKey1{ keyboard.J };
+    int rightKey2{ keyboard.K };
 
     int flipKey{ keyboard.Space };
 
-    int HandleEvents()
+    bool HandleEvents()
     {
         SDL_GetMouseState( &mouse.pos.x, &mouse.pos.y );
 
@@ -106,5 +106,4 @@ struct Events
     bool OnlyLeftPressed()     { return (!RightPressed() && LeftPressed()); }
     bool RightAndLeftPressed() { return (RightPressed()  && LeftPressed()); }
     bool NothingPressed()      { return !(RightPressed() || LeftPressed()); }
-
 };
