@@ -65,29 +65,28 @@ public:
     virtual void Init() {}
 
 // sets the pos of the HitObject
-    virtual void SetPos()
+    void SetPos()
     {
-        CoutEndl((int)direction)
         switch( direction )
         {
         case RIGHT:
-            SetX( WIDTH/2 - (time + offsetTime - currentTime)*velocity - xOffset );
-            SetY( HEIGHT/2 );
+            SetX( (float)WIDTH/2 - ((float)time + (float)offsetTime - (float)currentTime)*velocity - xOffset );
+            SetY( (float)HEIGHT/2 );
             break;
 
         case LEFT:
-            SetX( WIDTH/2 + (time + offsetTime - currentTime)*velocity + xOffset );
-            SetY( HEIGHT/2 );
+            SetX( (float)WIDTH/2 + ((float)time + (float)offsetTime - (float)currentTime)*velocity + xOffset );
+            SetY( (float)HEIGHT/2 );
             break;
 
         case UP:
-            SetX( WIDTH/2 );
-            SetY( HEIGHT/2 - (time + offsetTime - currentTime)*velocity + yOffset );
+            SetX( (float)WIDTH/2 );
+            SetY( (float)HEIGHT/2 - ((float)time + (float)offsetTime - (float)currentTime)*velocity + yOffset );
             break;
 
         case DOWN:
-            SetX( WIDTH/2 );
-            SetY( HEIGHT/2 + (time + offsetTime - currentTime)*velocity + yOffset );
+            SetX( (float)WIDTH/2 );
+            SetY( (float)HEIGHT/2 + ((float)time + (float)offsetTime - (float)currentTime)*velocity + yOffset );
             break;
 
         default:
@@ -146,10 +145,14 @@ public:
 
     }
 
+    virtual void DoThings() {}
+
 
     void Update()
     {
         difference = abs( (int)currentTime - (int)offsetTime - (int)time );
+
+        DoThings();
 
         SetPos();
 
@@ -204,7 +207,6 @@ public:
 
     void Init()
     {
-        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
     }
 
 };
@@ -224,14 +226,14 @@ public:
      : HitObject(
         "assets/Skins/BaseSkin/HitObjects/Holds",
         {0, 0, 50, 50},
-        {0, 0, 0, 50}
+        {0, 0, 50, 50}
     )
     {}
 
     void Init()
     {
-        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
-        SetW( ((float)endTime - (float)time)*velocity + 50 );
+        if( (direction == LEFT) || (direction == RIGHT) ) SetW( ((float)endTime - (float)time)*velocity + 50 );
+        else SetH( ((float)endTime - (float)time)*velocity + 50 );
 
         isHold = true;
         isEndHitValueReturned = false;
@@ -277,7 +279,7 @@ public:
      : HitObject(
         "assets/Skins/BaseSkin/HitObjects/Doubles",
         {0, 0, 50, 150},
-        {0, (float)HEIGHT/2, 50, 150}
+        {0, 0, 50, 50}
     )
     {}
 
@@ -285,6 +287,9 @@ public:
     {
         isUpPressed = false;
         isDownPressed = false;
+
+        if( (direction == LEFT) || (direction == RIGHT) ) SetH( 150 );
+        else SetW( 150 );
     }
 
     bool CheckHitting()
@@ -331,7 +336,7 @@ public:
      : HitObject(
         "assets/Skins/BaseSkin/HitObjects/Mashs",
         {0, 0, 150, 150},
-        {0, (float)HEIGHT/2, 150, 150}
+        {0, 0, 150, 150}
     )
     {}
 
@@ -341,20 +346,21 @@ public:
         isHitBlocked = false;
     }
 
-    void SetPos()
+    void DoThings()
     {
-        if( currentTime < (time + offsetTime) )
+        if( (currentTime - offsetTime) < time )
         {
-            SetX( (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity );
+            xOffset = 0;
         }
-        else if( currentTime >= (endTime + offsetTime) )
+        else if( (currentTime - offsetTime) >= endTime )
         {
-            SetX( (float)WIDTH/6 + ((float)endTime + (float)offsetTime - (float)currentTime)*velocity );
+            xOffset = ((float)endTime - (float)time)*velocity;
         }
         else
         {
-            SetX( (float)WIDTH/6 );
+            xOffset = -((float)time + (float)offsetTime - (float)currentTime)*velocity;
         }
+
     }
 
     bool CheckHitting()
@@ -435,7 +441,6 @@ public:
 
     void Init()
     {
-        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
     }
 
 };
@@ -455,7 +460,6 @@ public:
 
     void Init()
     {
-        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
     }
 
     bool CheckHitting()
@@ -487,7 +491,6 @@ public:
 
     void Init()
     {
-        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
     }
 
 };
@@ -503,7 +506,7 @@ public:
      : HitObject(
         "assets/Skins/BaseSkin/HitObjects/Chainsaws",
         {0, 0, 2048, 2048},
-        {0, (float)HEIGHT/2 + (float)HEIGHT/10, 50, 50}
+        {0, 0, 50, 50}
     )
     {}
 
