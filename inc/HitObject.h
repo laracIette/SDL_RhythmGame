@@ -19,9 +19,10 @@ protected:
     bool isValueReturned;
     bool isReturnHitValue;
 
-    float pos;
-
     char hitValue;
+
+    float xOffset;
+    float yOffset;
 
 public:
     unsigned char type, direction;
@@ -39,6 +40,9 @@ public:
         isShown          = false;
         isValueReturned  = false;
         isReturnHitValue = false;
+
+        xOffset = 0;
+        yOffset = 0;
     }
 
 // returns the hitValue if isReturnHitValue is true
@@ -61,7 +65,35 @@ public:
     virtual void Init() {}
 
 // sets the pos of the HitObject
-    virtual void Pos() { pos = (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity; }
+    virtual void SetPos()
+    {
+        CoutEndl((int)direction)
+        switch( direction )
+        {
+        case RIGHT:
+            SetX( WIDTH/2 - (time + offsetTime - currentTime)*velocity - xOffset );
+            SetY( HEIGHT/2 );
+            break;
+
+        case LEFT:
+            SetX( WIDTH/2 + (time + offsetTime - currentTime)*velocity + xOffset );
+            SetY( HEIGHT/2 );
+            break;
+
+        case UP:
+            SetX( WIDTH/2 );
+            SetY( HEIGHT/2 - (time + offsetTime - currentTime)*velocity + yOffset );
+            break;
+
+        case DOWN:
+            SetX( WIDTH/2 );
+            SetY( HEIGHT/2 + (time + offsetTime - currentTime)*velocity + yOffset );
+            break;
+
+        default:
+            break;
+        }
+    }
 
 // affects a value to hitValue
     void CheckHitTiming()
@@ -119,14 +151,12 @@ public:
     {
         difference = abs( (int)currentTime - (int)offsetTime - (int)time );
 
-        Pos();
+        SetPos();
 
-        if( !isShown && (pos <= WIDTH + W()/2) )
+        if( !isShown && ((X() <= WIDTH + W()/2) || (X() >= -W()/2) || (Y() <= HEIGHT + H()/2) || (Y() >= -H()/2)) )
         {
             isShown = true;
         }
-
-        SetX( pos );
 
         if( !isHit && (difference < HitTime::Miss) && CheckHitting() )
         {
@@ -205,11 +235,8 @@ public:
 
         isHold = true;
         isEndHitValueReturned = false;
-    }
 
-    void Pos()
-    {
-        pos = (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity + (W()/2-H()/2);
+        xOffset = W()/2 - H()/2;
     }
 
     void DoThingsAfterHit()
@@ -314,19 +341,19 @@ public:
         isHitBlocked = false;
     }
 
-    void Pos()
+    void SetPos()
     {
         if( currentTime < (time + offsetTime) )
         {
-            pos = (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity;
+            SetX( (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity );
         }
         else if( currentTime >= (endTime + offsetTime) )
         {
-            pos = (float)WIDTH/6 + ((float)endTime + (float)offsetTime - (float)currentTime)*velocity;
+            SetX( (float)WIDTH/6 + ((float)endTime + (float)offsetTime - (float)currentTime)*velocity );
         }
         else
         {
-            pos = (float)WIDTH/6;
+            SetX( (float)WIDTH/6 );
         }
     }
 

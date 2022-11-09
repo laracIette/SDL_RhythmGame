@@ -34,6 +34,7 @@ Game::~Game()
 void Game::Init()
 {
     deltaTime = 0;
+    lastFrameTime = currentTime;
 }
 
 void Game::Update()
