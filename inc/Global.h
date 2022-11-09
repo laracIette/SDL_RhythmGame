@@ -99,12 +99,11 @@ extern float velocity;
 template<typename T>
 static T highest( T a, T b )
 {
-    if( a > b ) return a;
-    return b;
+    return (a > b) ? a : b;
+
 }
 template<typename T>
 static T lowest( T a, T b )
 {
-    if( a < b ) return a;
-    return b;
+    return (a < b) ? a : b;
 }

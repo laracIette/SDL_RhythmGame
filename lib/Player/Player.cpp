@@ -42,8 +42,4 @@ void Player::Input()
     {
         SetY( HEIGHT/2 );
     }
-
-
-    //if( upHit )   CoutEndl("up")
-    //if( downHit ) CoutEndl("up")
 }

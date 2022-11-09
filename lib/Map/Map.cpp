@@ -266,9 +266,21 @@ Map::Map( std::string path )
                 }
                 else
                 {
-                    chainsawTemp->time = std::stoi( nTemp );
+                    switch( nSteps )
+                    {
+                    case 0:
+                        chainsawTemp->time = std::stoi( nTemp );
+                        break;
 
+                    case 1:
+                        chainsawTemp->isUp = std::stoi( nTemp );
+                        break;
+
+                    default:
+                        break;
+                    }
                     nTemp.clear();
+                    nSteps++;
                 }
             }
             hitObjects.push_back( chainsawTemp );

@@ -3,13 +3,6 @@
 #include "../lib/Animation/Animation.h"
 
 
-static float getHitObjectOffsetHeight( bool isUp )
-{
-    if( isUp ) return -(float)HEIGHT/10;
-    return (float)HEIGHT/10;
-}
-
-
 class HitObject : public Animation
 {
 
@@ -60,6 +53,11 @@ public:
 
     virtual bool IsHit() { return isHit; }
 
+    float getHitObjectOffsetHeight()
+    {
+        return (isUp) ? -(float)HEIGHT/10 : (float)HEIGHT/10;
+    }
+
 
 // initialises the HitObject
     virtual void Init() {}
@@ -71,21 +69,21 @@ public:
         {
         case RIGHT:
             SetX( (float)WIDTH/2 - ((float)time + (float)offsetTime - (float)currentTime)*velocity - xOffset );
-            SetY( (float)HEIGHT/2 );
+            SetY( (float)HEIGHT/2 + yOffset );
             break;
 
         case LEFT:
             SetX( (float)WIDTH/2 + ((float)time + (float)offsetTime - (float)currentTime)*velocity + xOffset );
-            SetY( (float)HEIGHT/2 );
+            SetY( (float)HEIGHT/2 + yOffset );
             break;
 
         case UP:
-            SetX( (float)WIDTH/2 );
+            SetX( (float)WIDTH/2 + xOffset );
             SetY( (float)HEIGHT/2 - ((float)time + (float)offsetTime - (float)currentTime)*velocity + yOffset );
             break;
 
         case DOWN:
-            SetX( (float)WIDTH/2 );
+            SetX( (float)WIDTH/2 + xOffset );
             SetY( (float)HEIGHT/2 + ((float)time + (float)offsetTime - (float)currentTime)*velocity + yOffset );
             break;
 
@@ -207,6 +205,14 @@ public:
 
     void Init()
     {
+        if( (direction == LEFT) || (direction == RIGHT) )
+        {
+            yOffset += getHitObjectOffsetHeight();
+        }
+        else
+        {
+            xOffset += getHitObjectOffsetHeight();
+        }
     }
 
 };
@@ -232,13 +238,22 @@ public:
 
     void Init()
     {
-        if( (direction == LEFT) || (direction == RIGHT) ) SetW( ((float)endTime - (float)time)*velocity + 50 );
-        else SetH( ((float)endTime - (float)time)*velocity + 50 );
+        if( (direction == LEFT) || (direction == RIGHT) )
+        {
+            SetW( ((float)endTime - (float)time)*velocity + 50 );
+            xOffset = W()/2 - H()/2;
+            yOffset += getHitObjectOffsetHeight();
+        }
+        else
+        {
+            SetH( ((float)endTime - (float)time)*velocity + 50 );
+            yOffset = H()/2 - W()/2;
+            xOffset += getHitObjectOffsetHeight();
+        }
 
         isHold = true;
         isEndHitValueReturned = false;
 
-        xOffset = W()/2 - H()/2;
     }
 
     void DoThingsAfterHit()
@@ -264,7 +279,6 @@ public:
 
         return 0;
     }
-
 };
 
 
@@ -288,8 +302,7 @@ public:
         isUpPressed = false;
         isDownPressed = false;
 
-        if( (direction == LEFT) || (direction == RIGHT) ) SetH( 150 );
-        else SetW( 150 );
+        ((direction == LEFT) || (direction == RIGHT)) ? SetH( 150 ) : SetW( 150 );
     }
 
     bool CheckHitting()
@@ -441,8 +454,15 @@ public:
 
     void Init()
     {
+        if( (direction == LEFT) || (direction == RIGHT) )
+        {
+            yOffset += getHitObjectOffsetHeight();
+        }
+        else
+        {
+            xOffset += getHitObjectOffsetHeight();
+        }
     }
-
 };
 
 
@@ -458,10 +478,6 @@ public:
     )
     {}
 
-    void Init()
-    {
-    }
-
     bool CheckHitting()
     {
         if( ( (events.OnlyRight1Pressed() && isUp) || ((events.OnlyRight2Pressed() && !isUp)) )
@@ -474,6 +490,17 @@ public:
         return 0;
     }
 
+    void Init()
+    {
+        if( (direction == LEFT) || (direction == RIGHT) )
+        {
+            yOffset += getHitObjectOffsetHeight();
+        }
+        else
+        {
+            xOffset += getHitObjectOffsetHeight();
+        }
+    }
 };
 
 
@@ -491,8 +518,15 @@ public:
 
     void Init()
     {
+        if( (direction == LEFT) || (direction == RIGHT) )
+        {
+            yOffset += getHitObjectOffsetHeight();
+        }
+        else
+        {
+            xOffset += getHitObjectOffsetHeight();
+        }
     }
-
 };
 
 
@@ -513,6 +547,16 @@ public:
     void Init()
     {
         isHitLock = false;
+
+        if( (direction == LEFT) || (direction == RIGHT) )
+        {
+            yOffset += getHitObjectOffsetHeight();
+        }
+        else
+        {
+            xOffset += getHitObjectOffsetHeight();
+        }
+
     }
 
     bool CheckHitting()
@@ -537,6 +581,4 @@ public:
 
         return 0;
     }
-
-    void DoThingsAfterHit() {}
 };
