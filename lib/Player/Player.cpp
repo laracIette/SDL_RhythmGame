@@ -8,7 +8,7 @@ void Player::Input()
     upHit     = false;
     downHit   = false;
 
-    if( events.Pressed( events.rightKey1 ) && events.Pressed( events.rightKey2 ) )
+    if( events.Right1Pressed() && events.Right2Pressed() )
     {
         up   = false;
         down = false;
@@ -17,14 +17,14 @@ void Player::Input()
         downHit = true;
     }
 
-    else if( events.Pressed( events.rightKey1 ) )
+    else if( events.Right1Pressed() )
     {
         up = true;
 
         upHit = true;
     }
 
-    else if( events.Pressed( events.rightKey2 ) )
+    else if( events.Right2Pressed() )
     {
         downHit = true;
     }

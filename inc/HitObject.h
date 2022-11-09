@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../lib/Animation/Animation.h"
-#include "../lib/Animation/Animation.h"
 
 
 static float getHitObjectOffsetHeight( bool isUp )
@@ -91,8 +90,8 @@ public:
 // returns true if hitting the right note side
     virtual bool CheckHitting()
     {
-        if( (events.Pressed( events.rightKey1 ) && isUp)
-         || (events.Pressed( events.rightKey2 ) && !isUp) )
+        if( (events.OnlyRight1Pressed() && isUp)
+         || (events.OnlyRight2Pressed() && !isUp) )
             return 1;
 
         return 0;
@@ -264,12 +263,12 @@ public:
     bool CheckHitting()
     {
     // register moment for each click
-        if( !isUpPressed && events.Pressed( events.rightKey1 ) )
+        if( !isUpPressed && events.OnlyRight1Pressed() )
         {
             isUpPressed = true;
             upPressedTime = currentTime;
         }
-        if( !isDownPressed && events.Pressed( events.rightKey2 ) )
+        if( !isDownPressed && events.OnlyRight2Pressed() )
         {
             isDownPressed = true;
             downPressedTime = currentTime;
@@ -333,8 +332,7 @@ public:
 
     bool CheckHitting()
     {
-        if( !events.Pressed( events.rightKey1 )
-         && !events.Pressed( events.rightKey2 ) )
+        if( !events.RightPressed() )
             return 0;
 
         if( difference < HitTime::Meh )
@@ -368,16 +366,15 @@ public:
             isReturnHitValue = true;
         }
 
-        if( !events.Pressed( events.rightKey1 )
-         && !events.Pressed( events.rightKey2 ) )
+        if( !events.RightPressed() )
             return;
 
-        if( events.Pressed( events.rightKey1 ) && !events.KeyLock( events.rightKey1 ) )
+        if( events.Right1Pressed() && !events.KeyLock( events.rightKey1 ) )
         {
             hits++;
             events.SetKeyLock( events.rightKey1, true );
         }
-        if( events.Pressed( events.rightKey2 ) && !events.KeyLock( events.rightKey2 ) )
+        if( events.Right2Pressed() && !events.KeyLock( events.rightKey2 ) )
         {
             hits++;
             events.SetKeyLock( events.rightKey2, true );
@@ -436,7 +433,7 @@ public:
 
     bool CheckHitting()
     {
-        if( ( (events.Pressed( events.rightKey1 ) && isUp) || ((events.Pressed( events.rightKey2 ) && !isUp)) )
+        if( ( (events.OnlyRight1Pressed() && isUp) || ((events.OnlyRight2Pressed() && !isUp)) )
          && difference < HitTime::Meh )
         {
             hitValue = HitAccuracy::Perfect;
@@ -490,9 +487,9 @@ public:
 
     bool CheckHitting()
     {
-        if( (events.Pressed( events.rightKey1 ) && isUp)
-         || (events.Pressed( events.rightKey2 ) && !isUp)
-         || (!events.Pressed( events.rightKey2 ) && !events.Pressed( events.rightKey1 ) && !isUp)
+        if( (events.Right1Pressed() && isUp)
+         || (events.Right2Pressed() && !isUp)
+         || (!events.RightPressed() && !isUp)
          && difference < HitTime::Great )
         {
             isHit = true;

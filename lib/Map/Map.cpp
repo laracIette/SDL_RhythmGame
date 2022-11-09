@@ -291,16 +291,6 @@ Map::Map( std::string path )
 
     music = new SoundManager( path + "song.mp3" );
 
-    oldAcc = 0;
-
-    for( unsigned int &acc : accuracyHits ) acc = 0;
-
-    combo = 0;
-    highestCombo = 0;
-
-    score = 0;
-
-    offsetTime = 0;
 
 }
 
@@ -370,6 +360,15 @@ void Map::Start()
     isPaused = false;
 
     offsetTime = currentTime;
+
+    oldAcc = 0;
+
+    for( unsigned int &acc : accuracyHits ) acc = 0;
+
+    combo = 0;
+    highestCombo = 0;
+
+    score = 0;
 
     music->SetVolume( 1 );
     music->Play();

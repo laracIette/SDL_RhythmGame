@@ -79,13 +79,32 @@ struct Events
     }
 
 
-    bool Pressed( int key ) { return keyboard.keyPressed[key]; }
+    bool Pressed( int key )    { return keyboard.keyPressed[key]; }
     bool Clicked( int button ) { return mouse.buttonClicked[button]; }
 
-    bool KeyLock( int key ) { return keyboard.keyLock[key]; }
+    bool KeyLock(    int key )    { return keyboard.keyLock[key]; }
     bool ButtonLock( int button ) { return mouse.buttonLock[button]; }
 
-    void SetKeyLock( int key, bool lock ) { keyboard.keyLock[key] = lock; }
+    void SetKeyLock(    int key,    bool lock ) { keyboard.keyLock[key]    = lock; }
     void SetButtonLock( int button, bool lock ) { mouse.buttonLock[button] = lock; }
+
+    bool Right1Pressed() { return keyboard.keyPressed[rightKey1]; }
+    bool Right2Pressed() { return keyboard.keyPressed[rightKey2]; }
+    bool Left1Pressed()  { return keyboard.keyPressed[leftKey1]; }
+    bool Left2Pressed()  { return keyboard.keyPressed[leftKey2]; }
+
+    bool OnlyRight1Pressed() { return (Right1Pressed()  && !Right2Pressed()); }
+    bool OnlyRight2Pressed() { return (!Right1Pressed() && Right2Pressed()); }
+
+    bool OnlyLeft1Pressed() { return (Left1Pressed()  && !Left2Pressed()); }
+    bool OnlyLeft2Pressed() { return (!Left1Pressed() && Left2Pressed()); }
+
+    bool RightPressed() { return (Right1Pressed() || Right2Pressed()); }
+    bool LeftPressed()  { return (Left1Pressed()  || Left2Pressed()); }
+
+    bool OnlyRightPressed()    { return (RightPressed()  && !LeftPressed()); }
+    bool OnlyLeftPressed()     { return (!RightPressed() && LeftPressed()); }
+    bool RightAndLeftPressed() { return (RightPressed()  && LeftPressed()); }
+    bool NothingPressed()      { return !(RightPressed() || LeftPressed()); }
 
 };
