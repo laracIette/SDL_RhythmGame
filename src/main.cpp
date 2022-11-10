@@ -3,7 +3,7 @@
 unsigned int currentTime;
 Game *game;
 
-int WIDTH{ 960 };
+int WIDTH{ 1280 };
 int HEIGHT{ 720 };
 
 unsigned int FPS;

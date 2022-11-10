@@ -10,8 +10,6 @@ Player::Player()
             {(float)WIDTH/2, (float)HEIGHT/2, 60, 60}
         );
     }
-
-    isHorizontal = true;
 }
 Player::~Player()
 {

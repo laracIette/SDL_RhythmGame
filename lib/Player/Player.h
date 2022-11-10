@@ -18,8 +18,6 @@ class Player
         VerticalDefault
     };
 
-    bool isHorizontal;
-
 public:
     Player();
     ~Player();

@@ -10,6 +10,8 @@ float velocity;
 
 Window *window;
 
+bool isHorizontal;
+
 Game::Game()
 {
     window = new Window();
@@ -25,6 +27,19 @@ Game::Game()
     map = new Map( "assets/Maps/Plastic Smile - Kaori Ishihara/" );
 
     isStarted = false;
+
+    isHorizontal = true;
+
+    horizontalForeground = new Image(
+        "assets/Skins/BaseSkin/foreground0.png",
+        {0, 0, 1920, 1080},
+        {(float)WIDTH/2, (float)HEIGHT/2, (float)WIDTH, (float)HEIGHT}
+    );
+    verticalForeground = new Image(
+        "assets/Skins/BaseSkin/foreground1.png",
+        {0, 0, 1920, 1080},
+        {(float)WIDTH/2, (float)HEIGHT/2, (float)WIDTH, (float)HEIGHT}
+    );
 }
 
 Game::~Game()
@@ -71,6 +86,8 @@ void Game::Render()
 
     player->Draw();
     map->Draw();
+
+    (isHorizontal) ? horizontalForeground->Draw() : verticalForeground->Draw();
 
     SDL_RenderPresent( window->renderer );
 }

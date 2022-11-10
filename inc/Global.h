@@ -107,3 +107,5 @@ static T lowest( T a, T b )
 {
     return (a < b) ? a : b;
 }
+
+extern bool isHorizontal;
