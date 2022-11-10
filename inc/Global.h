@@ -23,8 +23,8 @@ enum HitObjectTypes {
 };
 
 enum Directions {
-    RIGHT = 1,
-    LEFT,
+    LEFT = 1,
+    RIGHT,
     UP,
     DOWN
 };

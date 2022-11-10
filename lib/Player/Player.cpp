@@ -34,21 +34,25 @@ void Player::Input()
 
     if( events.Left2Pressed() )
     {
-        isImageShown[UpLeft] = true;
+        //isImageShown[UpLeft] = true;
+        (isHorizontal) ? isImageShown[UpLeft] = true : isImageShown[UpRight] = true;
     }
     if( events.Left1Pressed() )
     {
-        isImageShown[DownLeft] = true;
+        //isImageShown[DownLeft] = true;
+        (isHorizontal) ? isImageShown[DownLeft] = true : isImageShown[UpLeft] = true;
     }
 
 
     if( events.Right1Pressed() )
     {
-        isImageShown[UpRight] = true;
+        //isImageShown[UpRight] = true;
+        (isHorizontal) ? isImageShown[UpRight] = true : isImageShown[DownLeft] = true;
     }
     if( events.Right2Pressed() )
     {
-        isImageShown[DownRight] = true;
+        //isImageShown[DownRight] = true;
+        (isHorizontal) ? isImageShown[DownRight] = true : isImageShown[DownRight] = true;
     }
 
 }

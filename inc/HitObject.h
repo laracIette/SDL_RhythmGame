@@ -2,7 +2,6 @@
 
 #include "../lib/Animation/Animation.h"
 
-
 class HitObject : public Animation
 {
 
@@ -67,12 +66,12 @@ public:
     {
         switch( direction )
         {
-        case RIGHT:
-            SetX( (float)WIDTH/2 - ((float)time + (float)offsetTime - (float)currentTime)*velocity - xOffset );
+        case LEFT:
+            SetX( (float)WIDTH/2 - ((float)time + (float)offsetTime - (float)currentTime)*velocity + xOffset );
             SetY( (float)HEIGHT/2 + yOffset );
             break;
 
-        case LEFT:
+        case RIGHT:
             SetX( (float)WIDTH/2 + ((float)time + (float)offsetTime - (float)currentTime)*velocity + xOffset );
             SetY( (float)HEIGHT/2 + yOffset );
             break;
@@ -114,14 +113,19 @@ public:
             hitValue = HitAccuracy::Miss;
         }
         isReturnHitValue = true;
+
     }
 
 // returns true if hitting the right note side
     virtual bool CheckHitting()
     {
-        if( (events.OnlyRight1Pressed() && isUp)
-         || (events.OnlyRight2Pressed() && !isUp) )
+        if( ( ((events.OnlyLeft2Pressed()  && isUp) || (events.OnlyLeft1Pressed()  && !isUp)) && ((direction == LEFT && isHorizontal) || (direction == UP   && !isHorizontal)) )
+         || ( ((events.OnlyRight1Pressed() && isUp) || (events.OnlyRight2Pressed() && !isUp)) && (direction == RIGHT && isHorizontal) )
+         || ( ((events.OnlyRight2Pressed() && isUp) || (events.OnlyRight1Pressed() && !isUp)) && (direction == DOWN  && !isHorizontal) )
+        )
+        {
             return 1;
+        }
 
         return 0;
     }
@@ -211,7 +215,7 @@ public:
         }
         else
         {
-            xOffset += getHitObjectOffsetHeight();
+            xOffset -= getHitObjectOffsetHeight();
         }
     }
 
@@ -248,7 +252,7 @@ public:
         {
             SetH( ((float)endTime - (float)time)*velocity + 50 );
             yOffset = H()/2 - W()/2;
-            xOffset += getHitObjectOffsetHeight();
+            xOffset -= getHitObjectOffsetHeight();
         }
 
         isHold = true;
@@ -460,7 +464,7 @@ public:
         }
         else
         {
-            xOffset += getHitObjectOffsetHeight();
+            xOffset -= getHitObjectOffsetHeight();
         }
     }
 };
@@ -498,7 +502,7 @@ public:
         }
         else
         {
-            xOffset += getHitObjectOffsetHeight();
+            xOffset -= getHitObjectOffsetHeight();
         }
     }
 };
@@ -524,7 +528,7 @@ public:
         }
         else
         {
-            xOffset += getHitObjectOffsetHeight();
+            xOffset -= getHitObjectOffsetHeight();
         }
     }
 };
@@ -554,7 +558,7 @@ public:
         }
         else
         {
-            xOffset += getHitObjectOffsetHeight();
+            xOffset -= getHitObjectOffsetHeight();
         }
 
     }
