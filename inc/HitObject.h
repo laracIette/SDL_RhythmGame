@@ -109,7 +109,7 @@ public:
     }
 
 // affects a value to hitValue
-    void CheckHitTiming()
+    virtual void CheckHitTiming()
     {
         isHit = true;
 
@@ -150,7 +150,7 @@ public:
 // does specific things by type if isHit
     virtual void DoThingsAfterHit()
     {
-        if( W() > 2 )                    ////////////////////////// why doesnt it works anymore //////////////////////////
+        if( W() > 2 )
         {
             SetW( W() - 0.1 );
             SetH( H() - 0.1 );
@@ -375,24 +375,52 @@ public:
     {
         if( (currentTime - offsetTime) < time )
         {
-            xOffset = 0;
+            (IsHitObjectHorizontal()) ? xOffset = 0 : yOffset = 0;
         }
         else if( (currentTime - offsetTime) >= endTime )
         {
-            xOffset = ((float)endTime - (float)time)*velocity;
+
+            if( IsHitObjectHorizontal() )
+            {
+                xOffset = (direction == LEFT) ? -((float)endTime - (float)time)*velocity
+                                              :  ((float)endTime - (float)time)*velocity;
+            }
+            else
+            {
+                yOffset = (direction == UP) ? -((float)endTime - (float)time)*velocity
+                                            :  ((float)endTime - (float)time)*velocity;
+            }
         }
         else
         {
-            xOffset = -((float)time + (float)offsetTime - (float)currentTime)*velocity;
+            if( IsHitObjectHorizontal() )
+            {
+                xOffset = (direction == LEFT) ?  ((float)time + (float)offsetTime - (float)currentTime)*velocity
+                                              : -((float)time + (float)offsetTime - (float)currentTime)*velocity;
+            }
+            else
+            {
+                yOffset = (direction == UP) ?  ((float)time + (float)offsetTime - (float)currentTime)*velocity
+                                            : -((float)time + (float)offsetTime - (float)currentTime)*velocity;
+            }
         }
 
     }
 
     bool CheckHitting()
     {
-        if( !events.RightPressed() )
+        if( ( !events.LeftPressed()  && ((direction == LEFT  && isHorizontal) || (direction == UP   && !isHorizontal)) )
+         || ( !events.RightPressed() && ((direction == RIGHT && isHorizontal) || (direction == DOWN && !isHorizontal)) )
+        )
+        {
             return 0;
+        }
 
+        return 1;
+    }
+
+    void CheckHitTiming()
+    {
         if( difference < HitTime::Meh )
         {
             isHit = true;
@@ -401,8 +429,6 @@ public:
 
             lastHitTime = currentTime;
         }
-
-        return 0;
     }
 
     void DoThingsAfterHit()
@@ -424,19 +450,38 @@ public:
             isReturnHitValue = true;
         }
 
-        if( !events.RightPressed() )
+        if( !CheckHitting() )
             return;
 
-        if( events.Right1Pressed() && !events.KeyLock( events.rightKey1 ) )
+
+        if( (direction == LEFT && isHorizontal) || (direction == UP && !isHorizontal) )
         {
-            hits++;
-            events.SetKeyLock( events.rightKey1, true );
+            if( events.Left1PressedNoLock() )
+            {
+                hits++;
+                events.LockLeft1();
+            }
+            if( events.Left2PressedNoLock() )
+            {
+                hits++;
+                events.LockLeft2();
+            }
         }
-        if( events.Right2Pressed() && !events.KeyLock( events.rightKey2 ) )
+        else if( (direction == RIGHT && isHorizontal) || (direction == DOWN && !isHorizontal) )
         {
-            hits++;
-            events.SetKeyLock( events.rightKey2, true );
+            if( events.Right1PressedNoLock() )
+            {
+                hits++;
+                events.LockRight1();
+            }
+            if( events.Right2PressedNoLock() )
+            {
+                hits++;
+                events.LockRight2();
+            }
         }
+
+        CoutEndl(hits)
 
         lastHitTime = currentTime;
 
