@@ -25,6 +25,25 @@ public:
 
     bool isUp;
 
+    void DrawHit( float x, float y )
+    {
+        SDL_SetRenderDrawColor( window->renderer, 255, 255, 255, 255 );
+
+        for( float x2{ x - 50 }; x2 < (x + 50); ++x2 )
+        {
+            SDL_RenderDrawPoint( window->renderer, x2, y );
+        }
+        for( float y2{ y - 50 }; y2 < (y + 50); ++y2 )
+        {
+            SDL_RenderDrawPoint( window->renderer, x, y2 );
+        }
+    }
+
+    bool IsHitObjectHorizontal()
+    {
+        return (direction == LEFT) || (direction == RIGHT);
+    }
+
 // HitObject inherits from Image
     HitObject( std::string path, SDL_Rect src, Rect dest ) : Animation( path, src, dest )
     {
@@ -143,6 +162,8 @@ public:
         {
             isValueReturned = true;
             isReturnHitValue = true;
+
+            hitValue = -1;
         }
 
     }
@@ -175,12 +196,11 @@ public:
     }
 
 // draws the HitObject if isShown is true
-    void DrawHitObject()
+    virtual void DrawHitObject()
     {
-        if( isShown )
-        {
-            Draw();
-        }
+        if( isShown ) Draw();
+
+        DrawHit( X()-xOffset, Y()-yOffset );
     }
 
 // returns true if the HitObject needs to be erased
@@ -209,14 +229,7 @@ public:
 
     void Init()
     {
-        if( (direction == LEFT) || (direction == RIGHT) )
-        {
-            yOffset += getHitObjectOffsetHeight();
-        }
-        else
-        {
-            xOffset -= getHitObjectOffsetHeight();
-        }
+        (IsHitObjectHorizontal()) ? yOffset += getHitObjectOffsetHeight() : xOffset -= getHitObjectOffsetHeight();
     }
 
 };
@@ -225,8 +238,6 @@ public:
 
 class Hold : public HitObject
 {
-    bool isHold;
-
     bool isEndHitValueReturned;
 
 public:
@@ -242,27 +253,26 @@ public:
 
     void Init()
     {
-        if( (direction == LEFT) || (direction == RIGHT) )
+        if( IsHitObjectHorizontal() )
         {
-            SetW( ((float)endTime - (float)time)*velocity + 50 );
-            xOffset = W()/2 - H()/2;
+            SetW( ((float)endTime - (float)time)*velocity + H() );
+            xOffset = (direction == LEFT) ? -(W()/2 - H()/2) : (W()/2 - H()/2);
             yOffset += getHitObjectOffsetHeight();
         }
         else
         {
-            SetH( ((float)endTime - (float)time)*velocity + 50 );
-            yOffset = H()/2 - W()/2;
+            SetH( ((float)endTime - (float)time)*velocity + W() );
+            yOffset = (direction == UP) ? -(H()/2 - W()/2) : (H()/2 - W()/2);
             xOffset -= getHitObjectOffsetHeight();
         }
 
-        isHold = true;
         isEndHitValueReturned = false;
 
     }
 
     void DoThingsAfterHit()
     {
-        if( (hitValue > 0) && !isEndHitValueReturned && !CheckHitting() )
+        if( !isEndHitValueReturned && (hitValue >= 0) && !CheckHitting() )
         {
             isEndHitValueReturned = true;
             difference = abs( (int)currentTime - (int)offsetTime - (int)endTime );
@@ -306,7 +316,7 @@ public:
         isUpPressed = false;
         isDownPressed = false;
 
-        ((direction == LEFT) || (direction == RIGHT)) ? SetH( 150 ) : SetW( 150 );
+        (IsHitObjectHorizontal()) ? SetH( 150 ) : SetW( 150 );
     }
 
     bool CheckHitting()
@@ -458,14 +468,7 @@ public:
 
     void Init()
     {
-        if( (direction == LEFT) || (direction == RIGHT) )
-        {
-            yOffset += getHitObjectOffsetHeight();
-        }
-        else
-        {
-            xOffset -= getHitObjectOffsetHeight();
-        }
+        (IsHitObjectHorizontal()) ? yOffset += getHitObjectOffsetHeight() : xOffset -= getHitObjectOffsetHeight();
     }
 };
 
@@ -496,14 +499,7 @@ public:
 
     void Init()
     {
-        if( (direction == LEFT) || (direction == RIGHT) )
-        {
-            yOffset += getHitObjectOffsetHeight();
-        }
-        else
-        {
-            xOffset -= getHitObjectOffsetHeight();
-        }
+        (IsHitObjectHorizontal()) ? yOffset += getHitObjectOffsetHeight() : xOffset -= getHitObjectOffsetHeight();
     }
 };
 
@@ -522,14 +518,7 @@ public:
 
     void Init()
     {
-        if( (direction == LEFT) || (direction == RIGHT) )
-        {
-            yOffset += getHitObjectOffsetHeight();
-        }
-        else
-        {
-            xOffset -= getHitObjectOffsetHeight();
-        }
+        (IsHitObjectHorizontal()) ? yOffset += getHitObjectOffsetHeight() : xOffset -= getHitObjectOffsetHeight();
     }
 };
 
@@ -552,15 +541,7 @@ public:
     {
         isHitLock = false;
 
-        if( (direction == LEFT) || (direction == RIGHT) )
-        {
-            yOffset += getHitObjectOffsetHeight();
-        }
-        else
-        {
-            xOffset -= getHitObjectOffsetHeight();
-        }
-
+        (IsHitObjectHorizontal()) ? yOffset += getHitObjectOffsetHeight() : xOffset -= getHitObjectOffsetHeight();
     }
 
     bool CheckHitting()

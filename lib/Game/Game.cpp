@@ -82,6 +82,7 @@ void Game::Update()
 
 void Game::Render()
 {
+    SDL_SetRenderDrawColor( window->renderer, 48, 48, 48, 255 );
     SDL_RenderClear( window->renderer );
 
     player->Draw();

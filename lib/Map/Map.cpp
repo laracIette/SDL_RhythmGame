@@ -382,7 +382,7 @@ void Map::Start()
 
     score = 0;
 
-    music->SetVolume( 1 );
+    music->SetVolume( 0 );
     music->Play();
 }
 
