@@ -8,7 +8,6 @@ class HitObject : public Animation
 protected:
     bool isHit;
     bool isShown;
-    bool isValueReturned;
     bool isReturnHitValue;
 
     char hitValue;
@@ -49,7 +48,6 @@ public:
     {
         isHit            = false;
         isShown          = false;
-        isValueReturned  = false;
         isReturnHitValue = false;
 
         xOffset = 0;
@@ -132,7 +130,6 @@ public:
             hitValue = HitAccuracy::Miss;
         }
         isReturnHitValue = true;
-
     }
 
 // returns true if hitting the right note side
@@ -153,17 +150,10 @@ public:
 // does specific things by type if isHit
     virtual void DoThingsAfterHit()
     {
-        if( W() > 2 )
+        if( W() > 2 )                    ////////////////////////// why doesnt it works anymore //////////////////////////
         {
             SetW( W() - 0.1 );
             SetH( H() - 0.1 );
-        }
-        if( !isValueReturned )
-        {
-            isValueReturned = true;
-            isReturnHitValue = true;
-
-            hitValue = -1;
         }
 
     }
@@ -322,12 +312,20 @@ public:
     bool CheckHitting()
     {
     // register moment for each click
-        if( !isUpPressed && events.OnlyRight1Pressed() )
+        if( !isUpPressed &&
+            ( ( events.Left2Pressed()  && ((direction == LEFT  && isHorizontal) || (direction == UP && !isHorizontal)) )
+           || ( events.Right1Pressed() && (direction  == RIGHT && isHorizontal) )
+           || ( events.Right2Pressed() && (direction  == DOWN  && !isHorizontal) )  )
+        )
         {
             isUpPressed = true;
             upPressedTime = currentTime;
         }
-        if( !isDownPressed && events.OnlyRight2Pressed() )
+        if( !isDownPressed &&
+            ( ( events.Left1Pressed()  && ((direction == LEFT  && isHorizontal) || (direction == UP && !isHorizontal)) )
+           || ( events.Right2Pressed() && (direction  == RIGHT && isHorizontal) )
+           || ( events.Right1Pressed() && (direction  == DOWN  && !isHorizontal) ) )
+        )
         {
             isDownPressed = true;
             downPressedTime = currentTime;
