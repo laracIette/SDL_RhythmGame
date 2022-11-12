@@ -528,16 +528,13 @@ public:
     )
     {}
 
-    bool CheckHitting()
+    void CheckHitTiming()
     {
-        if( ( (events.OnlyRight1Pressed() && isUp) || ((events.OnlyRight2Pressed() && !isUp)) )
-         && difference < HitTime::Meh )
+        if( difference < HitTime::Great )
         {
-            hitValue = HitAccuracy::Perfect;
-            isReturnHitValue = true;
             isHit = true;
+            /////////////////// ADD SCORE ///////////////////
         }
-        return 0;
     }
 
     void Init()
@@ -587,16 +584,12 @@ public:
         (IsHitObjectHorizontal()) ? yOffset += getHitObjectOffsetHeight() : xOffset -= getHitObjectOffsetHeight();
     }
 
-    bool CheckHitting()
+    void CheckHitTiming()
     {
-        if( (events.Right1Pressed() && isUp)
-         || (events.Right2Pressed() && !isUp)
-         || (!events.RightPressed() && !isUp)
-         && difference < HitTime::Great )
+        if( difference < HitTime::Great )
         {
             isHit = true;
         }
-        return 0;
     }
 
     bool IsHit()
