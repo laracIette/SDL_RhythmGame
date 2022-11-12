@@ -11,8 +11,9 @@ SDL:
 	lib/Player/Player.cpp \
 	lib/Image/Image.cpp \
 	lib/Map/Map.cpp \
-	lib/SoundManager/SoundManager.cpp \
+	lib/Music/Music.cpp \
 	lib/Animation/Animation.cpp \
+	lib/HitSound/HitSound.cpp \
 	-lSDL2main \
 	-lSDL2 \
 	-lSDL2_image \

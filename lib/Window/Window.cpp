@@ -13,6 +13,7 @@ Window::Window()
     {
         SDL_Log("Error initialisation SDL_mixer : %s", Mix_GetError());
     }
+    Mix_AllocateChannels( 256 );
 
 }
 

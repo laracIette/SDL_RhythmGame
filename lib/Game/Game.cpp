@@ -12,6 +12,8 @@ Window *window;
 
 bool isHorizontal;
 
+unsigned char audioChannels;
+
 Game::Game()
 {
     window = new Window();
@@ -40,6 +42,8 @@ Game::Game()
         {0, 0, 1920, 1080},
         {(float)WIDTH/2, (float)HEIGHT/2, (float)WIDTH, (float)HEIGHT}
     );
+
+    audioChannels = 0;
 }
 
 Game::~Game()

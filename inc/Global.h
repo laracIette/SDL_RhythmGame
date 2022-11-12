@@ -109,3 +109,6 @@ static T lowest( T a, T b )
 }
 
 extern bool isHorizontal;
+
+// channels go from 0 to 255
+extern unsigned char audioChannels;

@@ -2,21 +2,21 @@
 
 #include "../../inc/Global.h"
 
-class SoundManager
+class Music
 {
     Mix_Music *music;
     int volume;
 
 public:
-    SoundManager( std::string path );
-    ~SoundManager();
+    Music( std::string path );
+    ~Music();
 
+// infinite by default
     void Play( int repeats = -1 );
     void Pause();
     void Resume();
     void Rewind();
     void SetVolume( int volume );
-    void Halt();
 
     void Close();
 

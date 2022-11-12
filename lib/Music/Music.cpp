@@ -1,6 +1,6 @@
-#include "SoundManager.h"
+#include "Music.h"
 
-SoundManager::SoundManager( std::string path )
+Music::Music( std::string path )
 {
     music = Mix_LoadMUS( const_cast<char *>( path.c_str() ) );
 
@@ -10,37 +10,33 @@ SoundManager::SoundManager( std::string path )
     }
     volume = 128;
 }
-SoundManager::~SoundManager()
+Music::~Music()
 {
 }
 
-void SoundManager::Play( int repeats )
+void Music::Play( int repeats )
 {
     Mix_PlayMusic( music, repeats );
 }
-void SoundManager::Pause()
+void Music::Pause()
 {
     Mix_PauseMusic();
 }
-void SoundManager::Resume()
+void Music::Resume()
 {
     Mix_ResumeMusic();
 }
-void SoundManager::Rewind()
+void Music::Rewind()
 {
     Mix_RewindMusic();
 }
-void SoundManager::SetVolume( int volume )
+void Music::SetVolume( int volume )
 {
     this->volume = volume;
     Mix_VolumeMusic( volume );
 }
-void SoundManager::Halt()
-{
-    Mix_HaltMusic();
-}
 
-void SoundManager::Close()
+void Music::Close()
 {
     Mix_FreeMusic( music );
 }

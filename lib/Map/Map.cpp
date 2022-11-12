@@ -301,13 +301,32 @@ Map::Map( std::string path )
 
     isPaused = true;
 
-    music = new SoundManager( path + "song.mp3" );
+    music = new Music( path + "song.mp3" );
 
 
 }
 
 Map::~Map()
 {
+}
+
+void Map::Start()
+{
+    isPaused = false;
+
+    offsetTime = currentTime;
+
+    oldAcc = 0;
+
+    for( unsigned int &acc : accuracyHits ) acc = 0;
+
+    combo = 0;
+    highestCombo = 0;
+
+    score = 0;
+
+    music->SetVolume( 0 );
+    music->Play();
 }
 
 void Map::Update()
@@ -365,25 +384,6 @@ void Map::Draw()
     {
         hitObject->DrawHitObject();
     }
-}
-
-void Map::Start()
-{
-    isPaused = false;
-
-    offsetTime = currentTime;
-
-    oldAcc = 0;
-
-    for( unsigned int &acc : accuracyHits ) acc = 0;
-
-    combo = 0;
-    highestCombo = 0;
-
-    score = 0;
-
-    music->SetVolume( 0 );
-    music->Play();
 }
 
 void Map::Pause()

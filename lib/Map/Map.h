@@ -2,13 +2,13 @@
 
 #include "../../inc/Global.h"
 #include "../../inc/HitObject.h"
-#include "../SoundManager/SoundManager.h"
+#include "../Music/Music.h"
 
 class Map
 {
     std::vector<HitObject *> hitObjects;
 
-    SoundManager *music;
+    Music *music;
 
     unsigned int pausedTime;
 
