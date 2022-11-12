@@ -20,6 +20,7 @@
 		7. Hammer :
 			isUp
 		8. Chainsaw :
+			isUp
 
 
 	bool : isUp

@@ -1,15 +1,6 @@
 #pragma once
 
 #include "../lib/Animation/Animation.h"
-#include "../lib/Animation/Animation.h"
-
-
-static float getHitObjectOffsetHeight( bool isUp )
-{
-    if( isUp ) return -(float)HEIGHT/10;
-    return (float)HEIGHT/10;
-}
-
 
 class HitObject : public Animation
 {
@@ -17,12 +8,12 @@ class HitObject : public Animation
 protected:
     bool isHit;
     bool isShown;
-    bool isValueReturned;
     bool isReturnHitValue;
 
-    float pos;
-
     char hitValue;
+
+    float xOffset;
+    float yOffset;
 
 public:
     unsigned char type, direction;
@@ -33,13 +24,34 @@ public:
 
     bool isUp;
 
+    void DrawHit( float x, float y )
+    {
+        SDL_SetRenderDrawColor( window->renderer, 255, 255, 255, 255 );
+
+        for( float x2{ x - 50 }; x2 < (x + 50); ++x2 )
+        {
+            SDL_RenderDrawPoint( window->renderer, x2, y );
+        }
+        for( float y2{ y - 50 }; y2 < (y + 50); ++y2 )
+        {
+            SDL_RenderDrawPoint( window->renderer, x, y2 );
+        }
+    }
+
+    bool IsHitObjectHorizontal()
+    {
+        return (direction == LEFT) || (direction == RIGHT);
+    }
+
 // HitObject inherits from Image
     HitObject( std::string path, SDL_Rect src, Rect dest ) : Animation( path, src, dest )
     {
         isHit            = false;
         isShown          = false;
-        isValueReturned  = false;
         isReturnHitValue = false;
+
+        xOffset = 0;
+        yOffset = 0;
     }
 
 // returns the hitValue if isReturnHitValue is true
@@ -57,15 +69,47 @@ public:
 
     virtual bool IsHit() { return isHit; }
 
+    float getHitObjectOffsetHeight()
+    {
+        return (isUp) ? -(float)HEIGHT/10 : (float)HEIGHT/10;
+    }
+
 
 // initialises the HitObject
     virtual void Init() {}
 
 // sets the pos of the HitObject
-    virtual void Pos() { pos = (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity; }
+    void SetPos()
+    {
+        switch( direction )
+        {
+        case LEFT:
+            SetX( (float)WIDTH/2 - ((float)time + (float)offsetTime - (float)currentTime)*velocity + xOffset );
+            SetY( (float)HEIGHT/2 + yOffset );
+            break;
+
+        case RIGHT:
+            SetX( (float)WIDTH/2 + ((float)time + (float)offsetTime - (float)currentTime)*velocity + xOffset );
+            SetY( (float)HEIGHT/2 + yOffset );
+            break;
+
+        case UP:
+            SetX( (float)WIDTH/2 + xOffset );
+            SetY( (float)HEIGHT/2 - ((float)time + (float)offsetTime - (float)currentTime)*velocity + yOffset );
+            break;
+
+        case DOWN:
+            SetX( (float)WIDTH/2 + xOffset );
+            SetY( (float)HEIGHT/2 + ((float)time + (float)offsetTime - (float)currentTime)*velocity + yOffset );
+            break;
+
+        default:
+            break;
+        }
+    }
 
 // affects a value to hitValue
-    void CheckHitTiming()
+    virtual void CheckHitTiming()
     {
         isHit = true;
 
@@ -91,9 +135,13 @@ public:
 // returns true if hitting the right note side
     virtual bool CheckHitting()
     {
-        if( (events.Pressed( events.rightKey1 ) && isUp)
-         || (events.Pressed( events.rightKey2 ) && !isUp) )
+        if( ( ((events.OnlyLeft2Pressed()  && isUp) || (events.OnlyLeft1Pressed()  && !isUp)) && ((direction == LEFT && isHorizontal) || (direction == UP   && !isHorizontal)) )
+         || ( ((events.OnlyRight1Pressed() && isUp) || (events.OnlyRight2Pressed() && !isUp)) && (direction == RIGHT && isHorizontal) )
+         || ( ((events.OnlyRight2Pressed() && isUp) || (events.OnlyRight1Pressed() && !isUp)) && (direction == DOWN  && !isHorizontal) )
+        )
+        {
             return 1;
+        }
 
         return 0;
     }
@@ -107,27 +155,24 @@ public:
             SetW( W() - 0.1 );
             SetH( H() - 0.1 );
         }
-        if( !isValueReturned )
-        {
-            isValueReturned = true;
-            isReturnHitValue = true;
-        }
 
     }
+
+    virtual void DoThings() {}
 
 
     void Update()
     {
         difference = abs( (int)currentTime - (int)offsetTime - (int)time );
 
-        Pos();
+        DoThings();
 
-        if( !isShown && (pos <= WIDTH + W()/2) )
+        SetPos();
+
+        if( !isShown && ((X() <= WIDTH + W()/2) || (X() >= -W()/2) || (Y() <= HEIGHT + H()/2) || (Y() >= -H()/2)) )
         {
             isShown = true;
         }
-
-        SetX( pos );
 
         if( !isHit && (difference < HitTime::Miss) && CheckHitting() )
         {
@@ -141,12 +186,11 @@ public:
     }
 
 // draws the HitObject if isShown is true
-    void DrawHitObject()
+    virtual void DrawHitObject()
     {
-        if( isShown )
-        {
-            Draw();
-        }
+        if( isShown ) Draw();
+
+        DrawHit( X()-xOffset, Y()-yOffset );
     }
 
 // returns true if the HitObject needs to be erased
@@ -175,7 +219,7 @@ public:
 
     void Init()
     {
-        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
+        (IsHitObjectHorizontal()) ? yOffset += getHitObjectOffsetHeight() : xOffset -= getHitObjectOffsetHeight();
     }
 
 };
@@ -184,8 +228,6 @@ public:
 
 class Hold : public HitObject
 {
-    bool isHold;
-
     bool isEndHitValueReturned;
 
 public:
@@ -195,27 +237,32 @@ public:
      : HitObject(
         "assets/Skins/BaseSkin/HitObjects/Holds",
         {0, 0, 50, 50},
-        {0, 0, 0, 50}
+        {0, 0, 50, 50}
     )
     {}
 
     void Init()
     {
-        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
-        SetW( ((float)endTime - (float)time)*velocity + 50 );
+        if( IsHitObjectHorizontal() )
+        {
+            SetW( ((float)endTime - (float)time)*velocity + H() );
+            xOffset = (direction == LEFT) ? -(W()/2 - H()/2) : (W()/2 - H()/2);
+            yOffset += getHitObjectOffsetHeight();
+        }
+        else
+        {
+            SetH( ((float)endTime - (float)time)*velocity + W() );
+            yOffset = (direction == UP) ? -(H()/2 - W()/2) : (H()/2 - W()/2);
+            xOffset -= getHitObjectOffsetHeight();
+        }
 
-        isHold = true;
         isEndHitValueReturned = false;
-    }
 
-    void Pos()
-    {
-        pos = (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity + (W()/2-H()/2);
     }
 
     void DoThingsAfterHit()
     {
-        if( (hitValue > 0) && !isEndHitValueReturned && !CheckHitting() )
+        if( !isEndHitValueReturned && (hitValue >= 0) && !CheckHitting() )
         {
             isEndHitValueReturned = true;
             difference = abs( (int)currentTime - (int)offsetTime - (int)endTime );
@@ -236,7 +283,6 @@ public:
 
         return 0;
     }
-
 };
 
 
@@ -251,7 +297,7 @@ public:
      : HitObject(
         "assets/Skins/BaseSkin/HitObjects/Doubles",
         {0, 0, 50, 150},
-        {0, (float)HEIGHT/2, 50, 150}
+        {0, 0, 50, 50}
     )
     {}
 
@@ -259,17 +305,27 @@ public:
     {
         isUpPressed = false;
         isDownPressed = false;
+
+        (IsHitObjectHorizontal()) ? SetH( 150 ) : SetW( 150 );
     }
 
     bool CheckHitting()
     {
     // register moment for each click
-        if( !isUpPressed && events.Pressed( events.rightKey1 ) )
+        if( !isUpPressed &&
+            ( ( events.Left2Pressed()  && ((direction == LEFT  && isHorizontal) || (direction == UP && !isHorizontal)) )
+           || ( events.Right1Pressed() && (direction  == RIGHT && isHorizontal) )
+           || ( events.Right2Pressed() && (direction  == DOWN  && !isHorizontal) )  )
+        )
         {
             isUpPressed = true;
             upPressedTime = currentTime;
         }
-        if( !isDownPressed && events.Pressed( events.rightKey2 ) )
+        if( !isDownPressed &&
+            ( ( events.Left1Pressed()  && ((direction == LEFT  && isHorizontal) || (direction == UP && !isHorizontal)) )
+           || ( events.Right2Pressed() && (direction  == RIGHT && isHorizontal) )
+           || ( events.Right1Pressed() && (direction  == DOWN  && !isHorizontal) ) )
+        )
         {
             isDownPressed = true;
             downPressedTime = currentTime;
@@ -305,7 +361,7 @@ public:
      : HitObject(
         "assets/Skins/BaseSkin/HitObjects/Mashs",
         {0, 0, 150, 150},
-        {0, (float)HEIGHT/2, 150, 150}
+        {0, 0, 150, 150}
     )
     {}
 
@@ -315,28 +371,56 @@ public:
         isHitBlocked = false;
     }
 
-    void Pos()
+    void DoThings()
     {
-        if( currentTime < (time + offsetTime) )
+        if( (currentTime - offsetTime) < time )
         {
-            pos = (float)WIDTH/6 + ((float)time + (float)offsetTime - (float)currentTime)*velocity;
+            (IsHitObjectHorizontal()) ? xOffset = 0 : yOffset = 0;
         }
-        else if( currentTime >= (endTime + offsetTime) )
+        else if( (currentTime - offsetTime) >= endTime )
         {
-            pos = (float)WIDTH/6 + ((float)endTime + (float)offsetTime - (float)currentTime)*velocity;
+
+            if( IsHitObjectHorizontal() )
+            {
+                xOffset = (direction == LEFT) ? -((float)endTime - (float)time)*velocity
+                                              :  ((float)endTime - (float)time)*velocity;
+            }
+            else
+            {
+                yOffset = (direction == UP) ? -((float)endTime - (float)time)*velocity
+                                            :  ((float)endTime - (float)time)*velocity;
+            }
         }
         else
         {
-            pos = (float)WIDTH/6;
+            if( IsHitObjectHorizontal() )
+            {
+                xOffset = (direction == LEFT) ?  ((float)time + (float)offsetTime - (float)currentTime)*velocity
+                                              : -((float)time + (float)offsetTime - (float)currentTime)*velocity;
+            }
+            else
+            {
+                yOffset = (direction == UP) ?  ((float)time + (float)offsetTime - (float)currentTime)*velocity
+                                            : -((float)time + (float)offsetTime - (float)currentTime)*velocity;
+            }
         }
+
     }
 
     bool CheckHitting()
     {
-        if( !events.Pressed( events.rightKey1 )
-         && !events.Pressed( events.rightKey2 ) )
+        if( ( !events.LeftPressed()  && ((direction == LEFT  && isHorizontal) || (direction == UP   && !isHorizontal)) )
+         || ( !events.RightPressed() && ((direction == RIGHT && isHorizontal) || (direction == DOWN && !isHorizontal)) )
+        )
+        {
             return 0;
+        }
 
+        return 1;
+    }
+
+    void CheckHitTiming()
+    {
         if( difference < HitTime::Meh )
         {
             isHit = true;
@@ -345,8 +429,6 @@ public:
 
             lastHitTime = currentTime;
         }
-
-        return 0;
     }
 
     void DoThingsAfterHit()
@@ -368,20 +450,38 @@ public:
             isReturnHitValue = true;
         }
 
-        if( !events.Pressed( events.rightKey1 )
-         && !events.Pressed( events.rightKey2 ) )
+        if( !CheckHitting() )
             return;
 
-        if( events.Pressed( events.rightKey1 ) && !events.KeyLock( events.rightKey1 ) )
+
+        if( (direction == LEFT && isHorizontal) || (direction == UP && !isHorizontal) )
         {
-            hits++;
-            events.SetKeyLock( events.rightKey1, true );
+            if( events.Left1PressedNoLock() )
+            {
+                hits++;
+                events.LockLeft1();
+            }
+            if( events.Left2PressedNoLock() )
+            {
+                hits++;
+                events.LockLeft2();
+            }
         }
-        if( events.Pressed( events.rightKey2 ) && !events.KeyLock( events.rightKey2 ) )
+        else if( (direction == RIGHT && isHorizontal) || (direction == DOWN && !isHorizontal) )
         {
-            hits++;
-            events.SetKeyLock( events.rightKey2, true );
+            if( events.Right1PressedNoLock() )
+            {
+                hits++;
+                events.LockRight1();
+            }
+            if( events.Right2PressedNoLock() )
+            {
+                hits++;
+                events.LockRight2();
+            }
         }
+
+        CoutEndl(hits)
 
         lastHitTime = currentTime;
 
@@ -411,9 +511,8 @@ public:
 
     void Init()
     {
-        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
+        (IsHitObjectHorizontal()) ? yOffset += getHitObjectOffsetHeight() : xOffset -= getHitObjectOffsetHeight();
     }
-
 };
 
 
@@ -429,23 +528,19 @@ public:
     )
     {}
 
+    void CheckHitTiming()
+    {
+        if( difference < HitTime::Great )
+        {
+            isHit = true;
+            /////////////////// ADD SCORE ///////////////////
+        }
+    }
+
     void Init()
     {
-        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
+        (IsHitObjectHorizontal()) ? yOffset += getHitObjectOffsetHeight() : xOffset -= getHitObjectOffsetHeight();
     }
-
-    bool CheckHitting()
-    {
-        if( ( (events.Pressed( events.rightKey1 ) && isUp) || ((events.Pressed( events.rightKey2 ) && !isUp)) )
-         && difference < HitTime::Meh )
-        {
-            hitValue = HitAccuracy::Perfect;
-            isReturnHitValue = true;
-            isHit = true;
-        }
-        return 0;
-    }
-
 };
 
 
@@ -463,9 +558,8 @@ public:
 
     void Init()
     {
-        SetY( (float)HEIGHT/2 + getHitObjectOffsetHeight( isUp ) );
+        (IsHitObjectHorizontal()) ? yOffset += getHitObjectOffsetHeight() : xOffset -= getHitObjectOffsetHeight();
     }
-
 };
 
 
@@ -479,25 +573,23 @@ public:
      : HitObject(
         "assets/Skins/BaseSkin/HitObjects/Chainsaws",
         {0, 0, 2048, 2048},
-        {0, (float)HEIGHT/2 + (float)HEIGHT/10, 50, 50}
+        {0, 0, 50, 50}
     )
     {}
 
     void Init()
     {
         isHitLock = false;
+
+        (IsHitObjectHorizontal()) ? yOffset += getHitObjectOffsetHeight() : xOffset -= getHitObjectOffsetHeight();
     }
 
-    bool CheckHitting()
+    void CheckHitTiming()
     {
-        if( (events.Pressed( events.rightKey1 ) && isUp)
-         || (events.Pressed( events.rightKey2 ) && !isUp)
-         || (!events.Pressed( events.rightKey2 ) && !events.Pressed( events.rightKey1 ) && !isUp)
-         && difference < HitTime::Great )
+        if( difference < HitTime::Great )
         {
             isHit = true;
         }
-        return 0;
     }
 
     bool IsHit()
@@ -510,6 +602,4 @@ public:
 
         return 0;
     }
-
-    void DoThingsAfterHit() {}
 };

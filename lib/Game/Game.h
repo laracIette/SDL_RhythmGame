@@ -14,6 +14,9 @@ class Game
 
     bool isStarted;
 
+    Image *horizontalForeground;
+    Image *verticalForeground;
+
 public:
     Game();
     ~Game();

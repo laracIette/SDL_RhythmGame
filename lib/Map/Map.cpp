@@ -18,7 +18,7 @@ Map::Map( std::string path )
             Note *noteTemp{ new Note() };
 
             noteTemp->type = NOTE;
-            noteTemp->direction = temp[2];
+            noteTemp->direction = temp[2]-'0';
 
             for( int i{ 4 }; i < temp.size(); ++i )
             {
@@ -54,7 +54,7 @@ Map::Map( std::string path )
             Hold *holdTemp{ new Hold() };
 
             holdTemp->type = HOLD;
-            holdTemp->direction = temp[2];
+            holdTemp->direction = temp[2]-'0';
 
             for( int i{ 4 }; i < temp.size(); ++i )
             {
@@ -93,7 +93,7 @@ Map::Map( std::string path )
         {
             Double *doubleTemp{ new Double() };
             doubleTemp->type = DOUBLE;
-            doubleTemp->direction = temp[2];
+            doubleTemp->direction = temp[2]-'0';
 
             for( int i{ 4 }; i < temp.size(); ++i )
             {
@@ -116,7 +116,7 @@ Map::Map( std::string path )
         {
             Mash *mashTemp{ new Mash() };
             mashTemp->type = MASH;
-            mashTemp->direction = temp[2];
+            mashTemp->direction = temp[2]-'0';
 
             for( int i{ 4 }; i < temp.size(); ++i )
             {
@@ -151,7 +151,7 @@ Map::Map( std::string path )
         {
             Ghost *ghostTemp{ new Ghost() };
             ghostTemp->type = GHOST;
-            ghostTemp->direction = temp[2];
+            ghostTemp->direction = temp[2]-'0';
 
             for( int i{ 4 }; i < temp.size(); ++i )
             {
@@ -186,7 +186,7 @@ Map::Map( std::string path )
         {
             Coin *coinTemp{ new Coin() };
             coinTemp->type = COIN;
-            coinTemp->direction = temp[2];
+            coinTemp->direction = temp[2]-'0';
 
             for( int i{ 4 }; i < temp.size(); ++i )
             {
@@ -221,7 +221,7 @@ Map::Map( std::string path )
         {
             Hammer *hammerTemp{ new Hammer() };
             hammerTemp->type = HAMMER;
-            hammerTemp->direction = temp[2];
+            hammerTemp->direction = temp[2]-'0';
 
             for( int i{ 4 }; i < temp.size(); ++i )
             {
@@ -256,7 +256,7 @@ Map::Map( std::string path )
         {
             Chainsaw *chainsawTemp{ new Chainsaw() };
             chainsawTemp->type = CHAINSAW;
-            chainsawTemp->direction = temp[2];
+            chainsawTemp->direction = temp[2]-'0';
 
             for( int i{ 4 }; i < temp.size(); ++i )
             {
@@ -266,9 +266,21 @@ Map::Map( std::string path )
                 }
                 else
                 {
-                    chainsawTemp->time = std::stoi( nTemp );
+                    switch( nSteps )
+                    {
+                    case 0:
+                        chainsawTemp->time = std::stoi( nTemp );
+                        break;
 
+                    case 1:
+                        chainsawTemp->isUp = std::stoi( nTemp );
+                        break;
+
+                    default:
+                        break;
+                    }
                     nTemp.clear();
+                    nSteps++;
                 }
             }
             hitObjects.push_back( chainsawTemp );
@@ -291,16 +303,6 @@ Map::Map( std::string path )
 
     music = new SoundManager( path + "song.mp3" );
 
-    oldAcc = 0;
-
-    for( unsigned int &acc : accuracyHits ) acc = 0;
-
-    combo = 0;
-    highestCombo = 0;
-
-    score = 0;
-
-    offsetTime = 0;
 
 }
 
@@ -371,7 +373,16 @@ void Map::Start()
 
     offsetTime = currentTime;
 
-    music->SetVolume( 1 );
+    oldAcc = 0;
+
+    for( unsigned int &acc : accuracyHits ) acc = 0;
+
+    combo = 0;
+    highestCombo = 0;
+
+    score = 0;
+
+    music->SetVolume( 0 );
     music->Play();
 }
 

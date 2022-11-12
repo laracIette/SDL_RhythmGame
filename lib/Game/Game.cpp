@@ -10,6 +10,8 @@ float velocity;
 
 Window *window;
 
+bool isHorizontal;
+
 Game::Game()
 {
     window = new Window();
@@ -25,6 +27,19 @@ Game::Game()
     map = new Map( "assets/Maps/Plastic Smile - Kaori Ishihara/" );
 
     isStarted = false;
+
+    isHorizontal = true;
+
+    horizontalForeground = new Image(
+        "assets/Skins/BaseSkin/foreground0.png",
+        {0, 0, 1920, 1080},
+        {(float)WIDTH/2, (float)HEIGHT/2, (float)WIDTH, (float)HEIGHT}
+    );
+    verticalForeground = new Image(
+        "assets/Skins/BaseSkin/foreground1.png",
+        {0, 0, 1920, 1080},
+        {(float)WIDTH/2, (float)HEIGHT/2, (float)WIDTH, (float)HEIGHT}
+    );
 }
 
 Game::~Game()
@@ -34,6 +49,7 @@ Game::~Game()
 void Game::Init()
 {
     deltaTime = 0;
+    lastFrameTime = currentTime;
 }
 
 void Game::Update()
@@ -44,18 +60,18 @@ void Game::Update()
     lastFrameTime = currentTime;
 
 
-    if( !isStarted && events.Pressed( events.keyboard.Space ) )
+    if( !isStarted && events.Pressed( events.keyboard.Escape ) )
     {
-        events.SetKeyLock( events.keyboard.Space, true );
+        events.SetKeyLock( events.keyboard.Escape, true );
 
         isStarted = true;
         map->Start();
     }
     if( isStarted
-     && !events.KeyLock( events.keyboard.Space )
-     && events.Pressed( events.keyboard.Space ) )
+     && !events.KeyLock( events.keyboard.Escape )
+     && events.Pressed( events.keyboard.Escape ) )
     {
-        events.SetKeyLock( events.keyboard.Space, true );
+        events.SetKeyLock( events.keyboard.Escape, true );
         map->Pause();
     }
 
@@ -66,10 +82,13 @@ void Game::Update()
 
 void Game::Render()
 {
+    SDL_SetRenderDrawColor( window->renderer, 48, 48, 48, 255 );
     SDL_RenderClear( window->renderer );
 
     player->Draw();
     map->Draw();
+
+    (isHorizontal) ? horizontalForeground->Draw() : verticalForeground->Draw();
 
     SDL_RenderPresent( window->renderer );
 }

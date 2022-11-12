@@ -4,7 +4,7 @@
 
 struct KeyboardEvents
 {
-    static const int KEYS{ 37 };
+    static const int KEYS{ 38 };
 
     SDL_KeyCode keyCode[KEYS]{
         SDLK_0,
@@ -43,7 +43,8 @@ struct KeyboardEvents
         SDLK_w,
         SDLK_x,
         SDLK_y,
-        SDLK_z
+        SDLK_z,
+        SDLK_ESCAPE
     };
 
     enum Keys {
@@ -73,7 +74,8 @@ struct KeyboardEvents
         W,
         X,
         Y,
-        Z
+        Z,
+        Escape
     };
 
     bool keyPressed[KEYS]{ false };
