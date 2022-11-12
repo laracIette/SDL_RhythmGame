@@ -2,6 +2,14 @@
     "files.associations": {
         "*.rh": "cpp",
         "filesystem": "cpp",
-        "limits": "cpp"
+        "limits": "cpp",
+        "stdexcept": "cpp",
+        "*.tcc": "cpp",
+        "sstream": "cpp",
+        "array": "cpp",
+        "hash_map": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "valarray": "cpp"
     }
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../lib/Animation/Animation.h"
+#include "../lib/HitSound/HitSound.h"
 
 class HitObject : public Animation
 {
@@ -14,6 +15,8 @@ protected:
 
     float xOffset;
     float yOffset;
+
+    HitSound *hitSound;
 
 public:
     unsigned char type, direction;
@@ -40,7 +43,7 @@ public:
 
     bool IsHitObjectHorizontal()
     {
-        return (direction == LEFT) || (direction == RIGHT);
+        return ((direction == LEFT) || (direction == RIGHT));
     }
 
 // HitObject inherits from Image
@@ -52,6 +55,9 @@ public:
 
         xOffset = 0;
         yOffset = 0;
+
+        hitSound = new HitSound( path + "/Hit.ogg" );
+        hitSound->SetVolume( 1 );
     }
 
 // returns the hitValue if isReturnHitValue is true
@@ -140,6 +146,7 @@ public:
          || ( ((events.OnlyRight2Pressed() && isUp) || (events.OnlyRight1Pressed() && !isUp)) && (direction == DOWN  && !isHorizontal) )
         )
         {
+            hitSound->Play();
             return 1;
         }
 

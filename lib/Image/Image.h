@@ -3,6 +3,16 @@
 #include "../../inc/Global.h"
 #include "../TextureManager/TextureManager.h"
 
+// returns 1 if the path is ends with png
+// else returns 0
+static bool CheckImageExists( std::string path )
+{
+    if( (path[path.size()-3] != 'p') || (path[path.size()-2] != 'n') || (path[path.size()-1] != 'g') )
+        return 0;
+
+    return 1;
+}
+
 class Image
 {
     SDL_Texture *tex;

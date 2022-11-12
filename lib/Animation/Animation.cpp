@@ -6,13 +6,14 @@ Animation::Animation( std::string path, SDL_Rect src, Rect dest )
 {
     for( const auto &entry : std::filesystem::directory_iterator( path ) )
     {
-        images.push_back(
-            new Image(
-                entry.path(),
-                src,
-                dest
-            )
-        );
+        if( CheckImageExists( entry.path() ) )
+            images.push_back(
+                new Image(
+                    entry.path(),
+                    src,
+                    dest
+                )
+            );
     }
 
     indice = 0;

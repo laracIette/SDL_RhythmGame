@@ -3,9 +3,13 @@
 HitSound::HitSound( std::string path )
 {
     hitSound = Mix_LoadWAV( const_cast<char *>( path.c_str() ) );
+    if( !hitSound )
+    {
+        std::cout << "Error creating '" << path << "'.\n" << SDL_GetError() << std::endl;
+    }
 
     channel = audioChannels;
-    if( ++audioChannels == 255 ) CoutEndl("max number of channels affected")
+    if( ++audioChannels == 255 ) std::cout << "max number of channels affected" << std::endl;
 
     volume = 128;
 }
@@ -36,5 +40,6 @@ void HitSound::Close()
 {
     Mix_FreeChunk( hitSound );
 
-    (audioChannels != 0) ? audioChannels-- : CoutEndl("already 0 channels affected")
+    if( audioChannels != 0 ) audioChannels--;
+    else                     std::cout << "already 0 channels affected" << std::endl;
 }
