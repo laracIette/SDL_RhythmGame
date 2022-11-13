@@ -1,41 +1,47 @@
-#include "../lib/Game/Game.h"
+#include <SDL.h>
 
-unsigned int currentTime;
-Game *game;
+#include "../RythmGame.Game/Utils/Metrics.h"
+#include "../RythmGame.Game/Utils/Time.h"
 
-int WIDTH{ 1280 };
-int HEIGHT{ 720 };
+#include "../RythmGame.Game/Run/Run.h"
 
-unsigned int FPS;
+using namespace RythmGame::Game::Utils;
+using namespace RythmGame::Game;
+
+unsigned int RythmGame::Game::Utils::currentTime;
+Run *run;
+
+int RythmGame::Game::Utils::WIDTH{ 1280 };
+int RythmGame::Game::Utils::HEIGHT{ 720 };
+
+unsigned int RythmGame::Game::Utils::FPS{ 60 };
 
 
 int main( int argc, char *argv[] )
 {
-    FPS = 60;
-
     unsigned int start;
 
     unsigned int i{ 1 };
 
-    game = new Game();
-    game->Init();
+    run = new Run();
+    run->Init();
 
     start = currentTime;
 
-    while( game->Running() )
+    while( run->Running() )
     {
-        getTime( currentTime );
-        game->Update();
+        currentTime = SDL_GetTicks();
+        run->Update();
 
         if( (currentTime - start) > (1000 * i / FPS) )
         {
-            game->Render();
+            run->Render();
             i++;
         }
         SDL_Delay( 1 );
     }
 
-    game->Clear();
+    run->Clear();
 
     return 0;
 }
