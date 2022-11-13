@@ -1,7 +1,5 @@
 #include "Animation.h"
 
-#include <filesystem>
-
 Animation::Animation( std::string path, SDL_Rect src, Rect dest )
 {
     for( const auto &entry : std::filesystem::directory_iterator( path ) )

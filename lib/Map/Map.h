@@ -1,8 +1,12 @@
 #pragma once
 
-#include "../../inc/Global.h"
+#include <fstream>
+#include <string>
+
 #include "../../inc/HitObject.h"
-#include "../Music/Music.h"
+#include "../../inc/Time.h"
+
+#include "../Sound/Music/Music.h"
 
 class Map
 {

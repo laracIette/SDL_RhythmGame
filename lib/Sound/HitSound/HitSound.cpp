@@ -1,6 +1,6 @@
 #include "HitSound.h"
 
-HitSound::HitSound( std::string path )
+HitSound::HitSound( std::string path, unsigned char channel )
 {
     hitSound = Mix_LoadWAV( const_cast<char *>( path.c_str() ) );
     if( !hitSound )
@@ -8,8 +8,7 @@ HitSound::HitSound( std::string path )
         std::cout << "Error creating '" << path << "'.\n" << SDL_GetError() << std::endl;
     }
 
-    channel = audioChannels;
-    if( ++audioChannels == 255 ) std::cout << "max number of channels affected" << std::endl;
+    this->channel = channel;
 
     volume = 128;
 }
@@ -35,11 +34,18 @@ void HitSound::SetVolume( int volume )
     this->volume = volume;
     Mix_VolumeChunk( hitSound, 128 );
 }
+void HitSound::Halt()
+{
+    Mix_HaltChannel( channel );
+}
+
+bool HitSound::Playing()
+{
+    return Mix_Playing( channel );
+}
 
 void HitSound::Close()
 {
     Mix_FreeChunk( hitSound );
-
-    if( audioChannels != 0 ) audioChannels--;
-    else                     std::cout << "already 0 channels affected" << std::endl;
 }
+

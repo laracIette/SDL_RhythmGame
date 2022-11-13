@@ -1,7 +1,10 @@
 #pragma once
 
-#include "../../inc/Global.h"
+#include <SDL.h>
 #include <SDL_image.h>
+#include <iostream>
+
+#include "../Window/Window.h"
 
 class TextureManager
 {

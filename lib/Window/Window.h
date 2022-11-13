@@ -3,9 +3,11 @@
 #include <SDL.h>
 #include <SDL_mixer.h>
 
+#include "../../inc/Metrics.h"
 
 class Window
 {
+
 public:
     Window();
     ~Window();
@@ -14,3 +16,4 @@ public:
     SDL_Renderer *renderer;
 };
 
+extern Window *window;

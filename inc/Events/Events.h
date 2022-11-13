@@ -124,3 +124,5 @@ struct Events
     bool Right1PressedNoLock() { return (Right1Pressed() && !Right1Lock()); }
     bool Right2PressedNoLock() { return (Right2Pressed() && !Right2Lock()); }
 };
+
+extern Events events;

@@ -1,5 +1,4 @@
 #include "Window.h"
-#include "../../inc/Global.h"
 
 Window::Window()
 {

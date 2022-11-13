@@ -5,20 +5,22 @@ vec2<int> mouse;
 unsigned int deltaTime;
 unsigned int offsetTime;
 
-Events events;
 float velocity;
+bool isHorizontal;
 
 Window *window;
 
-bool isHorizontal;
+Events events;
+HitSoundManager *hitSoundManager;
 
-unsigned char audioChannels;
 
 Game::Game()
 {
     window = new Window();
 
-    getTime( currentTime );
+    hitSoundManager = new HitSoundManager();
+
+    currentTime = SDL_GetTicks();
 
     isRunning = true;
 
@@ -42,8 +44,6 @@ Game::Game()
         {0, 0, 1920, 1080},
         {(float)WIDTH/2, (float)HEIGHT/2, (float)WIDTH, (float)HEIGHT}
     );
-
-    audioChannels = 0;
 }
 
 Game::~Game()
@@ -102,6 +102,7 @@ void Game::Clear()
     SDL_DestroyWindow( window->window );
     SDL_DestroyRenderer( window->renderer );
     map->Close();
+    hitSoundManager->Close();
     Mix_CloseAudio();
     SDL_Quit();
 }

@@ -1,3 +1,8 @@
+#include <SDL.h>
+
+#include "../inc/Metrics.h"
+#include "../inc/Time.h"
+
 #include "../lib/Game/Game.h"
 
 unsigned int currentTime;
@@ -6,13 +11,11 @@ Game *game;
 int WIDTH{ 1280 };
 int HEIGHT{ 720 };
 
-unsigned int FPS;
+unsigned int FPS{ 60 };
 
 
 int main( int argc, char *argv[] )
 {
-    FPS = 60;
-
     unsigned int start;
 
     unsigned int i{ 1 };
@@ -24,7 +27,7 @@ int main( int argc, char *argv[] )
 
     while( game->Running() )
     {
-        getTime( currentTime );
+        currentTime = SDL_GetTicks();
         game->Update();
 
         if( (currentTime - start) > (1000 * i / FPS) )

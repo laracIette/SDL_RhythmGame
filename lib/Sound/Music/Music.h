@@ -1,6 +1,8 @@
 #pragma once
 
-#include "../../inc/Global.h"
+#include <SDL.h>
+#include <SDL_mixer.h>
+#include <string>
 
 class Music
 {

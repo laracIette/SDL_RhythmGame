@@ -1,5 +1,9 @@
 #pragma once
 
+#include "../../inc/Metrics.h"
+#include "../../inc/GameSettings.h"
+#include "../../inc/Events/Events.h"
+
 #include "../Image/Image.h"
 
 class Player

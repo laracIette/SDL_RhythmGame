@@ -1,7 +1,53 @@
 #pragma once
 
+#include <SDL.h>
+#include <iostream>
+
+#include "Time.h"
+#include "GameSettings.h"
+#include "Events/Events.h"
+
 #include "../lib/Animation/Animation.h"
-#include "../lib/HitSound/HitSound.h"
+#include "../lib/Sound/HitSoundManager/HitSoundManager.h"
+
+
+enum HitObjectTypes {
+    NOTE = 1,
+    HOLD,
+    DOUBLE,
+    MASH,
+    GHOST,
+    COIN,
+    HAMMER,
+    CHAINSAW
+};
+
+enum Directions {
+    LEFT = 1,
+    RIGHT,
+    UP,
+    DOWN
+};
+
+struct HitTime
+{
+    enum Time {
+        Perfect = 50,
+        Great   = 150,
+        Meh     = 300,
+        Miss    = 450
+    };
+};
+struct HitAccuracy
+{
+    enum Accuracy {
+        Perfect = 0,
+        Great   = 1,
+        Meh     = 2,
+        Miss    = 3
+    };
+};
+
 
 class HitObject : public Animation
 {
@@ -15,8 +61,6 @@ protected:
 
     float xOffset;
     float yOffset;
-
-    HitSound *hitSound;
 
 public:
     unsigned char type, direction;
@@ -55,9 +99,6 @@ public:
 
         xOffset = 0;
         yOffset = 0;
-
-        hitSound = new HitSound( path + "/Hit.ogg" );
-        hitSound->SetVolume( 1 );
     }
 
 // returns the hitValue if isReturnHitValue is true
@@ -67,7 +108,7 @@ public:
         if( isReturnHitValue )
         {
             isReturnHitValue = false;
-            CoutEndl('v'<<(int)hitValue)
+            std::cout << 'v' << (int)hitValue << std::endl;
             return hitValue;
         }
         return -1;
@@ -146,7 +187,6 @@ public:
          || ( ((events.OnlyRight2Pressed() && isUp) || (events.OnlyRight1Pressed() && !isUp)) && (direction == DOWN  && !isHorizontal) )
         )
         {
-            hitSound->Play();
             return 1;
         }
 
@@ -183,6 +223,7 @@ public:
 
         if( !isHit && (difference < HitTime::Miss) && CheckHitting() )
         {
+            hitSoundManager->Play( type );
             CheckHitTiming();
         }
 
@@ -204,7 +245,9 @@ public:
     virtual bool Erase()
     {
         if( ((int)currentTime - (int)offsetTime - (int)time) > (int)HitTime::Miss )
+        {
             return 1;
+        }
 
         return 0;
     }
@@ -286,7 +329,9 @@ public:
     bool Erase()
     {
         if( ((int)currentTime - (int)offsetTime - (int)endTime) > (int)HitTime::Miss )
+        {
             return 1;
+        }
 
         return 0;
     }
@@ -416,14 +461,14 @@ public:
 
     bool CheckHitting()
     {
-        if( ( !events.LeftPressed()  && ((direction == LEFT  && isHorizontal) || (direction == UP   && !isHorizontal)) )
-         || ( !events.RightPressed() && ((direction == RIGHT && isHorizontal) || (direction == DOWN && !isHorizontal)) )
+        if( ( events.LeftPressed()  && ((direction == LEFT  && isHorizontal) || (direction == UP   && !isHorizontal)) )
+         || ( events.RightPressed() && ((direction == RIGHT && isHorizontal) || (direction == DOWN && !isHorizontal)) )
         )
         {
-            return 0;
+            return 1;
         }
 
-        return 1;
+        return 0;
     }
 
     void CheckHitTiming()
@@ -467,11 +512,15 @@ public:
             {
                 hits++;
                 events.LockLeft1();
+                lastHitTime = currentTime;
+                hitSoundManager->Play( type );
             }
             if( events.Left2PressedNoLock() )
             {
                 hits++;
                 events.LockLeft2();
+                lastHitTime = currentTime;
+                hitSoundManager->Play( type );
             }
         }
         else if( (direction == RIGHT && isHorizontal) || (direction == DOWN && !isHorizontal) )
@@ -480,24 +529,26 @@ public:
             {
                 hits++;
                 events.LockRight1();
+                lastHitTime = currentTime;
+                hitSoundManager->Play( type );
             }
             if( events.Right2PressedNoLock() )
             {
                 hits++;
                 events.LockRight2();
+                lastHitTime = currentTime;
+                hitSoundManager->Play( type );
             }
         }
-
-        CoutEndl(hits)
-
-        lastHitTime = currentTime;
 
     }
 
     bool Erase()
     {
         if( ((int)currentTime-(int)offsetTime-(int)endTime) > (int)HitTime::Miss )
+        {
             return 1;
+        }
 
         return 0;
     }

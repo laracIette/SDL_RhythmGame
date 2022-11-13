@@ -1,6 +1,9 @@
 #pragma once
 
-#include "../../inc/Global.h"
+#include <SDL.h>
+#include <SDL_mixer.h>
+#include <string>
+#include <iostream>
 
 class HitSound
 {
@@ -10,7 +13,7 @@ class HitSound
     int volume;
 
 public:
-    HitSound( std::string path );
+    HitSound( std::string path, unsigned char channel );
     ~HitSound();
 
 // 1 by default
@@ -18,6 +21,9 @@ public:
     void Pause();
     void Resume();
     void SetVolume( int volume );
+    void Halt();
+
+    bool Playing();
 
     void Close();
 };

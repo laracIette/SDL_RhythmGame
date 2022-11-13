@@ -1,5 +1,13 @@
 #pragma once
 
+#include <filesystem>
+#include <string>
+#include <SDL.h>
+#include <vector>
+
+#include "../../inc/Point.h"
+#include "../../inc/Time.h"
+
 #include "../Image/Image.h"
 
 class Animation

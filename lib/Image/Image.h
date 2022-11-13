@@ -1,6 +1,10 @@
 #pragma once
 
-#include "../../inc/Global.h"
+#include <string>
+#include <SDL.h>
+
+#include "../../inc/Point.h"
+
 #include "../TextureManager/TextureManager.h"
 
 // returns 1 if the path is ends with png

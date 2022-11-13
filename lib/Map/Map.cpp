@@ -10,6 +10,13 @@ Map::Map( std::string path )
 
     while( getline( file, temp ) )
     {
+    /*
+        to do:(maybe)
+            HitObject *hitObject to gain lines
+            hitObject = new Note();
+
+            make them all have endTime and replace time in HitObject::Erase() by endTime
+    */
         nSteps = 0;
         switch( temp[0] - '0' )
         {
@@ -341,7 +348,7 @@ void Map::Update()
         if( (hitObjects[j]->type == CHAINSAW) && hitObjects[j]->IsHit() )
         {
             combo = 0;
-            CoutEndl("hit")
+            std::cout << "hit" << std::endl;
         }
 
         tempAcc = hitObjects[j]->GetHitValue();
@@ -353,7 +360,7 @@ void Map::Update()
         }
         else if( tempAcc == HitAccuracy::Perfect && (hitObjects[j]->type == COIN) )
         {
-            CoutEndl("coin")
+            std::cout << "coin" << std::endl;
         }
 
         if( hitObjects[j]->Erase() )
@@ -374,7 +381,7 @@ void Map::Update()
     if( accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3] != oldAcc )
     {
         oldAcc = accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3];
-        CoutEndl(accuracyHits[0] << ' ' << accuracyHits[1] << ' ' << accuracyHits[2] << ' ' << accuracyHits[3] << ';' << GetAccuracy())
+        std::cout << accuracyHits[0] << ' ' << accuracyHits[1] << ' ' << accuracyHits[2] << ' ' << accuracyHits[3] << ';' << GetAccuracy() << std::endl;
     }
 }
 
