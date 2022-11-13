@@ -1,4 +1,4 @@
-# SDL_RythmGame
+# RythmGame
 
 ## HitObject properties :
 

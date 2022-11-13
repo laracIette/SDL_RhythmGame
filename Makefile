@@ -5,16 +5,16 @@ SDL:
 	-I/home/nico/SDL2_mixer-2.6.2/include \
 	-o build/prog \
 	src/main.cpp \
-	lib/Window/Window.cpp \
-	lib/Game/Game.cpp \
-	lib/TextureManager/TextureManager.cpp \
-	lib/Player/Player.cpp \
-	lib/Image/Image.cpp \
-	lib/Map/Map.cpp \
-	lib/Animation/Animation.cpp \
-	lib/Sound/Music/Music.cpp \
-	lib/Sound/HitSound/HitSound.cpp \
-	lib/Sound/HitSoundManager/HitSoundManager.cpp \
+	RythmGame.Framework/Window/Window.cpp \
+	RythmGame.Game/Run/Run.cpp \
+	RythmGame.Game/Player/Player.cpp \
+	RythmGame.Game/Map/Map.cpp \
+	RythmGame.Graphics/TextureManager/TextureManager.cpp \
+	RythmGame.Graphics/Image/Image.cpp \
+	RythmGame.Graphics/Animation/Animation.cpp \
+	RythmGame.Sound/Music/Music.cpp \
+	RythmGame.Sound/HitSound/HitSound.cpp \
+	RythmGame.Sound/HitSoundManager/HitSoundManager.cpp \
 	-lSDL2main \
 	-lSDL2 \
 	-lSDL2_image \
