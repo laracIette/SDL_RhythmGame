@@ -18,6 +18,8 @@ namespace RythmGame::Sound
     // channels go from 0 to 255
         unsigned char audioChannels;
 
+        unsigned char lastAudioChannels;
+
     public:
         HitSoundManager();
         ~HitSoundManager();

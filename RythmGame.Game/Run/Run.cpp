@@ -10,7 +10,7 @@ bool  RythmGame::Game::Utils::isHorizontal;
 
 Window *window;
 
-InputManager events;
+InputManager inputManager;
 HitSoundManager *hitSoundManager;
 
 
@@ -61,24 +61,24 @@ namespace RythmGame::Game
 
     void Run::Update()
     {
-        if( events.HandleEvents() ) isRunning = false;
+        if( inputManager.HandleEvents() ) isRunning = false;
 
         deltaTime = currentTime-lastFrameTime;
         lastFrameTime = currentTime;
 
 
-        if( !isStarted && events.Pressed( events.keyboard.Escape ) )
+        if( !isStarted && inputManager.Pressed( inputManager.keyboard.Escape ) )
         {
-            events.SetKeyLock( events.keyboard.Escape, true );
+            inputManager.SetKeyLock( inputManager.keyboard.Escape, true );
 
             isStarted = true;
             map->Start();
         }
         if( isStarted
-        && !events.KeyLock( events.keyboard.Escape )
-        && events.Pressed( events.keyboard.Escape ) )
+        && !inputManager.KeyLock( inputManager.keyboard.Escape )
+        && inputManager.Pressed( inputManager.keyboard.Escape ) )
         {
-            events.SetKeyLock( events.keyboard.Escape, true );
+            inputManager.SetKeyLock( inputManager.keyboard.Escape, true );
             map->Pause();
         }
 

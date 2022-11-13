@@ -129,4 +129,4 @@ namespace RythmGame::Game::Events
     };
 
 }
-extern RythmGame::Game::Events::InputManager events;
+extern RythmGame::Game::Events::InputManager inputManager;

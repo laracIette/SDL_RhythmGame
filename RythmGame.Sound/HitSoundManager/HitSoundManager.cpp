@@ -15,6 +15,7 @@ namespace RythmGame::Sound
         hitSounds[7] = "assets/Skins/BaseSkin/HitObjects/Chainsaws/Hit.ogg";
 
         audioChannels = 0;
+        lastAudioChannels = 0;
     }
     HitSoundManager::~HitSoundManager()
     {
@@ -38,6 +39,12 @@ namespace RythmGame::Sound
                     std::cout << "already 0 channels affected" << std::endl;
                 }
             }
+        }
+
+        if( audioChannels != lastAudioChannels )
+        {
+            lastAudioChannels = audioChannels;
+            std::cout << "Audio channels : " << (int)lastAudioChannels << std::endl;
         }
     }
 

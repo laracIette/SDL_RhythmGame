@@ -4,7 +4,16 @@
 #include <string>
 
 #include "../Hit/HitObject.h"
+#include "../Hit/Note.h"
+#include "../Hit/Hold.h"
+#include "../Hit/Double.h"
+#include "../Hit/Mash.h"
+#include "../Hit/Ghost.h"
+#include "../Hit/Coin.h"
+#include "../Hit/Hammer.h"
+#include "../Hit/Chainsaw.h"
 #include "../Utils/Time.h"
+
 
 #include "../../RythmGame.Sound/Music/Music.h"
 
