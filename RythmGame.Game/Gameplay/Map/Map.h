@@ -16,10 +16,12 @@
 #include "../../Utils/Time.h"
 
 #include "../../../RythmGame.Sound/Music/Music.h"
+#include "../../../RythmGame.Graphics/Image/Image.h"
 
 using namespace RythmGame::Game::Gameplay::Hit;
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Sound;
+using namespace RythmGame::Graphics;
 
 namespace RythmGame::Game::Gameplay
 {
@@ -42,6 +44,9 @@ namespace RythmGame::Game::Gameplay
         unsigned int combo, highestCombo;
 
         Score *score;
+
+        Image *horizontalForeground;
+        Image *verticalForeground;
 
     public:
         Map( std::string path );

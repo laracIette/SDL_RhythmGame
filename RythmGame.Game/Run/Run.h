@@ -10,14 +10,12 @@
 #include "../Gameplay/Player/Player.h"
 #include "../Gameplay/Map/Map.h"
 
-#include "../../RythmGame.Graphics/Image/Image.h"
 #include "../../RythmGame.Framework/Window/Window.h"
 #include "../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
 
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game::Events;
 using namespace RythmGame::Game::Gameplay;
-using namespace RythmGame::Graphics;
 using namespace RythmGame::Framework;
 using namespace RythmGame::Sound;
 
@@ -35,9 +33,6 @@ namespace RythmGame::Game
         Map *map;
 
         bool isStarted;
-
-        Image *horizontalForeground;
-        Image *verticalForeground;
 
     public:
         Run();

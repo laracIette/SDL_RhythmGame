@@ -288,8 +288,19 @@ namespace RythmGame::Game::Gameplay
 
         music = new Music( path + "song.mp3" );
 
-        score = new Score( {(float)WIDTH/2, (float)HEIGHT/2, 50, 60} );
-        score->SetScore( 100000 );
+        horizontalForeground = new Image(
+            "assets/Skins/BaseSkin/foreground0.png",
+            {0, 0, 1920, 1080},
+            {(float)WIDTH/2, (float)HEIGHT/2, (float)WIDTH, (float)HEIGHT}
+        );
+        verticalForeground = new Image(
+            "assets/Skins/BaseSkin/foreground1.png",
+            {0, 0, 1920, 1080},
+            {(float)WIDTH/2, (float)HEIGHT/2, (float)WIDTH, (float)HEIGHT}
+        );
+
+        score = new Score( {(float)WIDTH, 0, 50, 60} );
+
     }
 
     Map::~Map()
@@ -308,7 +319,6 @@ namespace RythmGame::Game::Gameplay
 
         combo = 0;
         highestCombo = 0;
-
 
         music->SetVolume( 0 );
         music->Play();
@@ -330,6 +340,10 @@ namespace RythmGame::Game::Gameplay
             }
 
             tempAcc = hitObjects[j]->GetHitValue();
+
+            if( tempAcc == 0 )      score->AddScore( 300 );
+            else if( tempAcc == 1 ) score->AddScore( 100 );
+            else if( tempAcc == 2 ) score->AddScore( 50 );
 
             if( tempAcc != -1 && (hitObjects[j]->type != COIN) )
             {
@@ -370,6 +384,9 @@ namespace RythmGame::Game::Gameplay
         {
             hitObject->DrawHitObject();
         }
+
+        (isHorizontal) ? horizontalForeground->Draw() : verticalForeground->Draw();
+
         score->Draw();
     }
 

@@ -37,17 +37,6 @@ namespace RythmGame::Game
         isStarted = false;
 
         isHorizontal = true;
-
-        horizontalForeground = new Image(
-            "assets/Skins/BaseSkin/foreground0.png",
-            {0, 0, 1920, 1080},
-            {(float)WIDTH/2, (float)HEIGHT/2, (float)WIDTH, (float)HEIGHT}
-        );
-        verticalForeground = new Image(
-            "assets/Skins/BaseSkin/foreground1.png",
-            {0, 0, 1920, 1080},
-            {(float)WIDTH/2, (float)HEIGHT/2, (float)WIDTH, (float)HEIGHT}
-        );
     }
 
     Run::~Run()
@@ -96,8 +85,6 @@ namespace RythmGame::Game
 
         player->Draw();
         map->Draw();
-
-        (isHorizontal) ? horizontalForeground->Draw() : verticalForeground->Draw();
 
         SDL_RenderPresent( window->renderer );
     }

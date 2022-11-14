@@ -13,6 +13,13 @@ using namespace RythmGame::Game::Utils;
 
 namespace RythmGame::Graphics
 {
+    enum Positions {
+        Center = 0,
+        TopLeft,
+        TopRight,
+        BottomLeft,
+        BottomRight
+    };
 
     class Text
     {
@@ -22,8 +29,10 @@ namespace RythmGame::Graphics
 
         float distance;
 
+        int position;
+
     public:
-        Text( std::string text, Rect dest );
+        Text( std::string text, Rect dest, int position );
         ~Text();
 
         void SetText( std::string text );
