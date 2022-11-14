@@ -3,15 +3,15 @@
 #include "HitObject.h"
 
 
-namespace RythmGame::Game::Hit
+namespace RythmGame::Game::Gameplay::Hit
 {
 
-    class Ghost : public HitObject
+    class Hammer : public HitObject
     {
     public:
-        Ghost()
+        Hammer()
         : HitObject(
-            "assets/Skins/BaseSkin/HitObjects/Ghosts",
+            "assets/Skins/BaseSkin/HitObjects/Hammers",
             {0, 0, 50, 50},
             {0, 0, 50, 50}
         )

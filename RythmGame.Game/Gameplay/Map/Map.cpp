@@ -1,6 +1,6 @@
 #include "Map.h"
 
-namespace RythmGame::Game
+namespace RythmGame::Game::Gameplay
 {
 
     Map::Map( std::string path )
@@ -288,7 +288,8 @@ namespace RythmGame::Game
 
         music = new Music( path + "song.mp3" );
 
-
+        score = new Score( {(float)WIDTH/2, (float)HEIGHT/2, 50, 60} );
+        score->SetScore( 100000 );
     }
 
     Map::~Map()
@@ -308,7 +309,6 @@ namespace RythmGame::Game
         combo = 0;
         highestCombo = 0;
 
-        score = 0;
 
         music->SetVolume( 0 );
         music->Play();
@@ -370,6 +370,7 @@ namespace RythmGame::Game
         {
             hitObject->DrawHitObject();
         }
+        score->Draw();
     }
 
     void Map::Pause()

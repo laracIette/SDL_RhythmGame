@@ -1,16 +1,16 @@
 #pragma once
 
-#include "../Utils/Metrics.h"
-#include "../Utils/GameSettings.h"
-#include "../Events/InputManager.h"
+#include "../../Utils/Metrics.h"
+#include "../../Utils/GameSettings.h"
+#include "../../Events/InputManager.h"
 
-#include "../../RythmGame.Graphics/Image/Image.h"
+#include "../../../RythmGame.Graphics/Image/Image.h"
 
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game::Events;
 using namespace RythmGame::Graphics;
 
-namespace RythmGame::Game
+namespace RythmGame::Game::Gameplay
 {
 
     class Player

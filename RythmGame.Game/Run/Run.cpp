@@ -1,12 +1,13 @@
 #include "Run.h"
 
-vec2<int> mouse;
 
 unsigned int RythmGame::Game::Utils::deltaTime;
 unsigned int RythmGame::Game::Utils::offsetTime;
 
 float RythmGame::Game::Utils::velocity;
 bool  RythmGame::Game::Utils::isHorizontal;
+
+vec2<int> mouse;
 
 Window *window;
 

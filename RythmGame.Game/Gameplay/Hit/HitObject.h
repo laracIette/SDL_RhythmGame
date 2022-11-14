@@ -3,13 +3,13 @@
 #include <SDL.h>
 #include <iostream>
 
-#include "../Utils/Time.h"
-#include "../Utils/Point.h"
-#include "../Utils/GameSettings.h"
-#include "../Events/InputManager.h"
+#include "../../Utils/Time.h"
+#include "../../Utils/Point.h"
+#include "../../Utils/GameSettings.h"
+#include "../../Events/InputManager.h"
 
-#include "../../RythmGame.Graphics/Animation/Animation.h"
-#include "../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
+#include "../../../RythmGame.Graphics/Animation/Animation.h"
+#include "../../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
 
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game::Events;
@@ -17,7 +17,7 @@ using namespace RythmGame::Graphics;
 using namespace RythmGame::Sound;
 
 
-namespace RythmGame::Game::Hit
+namespace RythmGame::Game::Gameplay::Hit
 {
 
     enum ObjectTypes {
@@ -192,8 +192,8 @@ namespace RythmGame::Game::Hit
         virtual bool CheckHitting()
         {
             if( ( ((inputManager.OnlyLeft2Pressed()  && isUp) || (inputManager.OnlyLeft1Pressed()  && !isUp)) && ((direction == LEFT && isHorizontal) || (direction == UP   && !isHorizontal)) )
-            || ( ((inputManager.OnlyRight1Pressed() && isUp) || (inputManager.OnlyRight2Pressed() && !isUp)) && (direction == RIGHT && isHorizontal) )
-            || ( ((inputManager.OnlyRight2Pressed() && isUp) || (inputManager.OnlyRight1Pressed() && !isUp)) && (direction == DOWN  && !isHorizontal) )
+             || ( ((inputManager.OnlyRight1Pressed() && isUp) || (inputManager.OnlyRight2Pressed() && !isUp)) && (direction == RIGHT && isHorizontal) )
+             || ( ((inputManager.OnlyRight2Pressed() && isUp) || (inputManager.OnlyRight1Pressed() && !isUp)) && (direction == DOWN  && !isHorizontal) )
             )
             {
                 return 1;

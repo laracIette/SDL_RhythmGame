@@ -12,16 +12,16 @@
 #include "../Hit/Coin.h"
 #include "../Hit/Hammer.h"
 #include "../Hit/Chainsaw.h"
-#include "../Utils/Time.h"
+#include "../Score/Score.h"
+#include "../../Utils/Time.h"
 
+#include "../../../RythmGame.Sound/Music/Music.h"
 
-#include "../../RythmGame.Sound/Music/Music.h"
-
-using namespace RythmGame::Game::Hit;
-using namespace RythmGame::Sound;
+using namespace RythmGame::Game::Gameplay::Hit;
 using namespace RythmGame::Game::Utils;
+using namespace RythmGame::Sound;
 
-namespace RythmGame::Game
+namespace RythmGame::Game::Gameplay
 {
 
     class Map
@@ -41,7 +41,7 @@ namespace RythmGame::Game
 
         unsigned int combo, highestCombo;
 
-        unsigned int score;
+        Score *score;
 
     public:
         Map( std::string path );

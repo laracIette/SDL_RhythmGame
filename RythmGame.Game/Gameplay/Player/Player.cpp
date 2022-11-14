@@ -1,6 +1,6 @@
 #include "Player.h"
 
-namespace RythmGame::Game
+namespace RythmGame::Game::Gameplay
 {
 
     Player::Player()

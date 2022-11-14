@@ -33,6 +33,7 @@ namespace RythmGame::Graphics
         ~Image();
 
         void Draw();
+        void Draw( Rect dest );
 
         float X() { return dest.x; }
         float Y() { return dest.y; }
