@@ -2,6 +2,9 @@
 
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game;
+using namespace RythmGame::Sound;
+using namespace RythmGame::Game::Events;
+using namespace RythmGame::Framework;
 
 unsigned int RythmGame::Game::Utils::currentTime;
 
@@ -12,6 +15,18 @@ unsigned int RythmGame::Game::Utils::FPS{ 60 };
 
 Run *run;
 
+unsigned int RythmGame::Game::Utils::deltaTime;
+unsigned int RythmGame::Game::Utils::offsetTime;
+
+float RythmGame::Game::Utils::velocity;
+bool  RythmGame::Game::Utils::isHorizontal;
+
+vec2<int> mouse;
+
+Window *window;
+
+InputManager inputManager;
+HitSoundManager *hitSoundManager;
 
 int main( int argc, char *argv[] )
 {

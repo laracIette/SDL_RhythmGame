@@ -1,19 +1,6 @@
 #include "Run.h"
 
 
-unsigned int RythmGame::Game::Utils::deltaTime;
-unsigned int RythmGame::Game::Utils::offsetTime;
-
-float RythmGame::Game::Utils::velocity;
-bool  RythmGame::Game::Utils::isHorizontal;
-
-vec2<int> mouse;
-
-Window *window;
-
-InputManager inputManager;
-HitSoundManager *hitSoundManager;
-
 
 namespace RythmGame::Game
 {
