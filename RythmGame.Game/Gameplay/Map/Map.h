@@ -13,6 +13,7 @@
 #include "../Hit/Hammer.h"
 #include "../Hit/Chainsaw.h"
 #include "../Score/Score.h"
+#include "../Combo/Combo.h"
 #include "../../Utils/Time.h"
 
 #include "../../../RythmGame.Sound/Music/Music.h"
@@ -41,7 +42,8 @@ namespace RythmGame::Game::Gameplay
 
         char tempAcc;
 
-        unsigned int combo, highestCombo;
+        Combo *combo;
+        unsigned int highestCombo;
 
         Score *score;
 

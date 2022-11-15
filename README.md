@@ -39,6 +39,9 @@
 
 	300ms+ /  0  : Miss
 
+
+	Coin and Chainsaw Hit Time : Great
+
 ## Score :
 
 	Perfect  : +300 score
