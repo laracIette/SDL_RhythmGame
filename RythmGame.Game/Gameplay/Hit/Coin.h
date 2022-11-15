@@ -22,7 +22,9 @@ namespace RythmGame::Game::Gameplay::Hit
             if( difference < Time::Great )
             {
                 isHit = true;
-                /////////////////// ADD SCORE ///////////////////
+                hitSoundManager->Play( type );
+                hitValue = 25;
+                isReturnHitValue = true;
             }
         }
 

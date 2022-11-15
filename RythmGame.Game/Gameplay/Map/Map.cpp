@@ -13,6 +13,9 @@ namespace RythmGame::Game::Gameplay
 
         while( getline( file, temp ) )
         {
+        // quick verification that this is not an empty line
+            if( temp == "" ) continue;
+
             HitObject *hitObject;
 
             nSteps = 0;
@@ -345,14 +348,18 @@ namespace RythmGame::Game::Gameplay
             else if( tempAcc == 1 ) score->AddScore( 100 );
             else if( tempAcc == 2 ) score->AddScore( 50 );
 
-            if( tempAcc != -1 && (hitObjects[j]->type != COIN) )
+            if( (tempAcc >= 0) && (tempAcc <= 3) && (hitObjects[j]->type != COIN) )
             {
                 accuracyHits[tempAcc]++;
                 combo++;
             }
-            else if( tempAcc == Accuracy::Perfect && (hitObjects[j]->type == COIN) )
+            else if( (tempAcc == 25) && (hitObjects[j]->type == COIN) )
             {
-                std::cout << "coin" << std::endl;
+                score->AddScore( 25 );
+            }
+            else if( (tempAcc == 10) && (hitObjects[j]->type == MASH) )
+            {
+                score->AddScore( 10 );
             }
 
             if( hitObjects[j]->Erase() )
