@@ -15,6 +15,10 @@ namespace RythmGame::Graphics
 {
     enum Positions {
         Center = 0,
+        Top,
+        Left,
+        Right,
+        Bottom,
         TopLeft,
         TopRight,
         BottomLeft,
@@ -25,7 +29,7 @@ namespace RythmGame::Graphics
     {
         std::string text;
         Rect dest;
-        Image *images[36];
+        Image *images[37];
 
         float distance;
 

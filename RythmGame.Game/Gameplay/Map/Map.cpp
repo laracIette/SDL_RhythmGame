@@ -302,8 +302,9 @@ namespace RythmGame::Game::Gameplay
             {(float)WIDTH/2, (float)HEIGHT/2, (float)WIDTH, (float)HEIGHT}
         );
 
-        score = new Score( {(float)WIDTH, 0, 50, 60} );
-        combo = new Combo( {0, (float)HEIGHT, 50, 60} );
+        score    = new Score( {(float)WIDTH, 0, 50, 60} );
+        combo    = new Combo( {0, (float)HEIGHT, 50, 60} );
+        accuracy = new Accuracy( {(float)WIDTH/2, 0, 50, 60} );
 
     }
 
@@ -316,8 +317,6 @@ namespace RythmGame::Game::Gameplay
         isPaused = false;
 
         offsetTime = currentTime;
-
-        oldAcc = 0;
 
         for( unsigned int &acc : accuracyHits ) acc = 0;
 
@@ -380,11 +379,7 @@ namespace RythmGame::Game::Gameplay
             if( combo->GetCombo() > highestCombo ) highestCombo = combo->GetCombo();
         }
 
-        if( accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3] != oldAcc )
-        {
-            oldAcc = accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3];
-            std::cout << accuracyHits[0] << ' ' << accuracyHits[1] << ' ' << accuracyHits[2] << ' ' << accuracyHits[3] << ';' << GetAccuracy() << std::endl;
-        }
+        SetAccuracy();
 
     }
 
@@ -399,6 +394,7 @@ namespace RythmGame::Game::Gameplay
 
         score->Draw();
         combo->Draw();
+        accuracy->Draw();
     }
 
     void Map::Pause()
@@ -426,13 +422,20 @@ namespace RythmGame::Game::Gameplay
         music->Close();
     }
 
-    float Map::GetAccuracy()
+    void Map::SetAccuracy()
     {
-        if( accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3] == 0 ) return 100;
+        if( accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3] == 0 )
+            accuracy->SetAccuracy( 100 );
 
-        if( accuracyHits[0] + accuracyHits[1] + accuracyHits[2] == 0 ) return 0;
+        else if( accuracyHits[0] + accuracyHits[1] + accuracyHits[2] == 0 )
+            accuracy->SetAccuracy( 0 );
 
-        return 100 * (float)(6*accuracyHits[0] + 2*accuracyHits[1] + accuracyHits[2]) / (float)(6*(accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3]));
+        else
+            accuracy->SetAccuracy(
+                100 *
+                (float)(6*accuracyHits[0] + 2*accuracyHits[1] + accuracyHits[2]) /
+                (float)(6*(accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3]))
+        );
     }
 
 }
