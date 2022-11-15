@@ -3,7 +3,7 @@
 #include "HitObject.h"
 
 
-namespace RythmGame::Game::Hit
+namespace RythmGame::Game::Gameplay::Hit ////////////////// SCORE //////////////////
 {
 
     class Mash : public HitObject
@@ -12,7 +12,7 @@ namespace RythmGame::Game::Hit
         unsigned int lastHitTime;
 
         bool isHitBlocked;
-
+        bool isHitted;
 
     public:
 
@@ -28,6 +28,7 @@ namespace RythmGame::Game::Hit
         {
             hits = 0;
             isHitBlocked = false;
+            isHitted = false;
         }
 
         void DoThings()
@@ -113,21 +114,21 @@ namespace RythmGame::Game::Hit
                 return;
 
 
+            isHitted = false;
+
             if( (direction == LEFT && isHorizontal) || (direction == UP && !isHorizontal) )
             {
                 if( inputManager.Left1PressedNoLock() )
                 {
                     hits++;
                     inputManager.LockLeft1();
-                    lastHitTime = currentTime;
-                    hitSoundManager->Play( type );
+                    isHitted = true;
                 }
                 if( inputManager.Left2PressedNoLock() )
                 {
                     hits++;
                     inputManager.LockLeft2();
-                    lastHitTime = currentTime;
-                    hitSoundManager->Play( type );
+                    isHitted = true;
                 }
             }
             else if( (direction == RIGHT && isHorizontal) || (direction == DOWN && !isHorizontal) )
@@ -136,16 +137,22 @@ namespace RythmGame::Game::Hit
                 {
                     hits++;
                     inputManager.LockRight1();
-                    lastHitTime = currentTime;
-                    hitSoundManager->Play( type );
+                    isHitted = true;
                 }
                 if( inputManager.Right2PressedNoLock() )
                 {
                     hits++;
                     inputManager.LockRight2();
-                    lastHitTime = currentTime;
-                    hitSoundManager->Play( type );
+                    isHitted = true;
                 }
+            }
+
+            if( isHitted )
+            {
+                lastHitTime = currentTime;
+                hitSoundManager->Play( type );
+                hitValue = 10;
+                isReturnHitValue = true;
             }
 
         }

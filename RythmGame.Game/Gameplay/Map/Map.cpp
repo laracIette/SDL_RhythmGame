@@ -1,6 +1,6 @@
 #include "Map.h"
 
-namespace RythmGame::Game
+namespace RythmGame::Game::Gameplay
 {
 
     Map::Map( std::string path )
@@ -13,6 +13,9 @@ namespace RythmGame::Game
 
         while( getline( file, temp ) )
         {
+        // quick verification that this is not an empty line
+            if( temp == "" ) continue;
+
             HitObject *hitObject;
 
             nSteps = 0;
@@ -288,6 +291,18 @@ namespace RythmGame::Game
 
         music = new Music( path + "song.mp3" );
 
+        horizontalForeground = new Image(
+            "assets/Skins/BaseSkin/foreground0.png",
+            {0, 0, 1920, 1080},
+            {(float)WIDTH/2, (float)HEIGHT/2, (float)WIDTH, (float)HEIGHT}
+        );
+        verticalForeground = new Image(
+            "assets/Skins/BaseSkin/foreground1.png",
+            {0, 0, 1920, 1080},
+            {(float)WIDTH/2, (float)HEIGHT/2, (float)WIDTH, (float)HEIGHT}
+        );
+
+        score = new Score( {(float)WIDTH, 0, 50, 60} );
 
     }
 
@@ -307,8 +322,6 @@ namespace RythmGame::Game
 
         combo = 0;
         highestCombo = 0;
-
-        score = 0;
 
         music->SetVolume( 0 );
         music->Play();
@@ -331,14 +344,22 @@ namespace RythmGame::Game
 
             tempAcc = hitObjects[j]->GetHitValue();
 
-            if( tempAcc != -1 && (hitObjects[j]->type != COIN) )
+            if( tempAcc == 0 )      score->AddScore( 300 );
+            else if( tempAcc == 1 ) score->AddScore( 100 );
+            else if( tempAcc == 2 ) score->AddScore( 50 );
+
+            if( (tempAcc >= 0) && (tempAcc <= 3) && (hitObjects[j]->type != COIN) )
             {
                 accuracyHits[tempAcc]++;
                 combo++;
             }
-            else if( tempAcc == Accuracy::Perfect && (hitObjects[j]->type == COIN) )
+            else if( (tempAcc == 25) && (hitObjects[j]->type == COIN) )
             {
-                std::cout << "coin" << std::endl;
+                score->AddScore( 25 );
+            }
+            else if( (tempAcc == 10) && (hitObjects[j]->type == MASH) )
+            {
+                score->AddScore( 10 );
             }
 
             if( hitObjects[j]->Erase() )
@@ -370,6 +391,10 @@ namespace RythmGame::Game
         {
             hitObject->DrawHitObject();
         }
+
+        (isHorizontal) ? horizontalForeground->Draw() : verticalForeground->Draw();
+
+        score->Draw();
     }
 
     void Map::Pause()

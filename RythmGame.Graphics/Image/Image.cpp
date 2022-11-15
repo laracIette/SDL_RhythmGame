@@ -22,5 +22,13 @@ namespace RythmGame::Graphics
             {(int)(dest.x-dest.w/2), (int)(dest.y-dest.h/2), (int)(dest.w), (int)(dest.h)}
         );
     }
+    void Image::Draw( Rect dest )
+    {
+        TextureManager::DrawTexture(
+            tex,
+            src,
+            {(int)(dest.x-dest.w/2), (int)(dest.y-dest.h/2), (int)(dest.w), (int)(dest.h)}
+        );
+    }
 
 }

@@ -3,7 +3,7 @@
 #include "HitObject.h"
 
 
-namespace RythmGame::Game::Hit
+namespace RythmGame::Game::Gameplay::Hit
 {
 
     class Double : public HitObject

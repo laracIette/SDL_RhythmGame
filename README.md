@@ -38,3 +38,15 @@
 	300ms  / 1/6 : Meh
 
 	300ms+ /  0  : Miss
+
+## Score :
+
+	Perfect  : +300 score
+
+	Great    : +100 score
+
+	Meh      : +50 score
+
+	Coin     : +25 score
+
+	Mash hit : +10 score

@@ -7,11 +7,13 @@ SDL:
 	src/main.cpp \
 	RythmGame.Framework/Window/Window.cpp \
 	RythmGame.Game/Run/Run.cpp \
-	RythmGame.Game/Player/Player.cpp \
-	RythmGame.Game/Map/Map.cpp \
+	RythmGame.Game/Gameplay/Player/Player.cpp \
+	RythmGame.Game/Gameplay/Map/Map.cpp \
+	RythmGame.Game/Gameplay/Score/Score.cpp \
 	RythmGame.Graphics/TextureManager/TextureManager.cpp \
 	RythmGame.Graphics/Image/Image.cpp \
 	RythmGame.Graphics/Animation/Animation.cpp \
+	RythmGame.Graphics/Text/Text.cpp \
 	RythmGame.Sound/Music/Music.cpp \
 	RythmGame.Sound/HitSound/HitSound.cpp \
 	RythmGame.Sound/HitSoundManager/HitSoundManager.cpp \
