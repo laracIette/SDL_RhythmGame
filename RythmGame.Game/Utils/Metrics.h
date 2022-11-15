@@ -1,6 +1,9 @@
-#pragma once
+#ifndef RYTHMGAME_GAME_UTILS_METRICS_H
+#define RYTHMGAME_GAME_UTILS_METRICS_H
 
-#include <math.h>
+
+#include "../../includes.h"
+
 
 namespace RythmGame::Game::Utils
 {
@@ -36,3 +39,5 @@ namespace RythmGame::Game::Utils
     }
 
 }
+
+#endif // RYTHMGAME_GAME_UTILS_METRICS_H

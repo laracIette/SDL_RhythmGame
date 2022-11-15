@@ -1,18 +1,10 @@
-#pragma once
+#ifndef RYTHMGAME_GRAPHICS_ANIMATION_H
+#define RYTHMGAME_GRAPHICS_ANIMATION_H
 
-#include <filesystem>
-#include <string>
-#include <SDL.h>
-#include <vector>
 
-#include "../../RythmGame.Game/Utils/Point.h"
-#include "../../RythmGame.Game/Utils/Time.h"
-
-#include "../Image/Image.h"
-
+#include "../../includes.h"
 
 using namespace RythmGame::Game::Utils;
-using namespace RythmGame::Graphics;
 
 
 namespace RythmGame::Graphics
@@ -42,3 +34,5 @@ namespace RythmGame::Graphics
     };
 
 }
+
+#endif // RYTHMGAME_GRAPHICS_ANIMATION_H

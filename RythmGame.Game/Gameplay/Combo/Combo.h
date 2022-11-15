@@ -1,9 +1,8 @@
-#pragma once
+#ifndef RYTHMGAME_GAME_GAMEPLAY_COMBO_H
+#define RYTHMGAME_GAME_GAMEPLAY_COMBO_H
 
-#include <string>
 
-#include "../../../RythmGame.Graphics/Text/Text.h"
-#include "../../Utils/Point.h"
+#include "../../../includes.h"
 
 using namespace RythmGame::Graphics;
 using namespace RythmGame::Game::Utils;
@@ -28,3 +27,5 @@ namespace RythmGame::Game::Gameplay
     };
 
 }
+
+#endif // RYTHMGAME_GAME_GAMEPLAY_COMBO_H

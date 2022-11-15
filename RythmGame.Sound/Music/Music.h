@@ -1,8 +1,9 @@
-#pragma once
+#ifndef RYTHMGAME_SOUND_MUSIC_H
+#define RYTHMGAME_SOUND_MUSIC_H
 
-#include <SDL.h>
-#include <SDL_mixer.h>
-#include <string>
+
+#include "../../includes.h"
+
 
 namespace RythmGame::Sound
 {
@@ -29,3 +30,5 @@ namespace RythmGame::Sound
     };
 
 }
+
+#endif // RYTHMGAME_SOUND_MUSIC_H

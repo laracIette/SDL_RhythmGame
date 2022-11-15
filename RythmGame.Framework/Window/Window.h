@@ -1,9 +1,8 @@
-#pragma once
+#ifndef RYTHMGAME_FRAMEWORK_WINDOW_H
+#define RYTHMGAME_FRAMEWORK_WINDOW_H
 
-#include <SDL.h>
-#include <SDL_mixer.h>
 
-#include "../../RythmGame.Game/Utils/Metrics.h"
+#include "../../includes.h"
 
 using namespace RythmGame::Game::Utils;
 
@@ -24,3 +23,6 @@ namespace RythmGame::Framework
 }
 
 extern RythmGame::Framework::Window *window;
+
+
+#endif // RYTHMGAME_FRAMEWORK_WINDOW_H

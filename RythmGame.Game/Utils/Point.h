@@ -1,4 +1,9 @@
-#pragma once
+#ifndef RYTHMGAME_GAME_UTILS_POINT_H
+#define RYTHMGAME_GAME_UTILS_POINT_H
+
+
+#include "../../includes.h"
+
 
 namespace RythmGame::Game::Utils
 {
@@ -20,3 +25,5 @@ namespace RythmGame::Game::Utils
 
 }
 extern RythmGame::Game::Utils::vec2<int> mouse;
+
+#endif // RYTHMGAME_GAME_UTILS_POINT_H

@@ -1,17 +1,7 @@
-#pragma once
+#ifndef RYTHMGAME_GAME_RUN_H
+#define RYTHMGAME_GAME_RUN_H
 
-#include "../Utils/Point.h"
-#include "../Utils/Time.h"
-#include "../Utils/Metrics.h"
-#include "../Utils/GameSettings.h"
-
-#include "../Events/InputManager.h"
-
-#include "../Gameplay/Player/Player.h"
-#include "../Gameplay/Map/Map.h"
-
-#include "../../RythmGame.Framework/Window/Window.h"
-#include "../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
+#include "../../includes.h"
 
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game::Events;
@@ -50,3 +40,5 @@ namespace RythmGame::Game
     };
 
 }
+
+#endif // RYTHMGAME_GAME_RUN_H

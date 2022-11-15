@@ -1,24 +1,7 @@
-#pragma once
+#ifndef RYTHMGAME_GAME_GAMEPLAY_MAP_H
+#define RYTHMGAME_GAME_GAMEPLAY_MAP_H
 
-#include <fstream>
-#include <string>
-
-#include "../Hit/HitObject.h"
-#include "../Hit/Note.h"
-#include "../Hit/Hold.h"
-#include "../Hit/Double.h"
-#include "../Hit/Mash.h"
-#include "../Hit/Ghost.h"
-#include "../Hit/Coin.h"
-#include "../Hit/Hammer.h"
-#include "../Hit/Chainsaw.h"
-#include "../Score/Score.h"
-#include "../Combo/Combo.h"
-#include "../Accuracy/Accuracy.h"
-#include "../../Utils/Time.h"
-
-#include "../../../RythmGame.Sound/Music/Music.h"
-#include "../../../RythmGame.Graphics/Image/Image.h"
+#include "../../../includes.h"
 
 using namespace RythmGame::Game::Gameplay::Hit;
 using namespace RythmGame::Game::Utils;
@@ -67,3 +50,5 @@ namespace RythmGame::Game::Gameplay
     };
 
 }
+
+#endif // RYTHMGAME_GAME_GAMEPLAY_MAP_H

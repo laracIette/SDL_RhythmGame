@@ -1,9 +1,9 @@
-#pragma once
+#ifndef RYTHMGAME_SOUND_HITSOUND_H
+#define RYTHMGAME_SOUND_HITSOUND_H
 
-#include <SDL.h>
-#include <SDL_mixer.h>
-#include <string>
-#include <iostream>
+
+#include "../../includes.h"
+
 
 namespace RythmGame::Sound
 {
@@ -32,3 +32,5 @@ namespace RythmGame::Sound
     };
 
 }
+
+#endif // RYTHMGAME_SOUND_HITSOUND_H

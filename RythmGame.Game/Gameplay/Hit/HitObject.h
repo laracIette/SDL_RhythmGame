@@ -1,15 +1,8 @@
-#pragma once
+#ifndef RYTHMGAME_GAME_GAMEPLAY_HIT_HITOBJECT_H
+#define RYTHMGAME_GAME_GAMEPLAY_HIT_HITOBJECT_H
 
-#include <SDL.h>
-#include <iostream>
 
-#include "../../Utils/Time.h"
-#include "../../Utils/Point.h"
-#include "../../Utils/GameSettings.h"
-#include "../../Events/InputManager.h"
-
-#include "../../../RythmGame.Graphics/Animation/Animation.h"
-#include "../../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
+#include "../../../includes.h"
 
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game::Events;
@@ -262,3 +255,5 @@ namespace RythmGame::Game::Gameplay::Hit
     };
 
 }
+
+#endif // RYTHMGAME_GAME_GAMEPLAY_HIT_HITOBJECT_H

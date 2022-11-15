@@ -1,12 +1,8 @@
-#pragma once
+#ifndef RYTHMGAME_GRAPHICS_TEXT_H
+#define RYTHMGAME_GRAPHICS_TEXT_H
 
-#include <string>
-#include <vector>
-#include <iostream>
 
-#include "../Image/Image.h"
-
-#include "../../RythmGame.Game/Utils/Point.h"
+#include "../../includes.h"
 
 using namespace RythmGame::Game::Utils;
 
@@ -46,3 +42,5 @@ namespace RythmGame::Graphics
 
 
 }
+
+#endif // RYTHMGAME_GRAPHICS_TEXT_H

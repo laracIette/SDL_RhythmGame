@@ -1,6 +1,8 @@
-#pragma once
+#ifndef RYTHMGAME_GAME_GAMEPLAY_HIT_CHAINSAW_H
+#define RYTHMGAME_GAME_GAMEPLAY_HIT_CHAINSAW_H
 
-#include "HitObject.h"
+
+#include "../../../includes.h"
 
 
 namespace RythmGame::Game::Gameplay::Hit
@@ -49,3 +51,5 @@ namespace RythmGame::Game::Gameplay::Hit
     };
 
 }
+
+#endif // RYTHMGAME_GAME_GAMEPLAY_HIT_CHAINSAW_H

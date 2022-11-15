@@ -1,19 +1,17 @@
-#pragma once
+#ifndef RYTHMGAME_GRAPHICS_IMAGE_H
+#define RYTHMGAME_GRAPHICS_IMAGE_H
 
-#include <string>
-#include <SDL.h>
 
-#include "../../RythmGame.Game/Utils/Point.h"
-
-#include "../TextureManager/TextureManager.h"
+#include "../../includes.h"
 
 using namespace RythmGame::Game::Utils;
+
 
 namespace RythmGame::Graphics
 {
 
-    // returns 1 if the path is ends with png
-    // else returns 0
+// returns 1 if the path is ends with png
+// else returns 0
     static bool CheckImageExists( std::string path )
     {
         if( (path[path.size()-3] != 'p') || (path[path.size()-2] != 'n') || (path[path.size()-1] != 'g') )
@@ -47,3 +45,5 @@ namespace RythmGame::Graphics
     };
 
 }
+
+#endif // RYTHMGAME_GRAPHICS_IMAGE_H

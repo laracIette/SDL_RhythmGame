@@ -1,10 +1,7 @@
-#pragma once
+#ifndef RYTHMGAME_GAME_GAMEPLAY_PLAYER_H
+#define RYTHMGAME_GAME_GAMEPLAY_PLAYER_H
 
-#include "../../Utils/Metrics.h"
-#include "../../Utils/GameSettings.h"
-#include "../../Events/InputManager.h"
-
-#include "../../../RythmGame.Graphics/Image/Image.h"
+#include "../../../includes.h"
 
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game::Events;
@@ -38,3 +35,5 @@ namespace RythmGame::Game::Gameplay
     };
 
 }
+
+#endif // RYTHMGAME_GAME_GAMEPLAY_PLAYER_H

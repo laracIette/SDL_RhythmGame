@@ -1,10 +1,9 @@
-#pragma once
+#ifndef RYTHMGAME_SOUND_HITSOUNDMANAGER_H
+#define RYTHMGAME_SOUND_HITSOUNDMANAGER_H
 
-#include "../HitSound/HitSound.h"
 
-#include <vector>
-#include <string>
-#include <iostream>
+#include "../../includes.h"
+
 
 namespace RythmGame::Sound
 {
@@ -33,3 +32,5 @@ namespace RythmGame::Sound
 
 }
 extern RythmGame::Sound::HitSoundManager *hitSoundManager;
+
+#endif // RYTHMGAME_SOUND_HITSOUNDMANAGER_H

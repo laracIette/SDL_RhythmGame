@@ -1,6 +1,8 @@
-#pragma once
+#ifndef RYTHMGAME_GAME_EVENTS_KEYBOARDEVENTS_H
+#define RYTHMGAME_GAME_EVENTS_KEYBOARDEVENTS_H
 
-#include <SDL.h>
+
+#include "../../includes.h"
 
 namespace RythmGame::Game::Events
 {
@@ -87,3 +89,5 @@ namespace RythmGame::Game::Events
     };
 
 }
+
+#endif // RYTHMGAME_GAME_EVENTS_KEYBOARDEVENTS_H

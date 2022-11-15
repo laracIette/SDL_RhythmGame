@@ -1,7 +1,8 @@
-#pragma once
+#ifndef RYTHMGAME_GAME_EVENTS_INPUTMANAGER_H
+#define RYTHMGAME_GAME_EVENTS_INPUTMANAGER_H
 
-#include "KeyboardEvents.h"
-#include "MouseEvents.h"
+
+#include "../../includes.h"
 
 namespace RythmGame::Game::Events
 {
@@ -130,3 +131,5 @@ namespace RythmGame::Game::Events
 
 }
 extern RythmGame::Game::Events::InputManager inputManager;
+
+#endif // RYTHMGAME_GAME_EVENTS_INPUTMANAGER_H

@@ -1,7 +1,8 @@
-#pragma once
+#ifndef RYTHMGAME_GAME_EVENTS_MOUSEEVENTS_H
+#define RYTHMGAME_GAME_EVENTS_MOUSEEVENTS_H
 
-#include <SDL.h>
-#include "../Utils/Point.h"
+
+#include "../../includes.h"
 
 using namespace RythmGame::Game::Utils;
 
@@ -33,3 +34,5 @@ namespace RythmGame::Game::Events
     };
 
 }
+
+#endif // RYTHMGAME_GAME_EVENTS_MOUSEEVENTS_H

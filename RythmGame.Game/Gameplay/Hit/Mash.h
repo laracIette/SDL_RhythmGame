@@ -1,6 +1,8 @@
-#pragma once
+#ifndef RYTHMGAME_GAME_GAMEPLAY_HIT_MASH_H
+#define RYTHMGAME_GAME_GAMEPLAY_HIT_MASH_H
 
-#include "HitObject.h"
+
+#include "../../../includes.h"
 
 
 namespace RythmGame::Game::Gameplay::Hit ////////////////// SCORE //////////////////
@@ -159,3 +161,5 @@ namespace RythmGame::Game::Gameplay::Hit ////////////////// SCORE //////////////
     };
 
 }
+
+#endif // RYTHMGAME_GAME_GAMEPLAY_HIT_MASH_H

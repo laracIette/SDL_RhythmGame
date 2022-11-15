@@ -1,10 +1,8 @@
-#pragma once
+#ifndef RYTHMGAME_GRAPHICS_TEXTUREMANAGER_H
+#define RYTHMGAME_GRAPHICS_TEXTUREMANAGER_H
 
-#include <SDL.h>
-#include <SDL_image.h>
-#include <iostream>
 
-#include "../../RythmGame.Framework/Window/Window.h"
+#include "../../includes.h"
 
 
 namespace RythmGame::Graphics
@@ -18,3 +16,5 @@ namespace RythmGame::Graphics
     };
 
 }
+
+#endif // RYTHMGAME_GRAPHICS_TEXTUREMANAGER_H
