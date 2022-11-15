@@ -303,6 +303,7 @@ namespace RythmGame::Game::Gameplay
         );
 
         score = new Score( {(float)WIDTH, 0, 50, 60} );
+        combo = new Combo( {0, (float)HEIGHT, 50, 60} );
 
     }
 
@@ -320,7 +321,9 @@ namespace RythmGame::Game::Gameplay
 
         for( unsigned int &acc : accuracyHits ) acc = 0;
 
-        combo = 0;
+        score->SetScore( 0 );
+        combo->SetCombo( 0 );
+
         highestCombo = 0;
 
         music->SetVolume( 0 );
@@ -338,7 +341,7 @@ namespace RythmGame::Game::Gameplay
 
             if( (hitObjects[j]->type == CHAINSAW) && hitObjects[j]->IsHit() )
             {
-                combo = 0;
+                combo->SetCombo( 0 );
                 std::cout << "hit" << std::endl;
             }
 
@@ -351,7 +354,7 @@ namespace RythmGame::Game::Gameplay
             if( (tempAcc >= 0) && (tempAcc <= 3) && (hitObjects[j]->type != COIN) )
             {
                 accuracyHits[tempAcc]++;
-                combo++;
+                combo->AddCombo();
             }
             else if( (tempAcc == 25) && (hitObjects[j]->type == COIN) )
             {
@@ -366,7 +369,7 @@ namespace RythmGame::Game::Gameplay
             {
                 if( !hitObjects[j]->IsHit() && (hitObjects[j]->type != COIN) && (hitObjects[j]->type != CHAINSAW) )
                 {
-                    combo = 0;
+                    combo->SetCombo( 0 );
                     accuracyHits[3]++;
                 }
                 hitObjects.erase( hitObjects.begin() + j-- );
@@ -374,7 +377,7 @@ namespace RythmGame::Game::Gameplay
 
             j++;
 
-            if( combo > highestCombo ) highestCombo = combo;
+            if( combo->GetCombo() > highestCombo ) highestCombo = combo->GetCombo();
         }
 
         if( accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3] != oldAcc )
@@ -395,6 +398,7 @@ namespace RythmGame::Game::Gameplay
         (isHorizontal) ? horizontalForeground->Draw() : verticalForeground->Draw();
 
         score->Draw();
+        combo->Draw();
     }
 
     void Map::Pause()

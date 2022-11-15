@@ -10,6 +10,7 @@ SDL:
 	RythmGame.Game/Gameplay/Player/Player.cpp \
 	RythmGame.Game/Gameplay/Map/Map.cpp \
 	RythmGame.Game/Gameplay/Score/Score.cpp \
+	RythmGame.Game/Gameplay/Combo/Combo.cpp \
 	RythmGame.Graphics/TextureManager/TextureManager.cpp \
 	RythmGame.Graphics/Image/Image.cpp \
 	RythmGame.Graphics/Animation/Animation.cpp \
