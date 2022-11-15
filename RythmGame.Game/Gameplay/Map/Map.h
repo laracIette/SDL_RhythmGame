@@ -38,7 +38,6 @@ namespace RythmGame::Game::Gameplay
 
         bool isPaused;
 
-        unsigned int accuracyHits[4];
         Accuracy *accuracy;
 
         char tempAcc;
@@ -62,8 +61,6 @@ namespace RythmGame::Game::Gameplay
         void Pause();
 
         void Close();
-
-        void SetAccuracy();
     };
 
 }

@@ -318,8 +318,6 @@ namespace RythmGame::Game::Gameplay
 
         offsetTime = currentTime;
 
-        for( unsigned int &acc : accuracyHits ) acc = 0;
-
         score->SetScore( 0 );
         combo->SetCombo( 0 );
 
@@ -352,7 +350,7 @@ namespace RythmGame::Game::Gameplay
 
             if( (tempAcc >= 0) && (tempAcc <= 3) && (hitObjects[j]->type != COIN) )
             {
-                accuracyHits[tempAcc]++;
+                accuracy->AddValue( tempAcc );
                 combo->AddCombo();
             }
             else if( (tempAcc == 25) && (hitObjects[j]->type == COIN) )
@@ -369,7 +367,7 @@ namespace RythmGame::Game::Gameplay
                 if( !hitObjects[j]->IsHit() && (hitObjects[j]->type != COIN) && (hitObjects[j]->type != CHAINSAW) )
                 {
                     combo->SetCombo( 0 );
-                    accuracyHits[3]++;
+                    accuracy->AddValue( 3 );
                 }
                 hitObjects.erase( hitObjects.begin() + j-- );
             }
@@ -379,7 +377,7 @@ namespace RythmGame::Game::Gameplay
             if( combo->GetCombo() > highestCombo ) highestCombo = combo->GetCombo();
         }
 
-        SetAccuracy();
+        accuracy->Update();
 
     }
 
@@ -412,7 +410,6 @@ namespace RythmGame::Game::Gameplay
 
             offsetTime += currentTime - pausedTime;
 
-
             music->Resume();
         }
     }
@@ -420,22 +417,6 @@ namespace RythmGame::Game::Gameplay
     void Map::Close()
     {
         music->Close();
-    }
-
-    void Map::SetAccuracy()
-    {
-        if( accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3] == 0 )
-            accuracy->SetAccuracy( 100 );
-
-        else if( accuracyHits[0] + accuracyHits[1] + accuracyHits[2] == 0 )
-            accuracy->SetAccuracy( 0 );
-
-        else
-            accuracy->SetAccuracy(
-                100 *
-                (float)(6*accuracyHits[0] + 2*accuracyHits[1] + accuracyHits[2]) /
-                (float)(6*(accuracyHits[0] + accuracyHits[1] + accuracyHits[2] + accuracyHits[3]))
-        );
     }
 
 }
