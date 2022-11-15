@@ -14,6 +14,7 @@
 #include "../Hit/Chainsaw.h"
 #include "../Score/Score.h"
 #include "../Combo/Combo.h"
+#include "../Accuracy/Accuracy.h"
 #include "../../Utils/Time.h"
 
 #include "../../../RythmGame.Sound/Music/Music.h"
@@ -38,7 +39,7 @@ namespace RythmGame::Game::Gameplay
         bool isPaused;
 
         unsigned int accuracyHits[4];
-        unsigned int oldAcc;
+        Accuracy *accuracy;
 
         char tempAcc;
 
@@ -62,7 +63,7 @@ namespace RythmGame::Game::Gameplay
 
         void Close();
 
-        float GetAccuracy();
+        void SetAccuracy();
     };
 
 }

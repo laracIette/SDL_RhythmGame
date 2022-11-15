@@ -18,6 +18,12 @@ namespace RythmGame::Graphics
             );
         }
 
+        images[36] = new Image(
+            "assets/Skins/BaseSkin/Characters/point.png",
+            {0, 0, 50, 60},
+            {0, 0, 50, 60}
+        );
+
         distance = 1.0f;
 
         this->dest = dest;
@@ -43,7 +49,27 @@ namespace RythmGame::Graphics
         {
         case Center:
             posX = dest.x - (dest.w/2*distance)*(text.size()-1);
-            posY = dest.y + dest.y;
+            posY = dest.y;
+            break;
+
+        case Top:
+            posX = dest.x - (dest.w/2*distance)*(text.size()-1);
+            posY = dest.y + dest.h/2;
+            break;
+
+        case Bottom:
+            posX = dest.x - (dest.w/2*distance)*(text.size()-1);
+            posY = dest.y - dest.h/2;
+            break;
+
+        case Left:
+            posX = dest.x + dest.w/2*distance;
+            posY = dest.y;
+            break;
+
+        case Right:
+            posX = dest.x - dest.w/2*distance - dest.w*(text.size()-1)*distance;
+            posY = dest.y;
             break;
 
         case TopLeft:
@@ -80,6 +106,10 @@ namespace RythmGame::Graphics
             else if( ((letter >= 'a') && (letter <= 'z')) || ((letter >= 'A') && (letter <= 'Z')) )
             {
                 images[letter-'a'+10]->Draw( {posX, posY, dest.w, dest.h} );
+            }
+            else if( letter == '.' )
+            {
+                images[36]->Draw( {posX, posY, dest.w, dest.h} );
             }
 
             posX += dest.w*distance;
