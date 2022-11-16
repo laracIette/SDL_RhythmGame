@@ -51,22 +51,21 @@ namespace RythmGame::Game
 
     void Run::Update()
     {
-        if( inputManager.HandleEvents() ) isRunning = false;
-
         deltaTime = currentTime-lastFrameTime;
         lastFrameTime = currentTime;
 
+        if( inputManager.HandleEvents() ) isRunning = false;
 
-        if( !isStarted && inputManager.Pressed( inputManager.keyboard.Escape ) )
+        if( !isStarted ) startScreen->Update();
+
+        if( !isStarted && startScreen->PlayButtonClicked() )
         {
-            inputManager.SetKeyLock( inputManager.keyboard.Escape, true );
-
             isStarted = true;
             map->Start();
         }
         if( isStarted
-        && !inputManager.KeyLock( inputManager.keyboard.Escape )
-        && inputManager.Pressed( inputManager.keyboard.Escape ) )
+         && !inputManager.KeyLock( inputManager.keyboard.Escape )
+         && inputManager.Pressed( inputManager.keyboard.Escape ) )
         {
             inputManager.SetKeyLock( inputManager.keyboard.Escape, true );
             map->Pause();
@@ -75,8 +74,6 @@ namespace RythmGame::Game
         player->Input();
         map->Update();
         hitSoundManager->Update();
-
-        if( !isStarted ) startScreen->Update();
     }
 
 

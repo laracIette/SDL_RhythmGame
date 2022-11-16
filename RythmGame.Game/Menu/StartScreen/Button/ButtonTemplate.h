@@ -38,7 +38,12 @@ namespace RythmGame::Game::Menu::StartScreen::Button
         ~ButtonTemplate()
         {}
 
-        void Hoover()
+        bool Clicked()
+        {
+            return (Hoover() && inputManager.Clicked( inputManager.mouse.Left ));
+        }
+
+        bool Hoover()
         {
             bool isZoom{ false };
 
@@ -88,6 +93,8 @@ namespace RythmGame::Game::Menu::StartScreen::Button
             {
                 zoom -= (float)deltaTime/500;
             }
+
+            return isZoom;
         }
 
         void Draw()

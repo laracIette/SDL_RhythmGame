@@ -1,6 +1,9 @@
 #pragma once
 
 #include "../Button/PlayButton.h"
+#include "../Button/ExitButton.h"
+#include "../Button/DownloadButton.h"
+#include "../Button/SettingsButton.h"
 
 #include "../../../../RythmGame.Graphics/Image/Image.h"
 
@@ -13,7 +16,7 @@ namespace RythmGame::Game::Menu::StartScreen
 
     class Screen
     {
-        PlayButton *playButton;
+        ButtonTemplate *buttons[4];
         Image *background;
 
     public:
@@ -23,6 +26,11 @@ namespace RythmGame::Game::Menu::StartScreen
         void Update();
 
         void Draw();
+
+        bool PlayButtonClicked();
+        bool ExitButtonClicked();
+        bool DownloadButtonClicked();
+        bool SettingsButtonClicked();
     };
 
 
