@@ -7,8 +7,6 @@ unsigned int RythmGame::Game::Utils::offsetTime;
 float RythmGame::Game::Utils::velocity;
 bool  RythmGame::Game::Utils::isHorizontal;
 
-vec2<int> mouse;
-
 Window *window;
 
 InputManager inputManager;
@@ -37,6 +35,8 @@ namespace RythmGame::Game
         isStarted = false;
 
         isHorizontal = true;
+
+        startScreen = new Screen();
     }
 
     Run::~Run()
@@ -75,6 +75,8 @@ namespace RythmGame::Game
         player->Input();
         map->Update();
         hitSoundManager->Update();
+
+        if( !isStarted ) startScreen->Update();
     }
 
 
@@ -85,6 +87,8 @@ namespace RythmGame::Game
 
         player->Draw();
         map->Draw();
+
+        if( !isStarted ) startScreen->Draw();
 
         SDL_RenderPresent( window->renderer );
     }

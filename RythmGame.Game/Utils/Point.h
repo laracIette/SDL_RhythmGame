@@ -19,4 +19,3 @@ namespace RythmGame::Game::Utils
     };
 
 }
-extern RythmGame::Game::Utils::vec2<int> mouse;

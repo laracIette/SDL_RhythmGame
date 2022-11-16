@@ -24,6 +24,7 @@ namespace RythmGame::Graphics
 
     class Image
     {
+    protected:
         SDL_Texture *tex;
         SDL_Rect src;
         Rect dest;
@@ -32,7 +33,7 @@ namespace RythmGame::Graphics
         Image( std::string path, SDL_Rect src, Rect dest );
         ~Image();
 
-        void Draw();
+        virtual void Draw();
         void Draw( Rect dest );
 
         float X() { return dest.x; }

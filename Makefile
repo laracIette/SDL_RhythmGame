@@ -12,6 +12,7 @@ SDL:
 	RythmGame.Game/Gameplay/Score/Score.cpp \
 	RythmGame.Game/Gameplay/Combo/Combo.cpp \
 	RythmGame.Game/Gameplay/Accuracy/Accuracy.cpp \
+	RythmGame.Game/Menu/StartScreen/Screen/Screen.cpp \
 	RythmGame.Graphics/TextureManager/TextureManager.cpp \
 	RythmGame.Graphics/Image/Image.cpp \
 	RythmGame.Graphics/Animation/Animation.cpp \

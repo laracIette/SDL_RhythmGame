@@ -18,7 +18,7 @@ namespace RythmGame::Game::Gameplay
         float accuracy;
 
     public:
-        Accuracy( Rect dest ) : Text( "0", dest, Top )
+        Accuracy( Rect dest ) : Text( "100.00", dest, Top )
         {
             accuracy = 0;
             for( unsigned int &acc : accuracyHits ) acc = 0;
