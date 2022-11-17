@@ -1,8 +1,7 @@
 #include "Run.h"
 
-
-unsigned int RythmGame::Game::Utils::deltaTime;
-unsigned int RythmGame::Game::Utils::offsetTime;
+long RythmGame::Game::Utils::deltaTime;
+std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::offsetTime;
 
 float RythmGame::Game::Utils::velocity;
 bool  RythmGame::Game::Utils::isHorizontal;
@@ -22,7 +21,7 @@ namespace RythmGame::Game
 
         hitSoundManager = new HitSoundManager();
 
-        currentTime = SDL_GetTicks();
+        currentTime = std::chrono::system_clock::now();
 
         isRunning = true;
 
@@ -51,7 +50,7 @@ namespace RythmGame::Game
 
     void Run::Update()
     {
-        deltaTime = currentTime-lastFrameTime;
+        deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime-lastFrameTime).count();
         lastFrameTime = currentTime;
 
         if( inputManager.HandleEvents() ) isRunning = false;

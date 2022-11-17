@@ -1,5 +1,7 @@
 #pragma once
 
+#include <chrono>
+
 #include "../Utils/Point.h"
 #include "../Utils/Time.h"
 #include "../Utils/Metrics.h"
@@ -30,7 +32,7 @@ namespace RythmGame::Game
     {
         bool isRunning;
 
-        unsigned int lastFrameTime;
+        std::chrono::high_resolution_clock::time_point lastFrameTime;
 
         Player *player;
         Map *map;

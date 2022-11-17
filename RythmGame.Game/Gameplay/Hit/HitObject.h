@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include <iostream>
+#include <chrono>
 
 #include "../../Utils/Time.h"
 #include "../../Utils/Point.h"
@@ -71,7 +72,7 @@ namespace RythmGame::Game::Gameplay::Hit
     public:
         unsigned char type, direction;
 
-        unsigned int time, endTime;
+        int time, endTime;
 
         unsigned int difference;
 
@@ -137,23 +138,23 @@ namespace RythmGame::Game::Gameplay::Hit
             switch( direction )
             {
             case LEFT:
-                SetX( (float)WIDTH/2 - ((float)time + (float)offsetTime - (float)currentTime)*velocity + xOffset );
+                SetX( (float)WIDTH/2 - (float)(time + std::chrono::duration_cast<std::chrono::milliseconds>(offsetTime - currentTime).count())*velocity + xOffset );
                 SetY( (float)HEIGHT/2 + yOffset );
                 break;
 
             case RIGHT:
-                SetX( (float)WIDTH/2 + ((float)time + (float)offsetTime - (float)currentTime)*velocity + xOffset );
+                SetX( (float)WIDTH/2 + (float)(time + std::chrono::duration_cast<std::chrono::milliseconds>(offsetTime - currentTime).count())*velocity + xOffset );
                 SetY( (float)HEIGHT/2 + yOffset );
                 break;
 
             case UP:
                 SetX( (float)WIDTH/2 + xOffset );
-                SetY( (float)HEIGHT/2 - ((float)time + (float)offsetTime - (float)currentTime)*velocity + yOffset );
+                SetY( (float)HEIGHT/2 - (float)(time + std::chrono::duration_cast<std::chrono::milliseconds>(offsetTime - currentTime).count())*velocity + yOffset );
                 break;
 
             case DOWN:
                 SetX( (float)WIDTH/2 + xOffset );
-                SetY( (float)HEIGHT/2 + ((float)time + (float)offsetTime - (float)currentTime)*velocity + yOffset );
+                SetY( (float)HEIGHT/2 + (float)(time + std::chrono::duration_cast<std::chrono::milliseconds>(offsetTime - currentTime).count())*velocity + yOffset );
                 break;
 
             default:
@@ -219,7 +220,7 @@ namespace RythmGame::Game::Gameplay::Hit
 
         void Update()
         {
-            difference = abs( (int)currentTime - (int)offsetTime - (int)time );
+            difference = abs( std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - offsetTime).count() - time );
 
             DoThings();
 
@@ -252,7 +253,7 @@ namespace RythmGame::Game::Gameplay::Hit
     // returns true if the HitObject needs to be erased
         bool Erase()
         {
-            if( ((int)currentTime - (int)offsetTime - (int)endTime) > (int)Time::Miss )
+            if( (std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - offsetTime).count() - endTime) > (int)Time::Miss )
             {
                 return 1;
             }

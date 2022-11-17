@@ -9,7 +9,7 @@ namespace RythmGame::Game::Gameplay::Hit ////////////////// SCORE //////////////
     class Mash : public HitObject
     {
         unsigned int hits;
-        unsigned int lastHitTime;
+        std::chrono::high_resolution_clock::time_point lastHitTime;
 
         bool isHitBlocked;
         bool isHitted;
@@ -33,17 +33,17 @@ namespace RythmGame::Game::Gameplay::Hit ////////////////// SCORE //////////////
 
         void DoThings()
         {
-            if( (currentTime - offsetTime) < time )
+            if( std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - offsetTime).count() < time )
             {
                 (IsHitObjectHorizontal()) ? xOffset = 0 : yOffset = 0;
             }
-            else if( (currentTime - offsetTime) >= endTime )
+            else if( std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - offsetTime).count() >= endTime )
             {
 
                 if( IsHitObjectHorizontal() )
                 {
                     xOffset = (direction == LEFT) ? -((float)endTime - (float)time)*velocity
-                                                :  ((float)endTime - (float)time)*velocity;
+                                                  :  ((float)endTime - (float)time)*velocity;
                 }
                 else
                 {
@@ -55,13 +55,13 @@ namespace RythmGame::Game::Gameplay::Hit ////////////////// SCORE //////////////
             {
                 if( IsHitObjectHorizontal() )
                 {
-                    xOffset = (direction == LEFT) ?  ((float)time + (float)offsetTime - (float)currentTime)*velocity
-                                                : -((float)time + (float)offsetTime - (float)currentTime)*velocity;
+                    xOffset = (direction == LEFT) ?  (float)(time + std::chrono::duration_cast<std::chrono::milliseconds>(offsetTime - currentTime).count())*velocity
+                                                  : -(float)(time + std::chrono::duration_cast<std::chrono::milliseconds>(offsetTime - currentTime).count())*velocity;
                 }
                 else
                 {
-                    yOffset = (direction == UP) ?  ((float)time + (float)offsetTime - (float)currentTime)*velocity
-                                                : -((float)time + (float)offsetTime - (float)currentTime)*velocity;
+                    yOffset = (direction == UP) ?  (float)(time + std::chrono::duration_cast<std::chrono::milliseconds>(offsetTime - currentTime).count())*velocity
+                                                : -(float)(time + std::chrono::duration_cast<std::chrono::milliseconds>(offsetTime - currentTime).count())*velocity;
                 }
             }
 
@@ -70,7 +70,7 @@ namespace RythmGame::Game::Gameplay::Hit ////////////////// SCORE //////////////
         bool CheckHitting()
         {
             if( ( inputManager.LeftPressed()  && ((direction == LEFT  && isHorizontal) || (direction == UP   && !isHorizontal)) )
-            || ( inputManager.RightPressed() && ((direction == RIGHT && isHorizontal) || (direction == DOWN && !isHorizontal)) )
+             || ( inputManager.RightPressed() && ((direction == RIGHT && isHorizontal) || (direction == DOWN && !isHorizontal)) )
             )
             {
                 return 1;
@@ -96,14 +96,14 @@ namespace RythmGame::Game::Gameplay::Hit ////////////////// SCORE //////////////
             if( isHitBlocked )
                 return;
 
-            if( ((int)currentTime - (int)offsetTime - (int)endTime) > Time::Meh )
+            if( (std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - offsetTime).count() - endTime) > Time::Meh )
             {
                 isReturnHitValue = true;
                 isHitBlocked = true;
                 return;
             }
 
-            if( (currentTime - lastHitTime) > 333 )
+            if( std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastHitTime).count() > 333 )
             {
                 isHitBlocked = true;
                 hitValue = Accuracy::Miss;

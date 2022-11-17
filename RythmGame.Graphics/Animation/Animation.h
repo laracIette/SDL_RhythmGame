@@ -4,6 +4,7 @@
 #include <string>
 #include <SDL.h>
 #include <vector>
+#include <chrono>
 
 #include "../../RythmGame.Game/Utils/Point.h"
 #include "../../RythmGame.Game/Utils/Time.h"
@@ -22,7 +23,7 @@ namespace RythmGame::Graphics
     {
         std::vector<Image *> images;
         unsigned int indice;
-        unsigned int timeSinceLastImage;
+        std::chrono::high_resolution_clock::time_point timeSinceLastImage;
 
     public:
         Animation( std::string path, SDL_Rect src, Rect dest );

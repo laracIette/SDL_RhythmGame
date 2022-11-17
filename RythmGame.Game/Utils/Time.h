@@ -1,8 +1,11 @@
 #pragma once
 
+#include <chrono>
+
+
 namespace RythmGame::Game::Utils
 {
-    extern unsigned int currentTime;
-    extern unsigned int deltaTime;
-    extern unsigned int offsetTime;
+    extern std::chrono::high_resolution_clock::time_point currentTime;
+    extern long deltaTime;
+    extern std::chrono::high_resolution_clock::time_point offsetTime;
 }
