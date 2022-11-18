@@ -1,5 +1,7 @@
 #pragma once
 
+#include <chrono>
+
 #include "../Utils/Point.h"
 #include "../Utils/Time.h"
 #include "../Utils/Metrics.h"
@@ -29,8 +31,6 @@ namespace RythmGame::Game
     class Run
     {
         bool isRunning;
-
-        unsigned int lastFrameTime;
 
         Player *player;
         Map *map;

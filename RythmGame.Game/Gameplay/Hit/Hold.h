@@ -6,11 +6,11 @@
 namespace RythmGame::Game::Gameplay::Hit
 {
 
-    class Hold : public HitObject            ///////////////////////// TO DO /////////////////////////
+    class Hold : public HitObject
     {
         bool isEndHitValueReturned;
 
-        unsigned int lastTickTime;
+        std::chrono::high_resolution_clock::time_point lastTickTime;
 
         bool isLastTickTime;
 
@@ -29,13 +29,13 @@ namespace RythmGame::Game::Gameplay::Hit
         {
             if( IsHitObjectHorizontal() )
             {
-                SetW( ((float)endTime - (float)time)*velocity + H() );
+                SetW( (float)(endTime - time)*velocity + H() );
                 xOffset = (direction == LEFT) ? -(W()/2 - H()/2) : (W()/2 - H()/2);
                 yOffset += getHitObjectOffsetHeight();
             }
             else
             {
-                SetH( ((float)endTime - (float)time)*velocity + W() );
+                SetH( (float)(endTime - time)*velocity + W() );
                 yOffset = (direction == UP) ? -(H()/2 - W()/2) : (H()/2 - W()/2);
                 xOffset -= getHitObjectOffsetHeight();
             }
@@ -55,12 +55,12 @@ namespace RythmGame::Game::Gameplay::Hit
             if( !isEndHitValueReturned && (hitValue >= 0) && !CheckHitting() )
             {
                 isEndHitValueReturned = true;
-                difference = abs( (int)currentTime - (int)offsetTime - (int)endTime );
+                difference = abs( getDuration<Milliseconds>(currentTime, offsetTime) - endTime );
 
                 CheckHitTiming();
             }
 
-            if( !isEndHitValueReturned && (((int)currentTime - (int)lastTickTime) > 300) )
+            if( !isEndHitValueReturned && (getDuration<Milliseconds>(currentTime, lastTickTime) > 300) )
             {
                 lastTickTime = currentTime;
                 hitSoundManager->Play( type );

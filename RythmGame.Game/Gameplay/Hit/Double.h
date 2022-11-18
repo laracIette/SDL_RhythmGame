@@ -9,7 +9,7 @@ namespace RythmGame::Game::Gameplay::Hit
     class Double : public HitObject
     {
         bool isUpPressed, isDownPressed;
-        unsigned int upPressedTime, downPressedTime;
+        std::chrono::high_resolution_clock::time_point upPressedTime, downPressedTime;
 
     public:
         Double()
@@ -54,8 +54,8 @@ namespace RythmGame::Game::Gameplay::Hit
             if( isUpPressed && isDownPressed )
             {
                 difference = highest(
-                    abs( (int)upPressedTime   - (int)offsetTime - (int)time ),
-                    abs( (int)downPressedTime - (int)offsetTime - (int)time )
+                    getDuration<Milliseconds>(upPressedTime,   offsetTime) - time,
+                    getDuration<Milliseconds>(downPressedTime, offsetTime) - time
                 );
                 return 1;
             }

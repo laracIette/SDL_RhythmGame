@@ -1,4 +1,6 @@
 #include <SDL.h>
+#include <chrono>
+#include <thread>
 
 #include "../RythmGame.Game/Utils/Metrics.h"
 #include "../RythmGame.Game/Utils/Time.h"
@@ -8,20 +10,22 @@
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game;
 
-unsigned int RythmGame::Game::Utils::currentTime;
+std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::currentTime;
+std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::lastFrameTime;
+
 Run *run;
 
 int RythmGame::Game::Utils::WIDTH{ 1280 };
 int RythmGame::Game::Utils::HEIGHT{ 720 };
 
-unsigned int RythmGame::Game::Utils::FPS{ 60 };
+int RythmGame::Game::Utils::FPS{ 60 };
 
 
 int main( int argc, char *argv[] )
 {
-    unsigned int start;
+    std::chrono::high_resolution_clock::time_point start;
 
-    unsigned int i{ 1 };
+    unsigned long i{ 1 };
 
     run = new Run();
     run->Init();
@@ -30,15 +34,18 @@ int main( int argc, char *argv[] )
 
     while( run->Running() )
     {
-        currentTime = SDL_GetTicks();
+        currentTime = std::chrono::system_clock::now();
+        deltaTime = getDuration<Milliseconds>( currentTime, lastFrameTime );
+        lastFrameTime = currentTime;
+
         run->Update();
 
-        if( (currentTime - start) > (1000 * i / FPS) )
+        if( getDuration<Microseconds>( currentTime, start ) > (1000000 * i / FPS) )
         {
             run->Render();
             i++;
         }
-        SDL_Delay( 1 );
+        std::this_thread::sleep_for( Milliseconds( 1 ) );
     }
 
     run->Clear();

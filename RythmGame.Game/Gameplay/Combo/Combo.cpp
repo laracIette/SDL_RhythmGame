@@ -3,17 +3,17 @@
 namespace RythmGame::Game::Gameplay
 {
 
-    unsigned int Combo::GetCombo()
+    int Combo::GetCombo()
     {
         return combo;
     }
 
-    void Combo::AddCombo( unsigned int combo )
+    void Combo::AddCombo( int combo )
     {
         SetCombo( this->combo + combo );
     }
 
-    void Combo::SetCombo( unsigned int combo )
+    void Combo::SetCombo( int combo )
     {
         this->combo = combo;
         SetText( std::to_string( combo ) );

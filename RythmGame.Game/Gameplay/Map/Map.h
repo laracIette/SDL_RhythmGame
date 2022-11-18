@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <string>
+#include <chrono>
 
 #include "../Hit/HitObject.h"
 #include "../Hit/Note.h"
@@ -34,7 +35,7 @@ namespace RythmGame::Game::Gameplay
 
         Music *music;
 
-        unsigned int pausedTime;
+        std::chrono::high_resolution_clock::time_point pausedTime;
 
         bool isPaused;
 
@@ -43,7 +44,7 @@ namespace RythmGame::Game::Gameplay
         char tempAcc;
 
         Combo *combo;
-        unsigned int highestCombo;
+        int highestCombo;
 
         Score *score;
 

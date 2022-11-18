@@ -2,7 +2,7 @@
 
 ## HitObject properties :
 
-	Type (unsigned char):
+	Type (char):
 
 		1. Note :
 			isUp
@@ -24,20 +24,20 @@
 
 
 	bool : isUp
-	unsigned int : time, endTime
-	unsigned char : type, direction
+	int : time, endTime
+	char : type, direction
 
 	type;direction;time;...
 
 ## Hit Time / Accuracy :
 
-	50ms   /  1  : Perfect
+	50Milliseconds   /  1  : Perfect
 
-	150ms  / 1/3 : Great
+	150Milliseconds  / 1/3 : Great
 
-	300ms  / 1/6 : Meh
+	300Milliseconds  / 1/6 : Meh
 
-	300ms+ /  0  : Miss
+	300Milliseconds+ /  0  : Miss
 
 
 	Coin and Chainsaw Hit Time : Great

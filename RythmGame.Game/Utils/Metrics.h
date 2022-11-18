@@ -8,7 +8,7 @@ namespace RythmGame::Game::Utils
     extern int WIDTH;
     extern int HEIGHT;
 
-    extern unsigned int FPS;
+    extern int FPS;
 
 
     template<typename T>
