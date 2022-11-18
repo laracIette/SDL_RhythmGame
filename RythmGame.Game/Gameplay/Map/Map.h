@@ -44,7 +44,7 @@ namespace RythmGame::Game::Gameplay
         char tempAcc;
 
         Combo *combo;
-        unsigned int highestCombo;
+        int highestCombo;
 
         Score *score;
 

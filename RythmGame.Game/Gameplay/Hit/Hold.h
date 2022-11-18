@@ -55,12 +55,12 @@ namespace RythmGame::Game::Gameplay::Hit
             if( !isEndHitValueReturned && (hitValue >= 0) && !CheckHitting() )
             {
                 isEndHitValueReturned = true;
-                difference = abs( std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - offsetTime).count() - endTime );
+                difference = abs( getDuration<Milliseconds>(currentTime, offsetTime) - endTime );
 
                 CheckHitTiming();
             }
 
-            if( !isEndHitValueReturned && (std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTickTime).count() > 300) )
+            if( !isEndHitValueReturned && (getDuration<Milliseconds>(currentTime, lastTickTime) > 300) )
             {
                 lastTickTime = currentTime;
                 hitSoundManager->Play( type );

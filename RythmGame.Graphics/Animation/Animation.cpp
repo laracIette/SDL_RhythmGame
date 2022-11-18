@@ -18,7 +18,7 @@ namespace RythmGame::Graphics
         }
 
         indice = 0;
-        timeSinceLastImage = currentTime;
+        lastImageTime = currentTime;
 
     }
 
@@ -31,9 +31,9 @@ namespace RythmGame::Graphics
     {
         images[indice]->Draw();
 
-        if( std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - timeSinceLastImage).count() > 1000/10 )
+        if( getDuration<Milliseconds>(currentTime, lastImageTime) > 1000/10 )
         {
-            timeSinceLastImage = currentTime;
+            lastImageTime = currentTime;
             if( ++indice >= images.size() ) indice = 0;
         }
     }

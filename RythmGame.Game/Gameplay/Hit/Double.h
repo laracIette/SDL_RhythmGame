@@ -54,8 +54,8 @@ namespace RythmGame::Game::Gameplay::Hit
             if( isUpPressed && isDownPressed )
             {
                 difference = highest(
-                    abs( std::chrono::duration_cast<std::chrono::milliseconds>(upPressedTime   - offsetTime).count() - time ),
-                    abs( std::chrono::duration_cast<std::chrono::milliseconds>(downPressedTime - offsetTime).count() - time )
+                    getDuration<Milliseconds>(upPressedTime,   offsetTime) - time,
+                    getDuration<Milliseconds>(downPressedTime, offsetTime) - time
                 );
                 return 1;
             }

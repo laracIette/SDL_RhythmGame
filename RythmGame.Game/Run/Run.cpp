@@ -1,7 +1,8 @@
 #include "Run.h"
 
-long RythmGame::Game::Utils::deltaTime;
 std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::offsetTime;
+
+long RythmGame::Game::Utils::deltaTime;
 
 float RythmGame::Game::Utils::velocity;
 bool  RythmGame::Game::Utils::isHorizontal;
@@ -50,8 +51,6 @@ namespace RythmGame::Game
 
     void Run::Update()
     {
-        deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime-lastFrameTime).count();
-        lastFrameTime = currentTime;
 
         if( inputManager.HandleEvents() ) isRunning = false;
 

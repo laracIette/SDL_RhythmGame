@@ -22,8 +22,8 @@ namespace RythmGame::Graphics
     class Animation
     {
         std::vector<Image *> images;
-        unsigned int indice;
-        std::chrono::high_resolution_clock::time_point timeSinceLastImage;
+        int indice;
+        std::chrono::high_resolution_clock::time_point lastImageTime;
 
     public:
         Animation( std::string path, SDL_Rect src, Rect dest );

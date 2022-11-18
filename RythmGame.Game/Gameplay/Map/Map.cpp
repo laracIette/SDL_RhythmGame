@@ -9,7 +9,7 @@ namespace RythmGame::Game::Gameplay
         std::string temp;
         std::string nTemp;
 
-        unsigned char nSteps;
+        int nSteps;
 
         while( getline( file, temp ) )
         {

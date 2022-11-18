@@ -32,8 +32,6 @@ namespace RythmGame::Game
     {
         bool isRunning;
 
-        std::chrono::high_resolution_clock::time_point lastFrameTime;
-
         Player *player;
         Map *map;
 

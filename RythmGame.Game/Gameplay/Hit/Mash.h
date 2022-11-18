@@ -3,12 +3,12 @@
 #include "HitObject.h"
 
 
-namespace RythmGame::Game::Gameplay::Hit ////////////////// SCORE //////////////////
+namespace RythmGame::Game::Gameplay::Hit
 {
 
     class Mash : public HitObject
     {
-        unsigned int hits;
+        int hits;
         std::chrono::high_resolution_clock::time_point lastHitTime;
 
         bool isHitBlocked;
@@ -33,11 +33,11 @@ namespace RythmGame::Game::Gameplay::Hit ////////////////// SCORE //////////////
 
         void DoThings()
         {
-            if( std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - offsetTime).count() < time )
+            if( getDuration<Milliseconds>(currentTime, offsetTime) < time )
             {
                 (IsHitObjectHorizontal()) ? xOffset = 0 : yOffset = 0;
             }
-            else if( std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - offsetTime).count() >= endTime )
+            else if( getDuration<Milliseconds>(currentTime, offsetTime) >= endTime )
             {
 
                 if( IsHitObjectHorizontal() )
@@ -55,13 +55,13 @@ namespace RythmGame::Game::Gameplay::Hit ////////////////// SCORE //////////////
             {
                 if( IsHitObjectHorizontal() )
                 {
-                    xOffset = (direction == LEFT) ?  (float)(time + std::chrono::duration_cast<std::chrono::milliseconds>(offsetTime - currentTime).count())*velocity
-                                                  : -(float)(time + std::chrono::duration_cast<std::chrono::milliseconds>(offsetTime - currentTime).count())*velocity;
+                    xOffset = (direction == LEFT) ?  (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity
+                                                  : -(float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity;
                 }
                 else
                 {
-                    yOffset = (direction == UP) ?  (float)(time + std::chrono::duration_cast<std::chrono::milliseconds>(offsetTime - currentTime).count())*velocity
-                                                : -(float)(time + std::chrono::duration_cast<std::chrono::milliseconds>(offsetTime - currentTime).count())*velocity;
+                    yOffset = (direction == UP) ?  (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity
+                                                : -(float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity;
                 }
             }
 
@@ -96,14 +96,14 @@ namespace RythmGame::Game::Gameplay::Hit ////////////////// SCORE //////////////
             if( isHitBlocked )
                 return;
 
-            if( (std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - offsetTime).count() - endTime) > Time::Meh )
+            if( (getDuration<Milliseconds>(currentTime, offsetTime) - endTime) > Time::Meh )
             {
                 isReturnHitValue = true;
                 isHitBlocked = true;
                 return;
             }
 
-            if( std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastHitTime).count() > 333 )
+            if( getDuration<Milliseconds>(currentTime, lastHitTime) > 333 )
             {
                 isHitBlocked = true;
                 hitValue = Accuracy::Miss;
