@@ -13,7 +13,7 @@ namespace RythmGame::Game::Gameplay::Hit
         : HitObject(
             "assets/Skins/BaseSkin/HitObjects/Coins",
             {0, 0, 25, 25},
-            {0, 0, 25, 25}
+            {0, 0, 50, 50}
         )
         {}
 

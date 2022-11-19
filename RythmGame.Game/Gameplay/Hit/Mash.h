@@ -20,7 +20,7 @@ namespace RythmGame::Game::Gameplay::Hit
         : HitObject(
             "assets/Skins/BaseSkin/HitObjects/Mashs",
             {0, 0, 150, 150},
-            {0, 0, 150, 150}
+            {0, 0, 300, 300}
         )
         {}
 

@@ -24,16 +24,18 @@ namespace RythmGame::Graphics
 
     class Image
     {
-    protected:
+        float posX, posY, posW, posH;
         SDL_Texture *tex;
         SDL_Rect src;
+
+    protected:
         Rect dest;
 
     public:
         Image( std::string path, SDL_Rect src, Rect dest );
         ~Image();
 
-        virtual void Draw();
+        void Draw();
         void Draw( Rect dest );
 
         float X() { return dest.x; }
@@ -45,6 +47,9 @@ namespace RythmGame::Graphics
         void SetY( float y ) { dest.y = y; }
         void SetW( float w ) { dest.w = w; }
         void SetH( float h ) { dest.h = h; }
+
+        template<typename T>
+        float Resize( T n );
     };
 
 }

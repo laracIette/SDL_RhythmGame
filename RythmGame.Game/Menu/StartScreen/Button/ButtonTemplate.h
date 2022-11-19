@@ -23,16 +23,21 @@ namespace RythmGame::Game::Menu::StartScreen::Button
         int position;
         float zoom;
 
+        float posX, posY;
+
     public:
         ButtonTemplate( std::string path, int position )
          : Image(
             path,
             {0, 0, 240, 240},
-            {(float)WIDTH/2, (float)HEIGHT/2, 240, 240}
+            {(float)Default::WIDTH/2, (float)Default::HEIGHT/2, 240, 240}
         )
         {
             this->position = position;
             zoom = 1.0f;
+
+            posX = dest.x;
+            posY = dest.y;
         }
 
         ~ButtonTemplate()
@@ -50,32 +55,32 @@ namespace RythmGame::Game::Menu::StartScreen::Button
             switch( position )
             {
             case TopLeft:
-                if( (inputManager.mouse.pos.x > dest.x) && (inputManager.mouse.pos.x < (dest.x + dest.w))
-                 && (inputManager.mouse.pos.y > dest.y) && (inputManager.mouse.pos.y < (dest.y + dest.h)) )
+                if( (inputManager.mouse.pos.x > Resize( dest.x )) && (inputManager.mouse.pos.x < Resize( dest.x + dest.w*zoom ))
+                 && (inputManager.mouse.pos.y > Resize( dest.y )) && (inputManager.mouse.pos.y < Resize( dest.y + dest.h*zoom )) )
                 {
                     isZoom = true;
                 }
                 break;
 
             case TopRight:
-                if( (inputManager.mouse.pos.x > (dest.x - dest.w)) && (inputManager.mouse.pos.x < dest.x)
-                 && (inputManager.mouse.pos.y > dest.y) && (inputManager.mouse.pos.y < (dest.y + dest.h)) )
+                if( (inputManager.mouse.pos.x > Resize( dest.x - dest.w*zoom )) && (inputManager.mouse.pos.x < Resize( dest.x ))
+                 && (inputManager.mouse.pos.y > Resize( dest.y )) && (inputManager.mouse.pos.y < Resize( dest.y + dest.h*zoom )) )
                 {
                     isZoom = true;
                 }
                 break;
 
             case BottomLeft:
-                if( (inputManager.mouse.pos.x > dest.x) && (inputManager.mouse.pos.x < (dest.x + dest.w))
-                 && (inputManager.mouse.pos.y > (dest.y-dest.h)) && (inputManager.mouse.pos.y < dest.y) )
+                if( (inputManager.mouse.pos.x > Resize( dest.x )) && (inputManager.mouse.pos.x < Resize( dest.x + dest.w*zoom ))
+                 && (inputManager.mouse.pos.y > Resize( dest.y - dest.h*zoom )) && (inputManager.mouse.pos.y < Resize( dest.y )) )
                 {
                     isZoom = true;
                 }
                 break;
 
             case BottomRight:
-                if( (inputManager.mouse.pos.x > (dest.x - dest.w)) && (inputManager.mouse.pos.x < dest.x)
-                 && (inputManager.mouse.pos.y > (dest.y-dest.h)) && (inputManager.mouse.pos.y < dest.y) )
+                if( (inputManager.mouse.pos.x > Resize( dest.x - dest.w*zoom )) && (inputManager.mouse.pos.x < Resize( dest.x ))
+                 && (inputManager.mouse.pos.y > Resize( dest.y - dest.h*zoom )) && (inputManager.mouse.pos.y < Resize( dest.y )) )
                 {
                     isZoom = true;
                 }
@@ -97,42 +102,36 @@ namespace RythmGame::Game::Menu::StartScreen::Button
             return isZoom;
         }
 
-        void Draw()
+        void DrawButton()
         {
-            int posX;
-            int posY;
-
             switch( position )
             {
             case TopLeft:
-                posX = (int)(dest.x);
-                posY = (int)(dest.y);
+                posX = dest.x + dest.w*zoom/2;
+                posY = dest.y + dest.h*zoom/2;
                 break;
 
             case TopRight:
-                posX = (int)(dest.x-dest.w*zoom);
-                posY = (int)(dest.y);
+                posX = dest.x + dest.w*zoom/2 - dest.w*zoom;
+                posY = dest.y + dest.h*zoom/2;
                 break;
 
             case BottomLeft:
-                posX = (int)(dest.x);
-                posY = (int)(dest.y-dest.h*zoom);
+                posX = dest.x + dest.w*zoom/2;
+                posY = dest.y + dest.h*zoom/2 - dest.h*zoom;
                 break;
 
             case BottomRight:
-                posX = (int)(dest.x-dest.w*zoom);
-                posY = (int)(dest.y-dest.h*zoom);
+                posX = dest.x + dest.w*zoom/2 - dest.w*zoom;
+                posY = dest.y + dest.h*zoom/2 - dest.h*zoom;
                 break;
 
             default:
                 break;
             }
 
-            TextureManager::DrawTexture(
-                tex,
-                src,
-                {posX, posY, (int)(dest.w*zoom), (int)(dest.h*zoom)}
-            );
+
+            Draw( {posX, posY, dest.w*zoom, dest.h*zoom} );
         }
     };
 

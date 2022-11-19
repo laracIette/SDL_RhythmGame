@@ -16,7 +16,7 @@ namespace RythmGame::Game::Gameplay::Hit
         : HitObject(
             "assets/Skins/BaseSkin/HitObjects/Doubles",
             {0, 0, 50, 150},
-            {0, 0, 50, 50}
+            {0, 0, 100, 100}
         )
         {}
 
@@ -25,7 +25,7 @@ namespace RythmGame::Game::Gameplay::Hit
             isUpPressed = false;
             isDownPressed = false;
 
-            (IsHitObjectHorizontal()) ? SetH( 150 ) : SetW( 150 );
+            (IsHitObjectHorizontal()) ? SetH( 300 ) : SetW( 300 );
             endTime = time;
         }
 
