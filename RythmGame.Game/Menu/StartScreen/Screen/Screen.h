@@ -13,6 +13,16 @@ using namespace RythmGame::Graphics;
 
 namespace RythmGame::Game::Menu::StartScreen
 {
+    enum ButtonNumbers {
+        Play = 0,
+        Exit,
+        Download,
+        Settings,
+        PlayBack,
+        PlaySolo,
+        PlayMulti,
+        PlayOffline
+    };
 
     class Screen
     {

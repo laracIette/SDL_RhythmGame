@@ -24,20 +24,20 @@
 
 
 	bool : isUp
-	int : time, endTime
+	int  : time, endTime
 	char : type, direction
 
 	type;direction;time;...
 
 ## Hit Time / Accuracy :
 
-	50Milliseconds   /  1  : Perfect
+	50ms   /  1  : Perfect
 
-	150Milliseconds  / 1/3 : Great
+	150ms  / 1/3 : Great
 
-	300Milliseconds  / 1/6 : Meh
+	300ms  / 1/6 : Meh
 
-	300Milliseconds+ /  0  : Miss
+	300ms+ /  0  : Miss
 
 
 	Coin and Chainsaw Hit Time : Great
