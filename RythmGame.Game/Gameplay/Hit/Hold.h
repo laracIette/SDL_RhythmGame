@@ -21,7 +21,7 @@ namespace RythmGame::Game::Gameplay::Hit
         : HitObject(
             "assets/Skins/BaseSkin/HitObjects/Holds",
             {0, 0, 50, 50},
-            {0, 0, 50, 50}
+            {0, 0, 100, 100}
         )
         {}
 

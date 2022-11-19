@@ -10,7 +10,7 @@ namespace RythmGame::Game::Menu::StartScreen
         buttons[2] = new DownloadButton();
         buttons[3] = new SettingsButton();
 
-        background = new Image( "assets/background.png", {0, 0, 1920, 1080}, {(float)WIDTH/2, (float)HEIGHT/2, 1280, 720} );
+        background = new Image( "assets/background.png", {0, 0, 1920, 1080}, {Default::WIDTH/2, Default::HEIGHT/2, 1920, 1080} );
     }
 
     Screen::~Screen()
@@ -31,7 +31,7 @@ namespace RythmGame::Game::Menu::StartScreen
 
         for( ButtonTemplate *button : buttons )
         {
-            button->Draw();
+            button->DrawButton();
         }
     }
 

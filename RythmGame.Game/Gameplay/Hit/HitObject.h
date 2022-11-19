@@ -125,7 +125,7 @@ namespace RythmGame::Game::Gameplay::Hit
 
         float getHitObjectOffsetHeight()
         {
-            return (isUp) ? -(float)HEIGHT/10 : (float)HEIGHT/10;
+            return (isUp) ? -Default::HEIGHT/10 : Default::HEIGHT/10;
         }
 
 
@@ -138,23 +138,23 @@ namespace RythmGame::Game::Gameplay::Hit
             switch( direction )
             {
             case LEFT:
-                SetX( (float)WIDTH/2 - (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + xOffset );
-                SetY( (float)HEIGHT/2 + yOffset );
+                SetX( Default::WIDTH/2 - (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + xOffset );
+                SetY( Default::HEIGHT/2 + yOffset );
                 break;
 
             case RIGHT:
-                SetX( (float)WIDTH/2 + (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + xOffset );
-                SetY( (float)HEIGHT/2 + yOffset );
+                SetX( Default::WIDTH/2 + (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + xOffset );
+                SetY( Default::HEIGHT/2 + yOffset );
                 break;
 
             case UP:
-                SetX( (float)WIDTH/2 + xOffset );
-                SetY( (float)HEIGHT/2 - (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + yOffset );
+                SetX( Default::WIDTH/2 + xOffset );
+                SetY( Default::HEIGHT/2 - (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + yOffset );
                 break;
 
             case DOWN:
-                SetX( (float)WIDTH/2 + xOffset );
-                SetY( (float)HEIGHT/2 + (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + yOffset );
+                SetX( Default::WIDTH/2 + xOffset );
+                SetY( Default::HEIGHT/2 + (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + yOffset );
                 break;
 
             default:
