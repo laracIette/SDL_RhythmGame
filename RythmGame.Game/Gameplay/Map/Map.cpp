@@ -291,20 +291,11 @@ namespace RythmGame::Game::Gameplay
 
         music = new Music( path + "song.mp3" );
 
-        horizontalForeground = new Image(
-            "assets/Skins/BaseSkin/foreground0.png",
-            {0, 0, 1920, 1080},
-            {(float)Default::WIDTH/2, (float)Default::HEIGHT/2, (float)Default::WIDTH, (float)Default::HEIGHT}
-        );
-        verticalForeground = new Image(
-            "assets/Skins/BaseSkin/foreground1.png",
-            {0, 0, 1920, 1080},
-            {(float)Default::WIDTH/2, (float)Default::HEIGHT/2, (float)Default::WIDTH, (float)Default::HEIGHT}
-        );
-
         score    = new Score();
         combo    = new Combo();
         accuracy = new Accuracy();
+
+        dim = new Dim();
 
     }
 
@@ -388,7 +379,7 @@ namespace RythmGame::Game::Gameplay
             hitObject->DrawHitObject();
         }
 
-        (isHorizontal) ? horizontalForeground->Draw() : verticalForeground->Draw();
+        (isHorizontal) ? dim->DrawHorizontalDim() : dim->DrawVerticalDim();
 
         score->Draw();
         combo->Draw();

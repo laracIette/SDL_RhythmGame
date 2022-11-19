@@ -17,7 +17,7 @@ namespace RythmGame::Game::Gameplay
         int combo;
 
     public:
-        Combo() : Text( "0", {0, (float)Default::HEIGHT, 50, 60}, BottomLeft )
+        Combo() : Text( "0", {0, Default::HEIGHT, 50, 60}, BottomLeft )
         {
             combo = 0;
         }

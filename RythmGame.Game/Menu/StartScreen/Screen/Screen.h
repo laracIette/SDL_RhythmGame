@@ -5,28 +5,22 @@
 #include "../Button/DownloadButton.h"
 #include "../Button/SettingsButton.h"
 
+#include "../../../Utils/GameSettings.h"
+
 #include "../../../../RythmGame.Graphics/Image/Image.h"
 
 using namespace RythmGame::Game::Menu::StartScreen::Button;
 using namespace RythmGame::Graphics;
+using namespace RythmGame::Game::Utils;
 
 
 namespace RythmGame::Game::Menu::StartScreen
 {
-    enum ButtonNumbers {
-        Play = 0,
-        Exit,
-        Download,
-        Settings,
-        PlayBack,
-        PlaySolo,
-        PlayMulti,
-        PlayOffline
-    };
 
     class Screen
     {
-        ButtonTemplate *buttons[4];
+        ButtonTemplate *buttons[3];
+        PlayButton *playButton;
         Image *background;
 
     public:
@@ -37,7 +31,7 @@ namespace RythmGame::Game::Menu::StartScreen
 
         void Draw();
 
-        bool PlayButtonClicked();
+        bool StartGame();
         bool ExitButtonClicked();
         bool DownloadButtonClicked();
         bool SettingsButtonClicked();

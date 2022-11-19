@@ -17,7 +17,7 @@ namespace RythmGame::Game::Gameplay
         unsigned int score;
 
     public:
-        Score() : Text( "0", {(float)Default::WIDTH, 0, 50, 60}, TopRight )
+        Score() : Text( "0", {Default::WIDTH, 0, 50, 60}, TopRight )
         {
             score = 0;
         }

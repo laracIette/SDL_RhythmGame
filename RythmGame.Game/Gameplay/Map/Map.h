@@ -17,9 +17,9 @@
 #include "../Combo/Combo.h"
 #include "../Accuracy/Accuracy.h"
 #include "../../Utils/Time.h"
+#include "../Dim.h"
 
 #include "../../../RythmGame.Sound/Music/Music.h"
-#include "../../../RythmGame.Graphics/Image/Image.h"
 
 using namespace RythmGame::Game::Gameplay::Hit;
 using namespace RythmGame::Game::Utils;
@@ -48,8 +48,7 @@ namespace RythmGame::Game::Gameplay
 
         Score *score;
 
-        Image *horizontalForeground;
-        Image *verticalForeground;
+        Dim *dim;
 
     public:
         Map( std::string path );

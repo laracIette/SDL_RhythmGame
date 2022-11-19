@@ -5,12 +5,16 @@ namespace RythmGame::Game::Menu::StartScreen
 
     Screen::Screen()
     {
-        buttons[0] = new PlayButton();
-        buttons[1] = new ExitButton();
-        buttons[2] = new DownloadButton();
-        buttons[3] = new SettingsButton();
+        playButton        = new PlayButton();
+        buttons[Exit]     = new ExitButton();
+        buttons[Download] = new DownloadButton();
+        buttons[Settings] = new SettingsButton();
 
-        background = new Image( "assets/background.png", {0, 0, 1920, 1080}, {Default::WIDTH/2, Default::HEIGHT/2, 1920, 1080} );
+        background = new Image(
+            "assets/background.png",
+            {0, 0, 1920, 1080},
+            {Default::WIDTH/2, Default::HEIGHT/2, 1920, 1080}
+        );
     }
 
     Screen::~Screen()
@@ -23,32 +27,38 @@ namespace RythmGame::Game::Menu::StartScreen
         {
             button->Hoover();
         }
+
+        playButton->Update();
     }
 
     void Screen::Draw()
     {
         background->Draw();
 
-        for( ButtonTemplate *button : buttons )
+        if( !playButton->IsClicked() )
         {
-            button->DrawButton();
+            for( ButtonTemplate *button : buttons )
+            {
+                button->DrawButton();
+            }
         }
+        playButton->DrawPlayButton();
     }
 
-    bool Screen::PlayButtonClicked()
+    bool Screen::StartGame()
     {
-        return buttons[0]->Clicked();
+        return playButton->StartGame();
     }
     bool Screen::ExitButtonClicked()
     {
-        return buttons[1]->Clicked();
+        return buttons[Exit]->Clicked();
     }
     bool Screen::DownloadButtonClicked()
     {
-        return buttons[2]->Clicked();
+        return buttons[Download]->Clicked();
     }
     bool Screen::SettingsButtonClicked()
     {
-        return buttons[3]->Clicked();
+        return buttons[Settings]->Clicked();
     }
 }

@@ -12,10 +12,23 @@ using namespace RythmGame::Game::Utils;
 namespace RythmGame::Game::Menu::StartScreen::Button
 {
     enum Positions {
-        TopLeft,
+        TopLeft = 0,
         TopRight,
         BottomLeft,
         BottomRight
+    };
+
+    enum Base {
+        Exit = 0,
+        Download,
+        Settings
+    };
+
+    enum Play {
+        PlayBack = 0,
+        PlaySolo,
+        PlayMulti,
+        PlayOffline
     };
 
     class ButtonTemplate : public Image
@@ -25,19 +38,26 @@ namespace RythmGame::Game::Menu::StartScreen::Button
 
         float posX, posY;
 
+        bool isHoover;
+
+        std::string path;
+
     public:
         ButtonTemplate( std::string path, int position )
          : Image(
             path,
             {0, 0, 240, 240},
-            {(float)Default::WIDTH/2, (float)Default::HEIGHT/2, 240, 240}
+            {Default::WIDTH/2, Default::HEIGHT/2, 240, 240}
         )
         {
+            this->path = path;
             this->position = position;
             zoom = 1.0f;
 
             posX = dest.x;
             posY = dest.y;
+
+            isHoover = false;
         }
 
         ~ButtonTemplate()
@@ -45,12 +65,19 @@ namespace RythmGame::Game::Menu::StartScreen::Button
 
         bool Clicked()
         {
-            return (Hoover() && inputManager.Clicked( inputManager.mouse.Left ));
+            bool ret{ isHoover && inputManager.LeftClickedNoLock() };
+
+            if( inputManager.LeftClicked() )
+            {
+                inputManager.SetButtonLock( inputManager.mouse.Left, true );
+            }
+
+            return ret;
         }
 
         bool Hoover()
         {
-            bool isZoom{ false };
+            isHoover = false;
 
             switch( position )
             {
@@ -58,7 +85,7 @@ namespace RythmGame::Game::Menu::StartScreen::Button
                 if( (inputManager.mouse.pos.x > Resize( dest.x )) && (inputManager.mouse.pos.x < Resize( dest.x + dest.w*zoom ))
                  && (inputManager.mouse.pos.y > Resize( dest.y )) && (inputManager.mouse.pos.y < Resize( dest.y + dest.h*zoom )) )
                 {
-                    isZoom = true;
+                    isHoover = true;
                 }
                 break;
 
@@ -66,7 +93,7 @@ namespace RythmGame::Game::Menu::StartScreen::Button
                 if( (inputManager.mouse.pos.x > Resize( dest.x - dest.w*zoom )) && (inputManager.mouse.pos.x < Resize( dest.x ))
                  && (inputManager.mouse.pos.y > Resize( dest.y )) && (inputManager.mouse.pos.y < Resize( dest.y + dest.h*zoom )) )
                 {
-                    isZoom = true;
+                    isHoover = true;
                 }
                 break;
 
@@ -74,7 +101,7 @@ namespace RythmGame::Game::Menu::StartScreen::Button
                 if( (inputManager.mouse.pos.x > Resize( dest.x )) && (inputManager.mouse.pos.x < Resize( dest.x + dest.w*zoom ))
                  && (inputManager.mouse.pos.y > Resize( dest.y - dest.h*zoom )) && (inputManager.mouse.pos.y < Resize( dest.y )) )
                 {
-                    isZoom = true;
+                    isHoover = true;
                 }
                 break;
 
@@ -82,7 +109,7 @@ namespace RythmGame::Game::Menu::StartScreen::Button
                 if( (inputManager.mouse.pos.x > Resize( dest.x - dest.w*zoom )) && (inputManager.mouse.pos.x < Resize( dest.x ))
                  && (inputManager.mouse.pos.y > Resize( dest.y - dest.h*zoom )) && (inputManager.mouse.pos.y < Resize( dest.y )) )
                 {
-                    isZoom = true;
+                    isHoover = true;
                 }
                 break;
 
@@ -90,16 +117,16 @@ namespace RythmGame::Game::Menu::StartScreen::Button
                 break;
             }
 
-            if( isZoom && (zoom < 1.1) )
+            if( isHoover && (zoom < 1.1) )
             {
                 zoom += (float)deltaTime/500;
             }
-            else if( !isZoom && (zoom > 1) )
+            else if( !isHoover && (zoom > 1) )
             {
                 zoom -= (float)deltaTime/500;
             }
 
-            return isZoom;
+            return isHoover;
         }
 
         void DrawButton()
