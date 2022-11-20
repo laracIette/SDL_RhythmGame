@@ -3,25 +3,28 @@
 namespace RythmGame::Game::Gameplay
 {
 
-    Map::Map( std::string path )
+    Map::Map( Song *newSong )
     {
-        song = new Song( path );
+        song = newSong;
+        song->FillHitObjects();
 
         for( HitObject *hitObject : song->GetHitObjects() )
         {
             hitObject->Init();
         }
 
-        isPaused = true;
+        song->GetBackground()->SetX( Default::WIDTH/2 );
+        song->GetBackground()->SetY( Default::HEIGHT/2 );
+        song->GetBackground()->SetW( Default::WIDTH );
+        song->GetBackground()->SetH( Default::HEIGHT );
 
-        music = new Music( path + "song.mp3" );
+        isPaused = true;
 
         score    = new Score();
         combo    = new Combo();
         accuracy = new Accuracy();
 
         dim = new Dim();
-
 
     }
 
@@ -39,9 +42,6 @@ namespace RythmGame::Game::Gameplay
         combo->SetCombo( 0 );
 
         highestCombo = 0;
-
-        music->SetVolume( 0 );
-        music->Play();
     }
 
     void Map::Update()
@@ -100,6 +100,8 @@ namespace RythmGame::Game::Gameplay
 
     void Map::Draw()
     {
+        song->GetBackground()->Draw();
+
         for( HitObject *hitObject : song->GetHitObjects() )
         {
             hitObject->DrawHitObject();
@@ -119,7 +121,7 @@ namespace RythmGame::Game::Gameplay
             isPaused = true;
             pausedTime = currentTime;
 
-            music->Pause();
+            song->GetMusic()->Pause();
         }
         else
         {
@@ -127,13 +129,13 @@ namespace RythmGame::Game::Gameplay
 
             offsetTime += currentTime - pausedTime;
 
-            music->Resume();
+            song->GetMusic()->Resume();
         }
     }
 
     void Map::Close()
     {
-        music->Close();
+        song->GetMusic()->Close();
     }
 
 }

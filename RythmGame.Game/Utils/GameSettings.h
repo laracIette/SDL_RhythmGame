@@ -30,7 +30,8 @@ namespace RythmGame::Game::Utils
     extern float velocity;
     extern bool isHorizontal;
 
-    static RGB getSongDifficultyColor( int diff )
+    template<typename T>
+    static RGB getSongDifficultyColor( T diff )
     {
         RGB ret = Black;
 

@@ -5,16 +5,26 @@ namespace RythmGame::Game::Menu::MapSelection
 
     SongTile::SongTile( std::string path )
     {
-        difficultyColor = getSongDifficultyColor( diff );
+        song = new Song( path );
+        difficultyColor = getSongDifficultyColor( song->GetLevel() );
+        song->GetBackground()->SetX( Default::WIDTH/2 );
+        song->GetBackground()->SetW( Default::WIDTH/3 );
+        song->GetBackground()->SetH( Default::HEIGHT/10 );
     }
 
     SongTile::~SongTile()
     {
     }
 
-    void SongTile::Draw()
+    void SongTile::Draw( int posY )
     {
-        songBackground->Draw();
+        song->GetBackground()->SetY( (float)Default::HEIGHT/10*(float)posY );
+        song->GetBackground()->Draw();
+    }
+
+    Song *SongTile::GetSong()
+    {
+        return song;
     }
 
 }

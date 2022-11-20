@@ -52,7 +52,7 @@ namespace RythmGame::Game::Menu::StartScreen::Button
         void Update()
         {
             Hoover();
-            if( !isClicked && Clicked() ) isClicked = true;
+            if( !isClicked && IsLeftClicked() ) isClicked = true;
 
             if( isClicked )
             {
@@ -61,7 +61,7 @@ namespace RythmGame::Game::Menu::StartScreen::Button
                     button->Hoover();
                 }
 
-                if( buttons[PlaySolo]->Clicked() )
+                if( buttons[PlaySolo]->IsLeftClicked() )
                 {
                     isStartGame = true;
                 }

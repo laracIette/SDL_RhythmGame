@@ -38,8 +38,6 @@ namespace RythmGame::Game::Menu::StartScreen::Button
 
         float posX, posY;
 
-        bool isHoover;
-
         std::string path;
 
     public:
@@ -63,19 +61,7 @@ namespace RythmGame::Game::Menu::StartScreen::Button
         ~ButtonTemplate()
         {}
 
-        bool Clicked()
-        {
-            bool ret{ isHoover && inputManager.LeftClickedNoLock() };
-
-            if( inputManager.LeftClicked() )
-            {
-                inputManager.SetButtonLock( inputManager.mouse.Left, true );
-            }
-
-            return ret;
-        }
-
-        bool Hoover()
+        void Hoover()
         {
             isHoover = false;
 
@@ -125,8 +111,6 @@ namespace RythmGame::Game::Menu::StartScreen::Button
             {
                 zoom -= (float)deltaTime/500;
             }
-
-            return isHoover;
         }
 
         void DrawButton()

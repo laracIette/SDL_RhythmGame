@@ -11,11 +11,9 @@
 #include "../Dim.h"
 #include "../../Song/Song.h"
 
-#include "../../../RythmGame.Sound/Music/Music.h"
 
 
 using namespace RythmGame::Game::Utils;
-using namespace RythmGame::Sound;
 using namespace RythmGame::Graphics;
 
 namespace RythmGame::Game::Gameplay
@@ -24,8 +22,6 @@ namespace RythmGame::Game::Gameplay
     class Map
     {
         Song *song;
-
-        Music *music;
 
         std::chrono::high_resolution_clock::time_point pausedTime;
 
@@ -43,7 +39,7 @@ namespace RythmGame::Game::Gameplay
         Dim *dim;
 
     public:
-        Map( std::string path );
+        Map( Song *newSong );
         ~Map();
 
         void Update();

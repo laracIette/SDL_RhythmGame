@@ -5,16 +5,32 @@ namespace RythmGame::Game
 
     Song::Song( std::string path )
     {
-        songFile = new File( path + "easy.txt" );
+        songFile = new File( path + "/easy.txt" );
 
         name       = songFile->GetSingleElements()["Name"];
         author     = songFile->GetSingleElements()["Author"];
         difficulty = songFile->GetSingleElements()["Difficulty"];
-        std::cout << difficulty << std::endl;
         level      = std::stof( songFile->GetSingleElements()["Level"] );
 
-        std::string nTemp;
+        background = new Image(
+            path + "/background.png",
+            {0, 0, 1920, 1080},
+            {Default::WIDTH/2, Default::HEIGHT/2, Default::WIDTH, Default::HEIGHT}
+        );
 
+        music = new Music( path + "/song.mp3" );
+
+        music->SetVolume( 1 );
+        music->Play();
+    }
+
+    Song::~Song()
+    {
+    }
+
+    void Song::FillHitObjects()
+    {
+        std::string nTemp;
         int nSteps;
 
         for( std::string temp : songFile->GetMultiElements()["HitObjects"] )
@@ -284,13 +300,24 @@ namespace RythmGame::Game
         }
     }
 
-    Song::~Song()
+    float Song::GetLevel()
     {
+        return level;
+    }
+
+    Image *Song::GetBackground()
+    {
+        return background;
     }
 
     std::vector<HitObject *> &Song::GetHitObjects()
     {
         return hitObjects;
+    }
+
+    Music *Song::GetMusic()
+    {
+        return music;
     }
 
 }

@@ -6,12 +6,12 @@ namespace RythmGame::Game::Menu::MapSelection
     Screen::Screen()
     {
         background = new Image(
-            "assets/Skins/BaseSkin/Menu/MapSelection/background.png"
+            "assets/Skins/BaseSkin/Menu/MapSelection/background.png",
+            {0, 0, 1920, 1080},
+            {Default::WIDTH/2, Default::HEIGHT/2, Default::WIDTH, Default::HEIGHT}
         );
 
-        std::string path;
-
-        for( const auto &entry : std::filesystem::directory_iterator( path ) )
+        for( const auto &entry : std::filesystem::directory_iterator( "assets/Maps" ) )
         {
             songs.push_back(
                 new SongTile(
@@ -31,7 +31,23 @@ namespace RythmGame::Game::Menu::MapSelection
 
         for( SongTile *song : songs )
         {
-            song->Draw();
+            song->Draw( 2 );
         }
+    }
+
+// returns Song * if a SongTile is LeftClicked
+// else returns 0
+    Song *Screen::Update()
+    {
+        for( SongTile *song : songs )
+        {
+            song->GetSong()->GetBackground()->Hoover();
+            if( song->GetSong()->GetBackground()->IsLeftClicked() )
+            {
+                return song->GetSong();
+            }
+        }
+
+        return 0;
     }
 }

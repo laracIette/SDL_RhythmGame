@@ -13,7 +13,7 @@ namespace RythmGame::Game::Menu::StartScreen
         background = new Image(
             "assets/Skins/BaseSkin/Menu/StartScreen/background.png",
             {0, 0, 1920, 1080},
-            {Default::WIDTH/2, Default::HEIGHT/2, 1920, 1080}
+            {Default::WIDTH/2, Default::HEIGHT/2, Default::WIDTH, Default::HEIGHT}
         );
     }
 
@@ -51,14 +51,14 @@ namespace RythmGame::Game::Menu::StartScreen
     }
     bool Screen::ExitButtonClicked()
     {
-        return buttons[Exit]->Clicked();
+        return buttons[Exit]->IsLeftClicked();
     }
     bool Screen::DownloadButtonClicked()
     {
-        return buttons[Download]->Clicked();
+        return buttons[Download]->IsLeftClicked();
     }
     bool Screen::SettingsButtonClicked()
     {
-        return buttons[Settings]->Clicked();
+        return buttons[Settings]->IsLeftClicked();
     }
 }

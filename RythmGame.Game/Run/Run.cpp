@@ -28,15 +28,12 @@ namespace RythmGame::Game
 
         player = new Player();
 
-        velocity = 0.2f;
-
-        map = new Map( "assets/Maps/Plastic Smile - Kaori Ishihara/" );
-
-        isStarted = false;
+        velocity = 0.3f;
 
         isHorizontal = true;
 
-        startScreen = new Screen();
+        startScreen = new StartScreen::Screen();
+        mapSelectionScreen = new MapSelection::Screen();
     }
 
     Run::~Run()
@@ -47,6 +44,8 @@ namespace RythmGame::Game
     {
         deltaTime = 0;
         lastFrameTime = currentTime;
+
+        gameState = STARTSCREEN;
     }
 
     void Run::Update()
@@ -54,20 +53,30 @@ namespace RythmGame::Game
 
         if( inputManager.HandleEvents() ) isRunning = false;
 
-        if( !isStarted )
+        if( gameState == STARTSCREEN )
         {
             startScreen->Update();
 
             if( startScreen->StartGame() )
             {
-                isStarted = true;
-                map->Start();
+                gameState = MAPSELECTION;
             }
         }
-        else
+
+        if( gameState == MAPSELECTION )
         {
-            if( !inputManager.KeyLock( inputManager.keyboard.Escape )
-            && inputManager.Pressed( inputManager.keyboard.Escape ) )
+            Song *tempSong{ mapSelectionScreen->Update() };
+            if( tempSong )
+            {
+                map = new Map( tempSong );
+                map->Start();
+                gameState = GAMEPLAY;
+            }
+        }
+
+        if( gameState == GAMEPLAY )
+        {
+            if( inputManager.PressedNoLock( inputManager.keyboard.Escape ) )
             {
                 inputManager.SetKeyLock( inputManager.keyboard.Escape, true );
                 map->Pause();
@@ -86,10 +95,25 @@ namespace RythmGame::Game
         SDL_SetRenderDrawColor( window->renderer, 48, 48, 48, 255 );
         SDL_RenderClear( window->renderer );
 
-        player->Draw();
-        map->Draw();
 
-        if( !isStarted ) startScreen->Draw();
+        switch( gameState )
+        {
+        case STARTSCREEN:
+            startScreen->Draw();
+            break;
+
+        case MAPSELECTION:
+            mapSelectionScreen->Draw();
+            break;
+
+        case GAMEPLAY:
+            player->Draw();
+            map->Draw();
+            break;
+
+        default:
+            break;
+        }
 
         SDL_RenderPresent( window->renderer );
     }

@@ -15,6 +15,8 @@ SDL:
 	RythmGame.Game/Gameplay/Combo/Combo.cpp \
 	RythmGame.Game/Gameplay/Accuracy/Accuracy.cpp \
 	RythmGame.Game/Menu/StartScreen/Screen/Screen.cpp \
+	RythmGame.Game/Menu/MapSelection/Screen/Screen.cpp \
+	RythmGame.Game/Menu/MapSelection/SongTile/SongTile.cpp \
 	RythmGame.Graphics/TextureManager/TextureManager.cpp \
 	RythmGame.Graphics/Image/Image.cpp \
 	RythmGame.Graphics/Animation/Animation.cpp \

@@ -41,4 +41,43 @@ namespace RythmGame::Graphics
         return (float)n / 1920 * (float)WIDTH;
     }
 
+    void Image::Hoover()
+    {
+        isHoover = false;
+
+        if( (inputManager.mouse.pos.x > Resize( dest.x - dest.w/2 )) && (inputManager.mouse.pos.x < Resize( dest.x + dest.w/2 ))
+         && (inputManager.mouse.pos.y > Resize( dest.y - dest.h/2 )) && (inputManager.mouse.pos.y < Resize( dest.y + dest.h/2 )) )
+        {
+            isHoover = true;
+        }
+
+    }
+
+    bool Image::IsHoover()
+    {
+        return isHoover;
+    }
+
+    bool Image::IsLeftClicked()
+    {
+        bool ret{ isHoover && inputManager.LeftClickedNoLock() };
+
+        if( inputManager.LeftClicked() )
+        {
+            inputManager.SetButtonLock( inputManager.mouse.Left, true );
+        }
+
+        return ret;
+    }
+    bool Image::IsRightClicked()
+    {
+        bool ret{ isHoover && inputManager.RightClickedNoLock() };
+
+        if( inputManager.RightClicked() )
+        {
+            inputManager.SetButtonLock( inputManager.mouse.Right, true );
+        }
+
+        return ret;
+    }
 }
