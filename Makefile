@@ -6,7 +6,9 @@ SDL:
 	-o build/prog \
 	src/main.cpp \
 	RythmGame.Framework/Window/Window.cpp \
+	RythmGame.Framework/File/File.cpp \
 	RythmGame.Game/Run/Run.cpp \
+	RythmGame.Game/Song/Song.cpp \
 	RythmGame.Game/Gameplay/Player/Player.cpp \
 	RythmGame.Game/Gameplay/Map/Map.cpp \
 	RythmGame.Game/Gameplay/Score/Score.cpp \

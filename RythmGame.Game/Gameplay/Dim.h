@@ -23,7 +23,7 @@ namespace RythmGame::Game::Gameplay
                 {0, 0, 1920, 1080},
                 {Default::WIDTH/2, Default::HEIGHT/2, Default::WIDTH, Default::HEIGHT}
             );
-            horizontalDim = new Image(
+            verticalDim = new Image(
                 "assets/Skins/BaseSkin/dim1.png",
                 {0, 0, 1920, 1080},
                 {Default::WIDTH/2, Default::HEIGHT/2, Default::WIDTH, Default::HEIGHT}

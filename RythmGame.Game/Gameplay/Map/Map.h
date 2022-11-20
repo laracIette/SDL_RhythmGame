@@ -4,24 +4,16 @@
 #include <string>
 #include <chrono>
 
-#include "../Hit/HitObject.h"
-#include "../Hit/Note.h"
-#include "../Hit/Hold.h"
-#include "../Hit/Double.h"
-#include "../Hit/Mash.h"
-#include "../Hit/Ghost.h"
-#include "../Hit/Coin.h"
-#include "../Hit/Hammer.h"
-#include "../Hit/Chainsaw.h"
 #include "../Score/Score.h"
 #include "../Combo/Combo.h"
 #include "../Accuracy/Accuracy.h"
 #include "../../Utils/Time.h"
 #include "../Dim.h"
+#include "../../Song/Song.h"
 
 #include "../../../RythmGame.Sound/Music/Music.h"
 
-using namespace RythmGame::Game::Gameplay::Hit;
+
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Sound;
 using namespace RythmGame::Graphics;
@@ -31,7 +23,7 @@ namespace RythmGame::Game::Gameplay
 
     class Map
     {
-        std::vector<HitObject *> hitObjects;
+        Song *song;
 
         Music *music;
 

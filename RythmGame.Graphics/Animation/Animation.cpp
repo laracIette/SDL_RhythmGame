@@ -8,6 +8,7 @@ namespace RythmGame::Graphics
         for( const auto &entry : std::filesystem::directory_iterator( path ) )
         {
             if( CheckImageExists( entry.path() ) )
+            {
                 images.push_back(
                     new Image(
                         entry.path(),
@@ -15,6 +16,7 @@ namespace RythmGame::Graphics
                         dest
                     )
                 );
+            }
         }
 
         indice = 0;
