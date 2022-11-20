@@ -8,6 +8,7 @@ namespace RythmGame::Graphics
         for( const auto &entry : std::filesystem::directory_iterator( path ) )
         {
             if( CheckImageExists( entry.path() ) )
+            {
                 images.push_back(
                     new Image(
                         entry.path(),
@@ -15,10 +16,11 @@ namespace RythmGame::Graphics
                         dest
                     )
                 );
+            }
         }
 
         indice = 0;
-        timeSinceLastImage = currentTime;
+        lastImageTime = currentTime;
 
     }
 
@@ -31,9 +33,9 @@ namespace RythmGame::Graphics
     {
         images[indice]->Draw();
 
-        if( (currentTime - timeSinceLastImage) > 1000/10 )
+        if( getDuration<Milliseconds>(currentTime, lastImageTime) > 1000/10 )
         {
-            timeSinceLastImage = currentTime;
+            lastImageTime = currentTime;
             if( ++indice >= images.size() ) indice = 0;
         }
     }

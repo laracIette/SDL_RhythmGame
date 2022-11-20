@@ -91,6 +91,15 @@ namespace RythmGame::Game::Events
         void SetKeyLock(    int key,    bool lock ) { keyboard.keyLock[key]    = lock; }
         void SetButtonLock( int button, bool lock ) { mouse.buttonLock[button] = lock; }
 
+        bool LeftClicked()  { return Clicked( mouse.Left ); }
+        bool RightClicked() { return Clicked( mouse.Right ); }
+
+        bool LeftLock()  { return ButtonLock( mouse.Left ); }
+        bool RightLock() { return ButtonLock( mouse.Right ); }
+
+        bool LeftClickedNoLock()  { return (LeftClicked()  && !LeftLock()); }
+        bool RightClickedNoLock() { return (RightClicked() && !RightLock()); }
+
         bool Left1Pressed()  { return Pressed( leftKey1 ); }
         bool Left2Pressed()  { return Pressed( leftKey2 ); }
         bool Right1Pressed() { return Pressed( rightKey1 ); }

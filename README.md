@@ -2,7 +2,7 @@
 
 ## HitObject properties :
 
-	Type (unsigned char):
+	Type (char):
 
 		1. Note :
 			isUp
@@ -24,8 +24,8 @@
 
 
 	bool : isUp
-	unsigned int : time, endTime
-	unsigned char : type, direction
+	int  : time, endTime
+	char : type, direction
 
 	type;direction;time;...
 

@@ -1,13 +1,11 @@
 #include "Run.h"
 
+std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::offsetTime;
 
-unsigned int RythmGame::Game::Utils::deltaTime;
-unsigned int RythmGame::Game::Utils::offsetTime;
+long RythmGame::Game::Utils::deltaTime;
 
 float RythmGame::Game::Utils::velocity;
 bool  RythmGame::Game::Utils::isHorizontal;
-
-vec2<int> mouse;
 
 Window *window;
 
@@ -24,19 +22,18 @@ namespace RythmGame::Game
 
         hitSoundManager = new HitSoundManager();
 
-        currentTime = SDL_GetTicks();
+        currentTime = std::chrono::system_clock::now();
 
         isRunning = true;
 
         player = new Player();
 
-        velocity = 0.2f;
-
-        map = new Map( "assets/Maps/Plastic Smile - Kaori Ishihara/" );
-
-        isStarted = false;
+        velocity = 0.3f;
 
         isHorizontal = true;
+
+        startScreen = new StartScreen::Screen();
+        mapSelectionScreen = new MapSelection::Screen();
     }
 
     Run::~Run()
@@ -47,33 +44,48 @@ namespace RythmGame::Game
     {
         deltaTime = 0;
         lastFrameTime = currentTime;
+
+        gameState = STARTSCREEN;
     }
 
     void Run::Update()
     {
+
         if( inputManager.HandleEvents() ) isRunning = false;
 
-        deltaTime = currentTime-lastFrameTime;
-        lastFrameTime = currentTime;
-
-
-        if( !isStarted && inputManager.Pressed( inputManager.keyboard.Escape ) )
+        if( gameState == STARTSCREEN )
         {
-            inputManager.SetKeyLock( inputManager.keyboard.Escape, true );
+            startScreen->Update();
 
-            isStarted = true;
-            map->Start();
-        }
-        if( isStarted
-        && !inputManager.KeyLock( inputManager.keyboard.Escape )
-        && inputManager.Pressed( inputManager.keyboard.Escape ) )
-        {
-            inputManager.SetKeyLock( inputManager.keyboard.Escape, true );
-            map->Pause();
+            if( startScreen->StartGame() )
+            {
+                gameState = MAPSELECTION;
+            }
         }
 
-        player->Input();
-        map->Update();
+        if( gameState == MAPSELECTION )
+        {
+            Song *tempSong{ mapSelectionScreen->Update() };
+            if( tempSong )
+            {
+                map = new Map( tempSong );
+                map->Start();
+                gameState = GAMEPLAY;
+            }
+        }
+
+        if( gameState == GAMEPLAY )
+        {
+            if( inputManager.PressedNoLock( inputManager.keyboard.Escape ) )
+            {
+                inputManager.SetKeyLock( inputManager.keyboard.Escape, true );
+                map->Pause();
+            }
+
+            player->Input();
+            map->Update();
+        }
+
         hitSoundManager->Update();
     }
 
@@ -83,8 +95,25 @@ namespace RythmGame::Game
         SDL_SetRenderDrawColor( window->renderer, 48, 48, 48, 255 );
         SDL_RenderClear( window->renderer );
 
-        player->Draw();
-        map->Draw();
+
+        switch( gameState )
+        {
+        case STARTSCREEN:
+            startScreen->Draw();
+            break;
+
+        case MAPSELECTION:
+            mapSelectionScreen->Draw();
+            break;
+
+        case GAMEPLAY:
+            player->Draw();
+            map->Draw();
+            break;
+
+        default:
+            break;
+        }
 
         SDL_RenderPresent( window->renderer );
     }

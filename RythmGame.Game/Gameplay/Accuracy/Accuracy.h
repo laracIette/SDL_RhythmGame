@@ -14,14 +14,14 @@ namespace RythmGame::Game::Gameplay
 
     class Accuracy : public Text
     {
-        unsigned int accuracyHits[4];
+        int accuracyHits[4];
         float accuracy;
 
     public:
-        Accuracy( Rect dest ) : Text( "0", dest, Top )
+        Accuracy() : Text( "100.00", {Default::WIDTH/2, 0, 50, 60}, Top )
         {
             accuracy = 0;
-            for( unsigned int &acc : accuracyHits ) acc = 0;
+            for( int &acc : accuracyHits ) acc = 0;
         }
 
         float GetAccuracy();

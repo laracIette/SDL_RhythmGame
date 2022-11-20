@@ -3,308 +3,28 @@
 namespace RythmGame::Game::Gameplay
 {
 
-    Map::Map( std::string path )
+    Map::Map( Song *newSong )
     {
-        std::ifstream file( path + "easy.txt" );
-        std::string temp;
-        std::string nTemp;
+        song = newSong;
+        song->FillHitObjects();
 
-        unsigned char nSteps;
-
-        while( getline( file, temp ) )
-        {
-        // quick verification that this is not an empty line
-            if( temp == "" ) continue;
-
-            HitObject *hitObject;
-
-            nSteps = 0;
-            switch( temp[0] - '0' )
-            {
-            case NOTE:
-            {
-                hitObject = new Note();
-
-                for( int i{ 4 }; i < temp.size(); ++i )
-                {
-                    if( (temp[i] != ';') )
-                    {
-                        nTemp += temp[i];
-                    }
-                    else
-                    {
-                        switch( nSteps )
-                        {
-                        case 0:
-                            hitObject->time = std::stoi( nTemp );
-                            break;
-
-                        case 1:
-                            hitObject->isUp = std::stoi( nTemp );
-                            break;
-
-                        default:
-                            break;
-                        }
-                        nTemp.clear();
-                        nSteps++;
-                    }
-                }
-                break;
-            }
-
-            case HOLD:
-            {
-                hitObject = new Hold();
-
-                for( int i{ 4 }; i < temp.size(); ++i )
-                {
-                    if( (temp[i] != ';') )
-                    {
-                        nTemp += temp[i];
-                    }
-                    else
-                    {
-                        switch( nSteps )
-                        {
-                        case 0:
-                            hitObject->time = std::stoi( nTemp );
-                            break;
-
-                        case 1:
-                            hitObject->isUp = std::stoi( nTemp );
-                            break;
-
-                        case 2:
-                            hitObject->endTime = std::stoi( nTemp );
-                            break;
-
-                        default:
-                            break;
-                        }
-                        nTemp.clear();
-                        nSteps++;
-                    }
-                }
-                break;
-            }
-
-            case DOUBLE:
-            {
-                hitObject = new Double();
-
-                for( int i{ 4 }; i < temp.size(); ++i )
-                {
-                    if( (temp[i] != ';') )
-                    {
-                        nTemp += temp[i];
-                    }
-                    else
-                    {
-                        hitObject->time = std::stoi( nTemp );
-
-                        nTemp.clear();
-                    }
-                }
-                break;
-            }
-
-            case MASH:
-            {
-                hitObject = new Mash();
-
-                for( int i{ 4 }; i < temp.size(); ++i )
-                {
-                    if( (temp[i] != ';') )
-                    {
-                        nTemp += temp[i];
-                    }
-                    else
-                    {
-                        switch( nSteps )
-                        {
-                        case 0:
-                            hitObject->time = std::stoi( nTemp );
-                            break;
-
-                        case 1:
-                            hitObject->endTime = std::stoi( nTemp );
-                            break;
-
-                        default:
-                            break;
-                        }
-                        nTemp.clear();
-                        nSteps++;
-                    }
-                }
-                break;
-            }
-
-            case GHOST:
-            {
-                hitObject = new Ghost();
-
-                for( int i{ 4 }; i < temp.size(); ++i )
-                {
-                    if( (temp[i] != ';') )
-                    {
-                        nTemp += temp[i];
-                    }
-                    else
-                    {
-                        switch( nSteps )
-                        {
-                        case 0:
-                            hitObject->time = std::stoi( nTemp );
-                            break;
-
-                        case 1:
-                            hitObject->isUp = std::stoi( nTemp );
-                            break;
-
-                        default:
-                            break;
-                        }
-                        nTemp.clear();
-                        nSteps++;
-                    }
-                }
-                break;
-            }
-
-            case COIN:
-            {
-                hitObject = new Coin();
-
-                for( int i{ 4 }; i < temp.size(); ++i )
-                {
-                    if( (temp[i] != ';') )
-                    {
-                        nTemp += temp[i];
-                    }
-                    else
-                    {
-                        switch( nSteps )
-                        {
-                        case 0:
-                            hitObject->time = std::stoi( nTemp );
-                            break;
-
-                        case 1:
-                            hitObject->isUp = std::stoi( nTemp );
-                            break;
-
-                        default:
-                            break;
-                        }
-                        nTemp.clear();
-                        nSteps++;
-                    }
-                }
-                break;
-            }
-
-            case HAMMER:
-            {
-                hitObject = new Hammer();
-
-                for( int i{ 4 }; i < temp.size(); ++i )
-                {
-                    if( (temp[i] != ';') )
-                    {
-                        nTemp += temp[i];
-                    }
-                    else
-                    {
-                        switch( nSteps )
-                        {
-                        case 0:
-                            hitObject->time = std::stoi( nTemp );
-                            break;
-
-                        case 1:
-                            hitObject->isUp = std::stoi( nTemp );
-                            break;
-
-                        default:
-                            break;
-                        }
-                        nTemp.clear();
-                        nSteps++;
-                    }
-                }
-                break;
-            }
-
-            case CHAINSAW:
-            {
-                hitObject = new Chainsaw();
-
-                for( int i{ 4 }; i < temp.size(); ++i )
-                {
-                    if( (temp[i] != ';') )
-                    {
-                        nTemp += temp[i];
-                    }
-                    else
-                    {
-                        switch( nSteps )
-                        {
-                        case 0:
-                            hitObject->time = std::stoi( nTemp );
-                            break;
-
-                        case 1:
-                            hitObject->isUp = std::stoi( nTemp );
-                            break;
-
-                        default:
-                            break;
-                        }
-                        nTemp.clear();
-                        nSteps++;
-                    }
-                }
-                break;
-            }
-
-            default:
-            /* create error type (maybe) */
-                break;
-            }
-
-            hitObject->type      = temp[0]-'0';
-            hitObject->direction = temp[2]-'0';
-
-            hitObjects.push_back( hitObject );
-        }
-
-        file.close();
-
-        for( HitObject *hitObject : hitObjects )
+        for( HitObject *hitObject : song->GetHitObjects() )
         {
             hitObject->Init();
         }
 
+        song->GetBackground()->SetX( Default::WIDTH/2 );
+        song->GetBackground()->SetY( Default::HEIGHT/2 );
+        song->GetBackground()->SetW( Default::WIDTH );
+        song->GetBackground()->SetH( Default::HEIGHT );
+
         isPaused = true;
 
-        music = new Music( path + "song.mp3" );
+        score    = new Score();
+        combo    = new Combo();
+        accuracy = new Accuracy();
 
-        horizontalForeground = new Image(
-            "assets/Skins/BaseSkin/foreground0.png",
-            {0, 0, 1920, 1080},
-            {(float)WIDTH/2, (float)HEIGHT/2, (float)WIDTH, (float)HEIGHT}
-        );
-        verticalForeground = new Image(
-            "assets/Skins/BaseSkin/foreground1.png",
-            {0, 0, 1920, 1080},
-            {(float)WIDTH/2, (float)HEIGHT/2, (float)WIDTH, (float)HEIGHT}
-        );
-
-        score    = new Score( {(float)WIDTH, 0, 50, 60} );
-        combo    = new Combo( {0, (float)HEIGHT, 50, 60} );
-        accuracy = new Accuracy( {(float)WIDTH/2, 0, 50, 60} );
+        dim = new Dim();
 
     }
 
@@ -322,9 +42,6 @@ namespace RythmGame::Game::Gameplay
         combo->SetCombo( 0 );
 
         highestCombo = 0;
-
-        music->SetVolume( 0 );
-        music->Play();
     }
 
     void Map::Update()
@@ -332,44 +49,44 @@ namespace RythmGame::Game::Gameplay
         if( isPaused ) return;
 
         int j{ 0 };
-        for( int i{ 0 }; i < hitObjects.size(); ++i )
+        for( int i{ 0 }; i < song->GetHitObjects().size(); ++i )
         {
-            hitObjects[j]->Update();
+            song->GetHitObjects()[j]->Update();
 
-            if( (hitObjects[j]->type == CHAINSAW) && hitObjects[j]->IsHit() )
+            if( (song->GetHitObjects()[j]->type == CHAINSAW) && song->GetHitObjects()[j]->IsHit() )
             {
                 combo->SetCombo( 0 );
                 std::cout << "hit" << std::endl;
             }
 
-            tempAcc = hitObjects[j]->GetHitValue();
+            tempAcc = song->GetHitObjects()[j]->GetHitValue();
 
             if( tempAcc == 0 )      score->AddScore( 300 );
             else if( tempAcc == 1 ) score->AddScore( 100 );
             else if( tempAcc == 2 ) score->AddScore( 50 );
 
-            if( (tempAcc >= 0) && (tempAcc <= 3) && (hitObjects[j]->type != COIN) )
+            if( (tempAcc >= 0) && (tempAcc <= 3) && (song->GetHitObjects()[j]->type != COIN) )
             {
                 accuracy->AddValue( tempAcc );
                 combo->AddCombo();
             }
-            else if( (tempAcc == 25) && (hitObjects[j]->type == COIN) )
+            else if( (tempAcc == 25) && (song->GetHitObjects()[j]->type == COIN) )
             {
                 score->AddScore( 25 );
             }
-            else if( (tempAcc == 10) && (hitObjects[j]->type == MASH) )
+            else if( (tempAcc == 10) && (song->GetHitObjects()[j]->type == MASH) )
             {
                 score->AddScore( 10 );
             }
 
-            if( hitObjects[j]->Erase() )
+            if( song->GetHitObjects()[j]->Erase() )
             {
-                if( !hitObjects[j]->IsHit() && (hitObjects[j]->type != COIN) && (hitObjects[j]->type != CHAINSAW) )
+                if( !song->GetHitObjects()[j]->IsHit() && (song->GetHitObjects()[j]->type != COIN) && (song->GetHitObjects()[j]->type != CHAINSAW) )
                 {
                     combo->SetCombo( 0 );
                     accuracy->AddValue( 3 );
                 }
-                hitObjects.erase( hitObjects.begin() + j-- );
+                song->GetHitObjects().erase( song->GetHitObjects().begin() + j-- );
             }
 
             j++;
@@ -383,12 +100,14 @@ namespace RythmGame::Game::Gameplay
 
     void Map::Draw()
     {
-        for( HitObject *hitObject : hitObjects )
+        song->GetBackground()->Draw();
+
+        for( HitObject *hitObject : song->GetHitObjects() )
         {
             hitObject->DrawHitObject();
         }
 
-        (isHorizontal) ? horizontalForeground->Draw() : verticalForeground->Draw();
+        (isHorizontal) ? dim->DrawHorizontalDim() : dim->DrawVerticalDim();
 
         score->Draw();
         combo->Draw();
@@ -402,7 +121,7 @@ namespace RythmGame::Game::Gameplay
             isPaused = true;
             pausedTime = currentTime;
 
-            music->Pause();
+            song->GetMusic()->Pause();
         }
         else
         {
@@ -410,13 +129,13 @@ namespace RythmGame::Game::Gameplay
 
             offsetTime += currentTime - pausedTime;
 
-            music->Resume();
+            song->GetMusic()->Resume();
         }
     }
 
     void Map::Close()
     {
-        music->Close();
+        song->GetMusic()->Close();
     }
 
 }

@@ -4,10 +4,12 @@
 #include <SDL.h>
 
 #include "../../RythmGame.Game/Utils/Point.h"
+#include "../../RythmGame.Game/Events/InputManager.h"
 
 #include "../TextureManager/TextureManager.h"
 
 using namespace RythmGame::Game::Utils;
+using namespace RythmGame::Game::Events;
 
 namespace RythmGame::Graphics
 {
@@ -24,9 +26,13 @@ namespace RythmGame::Graphics
 
     class Image
     {
+        float posX, posY, posW, posH;
         SDL_Texture *tex;
         SDL_Rect src;
+
+    protected:
         Rect dest;
+        bool isHoover;
 
     public:
         Image( std::string path, SDL_Rect src, Rect dest );
@@ -44,6 +50,15 @@ namespace RythmGame::Graphics
         void SetY( float y ) { dest.y = y; }
         void SetW( float w ) { dest.w = w; }
         void SetH( float h ) { dest.h = h; }
+
+        template<typename T>
+        float Resize( T n );
+
+        virtual void Hoover();
+        bool IsHoover();
+
+        bool IsLeftClicked();
+        bool IsRightClicked();
     };
 
 }

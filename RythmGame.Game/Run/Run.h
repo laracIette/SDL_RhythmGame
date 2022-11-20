@@ -1,5 +1,7 @@
 #pragma once
 
+#include <chrono>
+
 #include "../Utils/Point.h"
 #include "../Utils/Time.h"
 #include "../Utils/Metrics.h"
@@ -10,6 +12,9 @@
 #include "../Gameplay/Player/Player.h"
 #include "../Gameplay/Map/Map.h"
 
+#include "../Menu/StartScreen/Screen/Screen.h"
+#include "../Menu/MapSelection/Screen/Screen.h"
+
 #include "../../RythmGame.Framework/Window/Window.h"
 #include "../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
 
@@ -18,21 +23,29 @@ using namespace RythmGame::Game::Events;
 using namespace RythmGame::Game::Gameplay;
 using namespace RythmGame::Framework;
 using namespace RythmGame::Sound;
+using namespace RythmGame::Game::Menu;
 
 
 namespace RythmGame::Game
 {
 
+    enum GameStates {
+        STARTSCREEN = 0,
+        MAPSELECTION,
+        GAMEPLAY
+    };
+
     class Run
     {
         bool isRunning;
 
-        unsigned int lastFrameTime;
-
         Player *player;
         Map *map;
 
-        bool isStarted;
+        StartScreen::Screen *startScreen;
+        MapSelection::Screen *mapSelectionScreen;
+
+        int gameState;
 
     public:
         Run();

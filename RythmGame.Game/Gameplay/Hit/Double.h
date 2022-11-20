@@ -9,14 +9,14 @@ namespace RythmGame::Game::Gameplay::Hit
     class Double : public HitObject
     {
         bool isUpPressed, isDownPressed;
-        unsigned int upPressedTime, downPressedTime;
+        std::chrono::high_resolution_clock::time_point upPressedTime, downPressedTime;
 
     public:
         Double()
         : HitObject(
             "assets/Skins/BaseSkin/HitObjects/Doubles",
             {0, 0, 50, 150},
-            {0, 0, 50, 50}
+            {0, 0, 100, 100}
         )
         {}
 
@@ -25,7 +25,7 @@ namespace RythmGame::Game::Gameplay::Hit
             isUpPressed = false;
             isDownPressed = false;
 
-            (IsHitObjectHorizontal()) ? SetH( 150 ) : SetW( 150 );
+            (IsHitObjectHorizontal()) ? SetH( 300 ) : SetW( 300 );
             endTime = time;
         }
 
@@ -54,8 +54,8 @@ namespace RythmGame::Game::Gameplay::Hit
             if( isUpPressed && isDownPressed )
             {
                 difference = highest(
-                    abs( (int)upPressedTime   - (int)offsetTime - (int)time ),
-                    abs( (int)downPressedTime - (int)offsetTime - (int)time )
+                    getDuration<Milliseconds>(upPressedTime,   offsetTime) - time,
+                    getDuration<Milliseconds>(downPressedTime, offsetTime) - time
                 );
                 return 1;
             }

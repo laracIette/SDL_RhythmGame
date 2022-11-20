@@ -12,7 +12,7 @@ namespace RythmGame::Game::Events
     {
         static const int BUTTONS{ 3 };
 
-        unsigned char buttonCode[BUTTONS]{
+        char buttonCode[BUTTONS]{
             SDL_BUTTON_LEFT,
             SDL_BUTTON_RIGHT,
             SDL_BUTTON_MIDDLE

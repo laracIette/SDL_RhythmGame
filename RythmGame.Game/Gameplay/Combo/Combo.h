@@ -14,17 +14,17 @@ namespace RythmGame::Game::Gameplay
 
     class Combo : public Text
     {
-        unsigned int combo;
+        int combo;
 
     public:
-        Combo( Rect dest ) : Text( "0", dest, BottomLeft )
+        Combo() : Text( "0", {0, Default::HEIGHT, 50, 60}, BottomLeft )
         {
             combo = 0;
         }
 
-        unsigned int GetCombo();
-        void SetCombo( unsigned int combo );
-        void AddCombo( unsigned int combo = 1 );
+        int GetCombo();
+        void SetCombo( int combo );
+        void AddCombo( int combo = 1 );
     };
 
 }
