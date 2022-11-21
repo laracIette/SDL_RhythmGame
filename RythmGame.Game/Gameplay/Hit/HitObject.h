@@ -12,10 +12,13 @@
 #include "../../../RythmGame.Graphics/Animation/Animation.h"
 #include "../../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
 
+#include "../../../RythmGame.Framework/Window/Window.h"
+
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game::Events;
 using namespace RythmGame::Graphics;
 using namespace RythmGame::Sound;
+using namespace RythmGame::Framework;
 
 
 namespace RythmGame::Game::Gameplay::Hit

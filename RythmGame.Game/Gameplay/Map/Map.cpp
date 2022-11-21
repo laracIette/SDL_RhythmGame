@@ -3,8 +3,27 @@
 namespace RythmGame::Game::Gameplay
 {
 
-    Map::Map( Song *newSong )
+    Map::Map()
     {
+        isPaused = true;
+
+        score    = new Score();
+        combo    = new Combo();
+        accuracy = new Accuracy();
+
+        dim = new Dim();
+
+        isInit = false;
+    }
+
+    Map::~Map()
+    {
+    }
+
+    void Map::Init( Song *newSong )
+    {
+        isInit = true;
+
         song = newSong;
         song->FillHitObjects();
 
@@ -17,19 +36,6 @@ namespace RythmGame::Game::Gameplay
         song->GetBackground()->SetY( 1080/2 );
         song->GetBackground()->SetW( 1920 );
         song->GetBackground()->SetH( 1080 );
-
-        isPaused = true;
-
-        score    = new Score();
-        combo    = new Combo();
-        accuracy = new Accuracy();
-
-        dim = new Dim();
-
-    }
-
-    Map::~Map()
-    {
     }
 
     void Map::Start()
@@ -42,6 +48,9 @@ namespace RythmGame::Game::Gameplay
         combo->SetCombo( 0 );
 
         highestCombo = 0;
+
+        song->GetMusic()->SetVolume( 1 );
+        song->GetMusic()->Play();
     }
 
     void Map::Update()
@@ -135,7 +144,10 @@ namespace RythmGame::Game::Gameplay
 
     void Map::Close()
     {
-        song->GetMusic()->Close();
+        if( isInit )
+        {
+            song->GetMusic()->Close();
+        }
     }
 
 }

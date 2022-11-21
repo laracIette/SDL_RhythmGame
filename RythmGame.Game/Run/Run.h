@@ -1,6 +1,7 @@
 #pragma once
 
 #include <chrono>
+#include <SDL_ttf.h>
 
 #include "../Utils/Point.h"
 #include "../Utils/Time.h"
@@ -18,12 +19,14 @@
 #include "../../RythmGame.Framework/Window/Window.h"
 #include "../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
 
+#include "../Settings/Window/Window.h"
+
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game::Events;
 using namespace RythmGame::Game::Gameplay;
+using namespace RythmGame::Game::Menu;
 using namespace RythmGame::Framework;
 using namespace RythmGame::Sound;
-using namespace RythmGame::Game::Menu;
 
 
 namespace RythmGame::Game
@@ -44,6 +47,9 @@ namespace RythmGame::Game
 
         StartScreen::Screen *startScreen;
         MapSelection::Screen *mapSelectionScreen;
+
+        Settings::Window *settingsWindow;
+        bool isSettings;
 
         int gameState;
 

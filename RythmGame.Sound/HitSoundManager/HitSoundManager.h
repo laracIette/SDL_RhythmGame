@@ -31,5 +31,5 @@ namespace RythmGame::Sound
         void Close();
     };
 
+    extern HitSoundManager *hitSoundManager;
 }
-extern RythmGame::Sound::HitSoundManager *hitSoundManager;

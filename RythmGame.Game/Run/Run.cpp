@@ -2,15 +2,17 @@
 
 std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::offsetTime;
 
-long RythmGame::Game::Utils::deltaTime;
-
+long  RythmGame::Game::Utils::deltaTime;
 float RythmGame::Game::Utils::velocity;
 bool  RythmGame::Game::Utils::isHorizontal;
 
-Window *window;
+TTF_Font *RythmGame::Game::Utils::police;
 
-InputManager inputManager;
-HitSoundManager *hitSoundManager;
+Window *RythmGame::Framework::window;
+
+InputManager RythmGame::Game::Events::inputManager;
+
+HitSoundManager *RythmGame::Sound::hitSoundManager;
 
 
 namespace RythmGame::Game
@@ -34,6 +36,13 @@ namespace RythmGame::Game
 
         startScreen = new StartScreen::Screen();
         mapSelectionScreen = new MapSelection::Screen();
+
+        police = TTF_OpenFont( "assets/Fonts/Ronysiswadi9Bold.ttf", 18 );
+
+        settingsWindow = new Settings::Window();
+        isSettings = false;
+
+        map = new Map();
     }
 
     Run::~Run()
@@ -62,18 +71,16 @@ namespace RythmGame::Game
                 gameState = MAPSELECTION;
             }
         }
-
         if( gameState == MAPSELECTION )
         {
             Song *tempSong{ mapSelectionScreen->Update() };
             if( tempSong )
             {
-                map = new Map( tempSong );
+                map->Init( tempSong );
                 map->Start();
                 gameState = GAMEPLAY;
             }
         }
-
         if( gameState == GAMEPLAY )
         {
             if( inputManager.PressedNoLock( inputManager.keyboard.Escape ) )
@@ -84,6 +91,13 @@ namespace RythmGame::Game
 
             player->Input();
             map->Update();
+        }
+
+        if( inputManager.PressedNoLock( inputManager.keyboard.S ) )
+        {
+            inputManager.SetKeyLock( inputManager.keyboard.S, true );
+
+            isSettings = (isSettings) ? false : true;
         }
 
         hitSoundManager->Update();
@@ -107,12 +121,17 @@ namespace RythmGame::Game
             break;
 
         case GAMEPLAY:
-            player->Draw();
             map->Draw();
+            player->Draw();
             break;
 
         default:
             break;
+        }
+
+        if( isSettings )
+        {
+            settingsWindow->Draw();
         }
 
         SDL_RenderPresent( window->renderer );
@@ -122,6 +141,8 @@ namespace RythmGame::Game
     {
         SDL_DestroyWindow( window->window );
         SDL_DestroyRenderer( window->renderer );
+        TTF_CloseFont( police );
+        TTF_Quit();
         map->Close();
         hitSoundManager->Close();
         Mix_CloseAudio();

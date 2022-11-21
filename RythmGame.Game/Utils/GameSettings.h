@@ -1,13 +1,16 @@
 #pragma once
 
+#include <SDL_ttf.h>
+
+#define White (RGB){255, 255, 255}
+#define Black (RGB){  0,   0,   0}
+#define Red   (RGB){255,   0, 255}
+#define Green (RGB){  0, 255,   0}
+#define Blue  (RGB){  0,   0, 255}
+
 
 namespace RythmGame::Game::Utils
 {
-    #define White (RGB){255, 255, 255}
-    #define Black (RGB){  0,   0,   0}
-    #define Red   (RGB){255,   0, 255}
-    #define Green (RGB){  0, 255,   0}
-    #define Blue  (RGB){  0,   0, 255}
 
     struct RGB
     {
@@ -47,4 +50,5 @@ namespace RythmGame::Game::Utils
         return ret;
     }
 
+    extern TTF_Font *police;
 }

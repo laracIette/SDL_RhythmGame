@@ -17,6 +17,11 @@ namespace RythmGame::Framework
         }
         Mix_AllocateChannels( 256 );
 
+        if(TTF_Init() == -1)
+        {
+            SDL_Log("Erreur d'initialisation de TTF_Init : %s\n", TTF_GetError());
+        }
+
     }
 
     Window::~Window()

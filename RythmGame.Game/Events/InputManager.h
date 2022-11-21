@@ -137,5 +137,6 @@ namespace RythmGame::Game::Events
         bool Right2PressedNoLock() { return (Right2Pressed() && !Right2Lock()); }
     };
 
+    extern InputManager inputManager;
+
 }
-extern RythmGame::Game::Events::InputManager inputManager;

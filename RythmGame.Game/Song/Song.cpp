@@ -18,9 +18,6 @@ namespace RythmGame::Game
         );
 
         music = new Music( path + "/song.mp3" );
-
-        music->SetVolume( 1 );
-        music->Play();
     }
 
     Song::~Song()

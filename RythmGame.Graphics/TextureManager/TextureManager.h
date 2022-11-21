@@ -6,6 +6,7 @@
 
 #include "../../RythmGame.Framework/Window/Window.h"
 
+using namespace RythmGame::Framework;
 
 namespace RythmGame::Graphics
 {

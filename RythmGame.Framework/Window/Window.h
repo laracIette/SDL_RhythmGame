@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include <SDL_mixer.h>
+#include <SDL_ttf.h>
 
 #include "../../RythmGame.Game/Utils/Metrics.h"
 
@@ -21,6 +22,6 @@ namespace RythmGame::Framework
         SDL_Renderer *renderer;
     };
 
-}
+    extern Window *window;
 
-extern RythmGame::Framework::Window *window;
+}
