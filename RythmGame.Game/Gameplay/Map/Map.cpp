@@ -13,10 +13,10 @@ namespace RythmGame::Game::Gameplay
             hitObject->Init();
         }
 
-        song->GetBackground()->SetX( Default::WIDTH/2 );
-        song->GetBackground()->SetY( Default::HEIGHT/2 );
-        song->GetBackground()->SetW( Default::WIDTH );
-        song->GetBackground()->SetH( Default::HEIGHT );
+        song->GetBackground()->SetX( 1920/2 );
+        song->GetBackground()->SetY( 1080/2 );
+        song->GetBackground()->SetW( 1920 );
+        song->GetBackground()->SetH( 1080 );
 
         isPaused = true;
 

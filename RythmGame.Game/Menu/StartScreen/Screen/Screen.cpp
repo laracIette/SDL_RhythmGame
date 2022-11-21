@@ -10,10 +10,9 @@ namespace RythmGame::Game::Menu::StartScreen
         buttons[Download] = new DownloadButton();
         buttons[Settings] = new SettingsButton();
 
-        background = new Image(
+        background = new Background(
             "assets/Skins/BaseSkin/Menu/StartScreen/background.png",
-            {0, 0, 1920, 1080},
-            {Default::WIDTH/2, Default::HEIGHT/2, Default::WIDTH, Default::HEIGHT}
+            {0, 0, 1920, 1080}
         );
     }
 

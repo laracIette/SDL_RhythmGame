@@ -45,7 +45,7 @@ namespace RythmGame::Game::Menu::StartScreen::Button
          : Image(
             path,
             {0, 0, 240, 240},
-            {Default::WIDTH/2, Default::HEIGHT/2, 240, 240}
+            {1920/2, 1080/2, 240, 240}
         )
         {
             this->path = path;

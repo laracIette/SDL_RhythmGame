@@ -4,7 +4,7 @@
 
 #include "../../RythmGame.Framework/File/File.h"
 
-#include "../../RythmGame.Graphics/Image/Image.h"
+#include "../../RythmGame.Graphics/Background.h"
 
 #include "../../RythmGame.Sound/Music/Music.h"
 
@@ -39,7 +39,7 @@ namespace RythmGame::Game
 
         float level;
 
-        Image *background;
+        Background *background;
 
         std::vector<HitObject *> hitObjects;
 

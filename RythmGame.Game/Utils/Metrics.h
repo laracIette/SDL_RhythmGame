@@ -5,12 +5,6 @@
 namespace RythmGame::Game::Utils
 {
 
-    namespace Default
-    {
-        static const int WIDTH{ 1920 };
-        static const int HEIGHT{ 1080 };
-    }
-
     extern int WIDTH;
     extern int HEIGHT;
 

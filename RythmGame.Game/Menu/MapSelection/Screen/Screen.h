@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-#include "../../../../RythmGame.Graphics/Image/Image.h"
+#include "../../../../RythmGame.Graphics/Background.h"
 #include "../SongTile/SongTile.h"
 
 using namespace RythmGame::Graphics;
@@ -14,7 +14,7 @@ namespace RythmGame::Game::Menu::MapSelection
 
     class Screen
     {
-        Image *background;
+        Background *background;
         std::vector<SongTile *> songs;
 
     public:

@@ -125,7 +125,7 @@ namespace RythmGame::Game::Gameplay::Hit
 
         float getHitObjectOffsetHeight()
         {
-            return (isUp) ? -Default::HEIGHT/10 : Default::HEIGHT/10;
+            return (isUp) ? -1080/10 : 1080/10;
         }
 
 
@@ -138,23 +138,23 @@ namespace RythmGame::Game::Gameplay::Hit
             switch( direction )
             {
             case LEFT:
-                SetX( Default::WIDTH/2 - (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + xOffset );
-                SetY( Default::HEIGHT/2 + yOffset );
+                SetX( 1920/2 - (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + xOffset );
+                SetY( 1080/2 + yOffset );
                 break;
 
             case RIGHT:
-                SetX( Default::WIDTH/2 + (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + xOffset );
-                SetY( Default::HEIGHT/2 + yOffset );
+                SetX( 1920/2 + (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + xOffset );
+                SetY( 1080/2 + yOffset );
                 break;
 
             case UP:
-                SetX( Default::WIDTH/2 + xOffset );
-                SetY( Default::HEIGHT/2 - (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + yOffset );
+                SetX( 1920/2 + xOffset );
+                SetY( 1080/2 - (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + yOffset );
                 break;
 
             case DOWN:
-                SetX( Default::WIDTH/2 + xOffset );
-                SetY( Default::HEIGHT/2 + (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + yOffset );
+                SetX( 1920/2 + xOffset );
+                SetY( 1080/2 + (float)(time + getDuration<Milliseconds>(offsetTime, currentTime))*velocity + yOffset );
                 break;
 
             default:

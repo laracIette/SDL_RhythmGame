@@ -7,7 +7,7 @@
 
 #include "../../../Utils/GameSettings.h"
 
-#include "../../../../RythmGame.Graphics/Image/Image.h"
+#include "../../../../RythmGame.Graphics/Background.h"
 
 using namespace RythmGame::Game::Menu::StartScreen::Button;
 using namespace RythmGame::Graphics;
@@ -21,7 +21,7 @@ namespace RythmGame::Game::Menu::StartScreen
     {
         ButtonTemplate *buttons[3];
         PlayButton *playButton;
-        Image *background;
+        Background *background;
 
     public:
         Screen();
