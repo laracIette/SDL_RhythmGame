@@ -84,7 +84,7 @@ namespace RythmGame::Game::Gameplay::Hit
     /*
         HitObject inherits from Animation
     */
-        HitObject( std::string path, SDL_Rect src, Rect dest ) : Animation( path, src, dest )
+        HitObject( std::string path, Rect dest ) : Animation( path, dest )
         {
             isHit            = false;
             isShown          = false;

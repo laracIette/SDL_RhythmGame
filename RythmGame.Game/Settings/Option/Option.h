@@ -23,6 +23,8 @@ namespace RythmGame::Game::Settings
         Option( const char *text );
         ~Option();
 
+        void Update();
+
         void Draw();
     };
 

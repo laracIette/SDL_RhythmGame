@@ -3,7 +3,7 @@
 namespace RythmGame::Graphics
 {
 
-    Animation::Animation( std::string path, SDL_Rect src, Rect dest )
+    Animation::Animation( std::string path, Rect dest )
     {
         for( const auto &entry : std::filesystem::directory_iterator( path ) )
         {
@@ -12,7 +12,6 @@ namespace RythmGame::Graphics
                 images.push_back(
                     new Image(
                         entry.path(),
-                        src,
                         dest
                     )
                 );

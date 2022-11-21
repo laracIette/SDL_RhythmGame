@@ -13,8 +13,7 @@ namespace RythmGame::Game
         level      = std::stof( songFile->GetSingleElements()["Level"] );
 
         background = new Background(
-            path + "/background.png",
-            {0, 0, 1920, 1080}
+            path + "/background.png"
         );
 
         music = new Music( path + "/song.mp3" );

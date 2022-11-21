@@ -6,8 +6,7 @@ namespace RythmGame::Game::Menu::MapSelection
     Screen::Screen()
     {
         background = new Background(
-            "assets/Skins/BaseSkin/Menu/MapSelection/background.png",
-            {0, 0, 1920, 1080}
+            "assets/Skins/BaseSkin/Menu/MapSelection/background.png"
         );
 
         for( const auto &entry : std::filesystem::directory_iterator( "assets/Maps" ) )

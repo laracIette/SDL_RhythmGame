@@ -2,10 +2,9 @@
 
 namespace RythmGame::Graphics
 {
-    Image::Image( std::string path, SDL_Rect src, Rect dest )
+    Image::Image( std::string path, Rect dest )
     {
         tex = TextureManager::LoadTexture( const_cast<char *>( path.c_str() ) );
-        this->src = src;
         this->dest = dest;
 
         posX = 0;
@@ -31,7 +30,6 @@ namespace RythmGame::Graphics
 
         TextureManager::DrawTexture(
             tex,
-            src,
             {(int)posX, (int)posY, (int)posW, (int)posH}
         );
     }

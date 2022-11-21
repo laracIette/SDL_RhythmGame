@@ -15,11 +15,12 @@ namespace RythmGame::Game::Gameplay::Hit
         bool isHitted;
 
     public:
-
+    /*
+        Mash inherits from HitObject
+    */
         Mash()
         : HitObject(
             "assets/Skins/BaseSkin/HitObjects/Mashs",
-            {0, 0, 150, 150},
             {0, 0, 300, 300}
         )
         {}

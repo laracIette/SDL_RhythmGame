@@ -17,9 +17,9 @@ namespace RythmGame::Graphics
         return tex;
     }
 
-    void TextureManager::DrawTexture( SDL_Texture *tex, SDL_Rect src, SDL_Rect dest )
+    void TextureManager::DrawTexture( SDL_Texture *tex, SDL_Rect dest )
     {
-        SDL_RenderCopy( window->renderer, tex, &src, &dest );
+        SDL_RenderCopy( window->renderer, tex, NULL, &dest );
     }
 
 }

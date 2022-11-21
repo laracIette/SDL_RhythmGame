@@ -9,20 +9,24 @@ namespace RythmGame::Game::Settings
         textTexture = SDL_CreateTextureFromSurface( window->renderer, tempSurface );
         if( !textTexture )
         {
-            std::cout << "error creating text texture '" << text << "'" << SDL_GetError();
+            std::cout << "error creating text texture '" << text << "'" << SDL_GetError() << std::endl;
         }
         SDL_FreeSurface( tempSurface );
 
-        dest = {0, 0, 100, 300};
     }
 
     Option::~Option()
     {
     }
 
+    void Option::Update()
+    {
+        dest = {0, 0, 100, 300};
+    }
+
     void Option::Draw()
     {
-        SDL_RenderCopy( window->renderer, textTexture, NULL, NULL );
+        SDL_RenderCopy( window->renderer, textTexture, NULL, &dest );
     }
 
 }

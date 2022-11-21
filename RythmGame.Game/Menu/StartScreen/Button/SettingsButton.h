@@ -9,6 +9,9 @@ namespace RythmGame::Game::Menu::StartScreen::Button
     {
 
     public:
+    /*
+        SettingsButton inherits from ButtonTemplate
+    */
         SettingsButton() : ButtonTemplate(
             "assets/Skins/BaseSkin/Menu/StartScreen/SettingsButton.png",
             TopRight

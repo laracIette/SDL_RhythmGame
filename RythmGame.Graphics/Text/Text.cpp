@@ -13,14 +13,12 @@ namespace RythmGame::Graphics
             std::string character{ characters[i] };
             images[i] = new Image(
                 "assets/Skins/BaseSkin/Characters/" + character + ".png",
-                {0, 0, 50, 60},
                 {0, 0, 50, 60}
             );
         }
 
         images[36] = new Image(
             "assets/Skins/BaseSkin/Characters/point.png",
-            {0, 0, 50, 60},
             {0, 0, 50, 60}
         );
 

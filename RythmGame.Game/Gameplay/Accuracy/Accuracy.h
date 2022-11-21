@@ -18,6 +18,9 @@ namespace RythmGame::Game::Gameplay
         float accuracy;
 
     public:
+    /*
+        Accuracy inherits from Text
+    */
         Accuracy() : Text( "100.00", {1920/2, 0, 50, 60}, Top )
         {
             accuracy = 0;

@@ -30,14 +30,13 @@ namespace RythmGame::Graphics
     {
         float posX, posY, posW, posH;
         SDL_Texture *tex;
-        SDL_Rect src;
 
     protected:
         Rect dest;
         bool isHoover;
 
     public:
-        Image( std::string path, SDL_Rect src, Rect dest );
+        Image( std::string path, Rect dest );
         ~Image();
 
         void Draw();

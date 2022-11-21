@@ -16,10 +16,12 @@ namespace RythmGame::Graphics
     {
 
     public:
-        Background( std::string path, SDL_Rect src )
+    /*
+        Backgorund inherits from Image
+    */
+        Background( std::string path )
          : Image(
             path,
-            src,
             {1920/2, 1080/2, 1920, 1080} )
         {}
     };

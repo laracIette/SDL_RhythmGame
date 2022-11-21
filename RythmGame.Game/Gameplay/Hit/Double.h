@@ -12,10 +12,12 @@ namespace RythmGame::Game::Gameplay::Hit
         std::chrono::high_resolution_clock::time_point upPressedTime, downPressedTime;
 
     public:
+    /*
+        Double inherits from HitObject
+    */
         Double()
         : HitObject(
             "assets/Skins/BaseSkin/HitObjects/Doubles",
-            {0, 0, 50, 150},
             {0, 0, 100, 100}
         )
         {}

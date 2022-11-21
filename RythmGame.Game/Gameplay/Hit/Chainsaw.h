@@ -11,10 +11,12 @@ namespace RythmGame::Game::Gameplay::Hit
         bool isHitLock;
 
     public:
+    /*
+        Chainsaw inherits from HitObject
+    */
         Chainsaw()
         : HitObject(
             "assets/Skins/BaseSkin/HitObjects/Chainsaws",
-            {0, 0, 2048, 2048},
             {0, 0, 135, 135}
         )
         {}
