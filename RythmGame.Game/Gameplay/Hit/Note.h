@@ -16,7 +16,7 @@ namespace RythmGame::Game::Gameplay::Hit
         Note()
         : HitObject(
             "assets/Skins/BaseSkin/HitObjects/Notes",
-            {0, 0, 100, 100}
+            getRectPointer(0, 0, 100, 100)
         )
         {}
 

@@ -3,7 +3,7 @@
 namespace RythmGame::Graphics
 {
 
-    Animation::Animation( std::string path, Rect dest )
+    Animation::Animation( std::string path, GPU_Rect *dest )
     {
         for( const auto &entry : std::filesystem::directory_iterator( path ) )
         {

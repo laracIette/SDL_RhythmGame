@@ -84,7 +84,7 @@ namespace RythmGame::Game::Gameplay::Hit
     /*
         HitObject inherits from Animation
     */
-        HitObject( std::string path, Rect dest ) : Animation( path, dest )
+        HitObject( std::string path, GPU_Rect *dest ) : Animation( path, dest )
         {
             isHit            = false;
             isShown          = false;
@@ -92,20 +92,6 @@ namespace RythmGame::Game::Gameplay::Hit
 
             xOffset = 0;
             yOffset = 0;
-        }
-
-        void DrawHit( float x, float y )
-        {
-            SDL_SetRenderDrawColor( window->renderer, 255, 255, 255, 255 );
-
-            for( float x2{ x - 50 }; x2 < (x + 50); ++x2 )
-            {
-                SDL_RenderDrawPoint( window->renderer, x2, y );
-            }
-            for( float y2{ y - 50 }; y2 < (y + 50); ++y2 )
-            {
-                SDL_RenderDrawPoint( window->renderer, x, y2 );
-            }
         }
 
         bool IsHitObjectHorizontal()
@@ -266,8 +252,6 @@ namespace RythmGame::Game::Gameplay::Hit
         virtual void DrawHitObject()
         {
             if( isShown ) Draw();
-
-            DrawHit( X()-xOffset, Y()-yOffset );
         }
 
     /*

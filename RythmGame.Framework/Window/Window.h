@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
+#include <SDL_gpu.h>
 
 #include "../../RythmGame.Game/Utils/Metrics.h"
 
@@ -18,8 +19,7 @@ namespace RythmGame::Framework
         Window();
         ~Window();
 
-        SDL_Window *window;
-        SDL_Renderer *renderer;
+        GPU_Target *renderer;
     };
 
     extern Window *window;

@@ -2,6 +2,8 @@
 
 #include "../../Utils/Metrics.h"
 #include "../../Utils/GameSettings.h"
+#include "../../Utils/Point.h"
+
 #include "../../Events/InputManager.h"
 
 #include "../../../RythmGame.Graphics/Image/Image.h"

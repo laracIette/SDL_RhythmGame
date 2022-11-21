@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SDL_gpu.h>
+
 namespace RythmGame::Game::Utils
 {
     template<typename T>
@@ -8,9 +10,9 @@ namespace RythmGame::Game::Utils
         T x, y;
     };
 
-    struct Rect
+    static GPU_Rect *getRectPointer( float x, float y, float w, float h )
     {
-        float x, y, w, h;
-    };
+        return new GPU_Rect({ x, y, w, h });
+    }
 
 }

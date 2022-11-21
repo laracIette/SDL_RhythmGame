@@ -15,7 +15,7 @@ namespace RythmGame::Game::Gameplay::Hit
         Hammer()
         : HitObject(
             "assets/Skins/BaseSkin/HitObjects/Hammers",
-            {0, 0, 100, 100}
+            getRectPointer(0, 0, 100, 100)
         )
         {}
 

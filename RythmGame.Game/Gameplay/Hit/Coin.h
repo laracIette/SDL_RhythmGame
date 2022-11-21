@@ -15,7 +15,7 @@ namespace RythmGame::Game::Gameplay::Hit
         Coin()
         : HitObject(
             "assets/Skins/BaseSkin/HitObjects/Coins",
-            {0, 0, 50, 50}
+            getRectPointer(0, 0, 50, 50)
         )
         {}
 

@@ -20,7 +20,7 @@ namespace RythmGame::Game::Gameplay
     /*
         Score inherits from Text
     */
-        Score() : Text( "0", {1920, 0, 50, 60}, TopRight )
+        Score() : Text( "0", getRectPointer(1920, 0, 50, 60), TopRight )
         {
             score = 0;
         }

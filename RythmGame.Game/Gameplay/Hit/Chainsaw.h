@@ -17,7 +17,7 @@ namespace RythmGame::Game::Gameplay::Hit
         Chainsaw()
         : HitObject(
             "assets/Skins/BaseSkin/HitObjects/Chainsaws",
-            {0, 0, 135, 135}
+            getRectPointer(0, 0, 135, 135)
         )
         {}
 

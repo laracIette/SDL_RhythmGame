@@ -2,6 +2,7 @@
 
 #include <string>
 #include <SDL.h>
+#include <SDL_gpu.h>
 
 #include "../../RythmGame.Game/Utils/Point.h"
 #include "../../RythmGame.Game/Events/InputManager.h"
@@ -29,28 +30,28 @@ namespace RythmGame::Graphics
     class Image
     {
         float posX, posY, posW, posH;
-        SDL_Texture *tex;
+        GPU_Image *tex;
 
     protected:
-        Rect dest;
+        GPU_Rect *dest;
         bool isHoover;
 
     public:
-        Image( std::string path, Rect dest );
+        Image( std::string path, GPU_Rect *dest );
         ~Image();
 
         void Draw();
-        void Draw( Rect dest );
+        void Draw( GPU_Rect *dest );
 
-        float X() { return dest.x; }
-        float Y() { return dest.y; }
-        float W() { return dest.w; }
-        float H() { return dest.h; }
+        float X() { return dest->x; }
+        float Y() { return dest->y; }
+        float W() { return dest->w; }
+        float H() { return dest->h; }
 
-        void SetX( float x ) { dest.x = x; }
-        void SetY( float y ) { dest.y = y; }
-        void SetW( float w ) { dest.w = w; }
-        void SetH( float h ) { dest.h = h; }
+        void SetX( float x ) { dest->x = x; }
+        void SetY( float y ) { dest->y = y; }
+        void SetW( float w ) { dest->w = w; }
+        void SetH( float h ) { dest->h = h; }
 
         template<typename T>
         float Resize( T n );

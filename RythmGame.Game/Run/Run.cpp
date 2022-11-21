@@ -112,9 +112,7 @@ namespace RythmGame::Game
 
     void Run::Render()
     {
-        SDL_SetRenderDrawColor( window->renderer, 48, 48, 48, 255 );
-        SDL_RenderClear( window->renderer );
-
+        GPU_Clear( window->renderer );
 
         switch( gameState )
         {
@@ -140,13 +138,11 @@ namespace RythmGame::Game
             settingsWindow->Draw();
         }
 
-        SDL_RenderPresent( window->renderer );
+        GPU_Flip( window->renderer );
     }
 
     void Run::Clear()
     {
-        SDL_DestroyWindow( window->window );
-        SDL_DestroyRenderer( window->renderer );
         TTF_CloseFont( optionFont );
         TTF_Quit();
         map->Close();

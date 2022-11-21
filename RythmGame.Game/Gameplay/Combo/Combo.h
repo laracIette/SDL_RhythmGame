@@ -20,7 +20,7 @@ namespace RythmGame::Game::Gameplay
     /*
         Combo inherits from Text
     */
-        Combo() : Text( "0", {0, 1080, 50, 60}, BottomLeft )
+        Combo() : Text( "0", getRectPointer(0, 1080, 50, 60), BottomLeft )
         {
             combo = 0;
         }

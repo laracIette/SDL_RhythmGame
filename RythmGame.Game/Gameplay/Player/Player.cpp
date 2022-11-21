@@ -9,7 +9,7 @@ namespace RythmGame::Game::Gameplay
         {
             images[i] = new Image(
                 "assets/Skins/BaseSkin/Player/Player" + std::to_string( i ) + ".png",
-                {1920/2, 1080/2, 120, 120}
+                getRectPointer(1920/2, 1080/2, 120, 120)
             );
         }
     }

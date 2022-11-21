@@ -4,6 +4,7 @@
 #include "../../../../RythmGame.Graphics/TextureManager/TextureManager.h"
 #include "../../../Events/InputManager.h"
 #include "../../../Utils/Time.h"
+#include "../../../Utils/Point.h"
 
 using namespace RythmGame::Graphics;
 using namespace RythmGame::Game::Events;
@@ -47,15 +48,15 @@ namespace RythmGame::Game::Menu::StartScreen::Button
         ButtonTemplate( std::string path, int position )
          : Image(
             path,
-            {1920/2, 1080/2, 240, 240}
+            getRectPointer(1920/2, 1080/2, 240, 240)
         )
         {
             this->path = path;
             this->position = position;
             zoom = 1.0f;
 
-            posX = dest.x;
-            posY = dest.y;
+            posX = dest->x;
+            posY = dest->y;
 
             isHoover = false;
         }
@@ -70,32 +71,32 @@ namespace RythmGame::Game::Menu::StartScreen::Button
             switch( position )
             {
             case TopLeft:
-                if( (inputManager.mouse.pos.x > Resize( dest.x )) && (inputManager.mouse.pos.x < Resize( dest.x + dest.w*zoom ))
-                 && (inputManager.mouse.pos.y > Resize( dest.y )) && (inputManager.mouse.pos.y < Resize( dest.y + dest.h*zoom )) )
+                if( (inputManager.mouse.pos.x > Resize( dest->x )) && (inputManager.mouse.pos.x < Resize( dest->x + dest->w*zoom ))
+                 && (inputManager.mouse.pos.y > Resize( dest->y )) && (inputManager.mouse.pos.y < Resize( dest->y + dest->h*zoom )) )
                 {
                     isHoover = true;
                 }
                 break;
 
             case TopRight:
-                if( (inputManager.mouse.pos.x > Resize( dest.x - dest.w*zoom )) && (inputManager.mouse.pos.x < Resize( dest.x ))
-                 && (inputManager.mouse.pos.y > Resize( dest.y )) && (inputManager.mouse.pos.y < Resize( dest.y + dest.h*zoom )) )
+                if( (inputManager.mouse.pos.x > Resize( dest->x - dest->w*zoom )) && (inputManager.mouse.pos.x < Resize( dest->x ))
+                 && (inputManager.mouse.pos.y > Resize( dest->y )) && (inputManager.mouse.pos.y < Resize( dest->y + dest->h*zoom )) )
                 {
                     isHoover = true;
                 }
                 break;
 
             case BottomLeft:
-                if( (inputManager.mouse.pos.x > Resize( dest.x )) && (inputManager.mouse.pos.x < Resize( dest.x + dest.w*zoom ))
-                 && (inputManager.mouse.pos.y > Resize( dest.y - dest.h*zoom )) && (inputManager.mouse.pos.y < Resize( dest.y )) )
+                if( (inputManager.mouse.pos.x > Resize( dest->x )) && (inputManager.mouse.pos.x < Resize( dest->x + dest->w*zoom ))
+                 && (inputManager.mouse.pos.y > Resize( dest->y - dest->h*zoom )) && (inputManager.mouse.pos.y < Resize( dest->y )) )
                 {
                     isHoover = true;
                 }
                 break;
 
             case BottomRight:
-                if( (inputManager.mouse.pos.x > Resize( dest.x - dest.w*zoom )) && (inputManager.mouse.pos.x < Resize( dest.x ))
-                 && (inputManager.mouse.pos.y > Resize( dest.y - dest.h*zoom )) && (inputManager.mouse.pos.y < Resize( dest.y )) )
+                if( (inputManager.mouse.pos.x > Resize( dest->x - dest->w*zoom )) && (inputManager.mouse.pos.x < Resize( dest->x ))
+                 && (inputManager.mouse.pos.y > Resize( dest->y - dest->h*zoom )) && (inputManager.mouse.pos.y < Resize( dest->y )) )
                 {
                     isHoover = true;
                 }
@@ -120,23 +121,23 @@ namespace RythmGame::Game::Menu::StartScreen::Button
             switch( position )
             {
             case TopLeft:
-                posX = dest.x + dest.w*zoom/2;
-                posY = dest.y + dest.h*zoom/2;
+                posX = dest->x + dest->w*zoom/2;
+                posY = dest->y + dest->h*zoom/2;
                 break;
 
             case TopRight:
-                posX = dest.x + dest.w*zoom/2 - dest.w*zoom;
-                posY = dest.y + dest.h*zoom/2;
+                posX = dest->x + dest->w*zoom/2 - dest->w*zoom;
+                posY = dest->y + dest->h*zoom/2;
                 break;
 
             case BottomLeft:
-                posX = dest.x + dest.w*zoom/2;
-                posY = dest.y + dest.h*zoom/2 - dest.h*zoom;
+                posX = dest->x + dest->w*zoom/2;
+                posY = dest->y + dest->h*zoom/2 - dest->h*zoom;
                 break;
 
             case BottomRight:
-                posX = dest.x + dest.w*zoom/2 - dest.w*zoom;
-                posY = dest.y + dest.h*zoom/2 - dest.h*zoom;
+                posX = dest->x + dest->w*zoom/2 - dest->w*zoom;
+                posY = dest->y + dest->h*zoom/2 - dest->h*zoom;
                 break;
 
             default:
@@ -144,7 +145,7 @@ namespace RythmGame::Game::Menu::StartScreen::Button
             }
 
 
-            Draw( {posX, posY, dest.w*zoom, dest.h*zoom} );
+            Draw( getRectPointer(posX, posY, dest->w*zoom, dest->h*zoom) );
         }
     };
 

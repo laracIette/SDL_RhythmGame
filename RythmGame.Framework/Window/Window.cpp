@@ -7,8 +7,7 @@ namespace RythmGame::Framework
     {
         if( !SDL_Init( SDL_INIT_EVERYTHING ) )
         {
-            window = SDL_CreateWindow( "RythmGame", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, 0 );
-            renderer = SDL_CreateRenderer( window, -1, 0 );
+            renderer = GPU_Init( WIDTH, HEIGHT, GPU_DEFAULT_INIT_FLAGS );
         }
 
         if( Mix_OpenAudio( 96000, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024 ) < 0 )

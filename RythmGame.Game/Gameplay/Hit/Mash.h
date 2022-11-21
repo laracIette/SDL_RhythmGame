@@ -21,7 +21,7 @@ namespace RythmGame::Game::Gameplay::Hit
         Mash()
         : HitObject(
             "assets/Skins/BaseSkin/HitObjects/Mashs",
-            {0, 0, 300, 300}
+            getRectPointer(0, 0, 300, 300)
         )
         {}
 

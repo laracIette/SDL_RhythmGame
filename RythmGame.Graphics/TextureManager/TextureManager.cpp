@@ -3,10 +3,10 @@
 namespace RythmGame::Graphics
 {
 
-    SDL_Texture *TextureManager::LoadTexture( const char *path )
+    GPU_Image *TextureManager::LoadTexture( const char *path )
     {
         SDL_Surface *tempSurface{ IMG_Load( path ) };
-        SDL_Texture *tex{ SDL_CreateTextureFromSurface( window->renderer, tempSurface ) };
+        GPU_Image *tex{ GPU_CopyImageFromSurface( tempSurface ) };
         SDL_FreeSurface( tempSurface );
 
         if( !tex )
@@ -17,9 +17,9 @@ namespace RythmGame::Graphics
         return tex;
     }
 
-    void TextureManager::DrawTexture( SDL_Texture *tex, SDL_Rect dest )
+    void TextureManager::DrawTexture( GPU_Image *tex, GPU_Rect *dest )
     {
-        SDL_RenderCopy( window->renderer, tex, NULL, &dest );
+        GPU_BlitRect( tex, NULL, window->renderer, dest );
     }
 
 }

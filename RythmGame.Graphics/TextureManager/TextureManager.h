@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <iostream>
+#include <SDL_gpu.h>
 
 #include "../../RythmGame.Framework/Window/Window.h"
 
@@ -14,8 +15,8 @@ namespace RythmGame::Graphics
     class TextureManager
     {
     public:
-        static SDL_Texture *LoadTexture( const char *path );
-        static void DrawTexture( SDL_Texture *tex, SDL_Rect dest );
+        static GPU_Image *LoadTexture( const char *path );
+        static void DrawTexture( GPU_Image *tex, GPU_Rect *dest );
     };
 
 }

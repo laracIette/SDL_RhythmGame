@@ -22,7 +22,7 @@ namespace RythmGame::Game::Gameplay::Hit
         Hold()
         : HitObject(
             "assets/Skins/BaseSkin/HitObjects/Holds",
-            {0, 0, 100, 100}
+            getRectPointer(0, 0, 100, 100)
         )
         {}
 

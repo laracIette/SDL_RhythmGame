@@ -14,8 +14,8 @@ namespace RythmGame::Graphics
 
     class TextTTF
     {
-        SDL_Texture *textTexture;
-        SDL_Rect dest;
+        GPU_Image *textTexture;
+        GPU_Rect *dest;
 
     public:
         TextTTF( const char *text, TTF_Font *font, int posX, int posY );

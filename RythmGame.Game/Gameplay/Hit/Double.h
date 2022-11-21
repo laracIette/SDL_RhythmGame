@@ -18,7 +18,7 @@ namespace RythmGame::Game::Gameplay::Hit
         Double()
         : HitObject(
             "assets/Skins/BaseSkin/HitObjects/Doubles",
-            {0, 0, 100, 100}
+            getRectPointer(0, 0, 100, 100)
         )
         {}
 

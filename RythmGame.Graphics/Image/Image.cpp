@@ -2,7 +2,7 @@
 
 namespace RythmGame::Graphics
 {
-    Image::Image( std::string path, Rect dest )
+    Image::Image( std::string path, GPU_Rect *dest )
     {
         tex = TextureManager::LoadTexture( const_cast<char *>( path.c_str() ) );
         this->dest = dest;
@@ -21,18 +21,20 @@ namespace RythmGame::Graphics
     {
         Draw( dest );
     }
-    void Image::Draw( Rect dest )
+
+    void Image::Draw( GPU_Rect *dest )
     {
-        posX = Resize( dest.x - dest.w/2 );
-        posY = Resize( dest.y - dest.h/2 );
-        posW = Resize( dest.w );
-        posH = Resize( dest.h );
+        posX = Resize( dest->x - dest->w/2 );
+        posY = Resize( dest->y - dest->h/2 );
+        posW = Resize( dest->w );
+        posH = Resize( dest->h );
 
         TextureManager::DrawTexture(
             tex,
-            {(int)posX, (int)posY, (int)posW, (int)posH}
+            getRectPointer((int)posX, (int)posY, (int)posW, (int)posH)
         );
     }
+
     template<typename T>
     float Image::Resize( T n )
     {
@@ -43,8 +45,8 @@ namespace RythmGame::Graphics
     {
         isHoover = false;
 
-        if( (inputManager.mouse.pos.x > Resize( dest.x - dest.w/2 )) && (inputManager.mouse.pos.x < Resize( dest.x + dest.w/2 ))
-         && (inputManager.mouse.pos.y > Resize( dest.y - dest.h/2 )) && (inputManager.mouse.pos.y < Resize( dest.y + dest.h/2 )) )
+        if( (inputManager.mouse.pos.x > Resize( dest->x - dest->w/2 )) && (inputManager.mouse.pos.x < Resize( dest->x + dest->w/2 ))
+         && (inputManager.mouse.pos.y > Resize( dest->y - dest->h/2 )) && (inputManager.mouse.pos.y < Resize( dest->y + dest->h/2 )) )
         {
             isHoover = true;
         }

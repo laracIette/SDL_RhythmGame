@@ -28,7 +28,7 @@ namespace RythmGame::Graphics
     class Text
     {
         std::string text;
-        Rect dest;
+        GPU_Rect *dest;
         Image *images[37];
 
         float distance;
@@ -36,7 +36,7 @@ namespace RythmGame::Graphics
         int position;
 
     public:
-        Text( std::string text, Rect dest, int position );
+        Text( std::string text, GPU_Rect *dest, int position );
         ~Text();
 
         void SetText( std::string text );

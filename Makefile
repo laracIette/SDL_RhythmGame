@@ -4,6 +4,7 @@ SDL:
 	-I/home/nico/SDL2_image-2.6.2 \
 	-I/home/nico/SDL2_mixer-2.6.2/include \
 	-I/home/nico/SDL2_ttf-2.20.1 \
+	-I/home/nico/SDL2_gpu-0.12.0-msvc/include \
 	-o build/prog \
 	src/main.cpp \
 	RythmGame.Framework/Window/Window.cpp \
@@ -33,7 +34,8 @@ SDL:
 	-lSDL2 \
 	-lSDL2_image \
 	-lSDL2_mixer \
-	-lSDL2_ttf
+	-lSDL2_ttf \
+	-lSDL2_gpu
 
 .PHONY: test clean
 
