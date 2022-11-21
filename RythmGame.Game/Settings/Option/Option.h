@@ -1,31 +1,19 @@
 #pragma once
 
-#include <SDL.h>
-#include <SDL_ttf.h>
-#include <iostream>
+#include "../../../RythmGame.Graphics/TextTTF/TextTTF.h"
 
-#include "../../Utils/GameSettings.h"
-
-#include "../../../RythmGame.Framework/Window/Window.h"
-
-using namespace RythmGame::Game::Utils;
-using namespace RythmGame::Framework;
+using namespace RythmGame::Graphics;
 
 namespace RythmGame::Game::Settings
 {
 
-    class Option
+    class Option : public TextTTF
     {
-        SDL_Texture *textTexture;
-        SDL_Rect dest;
 
     public:
-        Option( const char *text );
-        ~Option();
-
-        void Update();
-
-        void Draw();
+        Option( const char *text )
+         : TextTTF( text, optionFont, 10, 0 )
+        {}
     };
 
 }

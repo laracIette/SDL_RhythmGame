@@ -18,6 +18,7 @@
 
 #include "../../RythmGame.Framework/Window/Window.h"
 #include "../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
+#include "../../RythmGame.Graphics/TextTTF/TextTTF.h"
 
 #include "../Settings/Window/Window.h"
 
@@ -27,6 +28,7 @@ using namespace RythmGame::Game::Gameplay;
 using namespace RythmGame::Game::Menu;
 using namespace RythmGame::Framework;
 using namespace RythmGame::Sound;
+using namespace RythmGame::Graphics;
 
 
 namespace RythmGame::Game

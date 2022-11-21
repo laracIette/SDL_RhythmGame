@@ -25,6 +25,7 @@ SDL:
 	RythmGame.Graphics/Image/Image.cpp \
 	RythmGame.Graphics/Animation/Animation.cpp \
 	RythmGame.Graphics/Text/Text.cpp \
+	RythmGame.Graphics/TextTTF/TextTTF.cpp \
 	RythmGame.Sound/Music/Music.cpp \
 	RythmGame.Sound/HitSound/HitSound.cpp \
 	RythmGame.Sound/HitSoundManager/HitSoundManager.cpp \

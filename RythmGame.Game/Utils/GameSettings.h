@@ -1,7 +1,5 @@
 #pragma once
 
-#include <SDL_ttf.h>
-
 #define White (RGB){255, 255, 255}
 #define Black (RGB){  0,   0,   0}
 #define Red   (RGB){255,   0, 255}
@@ -50,5 +48,4 @@ namespace RythmGame::Game::Utils
         return ret;
     }
 
-    extern TTF_Font *police;
 }

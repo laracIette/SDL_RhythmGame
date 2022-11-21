@@ -6,14 +6,14 @@ long  RythmGame::Game::Utils::deltaTime;
 float RythmGame::Game::Utils::velocity;
 bool  RythmGame::Game::Utils::isHorizontal;
 
-TTF_Font *RythmGame::Game::Utils::police;
-
 Window *RythmGame::Framework::window;
 
 InputManager RythmGame::Game::Events::inputManager;
 
 HitSoundManager *RythmGame::Sound::hitSoundManager;
 
+TTF_Font *RythmGame::Graphics::optionFont;
+TTF_Font *RythmGame::Graphics::categoryTitleFont;
 
 namespace RythmGame::Game
 {
@@ -37,7 +37,8 @@ namespace RythmGame::Game
         startScreen = new StartScreen::Screen();
         mapSelectionScreen = new MapSelection::Screen();
 
-        police = TTF_OpenFont( "assets/Fonts/Ronysiswadi9Bold.ttf", 18 );
+        optionFont = TTF_OpenFont( "assets/Fonts/Ronysiswadi9Bold.ttf", 24 );
+        categoryTitleFont = TTF_OpenFont( "assets/Fonts/Ronysiswadi9Bold.ttf", 30 );
 
         settingsWindow = new Settings::Window();
         isSettings = false;
@@ -100,6 +101,11 @@ namespace RythmGame::Game
             isSettings = (isSettings) ? false : true;
         }
 
+        if( isSettings )
+        {
+            settingsWindow->Update();
+        }
+
         hitSoundManager->Update();
     }
 
@@ -141,7 +147,7 @@ namespace RythmGame::Game
     {
         SDL_DestroyWindow( window->window );
         SDL_DestroyRenderer( window->renderer );
-        TTF_CloseFont( police );
+        TTF_CloseFont( optionFont );
         TTF_Quit();
         map->Close();
         hitSoundManager->Close();

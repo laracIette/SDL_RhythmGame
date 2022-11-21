@@ -15,6 +15,8 @@ namespace RythmGame::Game::Settings
         Window();
         ~Window();
 
+        void Update();
+
         void Draw();
     };
 
