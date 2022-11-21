@@ -34,8 +34,10 @@ namespace RythmGame::Game::Menu::MapSelection
         }
     }
 
-// returns Song * if a SongTile is LeftClicked
-// else returns 0
+/*
+    \returns Song * if a SongTile is LeftClicked
+    else \returns 0
+*/
     Song *Screen::Update()
     {
         for( SongTile *song : songs )

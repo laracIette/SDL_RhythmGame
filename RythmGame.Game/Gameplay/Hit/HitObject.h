@@ -81,7 +81,9 @@ namespace RythmGame::Game::Gameplay::Hit
 
         bool isUp;
 
-    // HitObject inherits from Animation
+    /*
+        HitObject inherits from Animation
+    */
         HitObject( std::string path, SDL_Rect src, Rect dest ) : Animation( path, src, dest )
         {
             isHit            = false;
@@ -111,8 +113,10 @@ namespace RythmGame::Game::Gameplay::Hit
             return ((direction == LEFT) || (direction == RIGHT));
         }
 
-    // returns the hitValue if isReturnHitValue is true
-    // else returns -1
+    /*
+        \returns the hitValue if isReturnHitValue is true
+        else \returns -1
+    */
         char GetHitValue()
         {
             if( isReturnHitValue )
@@ -132,10 +136,14 @@ namespace RythmGame::Game::Gameplay::Hit
         }
 
 
-    // initialises the HitObject
+    /*
+        initialises the HitObject
+    */
         virtual void Init() {}
 
-    // sets the pos of the HitObject
+    /*
+        sets the pos of the HitObject
+    */
         void SetPos()
         {
             switch( direction )
@@ -165,7 +173,9 @@ namespace RythmGame::Game::Gameplay::Hit
             }
         }
 
-    // affects a value to hitValue
+    /*
+        affects a value to hitValue
+    */
         virtual void CheckHitTiming()
         {
             isHit = true;
@@ -192,7 +202,10 @@ namespace RythmGame::Game::Gameplay::Hit
             hitSoundManager->Play( type );
         }
 
-    // returns true if hitting the right note side
+    /*
+        \returns 1 if hitting the right note side
+        else \returns 0
+    */
         virtual bool CheckHitting()
         {
             if( ( ((inputManager.OnlyLeft2Pressed()  && isUp) || (inputManager.OnlyLeft1Pressed()  && !isUp)) && ((direction == LEFT && isHorizontal) || (direction == UP   && !isHorizontal)) )
@@ -207,7 +220,9 @@ namespace RythmGame::Game::Gameplay::Hit
         }
 
 
-    // does specific things by type if isHit
+    /*
+        does specific things by type if isHit
+    */
         virtual void DoThingsAfterHit()
         {
             if( W() > 2 )
@@ -245,7 +260,9 @@ namespace RythmGame::Game::Gameplay::Hit
             }
         }
 
-    // draws the HitObject if isShown is true
+    /*
+        draws the HitObject if isShown is true
+    */
         virtual void DrawHitObject()
         {
             if( isShown ) Draw();
@@ -253,7 +270,10 @@ namespace RythmGame::Game::Gameplay::Hit
             DrawHit( X()-xOffset, Y()-yOffset );
         }
 
-    // returns true if the HitObject needs to be erased
+    /*
+        \returns 1 if the HitObject needs to be erased
+        else \returns 0
+    */
         bool Erase()
         {
             if( (getDuration<Milliseconds>(currentTime, offsetTime) - endTime) > (int)Time::Miss )

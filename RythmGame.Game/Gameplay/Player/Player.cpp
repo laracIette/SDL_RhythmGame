@@ -31,30 +31,24 @@ namespace RythmGame::Game::Gameplay
 
 
         (isHorizontal) ? isImageShown[HorizontalDefault] = true
-                    : isImageShown[VerticalDefault] = true;
+                       : isImageShown[VerticalDefault] = true;
 
 
 
         if( inputManager.Left2Pressed() )
         {
-            //isImageShown[UpLeft] = true;
             (isHorizontal) ? isImageShown[UpLeft] = true : isImageShown[UpRight] = true;
         }
         if( inputManager.Left1Pressed() )
         {
-            //isImageShown[DownLeft] = true;
             (isHorizontal) ? isImageShown[DownLeft] = true : isImageShown[UpLeft] = true;
         }
-
-
         if( inputManager.Right1Pressed() )
         {
-            //isImageShown[UpRight] = true;
             (isHorizontal) ? isImageShown[UpRight] = true : isImageShown[DownLeft] = true;
         }
         if( inputManager.Right2Pressed() )
         {
-            //isImageShown[DownRight] = true;
             (isHorizontal) ? isImageShown[DownRight] = true : isImageShown[DownRight] = true;
         }
 

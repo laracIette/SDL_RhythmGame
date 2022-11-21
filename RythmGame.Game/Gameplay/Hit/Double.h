@@ -31,7 +31,9 @@ namespace RythmGame::Game::Gameplay::Hit
 
         bool CheckHitting()
         {
-        // register moment for each click
+        /*
+            register moment for each click
+        */
             if( !isUpPressed &&
                 ( ( inputManager.Left2Pressed()  && ((direction == LEFT  && isHorizontal) || (direction == UP && !isHorizontal)) )
                || ( inputManager.Right1Pressed() && (direction  == RIGHT && isHorizontal) )
@@ -50,7 +52,9 @@ namespace RythmGame::Game::Gameplay::Hit
                 isDownPressed = true;
                 downPressedTime = currentTime;
             }
-        // hitValue = highest difference from time
+        /*
+            hitValue = highest difference from time
+        */
             if( isUpPressed && isDownPressed )
             {
                 difference = highest(

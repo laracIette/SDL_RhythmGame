@@ -14,8 +14,10 @@ using namespace RythmGame::Game::Events;
 namespace RythmGame::Graphics
 {
 
-    // returns 1 if the path is ends with png
-    // else returns 0
+    /*
+        \returns 1 if the path ends with png
+        else \returns 0
+    */
     static bool CheckImageExists( std::string path )
     {
         if( (path[path.size()-3] != 'p') || (path[path.size()-2] != 'n') || (path[path.size()-1] != 'g') )
