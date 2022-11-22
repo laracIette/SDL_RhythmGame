@@ -3,7 +3,7 @@
 #include <vector>
 #include <SDL.h>
 
-#include "../Option/Option.h"
+#include "../Option/Types/Check/Check.h"
 
 #include "../../../RythmGame.Graphics/TextTTF/TextTTF.h"
 
@@ -11,6 +11,7 @@
 
 using namespace RythmGame::Graphics;
 using namespace RythmGame::Framework;
+using namespace RythmGame::Game::Settings::Option;
 
 namespace RythmGame::Game::Settings
 {
@@ -18,7 +19,7 @@ namespace RythmGame::Game::Settings
     {
         TextTTF *title;
 
-        std::vector<Option *> options;
+        std::vector<OptionTemplate *> options;
 
         SDL_Rect *backgroundRect;
         RGB backgroundColor;

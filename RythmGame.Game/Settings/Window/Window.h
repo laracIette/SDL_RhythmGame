@@ -2,6 +2,8 @@
 
 #include <vector>
 #include <SDL.h>
+#include <json.hpp>
+#include <fstream>
 
 #include "../../Utils/GameSettings.h"
 
@@ -14,6 +16,8 @@
 using namespace RythmGame::Graphics;
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Framework;
+
+using json = nlohmann::json;
 
 namespace RythmGame::Game::Settings
 {

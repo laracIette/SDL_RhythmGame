@@ -5,6 +5,21 @@ namespace RythmGame::Game::Settings
 
     Window::Window()
     {
+        std::ifstream file( "assets/Settings.json" );
+        json data = json::parse( file );
+
+        for( auto category : data )
+        {
+            for( auto option : category )
+            {
+                if( option["type"] == "Value" )
+                {
+                    std::cout << option["name"] << std::endl;
+                    std::cout << option["value"] << std::endl;
+                }
+            }
+        }
+
         categories.push_back(
             new Category(
                 "Salutations",

@@ -18,7 +18,7 @@ namespace RythmGame::Game::Settings
 
         for( const char *option : optionsVector )
         {
-            options.push_back( new Option( option ) );
+            options.push_back( new Check( option ) );
         }
     }
 
@@ -32,7 +32,7 @@ namespace RythmGame::Game::Settings
         backgroundRect->y = title->Y();
         posY += FONT_SIZE_CATEGORY_TITLE + 6;
 
-        for( Option *option : options )
+        for( OptionTemplate *option : options )
         {
             option->Update( posY );
             posY += FONT_SIZE_OPTION + 6;
@@ -48,7 +48,7 @@ namespace RythmGame::Game::Settings
         window->DrawRectangle( backgroundRect, backgroundColor );
         title->Draw();
 
-        for( Option *option : options )
+        for( OptionTemplate *option : options )
         {
             option->Draw();
         }

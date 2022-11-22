@@ -4,7 +4,9 @@ SDL:
 	-I/home/nico/SDL2_image-2.6.2 \
 	-I/home/nico/SDL2_mixer-2.6.2/include \
 	-I/home/nico/SDL2_ttf-2.20.1 \
+	-I/home/nico/includes \
 	-o build/prog \
+	-fpic \
 	src/main.cpp \
 	RythmGame.Framework/Window/Window.cpp \
 	RythmGame.Framework/File/File.cpp \
@@ -16,8 +18,11 @@ SDL:
 	RythmGame.Game/Gameplay/Combo/Combo.cpp \
 	RythmGame.Game/Gameplay/Accuracy/Accuracy.cpp \
 	RythmGame.Game/Settings/Category/Category.cpp \
-	RythmGame.Game/Settings/Option/Option.cpp \
+	RythmGame.Game/Settings/Option/OptionTemplate.cpp \
 	RythmGame.Game/Settings/Window/Window.cpp \
+	RythmGame.Game/Settings/Option/Types/Check/Check.cpp \
+	RythmGame.Game/Settings/Option/Types/Slider/Slider.cpp \
+	RythmGame.Game/Settings/Option/Types/Value/Value.cpp \
 	RythmGame.Game/Menu/StartScreen/Screen/Screen.cpp \
 	RythmGame.Game/Menu/MapSelection/Screen/Screen.cpp \
 	RythmGame.Game/Menu/MapSelection/SongTile/SongTile.cpp \
