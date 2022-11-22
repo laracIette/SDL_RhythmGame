@@ -24,6 +24,15 @@ namespace RythmGame::Game::Settings
                 }
             )
         );
+
+        backgroundRect = new SDL_Rect();
+
+        backgroundRect->x = 0;
+        backgroundRect->y = 0;
+        backgroundRect->w = resize( 1920/3 );
+        backgroundRect->h = resize( 1080 );
+
+        backgroundColor = {69, 69, 69};
     }
 
     Window::~Window()
@@ -35,12 +44,14 @@ namespace RythmGame::Game::Settings
         int posY{ 0 };
         for( Category *category : categories )
         {
-            posY = category->Update( posY ) + 10;
+            posY = category->Update( posY ) + 50;
         }
     }
 
     void Window::Draw()
     {
+        window->DrawRectangle( backgroundRect, backgroundColor );
+
         for( Category *category : categories )
         {
             category->Draw();

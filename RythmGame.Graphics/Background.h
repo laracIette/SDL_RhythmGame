@@ -16,7 +16,7 @@ namespace RythmGame::Graphics
     {
 
     public:
-    /*
+    /**
         Backgorund inherits from Image
     */
         Background( std::string path )

@@ -17,7 +17,6 @@ TTF_Font *RythmGame::Graphics::categoryTitleFont;
 
 namespace RythmGame::Game
 {
-
     Run::Run()
     {
         window = new Window();
@@ -37,8 +36,8 @@ namespace RythmGame::Game
         startScreen = new StartScreen::Screen();
         mapSelectionScreen = new MapSelection::Screen();
 
-        optionFont = TTF_OpenFont( "assets/Fonts/Ronysiswadi9Bold.ttf", 24 );
-        categoryTitleFont = TTF_OpenFont( "assets/Fonts/Ronysiswadi9Bold.ttf", 30 );
+        optionFont = TTF_OpenFont( "assets/UI/Fonts/Comfortaa-VariableFont_wght.ttf", resize( FONT_SIZE_OPTION ) );
+        categoryTitleFont = TTF_OpenFont( "assets/UI/Fonts/Comfortaa-VariableFont_wght.ttf", resize( FONT_SIZE_CATEGORY_TITLE ) );
 
         settingsWindow = new Settings::Window();
         isSettings = false;
@@ -112,7 +111,7 @@ namespace RythmGame::Game
 
     void Run::Render()
     {
-        SDL_SetRenderDrawColor( window->renderer, 48, 48, 48, 255 );
+        SDL_SetRenderDrawColor( window->renderer, 0, 0, 0, 255 );
         SDL_RenderClear( window->renderer );
 
 

@@ -12,7 +12,7 @@ namespace RythmGame::Game::Menu::StartScreen::Button
         bool isClicked, isStartGame;
 
     public:
-    /*
+    /**
         PlayButton inherits from ButtonTemplate
     */
         PlayButton() : ButtonTemplate(

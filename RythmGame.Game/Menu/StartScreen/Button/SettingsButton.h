@@ -9,7 +9,7 @@ namespace RythmGame::Game::Menu::StartScreen::Button
     {
 
     public:
-    /*
+    /**
         SettingsButton inherits from ButtonTemplate
     */
         SettingsButton() : ButtonTemplate(

@@ -9,7 +9,7 @@ namespace RythmGame::Game::Gameplay::Hit
     class Hammer : public HitObject
     {
     public:
-    /*
+    /**
         Hammer inherits from HitObject
     */
         Hammer()

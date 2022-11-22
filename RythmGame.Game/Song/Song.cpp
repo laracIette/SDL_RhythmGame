@@ -284,7 +284,7 @@ namespace RythmGame::Game
             }
 
             default:
-            /* create error type (maybe) */
+            /** create error type (maybe) */
                 break;
             }
 

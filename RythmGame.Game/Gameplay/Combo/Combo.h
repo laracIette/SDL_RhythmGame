@@ -17,7 +17,7 @@ namespace RythmGame::Game::Gameplay
         int combo;
 
     public:
-    /*
+    /**
         Combo inherits from Text
     */
         Combo() : Text( "0", {0, 1080, 50, 60}, BottomLeft )

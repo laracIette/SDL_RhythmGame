@@ -81,7 +81,7 @@ namespace RythmGame::Game::Gameplay::Hit
 
         bool isUp;
 
-    /*
+    /**
         HitObject inherits from Animation
     */
         HitObject( std::string path, Rect dest ) : Animation( path, dest )
@@ -113,7 +113,7 @@ namespace RythmGame::Game::Gameplay::Hit
             return ((direction == LEFT) || (direction == RIGHT));
         }
 
-    /*
+    /**
         \returns the hitValue if isReturnHitValue is true
         else \returns -1
     */
@@ -136,12 +136,12 @@ namespace RythmGame::Game::Gameplay::Hit
         }
 
 
-    /*
+    /**
         initialises the HitObject
     */
         virtual void Init() {}
 
-    /*
+    /**
         sets the pos of the HitObject
     */
         void SetPos()
@@ -173,7 +173,7 @@ namespace RythmGame::Game::Gameplay::Hit
             }
         }
 
-    /*
+    /**
         affects a value to hitValue
     */
         virtual void CheckHitTiming()
@@ -202,7 +202,7 @@ namespace RythmGame::Game::Gameplay::Hit
             hitSoundManager->Play( type );
         }
 
-    /*
+    /**
         \returns 1 if hitting the right note side
         else \returns 0
     */
@@ -220,7 +220,7 @@ namespace RythmGame::Game::Gameplay::Hit
         }
 
 
-    /*
+    /**
         does specific things by type if isHit
     */
         virtual void DoThingsAfterHit()
@@ -260,7 +260,7 @@ namespace RythmGame::Game::Gameplay::Hit
             }
         }
 
-    /*
+    /**
         draws the HitObject if isShown is true
     */
         virtual void DrawHitObject()
@@ -270,7 +270,7 @@ namespace RythmGame::Game::Gameplay::Hit
             DrawHit( X()-xOffset, Y()-yOffset );
         }
 
-    /*
+    /**
         \returns 1 if the HitObject needs to be erased
         else \returns 0
     */

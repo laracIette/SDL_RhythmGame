@@ -9,7 +9,7 @@ namespace RythmGame::Game::Gameplay::Hit
     class Ghost : public HitObject
     {
     public:
-    /*
+    /**
         Ghost inherits from HitObject
     */
         Ghost()

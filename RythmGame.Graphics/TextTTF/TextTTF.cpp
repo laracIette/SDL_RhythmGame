@@ -6,8 +6,8 @@ namespace RythmGame::Graphics
     TextTTF::TextTTF( const char *text, TTF_Font *font, int posX, int posY )
     {
         TTF_SizeText( font, text, &dest.w, &dest.h );
-        dest.x = posX;
-        dest.y = posY;
+        dest.x = resize( posX );
+        dest.y = resize( posY );
 
         SDL_Surface *tempSurface = TTF_RenderText_Blended( font, text, {255, 255, 255} );
 
@@ -27,8 +27,9 @@ namespace RythmGame::Graphics
 
     void TextTTF::Update( int posY )
     {
-        dest.y = posY;
+        dest.y = resize( posY );
     }
+
 
     void TextTTF::Draw()
     {

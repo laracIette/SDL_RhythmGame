@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Metrics.h"
+
 #define White (RGB){255, 255, 255}
 #define Black (RGB){  0,   0,   0}
 #define Red   (RGB){255,   0, 255}
@@ -46,6 +48,18 @@ namespace RythmGame::Game::Utils
         else if( diff <= 8 ) ret = (Red + Black)/2;
 
         return ret;
+    }
+
+    template<typename T>
+    static T resize( T n )
+    {
+        return (T)((float)n / 1920 * (float)WIDTH);
+    }
+
+    template<typename T>
+    static T *getPointer( T rect )
+    {
+        return new T( rect );
     }
 
 }

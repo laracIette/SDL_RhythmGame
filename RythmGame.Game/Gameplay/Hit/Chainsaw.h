@@ -11,7 +11,7 @@ namespace RythmGame::Game::Gameplay::Hit
         bool isHitLock;
 
     public:
-    /*
+    /**
         Chainsaw inherits from HitObject
     */
         Chainsaw()

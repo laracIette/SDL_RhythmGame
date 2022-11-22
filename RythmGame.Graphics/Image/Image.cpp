@@ -23,28 +23,23 @@ namespace RythmGame::Graphics
     }
     void Image::Draw( Rect dest )
     {
-        posX = Resize( dest.x - dest.w/2 );
-        posY = Resize( dest.y - dest.h/2 );
-        posW = Resize( dest.w );
-        posH = Resize( dest.h );
+        posX = resize( dest.x - dest.w/2 );
+        posY = resize( dest.y - dest.h/2 );
+        posW = resize( dest.w );
+        posH = resize( dest.h );
 
         TextureManager::DrawTexture(
             tex,
             {(int)posX, (int)posY, (int)posW, (int)posH}
         );
     }
-    template<typename T>
-    float Image::Resize( T n )
-    {
-        return (float)n / 1920 * (float)WIDTH;
-    }
 
     void Image::Hoover()
     {
         isHoover = false;
 
-        if( (inputManager.mouse.pos.x > Resize( dest.x - dest.w/2 )) && (inputManager.mouse.pos.x < Resize( dest.x + dest.w/2 ))
-         && (inputManager.mouse.pos.y > Resize( dest.y - dest.h/2 )) && (inputManager.mouse.pos.y < Resize( dest.y + dest.h/2 )) )
+        if( (inputManager.mouse.pos.x > resize( dest.x - dest.w/2 )) && (inputManager.mouse.pos.x < resize( dest.x + dest.w/2 ))
+         && (inputManager.mouse.pos.y > resize( dest.y - dest.h/2 )) && (inputManager.mouse.pos.y < resize( dest.y + dest.h/2 )) )
         {
             isHoover = true;
         }

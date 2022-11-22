@@ -19,7 +19,7 @@ namespace RythmGame::Sound
         HitSound( std::string path, unsigned char channel );
         ~HitSound();
 
-    /*
+    /**
         1 by default
     */
         void Play( int repeats = 1 );

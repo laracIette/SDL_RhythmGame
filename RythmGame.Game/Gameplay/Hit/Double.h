@@ -12,7 +12,7 @@ namespace RythmGame::Game::Gameplay::Hit
         std::chrono::high_resolution_clock::time_point upPressedTime, downPressedTime;
 
     public:
-    /*
+    /**
         Double inherits from HitObject
     */
         Double()
@@ -33,7 +33,7 @@ namespace RythmGame::Game::Gameplay::Hit
 
         bool CheckHitting()
         {
-        /*
+        /**
             register moment for each click
         */
             if( !isUpPressed &&
@@ -54,7 +54,7 @@ namespace RythmGame::Game::Gameplay::Hit
                 isDownPressed = true;
                 downPressedTime = currentTime;
             }
-        /*
+        /**
             hitValue = highest difference from time
         */
             if( isUpPressed && isDownPressed )

@@ -5,6 +5,7 @@
 #include <SDL_ttf.h>
 
 #include "../../RythmGame.Game/Utils/Metrics.h"
+#include "../../RythmGame.Game/Utils/GameSettings.h"
 
 using namespace RythmGame::Game::Utils;
 
@@ -17,6 +18,8 @@ namespace RythmGame::Framework
     public:
         Window();
         ~Window();
+
+        void DrawRectangle( SDL_Rect *dest, RGB color );
 
         SDL_Window *window;
         SDL_Renderer *renderer;

@@ -16,7 +16,7 @@ namespace RythmGame::Sound
         Music( std::string path );
         ~Music();
 
-    /*
+    /**
         infinite by default
     */
         void Play( int repeats = -1 );

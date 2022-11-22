@@ -15,7 +15,7 @@ namespace RythmGame::Game::Gameplay::Hit
         bool isHitted;
 
     public:
-    /*
+    /**
         Mash inherits from HitObject
     */
         Mash()

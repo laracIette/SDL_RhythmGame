@@ -16,7 +16,7 @@ namespace RythmGame::Game::Gameplay::Hit
 
 
     public:
-    /*
+    /**
         Hold inherits from HitObject
     */
         Hold()

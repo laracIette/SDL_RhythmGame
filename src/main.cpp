@@ -15,8 +15,8 @@ std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::lastFrame
 
 Run *run;
 
-int RythmGame::Game::Utils::WIDTH{ 1280 };
-int RythmGame::Game::Utils::HEIGHT{ 720 };
+int RythmGame::Game::Utils::WIDTH{ 1600 };
+int RythmGame::Game::Utils::HEIGHT{ 900 };
 
 int RythmGame::Game::Utils::FPS{ 60 };
 

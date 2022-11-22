@@ -9,7 +9,7 @@ namespace RythmGame::Game::Menu::StartScreen::Button
     {
 
     public:
-    /*
+    /**
         ExitButton inherits from ButtonTemplate
     */
         ExitButton() : ButtonTemplate(

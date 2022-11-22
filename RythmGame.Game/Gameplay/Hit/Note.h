@@ -10,7 +10,7 @@ namespace RythmGame::Game::Gameplay::Hit
     {
 
     public:
-    /*
+    /**
         Note inherits from HitObject
     */
         Note()

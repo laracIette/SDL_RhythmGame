@@ -3,7 +3,9 @@
 #include "../../../../RythmGame.Graphics/Image/Image.h"
 #include "../../../../RythmGame.Graphics/TextureManager/TextureManager.h"
 #include "../../../Events/InputManager.h"
+
 #include "../../../Utils/Time.h"
+#include "../../../Utils/GameSettings.h"
 
 using namespace RythmGame::Graphics;
 using namespace RythmGame::Game::Events;
@@ -41,7 +43,7 @@ namespace RythmGame::Game::Menu::StartScreen::Button
         std::string path;
 
     public:
-    /*
+    /**
         ButtonTemplate inherits from Image
     */
         ButtonTemplate( std::string path, int position )
@@ -70,32 +72,32 @@ namespace RythmGame::Game::Menu::StartScreen::Button
             switch( position )
             {
             case TopLeft:
-                if( (inputManager.mouse.pos.x > Resize( dest.x )) && (inputManager.mouse.pos.x < Resize( dest.x + dest.w*zoom ))
-                 && (inputManager.mouse.pos.y > Resize( dest.y )) && (inputManager.mouse.pos.y < Resize( dest.y + dest.h*zoom )) )
+                if( (inputManager.mouse.pos.x > resize( dest.x )) && (inputManager.mouse.pos.x < resize( dest.x + dest.w*zoom ))
+                 && (inputManager.mouse.pos.y > resize( dest.y )) && (inputManager.mouse.pos.y < resize( dest.y + dest.h*zoom )) )
                 {
                     isHoover = true;
                 }
                 break;
 
             case TopRight:
-                if( (inputManager.mouse.pos.x > Resize( dest.x - dest.w*zoom )) && (inputManager.mouse.pos.x < Resize( dest.x ))
-                 && (inputManager.mouse.pos.y > Resize( dest.y )) && (inputManager.mouse.pos.y < Resize( dest.y + dest.h*zoom )) )
+                if( (inputManager.mouse.pos.x > resize( dest.x - dest.w*zoom )) && (inputManager.mouse.pos.x < resize( dest.x ))
+                 && (inputManager.mouse.pos.y > resize( dest.y )) && (inputManager.mouse.pos.y < resize( dest.y + dest.h*zoom )) )
                 {
                     isHoover = true;
                 }
                 break;
 
             case BottomLeft:
-                if( (inputManager.mouse.pos.x > Resize( dest.x )) && (inputManager.mouse.pos.x < Resize( dest.x + dest.w*zoom ))
-                 && (inputManager.mouse.pos.y > Resize( dest.y - dest.h*zoom )) && (inputManager.mouse.pos.y < Resize( dest.y )) )
+                if( (inputManager.mouse.pos.x > resize( dest.x )) && (inputManager.mouse.pos.x < resize( dest.x + dest.w*zoom ))
+                 && (inputManager.mouse.pos.y > resize( dest.y - dest.h*zoom )) && (inputManager.mouse.pos.y < resize( dest.y )) )
                 {
                     isHoover = true;
                 }
                 break;
 
             case BottomRight:
-                if( (inputManager.mouse.pos.x > Resize( dest.x - dest.w*zoom )) && (inputManager.mouse.pos.x < Resize( dest.x ))
-                 && (inputManager.mouse.pos.y > Resize( dest.y - dest.h*zoom )) && (inputManager.mouse.pos.y < Resize( dest.y )) )
+                if( (inputManager.mouse.pos.x > resize( dest.x - dest.w*zoom )) && (inputManager.mouse.pos.x < resize( dest.x ))
+                 && (inputManager.mouse.pos.y > resize( dest.y - dest.h*zoom )) && (inputManager.mouse.pos.y < resize( dest.y )) )
                 {
                     isHoover = true;
                 }

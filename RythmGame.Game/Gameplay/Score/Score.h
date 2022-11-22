@@ -17,7 +17,7 @@ namespace RythmGame::Game::Gameplay
         unsigned int score;
 
     public:
-    /*
+    /**
         Score inherits from Text
     */
         Score() : Text( "0", {1920, 0, 50, 60}, TopRight )

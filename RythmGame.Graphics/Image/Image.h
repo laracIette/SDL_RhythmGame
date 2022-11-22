@@ -4,6 +4,8 @@
 #include <SDL.h>
 
 #include "../../RythmGame.Game/Utils/Point.h"
+#include "../../RythmGame.Game/Utils/GameSettings.h"
+
 #include "../../RythmGame.Game/Events/InputManager.h"
 
 #include "../TextureManager/TextureManager.h"
@@ -14,7 +16,7 @@ using namespace RythmGame::Game::Events;
 namespace RythmGame::Graphics
 {
 
-    /*
+    /**
         \returns 1 if the path ends with png
         else \returns 0
     */
@@ -51,9 +53,6 @@ namespace RythmGame::Graphics
         void SetY( float y ) { dest.y = y; }
         void SetW( float w ) { dest.w = w; }
         void SetH( float h ) { dest.h = h; }
-
-        template<typename T>
-        float Resize( T n );
 
         virtual void Hoover();
         bool IsHoover();

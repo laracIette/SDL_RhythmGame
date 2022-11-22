@@ -9,7 +9,7 @@ namespace RythmGame::Game::Gameplay::Hit
     class Coin : public HitObject
     {
     public:
-    /*
+    /**
         Coin inherits from HitObject
     */
         Coin()
