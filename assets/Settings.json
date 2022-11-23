@@ -3,25 +3,23 @@
         {
             "name": "Video",
             "options": [
-
                 {
                     "name": "FPS",
                     "type": "Value",
-                    "value": 60
+                    "value": 60.0
                 },
                 {
+                    "max": 2.0,
+                    "min": 0.5,
                     "name": "Zoom",
                     "type": "Slider",
-                    "value": 1.0,
-                    "min": 0.5,
-                    "max": 2.0
+                    "value": 1.0
                 },
                 {
                     "name": "Fullscreen",
                     "type": "Check",
                     "value": false
                 }
-
             ]
         }
     ]

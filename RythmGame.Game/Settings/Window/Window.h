@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <json.hpp>
 #include <fstream>
+#include <map>
 
 #include "../Option/Types/Check/Check.h"
 #include "../Option/Types/Value/Value.h"
@@ -33,6 +34,8 @@ namespace RythmGame::Game::Settings
 
         SDL_Rect *backgroundRect;
         RGB backgroundColor;
+
+        json data;
 
     public:
         Window();

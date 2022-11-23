@@ -7,13 +7,11 @@ namespace RythmGame::Game::Settings::Option
 
     class Value : public OptionTemplate
     {
-        int value;
 
     public:
-        Value( std::string text, int value )
-         : OptionTemplate( text )
+        Value( std::string text, float value )
+         : OptionTemplate( text, value, TypeValue )
         {
-            this->value = value;
         }
 
         void Update( int posY );

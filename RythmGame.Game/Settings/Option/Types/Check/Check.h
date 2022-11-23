@@ -10,11 +10,9 @@ namespace RythmGame::Game::Settings::Option
         Image *checkBoxOn;
         Image *checkBoxOff;
 
-        bool isOn;
-
     public:
         Check( std::string text, bool value )
-         : OptionTemplate( text )
+         : OptionTemplate( text, value, TypeCheck )
         {
             checkBoxOn = new Image(
                 "assets/UI/Settings/Option/checkBoxOn.png",
@@ -26,8 +24,6 @@ namespace RythmGame::Game::Settings::Option
                 {10, 0, (float)this->text->W(), (float)this->text->H()},
                 TopLeft
             );
-
-            isOn = value;
         }
 
         void Update( int posY );

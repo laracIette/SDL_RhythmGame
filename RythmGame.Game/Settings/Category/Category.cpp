@@ -52,4 +52,21 @@ namespace RythmGame::Game::Settings
         }
     }
 
+    std::map<std::string, float> Category::ChangeValue()
+    {
+        std::map<std::string, float> tempMap;
+
+        for( OptionTemplate *option : options )
+        {
+            option->Draw();
+
+            if( option->IsValueCanged() )
+            {
+                tempMap[option->GetName()] = option->GetValue();
+            }
+        }
+
+        return tempMap;
+    }
+
 }

@@ -3,6 +3,7 @@
 #include <vector>
 #include <SDL.h>
 #include <string>
+#include <map>
 
 #include "../Option/Types/Check/Check.h"
 #include "../Option/Types/Value/Value.h"
@@ -34,5 +35,7 @@ namespace RythmGame::Game::Settings
         int Update( int posY );
 
         void Draw();
+
+        std::map<std::string, float> ChangeValue();
     };
 }

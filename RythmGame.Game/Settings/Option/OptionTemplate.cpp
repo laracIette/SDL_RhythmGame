@@ -3,9 +3,12 @@
 namespace RythmGame::Game::Settings::Option
 {
 
-    OptionTemplate::OptionTemplate( std::string text )
+    OptionTemplate::OptionTemplate( std::string text, float value, int type )
     {
-        this->text = new TextTTF( text, optionFont, 10, 0 );
+        this->text  = new TextTTF( text, optionFont, 10, 0 );
+        this->value = value;
+        this->type  = type;
+        this->name  = text;
     }
 
     OptionTemplate::~OptionTemplate()
@@ -20,6 +23,16 @@ namespace RythmGame::Game::Settings::Option
     void OptionTemplate::DrawText()
     {
         text->Draw();
+    }
+
+    bool OptionTemplate::IsValueCanged()
+    {
+        if( oldValue != value )
+        {
+            oldValue = value;
+            return 1;
+        }
+        return 0;
     }
 
 }

@@ -6,7 +6,8 @@ namespace RythmGame::Game::Settings
     Window::Window()
     {
         std::ifstream file( "assets/Settings.json" );
-        json data = json::parse( file );
+        data = json::parse( file );
+        file.close();
 
         for( auto category : data["settings"] )
         {
@@ -70,11 +71,42 @@ namespace RythmGame::Game::Settings
 
     void Window::Update()
     {
+        std::map<std::string, float> tempToChange;
+
         int posY{ 0 };
         for( Category *category : categories )
         {
             posY = category->Update( posY ) + 50;
+
+            for( std::pair<std::string, float> tempPair : category->ChangeValue() )
+            {
+                tempToChange[tempPair.first] = tempPair.second;
+            }
         }
+
+        for( auto &category : data["settings"] )
+        {
+            for( auto &option : category["options"] )
+            {
+                for( std::pair<std::string, float> tempPair : tempToChange )
+                {
+                    if( option["name"] == tempPair.first )
+                    {
+                        if( option["type"] == "Check" )
+                        {
+                            option["value"] = (bool)tempPair.second;
+                        }
+                        else
+                        {
+                            option["value"] = tempPair.second;
+                        }
+                    }
+                }
+            }
+        }
+        std::ofstream o( "assets/Settings.json" );
+        o << std::setw(4) << data << std::endl;
+        o.close();
     }
 
     void Window::Draw()

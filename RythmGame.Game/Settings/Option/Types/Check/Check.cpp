@@ -13,13 +13,13 @@ namespace RythmGame::Game::Settings::Option
 
         if( checkBoxOn->IsLeftClicked() )
         {
-            isOn = !isOn;
+            value = !value;
         }
     }
 
     void Check::Draw()
     {
-        (isOn) ? checkBoxOn->Draw() : checkBoxOff->Draw();
+        (value) ? checkBoxOn->Draw() : checkBoxOff->Draw();
         DrawText();
     }
 
