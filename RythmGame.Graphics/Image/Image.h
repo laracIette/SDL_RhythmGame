@@ -15,6 +15,17 @@ using namespace RythmGame::Game::Events;
 
 namespace RythmGame::Graphics
 {
+    enum Positions {
+        Center = 0,
+        Top,
+        Left,
+        Right,
+        Bottom,
+        TopLeft,
+        TopRight,
+        BottomLeft,
+        BottomRight
+    };
 
     /**
         \returns 1 if the path ends with png
@@ -32,13 +43,15 @@ namespace RythmGame::Graphics
     {
         float posX, posY, posW, posH;
         SDL_Texture *tex;
+        int position;
 
     protected:
         Rect dest;
         bool isHoover;
+        float zoom;
 
     public:
-        Image( std::string path, Rect dest );
+        Image( std::string path, Rect dest, int position = Center );
         ~Image();
 
         void Draw();
@@ -54,7 +67,7 @@ namespace RythmGame::Graphics
         void SetW( float w ) { dest.w = w; }
         void SetH( float h ) { dest.h = h; }
 
-        virtual void Hoover();
+        void Hoover();
         bool IsHoover();
 
         bool IsLeftClicked();

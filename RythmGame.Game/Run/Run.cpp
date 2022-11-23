@@ -147,6 +147,7 @@ namespace RythmGame::Game
         SDL_DestroyWindow( window->window );
         SDL_DestroyRenderer( window->renderer );
         TTF_CloseFont( optionFont );
+        TTF_CloseFont( categoryTitleFont );
         TTF_Quit();
         map->Close();
         hitSoundManager->Close();

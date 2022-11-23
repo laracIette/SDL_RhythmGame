@@ -2,8 +2,11 @@
 
 #include <vector>
 #include <SDL.h>
+#include <string>
 
 #include "../Option/Types/Check/Check.h"
+#include "../Option/Types/Value/Value.h"
+#include "../Option/Types/Slider/Slider.h"
 
 #include "../../../RythmGame.Graphics/TextTTF/TextTTF.h"
 
@@ -25,7 +28,7 @@ namespace RythmGame::Game::Settings
         RGB backgroundColor;
 
     public:
-        Category( const char *title, std::vector<const char *> optionsVector );
+        Category( std::string title, std::vector<OptionTemplate *> optionsVector );
         ~Category();
 
         int Update( int posY );

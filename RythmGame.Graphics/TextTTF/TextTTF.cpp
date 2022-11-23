@@ -3,13 +3,13 @@
 namespace RythmGame::Graphics
 {
 
-    TextTTF::TextTTF( const char *text, TTF_Font *font, int posX, int posY )
+    TextTTF::TextTTF( std::string text, TTF_Font *font, int posX, int posY )
     {
-        TTF_SizeText( font, text, &dest.w, &dest.h );
+        TTF_SizeText( font, text.c_str(), &dest.w, &dest.h );
         dest.x = resize( posX );
         dest.y = resize( posY );
 
-        SDL_Surface *tempSurface = TTF_RenderText_Blended( font, text, {255, 255, 255} );
+        SDL_Surface *tempSurface = TTF_RenderText_Blended( font, text.c_str(), {255, 255, 255} );
 
         textTexture = SDL_CreateTextureFromSurface( window->renderer, tempSurface );
         if( !textTexture )

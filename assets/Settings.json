@@ -1,18 +1,28 @@
 {
-    "Video": [
+    "settings": [
+        {
+            "name": "Video",
+            "options": [
 
-        {
-            "name": "FPS",
-            "type": "Value",
-            "value": 60
-        },
-        {
-            "name": "Zoom",
-            "type": "Slider",
-            "min": 0.5,
-            "max": 2.0,
-            "value": 1
+                {
+                    "name": "FPS",
+                    "type": "Value",
+                    "value": 60
+                },
+                {
+                    "name": "Zoom",
+                    "type": "Slider",
+                    "value": 1.0,
+                    "min": 0.5,
+                    "max": 2.0
+                },
+                {
+                    "name": "Fullscreen",
+                    "type": "Check",
+                    "value": false
+                }
+
+            ]
         }
-
     ]
 }

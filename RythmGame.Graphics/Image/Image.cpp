@@ -2,7 +2,8 @@
 
 namespace RythmGame::Graphics
 {
-    Image::Image( std::string path, Rect dest )
+
+    Image::Image( std::string path, Rect dest, int position )
     {
         tex = TextureManager::LoadTexture( const_cast<char *>( path.c_str() ) );
         this->dest = dest;
@@ -11,6 +12,10 @@ namespace RythmGame::Graphics
         posY = 0;
         posW = 0;
         posH = 0;
+
+        this->position = position;
+
+        zoom = 1.0f;
     }
 
     Image::~Image()
@@ -23,10 +28,39 @@ namespace RythmGame::Graphics
     }
     void Image::Draw( Rect dest )
     {
-        posX = resize( dest.x - dest.w/2 );
-        posY = resize( dest.y - dest.h/2 );
-        posW = resize( dest.w );
-        posH = resize( dest.h );
+        switch( position )
+        {
+        case Center:
+            posX = resize( dest.x - dest.w*zoom/2 );
+            posY = resize( dest.y - dest.h*zoom/2 );
+            break;
+
+        case TopLeft:
+            posX = resize( dest.x );
+            posY = resize( dest.y );
+            break;
+
+        case TopRight:
+            posX = resize( dest.x - dest.w*zoom );
+            posY = resize( dest.y );
+            break;
+
+        case BottomLeft:
+            posX = resize( dest.x );
+            posY = resize( dest.y - dest.h*zoom );
+            break;
+
+        case BottomRight:
+            posX = resize( dest.x - dest.w*zoom );
+            posY = resize( dest.y - dest.h*zoom );
+            break;
+
+        default:
+            break;
+        }
+
+        posW = resize( dest.w*zoom );
+        posH = resize( dest.h*zoom );
 
         TextureManager::DrawTexture(
             tex,
@@ -38,10 +72,45 @@ namespace RythmGame::Graphics
     {
         isHoover = false;
 
-        if( (inputManager.mouse.pos.x > resize( dest.x - dest.w/2 )) && (inputManager.mouse.pos.x < resize( dest.x + dest.w/2 ))
-         && (inputManager.mouse.pos.y > resize( dest.y - dest.h/2 )) && (inputManager.mouse.pos.y < resize( dest.y + dest.h/2 )) )
+        switch( position )
         {
-            isHoover = true;
+        case Center:
+            if( inputManager.MouseInRect( resize( dest.x - dest.w*zoom/2 ), resize( dest.y - dest.h*zoom/2 ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
+            {
+                isHoover = true;
+            }
+            break;
+
+        case TopLeft:
+            if( inputManager.MouseInRect( resize( dest.x ), resize( dest.y ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
+            {
+                isHoover = true;
+            }
+            break;
+
+        case TopRight:
+            if( inputManager.MouseInRect( resize( dest.x - dest.w*zoom ), resize( dest.y ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
+            {
+                isHoover = true;
+            }
+            break;
+
+        case BottomLeft:
+            if( inputManager.MouseInRect( resize( dest.x ), resize( dest.y - dest.h*zoom ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
+            {
+                isHoover = true;
+            }
+            break;
+
+        case BottomRight:
+            if( inputManager.MouseInRect( resize( dest.x - dest.w*zoom ), resize( dest.y - dest.h*zoom ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
+            {
+                isHoover = true;
+            }
+            break;
+
+        default:
+            break;
         }
 
     }

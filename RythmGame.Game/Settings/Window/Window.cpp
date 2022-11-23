@@ -8,37 +8,51 @@ namespace RythmGame::Game::Settings
         std::ifstream file( "assets/Settings.json" );
         json data = json::parse( file );
 
-        for( auto category : data )
+        for( auto category : data["settings"] )
         {
-            for( auto option : category )
+            std::vector<OptionTemplate *> tempOptionsVector;
+
+            for( auto option : category["options"] )
             {
+                OptionTemplate *tempOption;
+
                 if( option["type"] == "Value" )
                 {
-                    std::cout << option["name"] << std::endl;
-                    std::cout << option["value"] << std::endl;
+                    tempOption = new Value(
+                        option["name"],
+                        option["value"]
+                    );
+                }
+                else if( option["type"] == "Slider" )
+                {
+                    tempOption = new Slider(
+                        option["name"],
+                        option["value"],
+                        option["min"],
+                        option["max"]
+                    );
+                }
+                else if( option["type"] == "Check" )
+                {
+                    tempOption = new Check(
+                        option["name"],
+                        option["value"]
+                    );
+                }
+
+                if( tempOption )
+                {
+                    tempOptionsVector.push_back( tempOption );
                 }
             }
-        }
 
-        categories.push_back(
-            new Category(
-                "Salutations",
-                {
-                    "Yo !",
-                    "GG"
-                }
-            )
-        );
-        categories.push_back(
-            new Category(
-                "LOOOL",
-                {
-                    "ppoypoop !",
-                    "ffd",
-                    "9403T3/UJ"
-                }
-            )
-        );
+            categories.push_back(
+                new Category(
+                    category["name"],
+                    tempOptionsVector
+                )
+            );
+        }
 
         backgroundRect = new SDL_Rect();
 

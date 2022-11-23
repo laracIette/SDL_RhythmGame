@@ -55,13 +55,14 @@ namespace RythmGame::Game::Menu::StartScreen::Button
         void Update()
         {
             Hoover();
+            UpdateZoom();
             if( !isClicked && IsLeftClicked() ) isClicked = true;
 
             if( isClicked )
             {
                 for( ButtonTemplate *button : buttons )
                 {
-                    button->Hoover();
+                    button->Update();
                 }
 
                 if( buttons[PlaySolo]->IsLeftClicked() )
@@ -75,13 +76,13 @@ namespace RythmGame::Game::Menu::StartScreen::Button
         {
             if( !isClicked )
             {
-                DrawButton();
+                Draw();
                 return;
             }
 
             for( ButtonTemplate *button : buttons )
             {
-                button->DrawButton();
+                button->Draw();
             }
         }
     };

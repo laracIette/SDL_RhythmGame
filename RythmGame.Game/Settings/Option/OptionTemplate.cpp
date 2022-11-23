@@ -3,7 +3,7 @@
 namespace RythmGame::Game::Settings::Option
 {
 
-    OptionTemplate::OptionTemplate( const char *text )
+    OptionTemplate::OptionTemplate( std::string text )
     {
         this->text = new TextTTF( text, optionFont, 10, 0 );
     }

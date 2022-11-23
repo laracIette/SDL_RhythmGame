@@ -3,9 +3,9 @@
 namespace RythmGame::Game::Settings
 {
 
-    Category::Category( const char *title, std::vector<const char *> optionsVector )
+    Category::Category( std::string title, std::vector<OptionTemplate *> optionsVector )
     {
-        this->title = new TextTTF( title, optionFont, 0, 0 );
+        this->title = new TextTTF( title, categoryTitleFont, 0, 0 );
 
         backgroundRect = new SDL_Rect();
 
@@ -16,10 +16,8 @@ namespace RythmGame::Game::Settings
 
         backgroundColor = (Red + Blue)/2;
 
-        for( const char *option : optionsVector )
-        {
-            options.push_back( new Check( option ) );
-        }
+        options = optionsVector;
+
     }
 
     Category::~Category()

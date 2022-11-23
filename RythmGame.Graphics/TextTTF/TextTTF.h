@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <iostream>
+#include <string>
 
 #include "../../RythmGame.Framework/Window/Window.h"
 
@@ -23,7 +24,7 @@ namespace RythmGame::Graphics
         SDL_Rect dest;
 
     public:
-        TextTTF( const char *text, TTF_Font *font, int posX, int posY );
+        TextTTF( std::string text, TTF_Font *font, int posX, int posY );
         ~TextTTF();
 
         void Update( int posY );

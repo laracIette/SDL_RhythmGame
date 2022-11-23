@@ -13,17 +13,6 @@ using namespace RythmGame::Game::Utils;
 
 namespace RythmGame::Graphics
 {
-    enum Positions {
-        Center = 0,
-        Top,
-        Left,
-        Right,
-        Bottom,
-        TopLeft,
-        TopRight,
-        BottomLeft,
-        BottomRight
-    };
 
     class Text
     {

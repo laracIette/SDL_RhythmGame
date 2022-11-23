@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include "../../Utils/GameSettings.h"
 
 #include "../../../RythmGame.Graphics/TextTTF/TextTTF.h"
@@ -20,7 +22,7 @@ namespace RythmGame::Game::Settings::Option
         TextTTF *text;
 
     public:
-        OptionTemplate( const char *text );
+        OptionTemplate( std::string text );
         ~OptionTemplate();
 
         void UpdateText( int posY );

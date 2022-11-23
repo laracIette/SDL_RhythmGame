@@ -13,7 +13,7 @@ namespace RythmGame::Game::Settings::Option
         bool isOn;
 
     public:
-        Check( const char *text )
+        Check( std::string text, bool value )
          : OptionTemplate( text )
         {
             checkBoxOn = new Image(
@@ -25,7 +25,7 @@ namespace RythmGame::Game::Settings::Option
                 {10, 0, (float)this->text->W(), (float)this->text->H()}
             );
 
-            isOn = false;
+            isOn = value;
         }
 
         void Update( int posY );

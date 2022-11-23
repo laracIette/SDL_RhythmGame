@@ -135,6 +135,27 @@ namespace RythmGame::Game::Events
         bool Left2PressedNoLock()  { return (Left2Pressed()  && !Left2Lock()); }
         bool Right1PressedNoLock() { return (Right1Pressed() && !Right1Lock()); }
         bool Right2PressedNoLock() { return (Right2Pressed() && !Right2Lock()); }
+
+        bool MouseInRect( Rect dest )
+        {
+            return MouseInRect( dest.x, dest.y, dest.w, dest.h );
+        }
+
+        bool MouseInRect( SDL_Rect dest )
+        {
+            return MouseInRect( dest.x, dest.y, dest.w, dest.h );
+        }
+
+        bool MouseInRect( int x, int y, int w, int h )
+        {
+            if( (mouse.pos.x > x) && (mouse.pos.x < (x + w))
+             && (mouse.pos.y > y) && (mouse.pos.y < (y + h)) )
+            {
+                return 1;
+            }
+
+            return 0;
+        }
     };
 
     extern InputManager inputManager;

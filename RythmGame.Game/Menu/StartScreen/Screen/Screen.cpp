@@ -23,7 +23,7 @@ namespace RythmGame::Game::Menu::StartScreen
     {
         for( ButtonTemplate *button : buttons )
         {
-            button->Hoover();
+            button->Update();
         }
 
         playButton->Update();
@@ -37,7 +37,7 @@ namespace RythmGame::Game::Menu::StartScreen
         {
             for( ButtonTemplate *button : buttons )
             {
-                button->DrawButton();
+                button->Draw();
             }
         }
         playButton->DrawPlayButton();

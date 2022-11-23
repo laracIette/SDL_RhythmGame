@@ -12,7 +12,7 @@ namespace RythmGame::Game::Settings::Option
 
     void Check::Draw()
     {
-        (isOn) ? checkBoxOn->Draw() : checkBoxOff->Draw();
+        //(isOn) ? checkBoxOn->Draw() : checkBoxOff->Draw();
         DrawText();
     }
 
