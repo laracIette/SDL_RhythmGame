@@ -8,11 +8,18 @@ namespace RythmGame::Game::Settings::Option
         checkBoxOn->SetY( posY );
         checkBoxOff->SetY( posY );
         UpdateText( posY );
+
+        checkBoxOn->Hoover();
+
+        if( checkBoxOn->IsLeftClicked() )
+        {
+            isOn = !isOn;
+        }
     }
 
     void Check::Draw()
     {
-        //(isOn) ? checkBoxOn->Draw() : checkBoxOff->Draw();
+        (isOn) ? checkBoxOn->Draw() : checkBoxOff->Draw();
         DrawText();
     }
 

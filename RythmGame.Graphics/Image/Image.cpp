@@ -122,24 +122,10 @@ namespace RythmGame::Graphics
 
     bool Image::IsLeftClicked()
     {
-        bool ret{ isHoover && inputManager.LeftClickedNoLock() };
-
-        if( inputManager.LeftClicked() )
-        {
-            inputManager.SetButtonLock( inputManager.mouse.Left, true );
-        }
-
-        return ret;
+        return (isHoover && inputManager.LeftClickedNoLock());
     }
     bool Image::IsRightClicked()
     {
-        bool ret{ isHoover && inputManager.RightClickedNoLock() };
-
-        if( inputManager.RightClicked() )
-        {
-            inputManager.SetButtonLock( inputManager.mouse.Right, true );
-        }
-
-        return ret;
+        return (isHoover && inputManager.RightClickedNoLock());
     }
 }

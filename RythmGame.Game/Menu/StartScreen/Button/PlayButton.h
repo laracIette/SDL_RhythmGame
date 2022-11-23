@@ -56,7 +56,12 @@ namespace RythmGame::Game::Menu::StartScreen::Button
         {
             Hoover();
             UpdateZoom();
-            if( !isClicked && IsLeftClicked() ) isClicked = true;
+
+            if( !isClicked && IsLeftClicked() )
+            {
+                isClicked = true;
+                return;
+            }
 
             if( isClicked )
             {

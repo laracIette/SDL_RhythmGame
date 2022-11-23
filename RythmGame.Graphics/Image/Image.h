@@ -67,6 +67,8 @@ namespace RythmGame::Graphics
         void SetW( float w ) { dest.w = w; }
         void SetH( float h ) { dest.h = h; }
 
+        Rect GetRect() { return dest; }
+
         void Hoover();
         bool IsHoover();
 

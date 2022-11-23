@@ -2,16 +2,17 @@
 
 #include <string>
 
-#include "../../Utils/GameSettings.h"
+#include "../../Events/InputManager.h"
 
 #include "../../../RythmGame.Graphics/TextTTF/TextTTF.h"
+#include "../../../RythmGame.Graphics/Image/Image.h"
 
 #include "../../../RythmGame.Framework/Window/Window.h"
 
-#include "../../../RythmGame.Graphics/Image/Image.h"
 
 using namespace RythmGame::Graphics;
 using namespace RythmGame::Framework;
+using namespace RythmGame::Game::Events;
 
 namespace RythmGame::Game::Settings::Option
 {

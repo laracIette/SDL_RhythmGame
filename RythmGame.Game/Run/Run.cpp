@@ -97,13 +97,17 @@ namespace RythmGame::Game
         {
             inputManager.SetKeyLock( inputManager.keyboard.S, true );
 
-            isSettings = (isSettings) ? false : true;
+            isSettings = !isSettings;
         }
 
         if( isSettings )
         {
             settingsWindow->Update();
         }
+
+
+        if( inputManager.LeftClickedNoLock() )  inputManager.SetButtonLock( inputManager.mouse.Left,  true );
+        if( inputManager.RightClickedNoLock() ) inputManager.SetButtonLock( inputManager.mouse.Right, true );
 
         hitSoundManager->Update();
     }
