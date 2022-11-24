@@ -19,6 +19,7 @@
 #include "../../RythmGame.Framework/Window/Window.h"
 #include "../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
 #include "../../RythmGame.Graphics/TextTTF/TextTTF.h"
+#include "../../RythmGame.Graphics/ImageManager.h"
 
 #include "../Settings/Window/Window.h"
 

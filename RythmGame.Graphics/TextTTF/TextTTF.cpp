@@ -36,4 +36,22 @@ namespace RythmGame::Graphics
         SDL_RenderCopy( window->renderer, textTexture, NULL, &dest );
     }
 
+    void TextTTF::Hoover()
+    {
+        isHoover = false;
+
+        if( inputManager.MouseInRect( dest.x, dest.y, dest.w, dest.h ) )
+        {
+            isHoover = true;
+        }
+    }
+
+    bool TextTTF::IsLeftClicked()
+    {
+        return (isHoover && inputManager.LeftClickedNoLock());
+    }
+    bool TextTTF::IsRightClicked()
+    {
+        return (isHoover && inputManager.RightClickedNoLock());
+    }
 }

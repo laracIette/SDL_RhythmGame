@@ -5,7 +5,16 @@ namespace RythmGame::Graphics
 
     Image::Image( std::string path, Rect dest, int position )
     {
-        tex = TextureManager::LoadTexture( const_cast<char *>( path.c_str() ) );
+        if( imageManager.imagesTextureMap.count( path ) )
+        {
+            tex = imageManager.imagesTextureMap[path];
+        }
+        else
+        {
+            imageManager.imagesTextureMap[path] = TextureManager::LoadTexture( const_cast<char *>( path.c_str() ) );
+            tex = imageManager.imagesTextureMap[path];
+        }
+
         this->dest = dest;
 
         posX = 0;

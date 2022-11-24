@@ -5,20 +5,33 @@
             "options": [
                 {
                     "name": "FPS",
-                    "type": "Value",
+                    "options": [
+                        30,
+                        60,
+                        120,
+                        240,
+                        480,
+                        960
+                    ],
+                    "type": "Options",
                     "value": 60.0
                 },
                 {
-                    "max": 2.0,
-                    "min": 0.5,
                     "name": "Zoom",
                     "type": "Slider",
-                    "value": 1.0
+                    "value": 1.0,
+                    "value.max": 2.0,
+                    "value.min": 0.5
                 },
                 {
                     "name": "Fullscreen",
                     "type": "Check",
-                    "value": false
+                    "value": true
+                },
+                {
+                    "name": "Dicks",
+                    "type": "Value",
+                    "value": 1.0
                 }
             ]
         }

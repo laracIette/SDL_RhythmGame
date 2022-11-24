@@ -29,8 +29,8 @@ namespace RythmGame::Game::Settings
                     tempOption = new Slider(
                         option["name"],
                         option["value"],
-                        option["min"],
-                        option["max"]
+                        option["value.min"],
+                        option["value.max"]
                     );
                 }
                 else if( option["type"] == "Check" )
@@ -38,6 +38,14 @@ namespace RythmGame::Game::Settings
                     tempOption = new Check(
                         option["name"],
                         option["value"]
+                    );
+                }
+                else if( option["type"] == "Options" )
+                {
+                    tempOption = new Options(
+                        option["name"],
+                        option["value"],
+                        option["options"]
                     );
                 }
 

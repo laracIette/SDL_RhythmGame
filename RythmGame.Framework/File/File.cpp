@@ -17,7 +17,7 @@ namespace RythmGame::Framework
         bool isValueTempStarted{ false };
         bool isMultiElements{ false };
 
-        int colonIndice;
+        int colonIndex;
 
         while( getline( file, temp ) )
         {
@@ -56,19 +56,19 @@ namespace RythmGame::Framework
             valueTemp = "";
             isValueTempStarted = false;
 
-            colonIndice = -1;
+            colonIndex = -1;
 
             for( int i{ 0 }; i < line.size(); ++i )
             {
                 if( line[i] == ':' )
                 {
-                    colonIndice = i;
+                    colonIndex = i;
                 }
             }
 
-            if( colonIndice == -1 ) continue;
+            if( colonIndex == -1 ) continue;
 
-            for( int i{ 0 }; i < colonIndice; ++i )
+            for( int i{ 0 }; i < colonIndex; ++i )
             {
                 if( line[i] != ' ' )
                 {
@@ -76,7 +76,7 @@ namespace RythmGame::Framework
                 }
             }
 
-            for( int i{ colonIndice + 1 }; i < line.size(); ++i )
+            for( int i{ colonIndex + 1 }; i < line.size(); ++i )
             {
                 if( (line[i] == ' ') && !isValueTempStarted ) continue;
 

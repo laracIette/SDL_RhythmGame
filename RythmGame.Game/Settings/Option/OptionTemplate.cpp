@@ -18,6 +18,12 @@ namespace RythmGame::Game::Settings::Option
     void OptionTemplate::UpdateText( int posY )
     {
         text->Update( posY );
+        text->Hoover();
+
+        if( text->IsLeftClicked() )
+        {
+            isSelected = !isSelected;
+        }
     }
 
     void OptionTemplate::DrawText()

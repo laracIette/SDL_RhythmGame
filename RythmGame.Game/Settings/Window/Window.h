@@ -9,6 +9,7 @@
 #include "../Option/Types/Check/Check.h"
 #include "../Option/Types/Value/Value.h"
 #include "../Option/Types/Slider/Slider.h"
+#include "../Option/Types/Options/Options.h"
 
 #include "../../Utils/GameSettings.h"
 

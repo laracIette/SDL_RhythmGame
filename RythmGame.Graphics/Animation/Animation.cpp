@@ -18,7 +18,7 @@ namespace RythmGame::Graphics
             }
         }
 
-        indice = 0;
+        index = 0;
         lastImageTime = currentTime;
 
     }
@@ -30,12 +30,12 @@ namespace RythmGame::Graphics
 
     void Animation::Draw()
     {
-        images[indice]->Draw();
+        images[index]->Draw();
 
         if( getDuration<Milliseconds>(currentTime, lastImageTime) > 1000/10 )
         {
             lastImageTime = currentTime;
-            if( ++indice >= images.size() ) indice = 0;
+            if( ++index >= images.size() ) index = 0;
         }
     }
 

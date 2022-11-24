@@ -22,7 +22,7 @@ namespace RythmGame::Graphics
     class Animation
     {
         std::vector<Image *> images;
-        int indice;
+        int index;
         std::chrono::high_resolution_clock::time_point lastImageTime;
 
     public:

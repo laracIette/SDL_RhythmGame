@@ -8,7 +8,7 @@ namespace RythmGame::Graphics
         SDL_Surface *tempSurface{ IMG_Load( path ) };
         SDL_Texture *tex{ SDL_CreateTextureFromSurface( window->renderer, tempSurface ) };
         SDL_FreeSurface( tempSurface );
-
+std::cout << path << std::endl;
         if( !tex )
         {
             std::cout << "Error creating '" << path << "'.\n" << SDL_GetError() << std::endl;

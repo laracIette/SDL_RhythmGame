@@ -10,6 +10,8 @@
 
 #include "../TextureManager/TextureManager.h"
 
+#include "../ImageManager.h"
+
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game::Events;
 

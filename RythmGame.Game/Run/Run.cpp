@@ -9,6 +9,7 @@ bool  RythmGame::Game::Utils::isHorizontal;
 Window *RythmGame::Framework::window;
 
 InputManager RythmGame::Game::Events::inputManager;
+ImageManager RythmGame::Graphics::imageManager;
 
 HitSoundManager *RythmGame::Sound::hitSoundManager;
 
@@ -27,20 +28,20 @@ namespace RythmGame::Game
 
         isRunning = true;
 
+        startScreen        = new StartScreen::Screen();
+        mapSelectionScreen = new MapSelection::Screen();
+
+        optionFont        = TTF_OpenFont( "assets/UI/Fonts/OpenSans-Bold.ttf", resize( FONT_SIZE_OPTION ) );
+        categoryTitleFont = TTF_OpenFont( "assets/UI/Fonts/OpenSans-Bold.ttf", resize( FONT_SIZE_CATEGORY_TITLE ) );
+
+        settingsWindow = new Settings::Window();
+        isSettings = false;
+
         player = new Player();
 
         velocity = 0.3f;
 
         isHorizontal = true;
-
-        startScreen = new StartScreen::Screen();
-        mapSelectionScreen = new MapSelection::Screen();
-
-        optionFont = TTF_OpenFont( "assets/UI/Fonts/Comfortaa-VariableFont_wght.ttf", resize( FONT_SIZE_OPTION ) );
-        categoryTitleFont = TTF_OpenFont( "assets/UI/Fonts/Comfortaa-VariableFont_wght.ttf", resize( FONT_SIZE_CATEGORY_TITLE ) );
-
-        settingsWindow = new Settings::Window();
-        isSettings = false;
 
         map = new Map();
     }

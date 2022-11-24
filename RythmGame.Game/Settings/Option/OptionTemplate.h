@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 #include "../../Events/InputManager.h"
 
@@ -31,6 +32,7 @@ namespace RythmGame::Game::Settings::Option
     protected:
         TextTTF *text;
         float    value;
+        bool     isSelected;
 
     public:
         OptionTemplate( std::string text, float value, int type );
