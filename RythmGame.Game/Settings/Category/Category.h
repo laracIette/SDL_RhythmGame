@@ -28,6 +28,8 @@ namespace RythmGame::Game::Settings
         SDL_Rect *backgroundRect;
         RGB backgroundColor;
 
+        std::pair<int, int> posPair;
+
     public:
         Category( std::string title, std::vector<OptionTemplate *> optionsVector );
         ~Category();

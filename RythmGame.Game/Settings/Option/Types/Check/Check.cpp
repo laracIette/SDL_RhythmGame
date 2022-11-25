@@ -3,7 +3,7 @@
 namespace RythmGame::Game::Settings::Option
 {
 
-    void Check::Update( int posY )
+    std::pair<int, int> Check::Update( int posY )
     {
         checkBoxOn->SetY( posY );
         checkBoxOff->SetY( posY );
@@ -15,6 +15,8 @@ namespace RythmGame::Game::Settings::Option
         {
             value = !value;
         }
+
+        return {0, 0};
     }
 
     void Check::Draw()

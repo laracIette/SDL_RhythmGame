@@ -5,10 +5,11 @@ namespace RythmGame::Game::Settings::Option
 
     OptionTemplate::OptionTemplate( std::string text, float value, int type )
     {
-        this->text  = new TextTTF( text, optionFont, 10, 0 );
-        this->value = value;
-        this->type  = type;
-        this->name  = text;
+        this->text       = new TextTTF( text, optionFont, 10, 0 );
+        this->value      = value;
+        this->type       = type;
+        this->name       = text;
+        this->isSelected = false;
     }
 
     OptionTemplate::~OptionTemplate()
@@ -18,7 +19,6 @@ namespace RythmGame::Game::Settings::Option
     void OptionTemplate::UpdateText( int posY )
     {
         text->Update( posY );
-        text->Hoover();
 
         if( text->IsLeftClicked() )
         {

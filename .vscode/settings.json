@@ -33,7 +33,7 @@
         "istream": "cpp",
         "new": "cpp",
         "numbers": "cpp",
-        "ostream": "cpp",
+        "iostream": "cpp",
         "ratio": "cpp",
         "streambuf": "cpp",
         "string": "cpp",

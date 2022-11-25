@@ -3,9 +3,10 @@
 namespace RythmGame::Game::Settings::Option
 {
 
-    void Slider::Update( int posY )
+    std::pair<int, int> Slider::Update( int posY )
     {
         UpdateText( posY );
+        return {0, 0};
     }
 
     void Slider::Draw()

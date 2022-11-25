@@ -3,9 +3,10 @@
 namespace RythmGame::Game::Settings::Option
 {
 
-    void Value::Update( int posY )
+    std::pair<int, int> Value::Update( int posY )
     {
         UpdateText( posY );
+        return {0, 0};
     }
 
     void Value::Draw()

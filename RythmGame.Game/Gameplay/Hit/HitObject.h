@@ -114,9 +114,10 @@ namespace RythmGame::Game::Gameplay::Hit
         }
 
     /**
-        \returns the hitValue if isReturnHitValue is true
-        else \returns -1
-    */
+     * \returns
+     * the hitValue if isReturnHitValue is true
+     * else -1
+     */
         char GetHitValue()
         {
             if( isReturnHitValue )
@@ -203,9 +204,10 @@ namespace RythmGame::Game::Gameplay::Hit
         }
 
     /**
-        \returns 1 if hitting the right note side
-        else \returns 0
-    */
+     * \returns
+     * true if hitting the right note side
+     * else false
+     */
         virtual bool CheckHitting()
         {
             if( ( ((inputManager.OnlyLeft2Pressed()  && isUp) || (inputManager.OnlyLeft1Pressed()  && !isUp)) && ((direction == LEFT && isHorizontal) || (direction == UP   && !isHorizontal)) )
@@ -271,9 +273,10 @@ namespace RythmGame::Game::Gameplay::Hit
         }
 
     /**
-        \returns 1 if the HitObject needs to be erased
-        else \returns 0
-    */
+     * \returns
+     * true if the HitObject needs to be erased
+     * else false
+     */
         bool Erase()
         {
             if( (getDuration<Milliseconds>(currentTime, offsetTime) - endTime) > (int)Time::Miss )

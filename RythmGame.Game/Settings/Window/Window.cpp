@@ -71,6 +71,8 @@ namespace RythmGame::Game::Settings
         backgroundRect->h = resize( 1080 );
 
         backgroundColor = {69, 69, 69};
+
+        posY = 0;
     }
 
     Window::~Window()
@@ -79,12 +81,14 @@ namespace RythmGame::Game::Settings
 
     void Window::Update()
     {
+        posY += inputManager.WheelMovementY();
+
         std::map<std::string, float> tempToChange;
 
-        int posY{ 0 };
+        int tempPosY{ (int)posY };
         for( Category *category : categories )
         {
-            posY = category->Update( posY ) + 50;
+            tempPosY = category->Update( tempPosY ) + 50;
 
             for( std::pair<std::string, float> tempPair : category->ChangeValue() )
             {

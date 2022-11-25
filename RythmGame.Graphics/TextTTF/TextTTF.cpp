@@ -28,6 +28,7 @@ namespace RythmGame::Graphics
     void TextTTF::Update( int posY )
     {
         dest.y = resize( posY );
+        Hoover();
     }
 
 

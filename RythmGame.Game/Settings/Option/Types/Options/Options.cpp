@@ -3,24 +3,34 @@
 namespace RythmGame::Game::Settings::Option
 {
 
-    void Options::Update( int posY )
+    std::pair<int, int> Options::Update( int posY )
     {
         UpdateText( posY );
 
+        int up{ 0 };
+        int down{ FONT_SIZE_OPTION*index };
         if( isSelected )
         {
             int tempIndex{ index };
             for( TextTTF *option : options )
             {
-                option->Update( posY - FONT_SIZE_OPTION*tempIndex-- );
+                up = -FONT_SIZE_OPTION*tempIndex--;
+                option->Update( posY + up );
             }
+            backgroundRect->y = options[0]->Y();
+
         }
+
+        return {up, down};
     }
 
     void Options::Draw()
     {
+
         if( isSelected )
         {
+            window->DrawRectangle( backgroundRect, backgroundColor );
+
             for( TextTTF *option : options )
             {
                 option->Draw();

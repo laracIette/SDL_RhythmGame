@@ -38,6 +38,8 @@ namespace RythmGame::Game::Settings
 
         json data;
 
+        float posY;
+
     public:
         Window();
         ~Window();

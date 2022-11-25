@@ -29,10 +29,11 @@ namespace RythmGame::Graphics
         BottomRight
     };
 
-    /**
-        \returns 1 if the path ends with png
-        else \returns 0
-    */
+/**
+ * \returns
+ * true if the path ends with png
+ * else false
+ */
     static bool CheckImageExists( std::string path )
     {
         if( (path[path.size()-3] != 'p') || (path[path.size()-2] != 'n') || (path[path.size()-1] != 'g') )

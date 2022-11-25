@@ -3,6 +3,10 @@
 #include "KeyboardEvents.h"
 #include "MouseEvents.h"
 
+#include "../Utils/Time.h"
+
+#include <iostream>
+
 namespace RythmGame::Game::Events
 {
 
@@ -22,6 +26,37 @@ namespace RythmGame::Game::Events
 
         bool HandleEvents()
         {
+            if( mouse.wheel.x != 0 )
+            {
+                if( mouse.wheel.x > 0.1 )
+                {
+                    mouse.wheel.x -= deltaTime/10;
+                }
+                else if( mouse.wheel.x < -0.1 )
+                {
+                    mouse.wheel.x += deltaTime/25;
+                }
+                else
+                {
+                    mouse.wheel.x = 0;
+                }
+            }
+            if( mouse.wheel.y != 0 )
+            {
+                if( mouse.wheel.y > 0.1 )
+                {
+                    mouse.wheel.y -= deltaTime/25;
+                }
+                else if( mouse.wheel.y < -0.1 )
+                {
+                    mouse.wheel.y += deltaTime/25;
+                }
+                else
+                {
+                    mouse.wheel.y = 0;
+                }
+            }
+
             SDL_GetMouseState( &mouse.pos.x, &mouse.pos.y );
 
             while( SDL_PollEvent( &event ) )
@@ -73,6 +108,15 @@ namespace RythmGame::Game::Events
                     }
                     break;
 
+                case SDL_MOUSEWHEEL:
+                if( (mouse.wheel.x > -10) && (mouse.wheel.x < 10) )
+                {
+                    mouse.wheel.x += event.wheel.x*deltaTime;
+                }
+                if( (mouse.wheel.y > -10) && (mouse.wheel.y < 10) )
+                {
+                    mouse.wheel.y += event.wheel.y*deltaTime;
+                }
 
                 default:
                     break;
@@ -156,6 +200,9 @@ namespace RythmGame::Game::Events
 
             return 0;
         }
+
+        float WheelMovementY() { return mouse.wheel.y; }
+        float WheelMovementX() { return mouse.wheel.x; }
     };
 
     extern InputManager inputManager;

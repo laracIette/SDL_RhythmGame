@@ -30,6 +30,8 @@ namespace RythmGame::Game::Events
 
         vec2<int> pos;
 
+        vec2<float> wheel;
+
     };
 
 }

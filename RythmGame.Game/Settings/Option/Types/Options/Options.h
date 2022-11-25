@@ -8,7 +8,10 @@ namespace RythmGame::Game::Settings::Option
     class Options : public OptionTemplate
     {
         std::vector<TextTTF *> options;
-        int index;
+
+        int       index;
+        SDL_Rect *backgroundRect;
+        RGB       backgroundColor;
 
     public:
         Options( std::string text, float value, std::vector<float> options )
@@ -25,9 +28,17 @@ namespace RythmGame::Game::Settings::Option
                 if( option == value ) break;
                 index++;
             }
+
+            backgroundRect = new SDL_Rect();
+            backgroundRect->x = resize( 10 );
+            backgroundRect->y = 0;
+            backgroundRect->w = resize( 1920/3 - 20 );
+            backgroundRect->h = resize( options.size() * FONT_SIZE_OPTION );
+
+            backgroundColor = Green;
         }
 
-        void Update( int posY );
+        std::pair<int, int> Update( int posY );
         void Draw();
     };
 

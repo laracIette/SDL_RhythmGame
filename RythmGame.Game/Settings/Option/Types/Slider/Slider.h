@@ -17,7 +17,7 @@ namespace RythmGame::Game::Settings::Option
             this->max = max;
         }
 
-        void Update( int posY );
+        std::pair<int, int> Update( int posY );
         void Draw();
     };
 

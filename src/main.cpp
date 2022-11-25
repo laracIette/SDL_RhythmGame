@@ -35,7 +35,7 @@ int main( int argc, char *argv[] )
     while( run->Running() )
     {
         currentTime = std::chrono::system_clock::now();
-        deltaTime = getDuration<Milliseconds>( currentTime, lastFrameTime );
+        deltaTime = (float)getDuration<Milliseconds>( currentTime, lastFrameTime );
         lastFrameTime = currentTime;
 
         run->Update();

@@ -26,7 +26,7 @@ namespace RythmGame::Game::Settings::Option
             );
         }
 
-        void Update( int posY );
+        std::pair<int, int> Update( int posY );
         void Draw();
     };
 

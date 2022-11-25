@@ -55,11 +55,11 @@ namespace RythmGame::Game::Menu::StartScreen::Button
         {
             if( isHoover && (zoom < 1.1) )
             {
-                zoom += (float)deltaTime/500;
+                zoom += deltaTime/500;
             }
             else if( !isHoover && (zoom > 1) )
             {
-                zoom -= (float)deltaTime/500;
+                zoom -= deltaTime/500;
             }
         }
     };

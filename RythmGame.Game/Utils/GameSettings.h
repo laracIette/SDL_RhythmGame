@@ -50,16 +50,27 @@ namespace RythmGame::Game::Utils
         return ret;
     }
 
+/**
+ * number * WIDTH / 1920
+ * \returns
+ * resized number
+ */
     template<typename T>
     static T resize( T n )
     {
-        return (T)((float)n / 1920 * (float)WIDTH);
+        if( n == 0 ) return n;
+
+        return (T)((float)n * (float)WIDTH) / 1920;
     }
 
+/**
+ * \returns
+ * new pointer to the passed argument
+ */
     template<typename T>
-    static T *getPointer( T rect )
+    static T *getPointer( T arg )
     {
-        return new T( rect );
+        return new T( arg );
     }
 
 }

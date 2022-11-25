@@ -30,10 +30,16 @@ namespace RythmGame::Game::Settings
         backgroundRect->y = title->Y();
         posY += FONT_SIZE_CATEGORY_TITLE + 6;
 
-        for( OptionTemplate *option : options )
+        for( int i{ 0 }; i < options.size(); ++i )
         {
-            option->Update( posY );
+            posPair = options[i]->Update( posY );
+            posY += posPair.first;
             posY += FONT_SIZE_OPTION + 6;
+
+            for( int j{ 0 }; j < i; ++j )
+            {
+                options[j]->Update( options[j]->Y() - posPair.second );
+            }
         }
 
         backgroundRect->h = resize( posY ) - backgroundRect->y;
