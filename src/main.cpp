@@ -1,28 +1,37 @@
 #include <SDL.h>
 #include <chrono>
 #include <thread>
+#include <iostream>
 
 #include "../RythmGame.Game/Utils/Metrics.h"
 #include "../RythmGame.Game/Utils/Time.h"
+#include "../RythmGame.Game/Settings/SettingsFile.h"
 
 #include "../RythmGame.Game/Run/Run.h"
 
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game;
+using namespace RythmGame::Game::Settings;
 
 std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::currentTime;
 std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::lastFrameTime;
 
 Run *run;
 
-int RythmGame::Game::Utils::WIDTH{ 1600 };
-int RythmGame::Game::Utils::HEIGHT{ 900 };
+SettingsFile *RythmGame::Game::Settings::settingsFile;
 
-int RythmGame::Game::Utils::FPS{ 60 };
+int RythmGame::Game::Utils::WIDTH;
+int RythmGame::Game::Utils::HEIGHT;
+
+int RythmGame::Game::Utils::FPS;
 
 
 int main( int argc, char *argv[] )
 {
+    settingsFile = new SettingsFile();
+    WIDTH  = settingsFile->FindValue<int>( "Dimension", "width" );
+    HEIGHT = settingsFile->FindValue<int>( "Dimension", "height" );
+
     std::chrono::high_resolution_clock::time_point start;
 
     unsigned long i{ 1 };

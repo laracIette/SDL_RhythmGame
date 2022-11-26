@@ -2,10 +2,10 @@
 
 #include <vector>
 #include <SDL.h>
-#include <json.hpp>
 #include <fstream>
 #include <map>
 
+#include "../SettingsFile.h"
 
 #include "../Option/Types/Check/Check.h"
 #include "../Option/Types/Value/Value.h"
@@ -25,7 +25,6 @@ using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Framework;
 using namespace RythmGame::Game::Settings::Option;
 
-using json = nlohmann::json;
 
 namespace RythmGame::Game::Settings
 {
@@ -36,8 +35,6 @@ namespace RythmGame::Game::Settings
 
         SDL_Rect backgroundRect;
         RGB backgroundColor;
-
-        json data;
 
         float posY;
 

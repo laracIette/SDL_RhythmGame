@@ -5,11 +5,8 @@ namespace RythmGame::Game::Settings
 
     Window::Window()
     {
-        std::ifstream file( "assets/Settings.json" );
-        data = json::parse( file );
-        file.close();
 
-        for( auto category : data["settings"] )
+        for( auto category : settingsFile->data["settings"] )
         {
             std::vector<OptionTemplate *> tempOptionsVector;
 
@@ -100,7 +97,7 @@ namespace RythmGame::Game::Settings
         }
 
         bool updateJsonFile{ false };
-        for( auto &category : data["settings"] )
+        for( auto &category : settingsFile->data["settings"] )
         {
             for( auto &option : category["options"] )
             {
@@ -124,7 +121,7 @@ namespace RythmGame::Game::Settings
         if( updateJsonFile )
         {
             std::ofstream o( "assets/Settings.json" );
-            o << std::setw(4) << data << std::endl;
+            o << std::setw(4) << settingsFile->data << std::endl;
             o.close();
         }
     }
