@@ -34,6 +34,7 @@ namespace RythmGame::Graphics
 
     void TextTTF::Draw()
     {
+        window->DrawBox( dest, Red );
         SDL_RenderCopy( window->renderer, textTexture, NULL, &dest );
     }
 

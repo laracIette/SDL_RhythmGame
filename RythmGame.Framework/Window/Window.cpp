@@ -33,10 +33,19 @@ namespace RythmGame::Framework
     {
     }
 
-    void Window::DrawRectangle( SDL_Rect *dest, RGB color )
+    void Window::FillRectangle( SDL_Rect dest, RGB color )
     {
         SDL_SetRenderDrawColor( renderer, color.r, color.g, color.b, 255 );
-        SDL_RenderFillRect( renderer, dest );
+        SDL_RenderFillRect( renderer, getPointer<SDL_Rect>(dest) );
+    }
+
+    void Window::DrawBox( SDL_Rect rect, RGB color )
+    {
+        SDL_SetRenderDrawColor( renderer, color.r, color.g, color.b, 255 );
+        SDL_RenderDrawLine( renderer, rect.x, rect.y, rect.x+rect.w, rect.y );
+        SDL_RenderDrawLine( renderer, rect.x, rect.y, rect.x, rect.y+rect.h );
+        SDL_RenderDrawLine( renderer, rect.x+rect.w, rect.y+rect.h, rect.x, rect.y+rect.h );
+        SDL_RenderDrawLine( renderer, rect.x+rect.w, rect.y+rect.h, rect.x+rect.w, rect.y );
     }
 
 }

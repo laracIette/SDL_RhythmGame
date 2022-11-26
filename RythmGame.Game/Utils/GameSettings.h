@@ -8,7 +8,6 @@
 #define Green (RGB){  0, 255,   0}
 #define Blue  (RGB){  0,   0, 255}
 
-
 namespace RythmGame::Game::Utils
 {
 

@@ -6,6 +6,7 @@
 
 #include "../../RythmGame.Game/Utils/Metrics.h"
 #include "../../RythmGame.Game/Utils/GameSettings.h"
+#include "../../RythmGame.Game/Utils/Point.h"
 
 using namespace RythmGame::Game::Utils;
 
@@ -19,7 +20,8 @@ namespace RythmGame::Framework
         Window();
         ~Window();
 
-        void DrawRectangle( SDL_Rect *dest, RGB color );
+        void FillRectangle( SDL_Rect dest, RGB color );
+        void DrawBox( SDL_Rect rect, RGB color );
 
         SDL_Window *window;
         SDL_Renderer *renderer;

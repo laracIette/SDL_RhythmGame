@@ -16,7 +16,7 @@ namespace RythmGame::Game::Settings::Option
             value = !value;
         }
 
-        return {0, 0};
+        return {FONT_SIZE_OPTION, 0};
     }
 
     void Check::Draw()

@@ -17,11 +17,11 @@ namespace RythmGame::Game::Settings::Option
                 up = -FONT_SIZE_OPTION*tempIndex--;
                 option->Update( posY + up );
             }
-            backgroundRect->y = options[0]->Y();
+            backgroundRect.y = options[0]->Y();
 
         }
 
-        return {up, down};
+        return {up + FONT_SIZE_OPTION, down};
     }
 
     void Options::Draw()
@@ -29,7 +29,7 @@ namespace RythmGame::Game::Settings::Option
 
         if( isSelected )
         {
-            window->DrawRectangle( backgroundRect, backgroundColor );
+            window->FillRectangle( backgroundRect, backgroundColor );
 
             for( TextTTF *option : options )
             {

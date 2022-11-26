@@ -25,8 +25,8 @@ namespace RythmGame::Game::Settings
 
         std::vector<OptionTemplate *> options;
 
-        SDL_Rect *backgroundRect;
-        RGB backgroundColor;
+        SDL_Rect backgroundRect;
+        RGB      backgroundColor;
 
         std::pair<int, int> posPair;
 

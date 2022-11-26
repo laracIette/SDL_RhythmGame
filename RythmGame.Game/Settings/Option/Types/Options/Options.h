@@ -9,9 +9,9 @@ namespace RythmGame::Game::Settings::Option
     {
         std::vector<TextTTF *> options;
 
-        int       index;
-        SDL_Rect *backgroundRect;
-        RGB       backgroundColor;
+        int      index;
+        SDL_Rect backgroundRect;
+        RGB      backgroundColor;
 
     public:
         Options( std::string text, float value, std::vector<float> options )
@@ -29,11 +29,10 @@ namespace RythmGame::Game::Settings::Option
                 index++;
             }
 
-            backgroundRect = new SDL_Rect();
-            backgroundRect->x = resize( 10 );
-            backgroundRect->y = 0;
-            backgroundRect->w = resize( 1920/3 - 20 );
-            backgroundRect->h = resize( options.size() * FONT_SIZE_OPTION );
+            backgroundRect.x = resize( 10 );
+            backgroundRect.y = 0;
+            backgroundRect.w = resize( 1920/3 - 20 );
+            backgroundRect.h = resize( options.size() * FONT_SIZE_OPTION );
 
             backgroundColor = Green;
         }

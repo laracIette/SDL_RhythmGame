@@ -5,16 +5,16 @@
             "options": [
                 {
                     "name": "FPS",
-                    "options": [
+                    "type": "Options",
+                    "value": 60.0,
+                    "value.options": [
                         30,
                         60,
                         120,
                         240,
                         480,
                         960
-                    ],
-                    "type": "Options",
-                    "value": 60.0
+                    ]
                 },
                 {
                     "name": "Zoom",

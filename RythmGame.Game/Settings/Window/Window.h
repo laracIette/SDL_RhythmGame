@@ -6,6 +6,7 @@
 #include <fstream>
 #include <map>
 
+
 #include "../Option/Types/Check/Check.h"
 #include "../Option/Types/Value/Value.h"
 #include "../Option/Types/Slider/Slider.h"
@@ -33,12 +34,13 @@ namespace RythmGame::Game::Settings
     {
         std::vector<Category *> categories;
 
-        SDL_Rect *backgroundRect;
+        SDL_Rect backgroundRect;
         RGB backgroundColor;
 
         json data;
 
         float posY;
+
 
     public:
         Window();

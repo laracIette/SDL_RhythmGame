@@ -45,7 +45,7 @@ namespace RythmGame::Game::Settings
                     tempOption = new Options(
                         option["name"],
                         option["value"],
-                        option["options"]
+                        option["value.options"]
                     );
                 }
 
@@ -61,18 +61,18 @@ namespace RythmGame::Game::Settings
                     tempOptionsVector
                 )
             );
+
         }
 
-        backgroundRect = new SDL_Rect();
-
-        backgroundRect->x = 0;
-        backgroundRect->y = 0;
-        backgroundRect->w = resize( 1920/3 );
-        backgroundRect->h = resize( 1080 );
+        backgroundRect.x = 0;
+        backgroundRect.y = 0;
+        backgroundRect.w = resize( 1920/3 );
+        backgroundRect.h = resize( 1080 );
 
         backgroundColor = {69, 69, 69};
 
         posY = 0;
+
     }
 
     Window::~Window()
@@ -81,7 +81,10 @@ namespace RythmGame::Game::Settings
 
     void Window::Update()
     {
-        posY += inputManager.WheelMovementY();
+        if( (posY + inputManager.WheelMovementY()) >= 0 )
+        {
+            posY += inputManager.WheelMovementY();
+        }
 
         std::map<std::string, float> tempToChange;
 
@@ -96,6 +99,7 @@ namespace RythmGame::Game::Settings
             }
         }
 
+        bool updateJsonFile{ false };
         for( auto &category : data["settings"] )
         {
             for( auto &option : category["options"] )
@@ -104,6 +108,7 @@ namespace RythmGame::Game::Settings
                 {
                     if( option["name"] == tempPair.first )
                     {
+                        updateJsonFile = true;
                         if( option["type"] == "Check" )
                         {
                             option["value"] = (bool)tempPair.second;
@@ -116,18 +121,22 @@ namespace RythmGame::Game::Settings
                 }
             }
         }
-        std::ofstream o( "assets/Settings.json" );
-        o << std::setw(4) << data << std::endl;
-        o.close();
+        if( updateJsonFile )
+        {
+            std::ofstream o( "assets/Settings.json" );
+            o << std::setw(4) << data << std::endl;
+            o.close();
+        }
     }
 
     void Window::Draw()
     {
-        window->DrawRectangle( backgroundRect, backgroundColor );
+        window->FillRectangle( backgroundRect, backgroundColor );
 
         for( Category *category : categories )
         {
             category->Draw();
         }
+
     }
 }

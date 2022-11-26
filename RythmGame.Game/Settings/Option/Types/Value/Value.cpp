@@ -6,7 +6,7 @@ namespace RythmGame::Game::Settings::Option
     std::pair<int, int> Value::Update( int posY )
     {
         UpdateText( posY );
-        return {0, 0};
+        return {FONT_SIZE_OPTION, 0};
     }
 
     void Value::Draw()
