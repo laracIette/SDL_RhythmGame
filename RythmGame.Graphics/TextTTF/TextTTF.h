@@ -37,6 +37,8 @@ namespace RythmGame::Graphics
         int W() { return dest.w; }
         int H() { return dest.h; }
 
+        SDL_Rect GetRect() { return dest; }
+
         void Draw();
 
         void Hoover();

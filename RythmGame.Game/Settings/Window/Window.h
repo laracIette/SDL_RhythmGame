@@ -1,29 +1,13 @@
 #pragma once
 
-#include <vector>
-#include <SDL.h>
-#include <fstream>
-#include <map>
+#include "../Categories/Video/Category.h"
 
-#include "../SettingsFile.h"
+#include "../../../RythmGame.Graphics/BoxRoundedCorners.h"
 
-#include "../Option/Types/Check/Check.h"
-#include "../Option/Types/Value/Value.h"
-#include "../Option/Types/Slider/Slider.h"
-#include "../Option/Types/Options/Options.h"
-
-#include "../../Utils/GameSettings.h"
-
-#include "../../../RythmGame.Graphics/Image/Image.h"
-
-#include "../Category/Category.h"
-
-#include "../../../RythmGame.Framework/Window/Window.h"
+#include "../../Events/InputManager.h"
 
 using namespace RythmGame::Graphics;
-using namespace RythmGame::Game::Utils;
-using namespace RythmGame::Framework;
-using namespace RythmGame::Game::Settings::Option;
+using namespace RythmGame::Game::Events;
 
 
 namespace RythmGame::Game::Settings
@@ -31,13 +15,11 @@ namespace RythmGame::Game::Settings
 
     class Window
     {
-        std::vector<Category *> categories;
-
-        SDL_Rect backgroundRect;
-        RGB backgroundColor;
-
         float posY;
 
+        BoxRoundedCorners *box;
+
+        Video::Category *categoryVideo;
 
     public:
         Window();

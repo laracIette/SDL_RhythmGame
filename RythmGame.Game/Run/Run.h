@@ -16,7 +16,6 @@
 #include "../Menu/StartScreen/Screen/Screen.h"
 #include "../Menu/MapSelection/Screen/Screen.h"
 
-#include "../../RythmGame.Framework/Window/Window.h"
 #include "../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
 #include "../../RythmGame.Graphics/TextTTF/TextTTF.h"
 #include "../../RythmGame.Graphics/ImageManager.h"
@@ -48,7 +47,7 @@ namespace RythmGame::Game
         Player *player;
         Map *map;
 
-        StartScreen::Screen *startScreen;
+        StartScreen::Screen  *startScreen;
         MapSelection::Screen *mapSelectionScreen;
 
         Settings::Window *settingsWindow;

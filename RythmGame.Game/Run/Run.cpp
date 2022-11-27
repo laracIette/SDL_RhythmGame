@@ -2,11 +2,9 @@
 
 std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::offsetTime;
 
-float  RythmGame::Game::Utils::deltaTime;
+float RythmGame::Game::Utils::deltaTime;
 float RythmGame::Game::Utils::velocity;
 bool  RythmGame::Game::Utils::isHorizontal;
-
-Window *RythmGame::Framework::window;
 
 InputManager RythmGame::Game::Events::inputManager;
 ImageManager RythmGame::Graphics::imageManager;
@@ -20,8 +18,6 @@ namespace RythmGame::Game
 {
     Run::Run()
     {
-        window = new Window();
-
         hitSoundManager = new HitSoundManager();
 
         currentTime = std::chrono::system_clock::now();

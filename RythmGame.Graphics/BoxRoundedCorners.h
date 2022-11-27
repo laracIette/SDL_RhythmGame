@@ -19,17 +19,20 @@ namespace RythmGame::Graphics
     {
         SDL_Texture *corner;
         SDL_Rect     dest, rectangleDest;
-        int size;
+        int          size;
+        RGB          color;
 
     public:
-        BoxRoundedCorners( SDL_Rect dest )
+        BoxRoundedCorners( SDL_Rect dest, RGB color = White, const char *path = "assets/UI/RoundedCorner.png" )
         {
-            corner = TextureManager::LoadTexture( "assets/UI/RoundedCorner.png" );
+            corner = TextureManager::LoadTexture( path );
 
             this->dest.x = resize( dest.x );
             this->dest.y = resize( dest.y );
             this->dest.w = resize( dest.w );
             this->dest.h = resize( dest.h );
+
+            this->color = color;
 
             size = lowest( this->dest.w, this->dest.h )/10;
             if( size > resize( 25 ) ) size = resize( 25 );
@@ -58,19 +61,19 @@ namespace RythmGame::Graphics
             rectangleDest.y = dest.y+size;
             rectangleDest.w = dest.w;
             rectangleDest.h = dest.h-size*2;
-            window->FillRectangle( rectangleDest, White );
+            window->FillRectangle( rectangleDest, color );
 
             rectangleDest.x = dest.x+size;
             rectangleDest.y = dest.y;
             rectangleDest.w = dest.w-size*2;
             rectangleDest.h = size;
-            window->FillRectangle( rectangleDest, White );
+            window->FillRectangle( rectangleDest, color );
 
             rectangleDest.x = dest.x+size;
             rectangleDest.y = dest.y+dest.h-size;
             rectangleDest.w = dest.w-size*2;
             rectangleDest.h = size;
-            window->FillRectangle( rectangleDest, White );
+            window->FillRectangle( rectangleDest, color );
         }
     };
 

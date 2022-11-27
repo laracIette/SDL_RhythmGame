@@ -20,10 +20,13 @@ SDL:
 	RythmGame.Game/Gameplay/Map/Map.cpp \
 	RythmGame.Game/Gameplay/Player/Player.cpp \
 	RythmGame.Game/Gameplay/Score/Score.cpp \
+	\
 	RythmGame.Game/Menu/MapSelection/Screen/Screen.cpp \
 	RythmGame.Game/Menu/MapSelection/SongTile/SongTile.cpp \
 	RythmGame.Game/Menu/StartScreen/Screen/Screen.cpp \
+	\
 	RythmGame.Game/Run/Run.cpp \
+	\
 	RythmGame.Game/Settings/Category/Category.cpp \
 	RythmGame.Game/Settings/Option/OptionTemplate.cpp \
 	RythmGame.Game/Settings/Option/Types/Check/Check.cpp \
@@ -31,10 +34,12 @@ SDL:
 	RythmGame.Game/Settings/Option/Types/Slider/Slider.cpp \
 	RythmGame.Game/Settings/Option/Types/Value/Value.cpp \
 	RythmGame.Game/Settings/Window/Window.cpp \
+	\
 	RythmGame.Game/Song/Song.cpp \
 	\
 	RythmGame.Graphics/Animation/Animation.cpp \
 	RythmGame.Graphics/Image/Image.cpp \
+	RythmGame.Graphics/OptionsBox/OptionsBox.cpp \
 	RythmGame.Graphics/Text/Text.cpp \
 	RythmGame.Graphics/TextureManager/TextureManager.cpp \
 	RythmGame.Graphics/TextTTF/TextTTF.cpp \
