@@ -1,7 +1,7 @@
 #pragma once
 
-#include <SDL.h>
-#include <SDL_image.h>
+#include "../../inc/SDL-release-2.24.0/include/SDL.h"
+#include "../../inc/SDL2_image-2.6.2/SDL_image.h"
 #include <iostream>
 
 #include "../../RythmGame.Framework/Window/Window.h"

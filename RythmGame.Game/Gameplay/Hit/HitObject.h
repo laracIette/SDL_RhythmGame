@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SDL.h>
+#include "../../../inc/SDL-release-2.24.0/include/SDL.h"
 #include <iostream>
 #include <chrono>
 

@@ -2,7 +2,7 @@
 
 #include <filesystem>
 #include <string>
-#include <SDL.h>
+#include "../../inc/SDL-release-2.24.0/include/SDL.h"
 #include <vector>
 #include <chrono>
 

@@ -11,6 +11,8 @@ ImageManager RythmGame::Graphics::imageManager;
 
 HitSoundManager *RythmGame::Sound::hitSoundManager;
 
+RenderQueue *RythmGame::Graphics::renderQueue;
+
 namespace RythmGame::Game
 {
     Run::Run()
@@ -20,6 +22,8 @@ namespace RythmGame::Game
         currentTime = std::chrono::system_clock::now();
 
         isRunning = true;
+
+        renderQueue = new RenderQueue();
 
         startScreen        = new StartScreen::Screen();
         mapSelectionScreen = new MapSelection::Screen();
@@ -133,6 +137,8 @@ namespace RythmGame::Game
         {
             settingsWindow->DrawWindow();
         }
+
+        renderQueue->DrawRenderQueue();
 
         SDL_RenderPresent( window->renderer );
     }

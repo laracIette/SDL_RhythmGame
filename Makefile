@@ -1,11 +1,11 @@
 SDL:
 	g++ \
 	\
-	-I/home/nico/SDL-release-2.24.0/include \
-	-I/home/nico/SDL2_image-2.6.2 \
-	-I/home/nico/SDL2_mixer-2.6.2/include \
-	-I/home/nico/SDL2_ttf-2.20.1 \
-	-I/home/nico/includes \
+	-Iinc/SDL-release-2.24.0/include \
+	-Iinc/SDL2_image-2.6.2 \
+	-Iinc/SDL2_mixer-2.6.2/include \
+	-Iinc/SDL2_ttf-2.20.1 \
+	-Iinc \
 	\
 	-o build/prog \
 	-fpic \
@@ -32,6 +32,7 @@ SDL:
 	RythmGame.Graphics/Animation/Animation.cpp \
 	RythmGame.Graphics/Image/Image.cpp \
 	RythmGame.Graphics/OptionsBox/OptionsBox.cpp \
+	RythmGame.Graphics/RenderQueue/RenderQueue.cpp \
 	RythmGame.Graphics/Text/Text.cpp \
 	RythmGame.Graphics/TextTTF/TextTTF.cpp \
 	RythmGame.Graphics/TextureManager/TextureManager.cpp \

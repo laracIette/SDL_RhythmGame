@@ -1,6 +1,6 @@
 #pragma once
 
-#include <json.hpp>
+#include "../../inc/json.hpp"
 #include <fstream>
 #include <iostream>
 
