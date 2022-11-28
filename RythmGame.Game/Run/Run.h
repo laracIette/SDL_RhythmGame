@@ -17,7 +17,6 @@
 #include "../Menu/MapSelection/Screen/Screen.h"
 
 #include "../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
-#include "../../RythmGame.Graphics/TextTTF/TextTTF.h"
 #include "../../RythmGame.Graphics/ImageManager.h"
 
 #include "../Settings/Window/Window.h"
@@ -28,7 +27,6 @@ using namespace RythmGame::Game::Gameplay;
 using namespace RythmGame::Game::Menu;
 using namespace RythmGame::Framework;
 using namespace RythmGame::Sound;
-using namespace RythmGame::Graphics;
 
 
 namespace RythmGame::Game
@@ -50,7 +48,6 @@ namespace RythmGame::Game
         StartScreen::Screen  *startScreen;
         MapSelection::Screen *mapSelectionScreen;
 
-        Settings::Window *settingsWindow;
         bool isSettings;
 
         int gameState;

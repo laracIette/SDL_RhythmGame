@@ -21,7 +21,7 @@ namespace RythmGame::Game::Settings::Video
         int fps;
 
     public:
-        SettingFPS( int posX, int posY ) : Options( "FPS", posX, posY )
+        SettingFPS( int posY ) : Options( "FPS", posY )
         {
             index = settingsFile->data["Video"]["FPS"]["index"];
             fps   = options[index];
@@ -30,19 +30,33 @@ namespace RythmGame::Game::Settings::Video
             {
                 vec.push_back( std::to_string( i ) );
             }
-
-            Init( posY );
         }
 
-        int GetFPS() { return fps; }
+        void InitFPS()
+        {
+            InitOptions();
+        }
 
-        void UpdateFPS( int newIndex )
+        void UpdateFPS()
+        {
+            UpdateOptions();
+        }
+
+        void DrawFPS()
+        {
+            DrawOptions();
+        }
+
+
+        void ChangeFPS( int newIndex )
         {
             index = newIndex;
 
             settingsFile->data["Video"]["FPS"]["value"] = options[index];
             settingsFile->writeData = true;
         }
+
+        int GetFPS() { return fps; }
     };
 
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL.h>
+#include <string>
 
 #include "SettingsFile.h"
 
@@ -16,24 +17,56 @@ namespace RythmGame::Game::Settings
     {
         BoxRoundedCorners *backgroundBox;
 
-        SDL_Rect dest;
-
         TextTTF *textTTF;
 
+        std::string name;
+
+    protected:
+        bool isSelected;
+
+        int posY;
+
     public:
-        SettingBox( std::string text, int posX, int posY )
+        SettingBox( std::string text, int posY )
         {
-            textTTF = new TextTTF( text, optionFont, posX, posY );
+            isSelected = false;
+
+            name = text;
+
+            this->posY = posY;
+        }
+        ~SettingBox() {}
+
+
+        void Init()
+        {
+
+            textTTF = new TextTTF( name, optionFont, 0, posY );
 
             backgroundBox = new BoxRoundedCorners(
                 textTTF->GetRect(),
                 {50, 50, 50},
                 "assets/UI/Settings/SettingBoxRoundedCorner.png"
             );
-
-            dest = dest;
         }
-        ~SettingBox() {}
+
+        void Update()
+        {
+
+            textTTF->Hoover();
+
+            if( textTTF->IsHooverLeftClicked() )
+            {
+                isSelected = !isSelected;
+            }
+
+
+            if( textTTF->IsNotHooverLeftClicked() )
+            {
+                isSelected = false;
+            }
+
+        }
 
         void DrawBackgroundBox()
         {
@@ -44,6 +77,7 @@ namespace RythmGame::Game::Settings
         {
             textTTF->Draw();
         }
+
     };
 
 

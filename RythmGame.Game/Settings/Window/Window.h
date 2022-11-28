@@ -13,21 +13,50 @@ using namespace RythmGame::Game::Events;
 namespace RythmGame::Game::Settings
 {
 
-    class Window
+    class Window : public Video::Category
     {
         float posY;
 
         BoxRoundedCorners *box;
 
-        Video::Category *categoryVideo;
-
     public:
-        Window();
-        ~Window();
+        Window() : Video::Category( 0 )
+        {
+        }
+        ~Window() {}
 
-        void Update();
+        void InitWindow()
+        {
+            posY = 0;
 
-        void Draw();
+            box = new BoxRoundedCorners(
+                {0, 0, 1920/3, 1080},
+                {69, 69, 69},
+                "assets/UI/Settings/SettingsRoundedCorner.png"
+            );
+
+            InitVideo();
+        }
+
+        void UpdateWindow()
+        {
+            if( (posY + inputManager.WheelMovementY()) >= 0 )
+            {
+                posY += inputManager.WheelMovementY();
+            }
+
+            UpdateVideo();
+
+        }
+
+        void DrawWindow()
+        {
+            box->Draw();
+            DrawVideo();
+        }
+
     };
+
+    extern Window *settingsWindow;
 
 }

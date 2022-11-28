@@ -11,9 +11,6 @@ ImageManager RythmGame::Graphics::imageManager;
 
 HitSoundManager *RythmGame::Sound::hitSoundManager;
 
-TTF_Font *RythmGame::Graphics::optionFont;
-TTF_Font *RythmGame::Graphics::categoryTitleFont;
-
 namespace RythmGame::Game
 {
     Run::Run()
@@ -27,10 +24,6 @@ namespace RythmGame::Game
         startScreen        = new StartScreen::Screen();
         mapSelectionScreen = new MapSelection::Screen();
 
-        optionFont        = TTF_OpenFont( "assets/UI/Fonts/OpenSans-Bold.ttf", resize( FONT_SIZE_OPTION ) );
-        categoryTitleFont = TTF_OpenFont( "assets/UI/Fonts/OpenSans-Bold.ttf", resize( FONT_SIZE_CATEGORY_TITLE ) );
-
-        settingsWindow = new Settings::Window();
         isSettings = false;
 
         player = new Player();
@@ -99,7 +92,7 @@ namespace RythmGame::Game
 
         if( isSettings )
         {
-            settingsWindow->Update();
+            settingsWindow->UpdateWindow();
         }
 
 
@@ -137,7 +130,7 @@ namespace RythmGame::Game
 
         if( isSettings )
         {
-            settingsWindow->Draw();
+            settingsWindow->DrawWindow();
         }
 
         SDL_RenderPresent( window->renderer );

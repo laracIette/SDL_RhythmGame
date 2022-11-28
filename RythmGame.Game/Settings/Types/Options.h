@@ -21,19 +21,32 @@ namespace RythmGame::Game::Settings
         std::vector<std::string> vec;
 
     public:
-        Options( std::string name, int posX, int posY ) : SettingBox( name, posX, posY )
-        {}
-
-        void Init( int posY )
+        Options( std::string name, int posY  ) : SettingBox( name, posY )
         {
+        }
+
+        void InitOptions()
+        {
+            Init();
             optionsBox = new OptionsBox( vec, posY );
         }
 
-        void Draw()
+        void UpdateOptions()
+        {
+            Update();
+        }
+
+        void DrawOptions()
         {
             DrawBackgroundBox();
-            optionsBox->DrawOptionsBox();
-            DrawText();
+            if( isSelected )
+            {
+                optionsBox->DrawOptionsBox();
+            }
+            else
+            {
+                DrawText();
+            }
         }
 
     };

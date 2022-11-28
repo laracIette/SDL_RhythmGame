@@ -13,9 +13,9 @@ namespace RythmGame::Graphics
         }
 
         box = new BoxRoundedCorners(
-            {0, posY, 1920/3, newPosY},
+            {100, posY, 1920/3, newPosY},
             {50, 50, 50},
-            "assets/UI/SettingBoxRoundedCorner.png"
+            "assets/UI/Settings/SettingBoxRoundedCorner.png"
         );
     }
 

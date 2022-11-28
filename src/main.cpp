@@ -5,9 +5,12 @@
 
 #include "../RythmGame.Framework/Window/Window.h"
 
+#include "../RythmGame.Graphics/TextTTF/TextTTF.h"
+
 #include "../RythmGame.Game/Utils/Metrics.h"
 #include "../RythmGame.Game/Utils/Time.h"
 #include "../RythmGame.Game/Settings/SettingsFile.h"
+#include "../RythmGame.Game/Settings/Window/Window.h"
 
 #include "../RythmGame.Game/Run/Run.h"
 
@@ -15,9 +18,11 @@
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game;
 using namespace RythmGame::Game::Settings;
+using namespace RythmGame::Graphics;
 
 
-RythmGame::Framework::Window *RythmGame::Framework::window;
+RythmGame::Framework::Window      *RythmGame::Framework::window;
+RythmGame::Game::Settings::Window *RythmGame::Game::Settings::settingsWindow;
 
 std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::currentTime;
 std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::lastFrameTime;
@@ -28,16 +33,26 @@ int RythmGame::Game::Utils::WIDTH;
 int RythmGame::Game::Utils::HEIGHT;
 int RythmGame::Game::Utils::FPS;
 
+TTF_Font *RythmGame::Graphics::optionFont;
+TTF_Font *RythmGame::Graphics::categoryTitleFont;
+
 
 int main( int argc, char *argv[] )
 {
-    settingsFile = new SettingsFile();
+    settingsFile   = new SettingsFile();
+    settingsWindow = new RythmGame::Game::Settings::Window();
 
-    WIDTH  = 1600;
-    HEIGHT = 900;
-    FPS    = 60;
+    WIDTH  = settingsWindow->GetWidth();
+    HEIGHT = settingsWindow->GetHeight();
+    FPS    = settingsWindow->GetFPS();
 
     window = new RythmGame::Framework::Window();
+
+    optionFont        = TTF_OpenFont( "assets/UI/Fonts/OpenSans-Bold.ttf", resize( FONT_SIZE_OPTION ) );
+    categoryTitleFont = TTF_OpenFont( "assets/UI/Fonts/OpenSans-Bold.ttf", resize( FONT_SIZE_CATEGORY_TITLE ) );
+
+    settingsWindow->InitWindow();
+
 
     long images{ 1 };
 

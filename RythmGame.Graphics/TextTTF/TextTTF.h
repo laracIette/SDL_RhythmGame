@@ -44,8 +44,10 @@ namespace RythmGame::Graphics
         void Hoover();
         bool IsHoover() { return isHoover; }
 
-        bool IsLeftClicked();
-        bool IsRightClicked();
+        bool IsHooverLeftClicked();
+        bool IsHooverRightClicked();
+        bool IsNotHooverLeftClicked();
+        bool IsNotHooverRightClicked();
     };
 
     extern TTF_Font *optionFont;

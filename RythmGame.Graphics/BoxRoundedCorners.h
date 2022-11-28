@@ -35,7 +35,9 @@ namespace RythmGame::Graphics
             this->color = color;
 
             size = lowest( this->dest.w, this->dest.h )/10;
+
             if( size > resize( 25 ) ) size = resize( 25 );
+
         }
         ~BoxRoundedCorners() {}
 

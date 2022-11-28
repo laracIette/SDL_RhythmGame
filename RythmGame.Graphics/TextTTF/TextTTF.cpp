@@ -18,7 +18,6 @@ namespace RythmGame::Graphics
         }
 
         SDL_FreeSurface( tempSurface );
-
     }
 
     TextTTF::~TextTTF()
@@ -48,12 +47,20 @@ namespace RythmGame::Graphics
         }
     }
 
-    bool TextTTF::IsLeftClicked()
+    bool TextTTF::IsHooverLeftClicked()
     {
         return (isHoover && inputManager.LeftClickedNoLock());
     }
-    bool TextTTF::IsRightClicked()
+    bool TextTTF::IsHooverRightClicked()
     {
         return (isHoover && inputManager.RightClickedNoLock());
+    }
+    bool TextTTF::IsNotHooverLeftClicked()
+    {
+        return (!isHoover && inputManager.LeftClickedNoLock());
+    }
+    bool TextTTF::IsNotHooverRightClicked()
+    {
+        return (!isHoover && inputManager.RightClickedNoLock());
     }
 }

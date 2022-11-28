@@ -20,7 +20,7 @@ namespace RythmGame::Game::Settings::Option
     {
         text->Update( posY );
 
-        if( text->IsLeftClicked() )
+        if( text->IsHooverLeftClicked() )
         {
             isSelected = !isSelected;
         }

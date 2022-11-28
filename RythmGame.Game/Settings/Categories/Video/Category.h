@@ -8,23 +8,30 @@
 namespace RythmGame::Game::Settings::Video
 {
 
-    class Category
+    class Category : public SettingDimension, public SettingFPS
     {
-        std::vector<Options *> settings;
 
     public:
-        Category( int posY )
+        Category( int posY ) : SettingDimension( posY ), SettingFPS( posY+FONT_SIZE_OPTION+6 )
         {
-            settings.push_back( new SettingDimension( 50, posY ) );
-            settings.push_back( new SettingFPS( 50, posY ) );
         }
 
-        void Draw()
+        void InitVideo()
         {
-            for( Options *setting : settings )
-            {
-                setting->Draw();
-            }
+            InitDimension();
+            InitFPS();
+        }
+
+        void UpdateVideo()
+        {
+            UpdateDimension();
+            UpdateFPS();
+        }
+
+        void DrawVideo()
+        {
+            DrawDimension();
+            DrawFPS();
         }
 
     };

@@ -42,7 +42,7 @@ namespace RythmGame::Game::Settings::Video
         int width, height;
 
     public:
-        SettingDimension( int posX, int posY ) : Options( "Dimension", posX, posY )
+        SettingDimension( int posY ) : Options( "Dimension", posY )
         {
             index  = settingsFile->data["Video"]["Dimension"]["index"];
             width  = options[index][0];
@@ -52,8 +52,21 @@ namespace RythmGame::Game::Settings::Video
             {
                 vec.push_back( std::to_string( arr[0] ) + " x " + std::to_string( arr[1] ) );
             }
+        }
 
-            Init( posY );
+        void InitDimension()
+        {
+            InitOptions();
+        }
+
+        void UpdateDimension()
+        {
+            UpdateOptions();
+        }
+
+        void DrawDimension()
+        {
+            DrawOptions();
         }
 
         int GetWidth()  { return width; }

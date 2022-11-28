@@ -33,7 +33,6 @@ SDL:
 	RythmGame.Game/Settings/Option/Types/Options/Options.cpp \
 	RythmGame.Game/Settings/Option/Types/Slider/Slider.cpp \
 	RythmGame.Game/Settings/Option/Types/Value/Value.cpp \
-	RythmGame.Game/Settings/Window/Window.cpp \
 	\
 	RythmGame.Game/Song/Song.cpp \
 	\
