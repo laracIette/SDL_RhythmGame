@@ -21,7 +21,11 @@ namespace RythmGame::Game::Settings::Video
         int fps;
 
     public:
-        SettingFPS( int posY ) : Options( "FPS", posY )
+        SettingFPS( int _posY ) :
+            Options(
+                "FPS",
+                _posY
+            )
         {
             index = settingsFile->data["Video"]["FPS"]["index"];
             fps   = options[index];
@@ -37,6 +41,11 @@ namespace RythmGame::Game::Settings::Video
             InitOptions();
         }
 
+        void ScrollFPS( int _posY )
+        {
+            Scroll( _posY );
+        }
+
         void UpdateFPS()
         {
             UpdateOptions();
@@ -48,9 +57,9 @@ namespace RythmGame::Game::Settings::Video
         }
 
 
-        void ChangeFPS( int newIndex )
+        void ChangeFPS( int _index )
         {
-            index = newIndex;
+            index = _index;
 
             settingsFile->data["Video"]["FPS"]["value"] = options[index];
             settingsFile->writeData = true;

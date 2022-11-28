@@ -15,7 +15,7 @@ namespace RythmGame::Graphics
         BoxRoundedCorners *box;
 
     public:
-        OptionsBox( std::vector<std::string> optionsVector, int posY );
+        OptionsBox( std::vector<std::string> _optionsVector, int _posY );
         ~OptionsBox();
 
         void DrawOptionsBox();

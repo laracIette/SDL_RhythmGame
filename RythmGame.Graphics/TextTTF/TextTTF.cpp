@@ -3,18 +3,18 @@
 namespace RythmGame::Graphics
 {
 
-    TextTTF::TextTTF( std::string text, TTF_Font *font, int posX, int posY )
+    TextTTF::TextTTF( std::string _text, TTF_Font *_font, int _posX, int _posY )
     {
-        TTF_SizeText( font, text.c_str(), &dest.w, &dest.h );
-        dest.x = resize( posX );
-        dest.y = resize( posY );
+        TTF_SizeText( _font, _text.c_str(), &dest.w, &dest.h );
+        dest.x = resize( _posX );
+        dest.y = resize( _posY );
 
-        SDL_Surface *tempSurface = TTF_RenderText_Blended( font, text.c_str(), {255, 255, 255} );
+        SDL_Surface *tempSurface = TTF_RenderText_Blended( _font, _text.c_str(), {255, 255, 255} );
 
         textTexture = SDL_CreateTextureFromSurface( window->renderer, tempSurface );
         if( !textTexture )
         {
-            std::cout << "error creating text texture '" << text << "'" << SDL_GetError() << std::endl;
+            std::cout << "error creating text texture '" << _text << "'" << SDL_GetError() << std::endl;
         }
 
         SDL_FreeSurface( tempSurface );
@@ -24,9 +24,9 @@ namespace RythmGame::Graphics
     {
     }
 
-    void TextTTF::Update( int posY )
+    void TextTTF::Update( int _posY )
     {
-        dest.y = resize( posY );
+        dest.y = resize( _posY );
         Hoover();
     }
 

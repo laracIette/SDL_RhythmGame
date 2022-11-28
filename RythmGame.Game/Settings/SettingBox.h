@@ -27,21 +27,20 @@ namespace RythmGame::Game::Settings
         int posY;
 
     public:
-        SettingBox( std::string text, int posY )
+        SettingBox( std::string _name, int _posY )
         {
             isSelected = false;
 
-            name = text;
+            name = _name;
 
-            this->posY = posY;
+            posY = _posY;
         }
         ~SettingBox() {}
 
 
         void Init()
         {
-
-            textTTF = new TextTTF( name, optionFont, 0, posY );
+            textTTF = new TextTTF( name, optionFont, 100, posY );
 
             backgroundBox = new BoxRoundedCorners(
                 textTTF->GetRect(),
@@ -50,16 +49,20 @@ namespace RythmGame::Game::Settings
             );
         }
 
+        void Scroll( int _posY )
+        {
+            textTTF->Update( posY + _posY );
+            backgroundBox->SetY( posY + _posY );
+        }
+
         void Update()
         {
-
             textTTF->Hoover();
 
             if( textTTF->IsHooverLeftClicked() )
             {
                 isSelected = !isSelected;
             }
-
 
             if( textTTF->IsNotHooverLeftClicked() )
             {

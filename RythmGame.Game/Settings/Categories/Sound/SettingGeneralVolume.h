@@ -1,22 +1,47 @@
 #pragma once
 
-#include "../../SettingsFile.h"
+#include "../../Types/Slider.h"
 
 using namespace RythmGame::Game::Settings;
 
 namespace RythmGame::Game::Settings::Sound
 {
 
-    class SettingGeneralVolume
+    class SettingGeneralVolume : public Slider
     {
         int volume;
 
     public:
-        SettingGeneralVolume()
+        SettingGeneralVolume( int _posY ) :
+            Slider(
+                "General",
+                _posY,
+                0,
+                100
+            )
         {
             volume = settingsFile->data["Sound"]["GeneralVolume"]["value"];
         }
-        ~SettingGeneralVolume() {}
+
+        void InitGeneralVolume()
+        {
+            InitSlider();
+        }
+
+        void ScrollGeneralVolume( int _posY )
+        {
+            Scroll( _posY );
+        }
+
+        void UpdateGeneralVolume()
+        {
+            UpdateSlider();
+        }
+
+        void DrawGeneralVolume()
+        {
+            DrawSlider();
+        }
 
         int GetGeneralVolume() { return volume; }
     };

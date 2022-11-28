@@ -42,7 +42,11 @@ namespace RythmGame::Game::Settings::Video
         int width, height;
 
     public:
-        SettingDimension( int posY ) : Options( "Dimension", posY )
+        SettingDimension( int _posY ) :
+            Options(
+                "Dimension",
+                _posY
+            )
         {
             index  = settingsFile->data["Video"]["Dimension"]["index"];
             width  = options[index][0];
@@ -57,6 +61,11 @@ namespace RythmGame::Game::Settings::Video
         void InitDimension()
         {
             InitOptions();
+        }
+
+        void ScrollDimension( int _posY )
+        {
+            Scroll( _posY );
         }
 
         void UpdateDimension()

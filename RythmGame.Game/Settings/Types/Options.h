@@ -21,7 +21,11 @@ namespace RythmGame::Game::Settings
         std::vector<std::string> vec;
 
     public:
-        Options( std::string name, int posY  ) : SettingBox( name, posY )
+        Options( std::string name, int posY ) :
+            SettingBox(
+                name,
+                posY
+            )
         {
         }
 

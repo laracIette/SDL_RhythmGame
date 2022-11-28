@@ -19,7 +19,7 @@
 #include "../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
 #include "../../RythmGame.Graphics/ImageManager.h"
 
-#include "../Settings/Window/Window.h"
+#include "../Settings/Window.h"
 
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game::Events;

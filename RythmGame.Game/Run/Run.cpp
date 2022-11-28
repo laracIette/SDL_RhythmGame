@@ -92,6 +92,7 @@ namespace RythmGame::Game
 
         if( isSettings )
         {
+            settingsWindow->Scroll();
             settingsWindow->UpdateWindow();
         }
 

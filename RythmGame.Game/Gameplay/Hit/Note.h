@@ -13,11 +13,11 @@ namespace RythmGame::Game::Gameplay::Hit
     /**
         Note inherits from HitObject
     */
-        Note()
-        : HitObject(
-            "assets/Skins/BaseSkin/HitObjects/Notes",
-            {0, 0, 100, 100}
-        )
+        Note() :
+            HitObject(
+                "assets/Skins/BaseSkin/HitObjects/Notes",
+                {0, 0, 100, 100}
+            )
         {}
 
         void Init()

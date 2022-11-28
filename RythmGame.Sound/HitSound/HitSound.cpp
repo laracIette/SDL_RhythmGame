@@ -3,7 +3,7 @@
 namespace RythmGame::Sound
 {
 
-    HitSound::HitSound( std::string path, unsigned char channel )
+    HitSound::HitSound( std::string path, unsigned char _channel )
     {
         hitSound = Mix_LoadWAV( const_cast<char *>( path.c_str() ) );
         if( !hitSound )
@@ -11,7 +11,7 @@ namespace RythmGame::Sound
             std::cout << "Error creating '" << path << "'.\n" << SDL_GetError() << std::endl;
         }
 
-        this->channel = channel;
+        channel = _channel;
 
         volume = 128;
     }
@@ -32,9 +32,9 @@ namespace RythmGame::Sound
     {
         Mix_Resume( channel );
     }
-    void HitSound::SetVolume( int volume )
+    void HitSound::SetVolume( int _volume )
     {
-        this->volume = volume;
+        volume = _volume;
         Mix_VolumeChunk( hitSound, 128 );
     }
     void HitSound::Halt()

@@ -14,11 +14,11 @@ namespace RythmGame::Game::Gameplay::Hit
     /**
         Chainsaw inherits from HitObject
     */
-        Chainsaw()
-        : HitObject(
-            "assets/Skins/BaseSkin/HitObjects/Chainsaws",
-            {0, 0, 135, 135}
-        )
+        Chainsaw() :
+            HitObject(
+                "assets/Skins/BaseSkin/HitObjects/Chainsaws",
+                {0, 0, 135, 135}
+            )
         {}
 
         void Init()

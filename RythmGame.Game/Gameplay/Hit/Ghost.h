@@ -12,11 +12,11 @@ namespace RythmGame::Game::Gameplay::Hit
     /**
         Ghost inherits from HitObject
     */
-        Ghost()
-        : HitObject(
-            "assets/Skins/BaseSkin/HitObjects/Ghosts",
-            {0, 0, 100, 100}
-        )
+        Ghost() :
+            HitObject(
+                "assets/Skins/BaseSkin/HitObjects/Ghosts",
+                {0, 0, 100, 100}
+            )
         {}
 
         void Init()

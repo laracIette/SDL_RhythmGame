@@ -27,21 +27,14 @@ SDL:
 	\
 	RythmGame.Game/Run/Run.cpp \
 	\
-	RythmGame.Game/Settings/Category/Category.cpp \
-	RythmGame.Game/Settings/Option/OptionTemplate.cpp \
-	RythmGame.Game/Settings/Option/Types/Check/Check.cpp \
-	RythmGame.Game/Settings/Option/Types/Options/Options.cpp \
-	RythmGame.Game/Settings/Option/Types/Slider/Slider.cpp \
-	RythmGame.Game/Settings/Option/Types/Value/Value.cpp \
-	\
 	RythmGame.Game/Song/Song.cpp \
 	\
 	RythmGame.Graphics/Animation/Animation.cpp \
 	RythmGame.Graphics/Image/Image.cpp \
 	RythmGame.Graphics/OptionsBox/OptionsBox.cpp \
 	RythmGame.Graphics/Text/Text.cpp \
-	RythmGame.Graphics/TextureManager/TextureManager.cpp \
 	RythmGame.Graphics/TextTTF/TextTTF.cpp \
+	RythmGame.Graphics/TextureManager/TextureManager.cpp \
 	\
 	RythmGame.Sound/HitSound/HitSound.cpp \
 	RythmGame.Sound/HitSoundManager/HitSoundManager.cpp \

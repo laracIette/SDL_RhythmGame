@@ -2,25 +2,38 @@
     "Video": {
 
         "FPS": {
-            "type": "Options",
             "index": 1
         },
 
         "Zoom": {
-            "type": "Slider",
-            "value": 1.0,
-            "value.max": 2.0,
-            "value.min": 0.5
+            "value": 1.0
         },
 
         "Fullscreen": {
-            "type": "Check",
             "value": true
         },
 
         "Dimension": {
-            "type": "Options",
             "index": 8
+        }
+    },
+
+    "Sound": {
+
+        "GeneralVolume": {
+            "value": 100
+        },
+
+        "HitSoundsVolume": {
+            "value": 100
+        },
+
+        "MusicVolume": {
+            "value": 100
+        },
+
+        "SkinHitSounds": {
+            "value": true
         }
     }
 }

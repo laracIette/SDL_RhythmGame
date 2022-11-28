@@ -18,28 +18,36 @@ namespace RythmGame::Graphics
     class BoxRoundedCorners
     {
         SDL_Texture *corner;
-        SDL_Rect     dest, rectangleDest;
+        SDL_Rect     dest;
         int          size;
         RGB          color;
 
     public:
-        BoxRoundedCorners( SDL_Rect dest, RGB color = White, const char *path = "assets/UI/RoundedCorner.png" )
+    /**
+     * RESIZE RECT BEFORE FUNCTION CALL
+     */
+        BoxRoundedCorners( SDL_Rect _dest, RGB _color = White, const char *_path = "assets/UI/RoundedCorner.png" )
         {
-            corner = TextureManager::LoadTexture( path );
+            corner = TextureManager::LoadTexture( _path );
 
-            this->dest.x = resize( dest.x );
-            this->dest.y = resize( dest.y );
-            this->dest.w = resize( dest.w );
-            this->dest.h = resize( dest.h );
+            dest = _dest;
 
-            this->color = color;
+            color = _color;
 
-            size = lowest( this->dest.w, this->dest.h )/10;
+            size = lowest( dest.w, dest.h )/5;
 
-            if( size > resize( 25 ) ) size = resize( 25 );
+            if( size > resize( 25 ) )
+            {
+                size = resize( 25 );
+            }
 
         }
         ~BoxRoundedCorners() {}
+
+        void SetY( int _posY )
+        {
+            dest.y = resize( _posY );
+        }
 
         void Draw()
         {
@@ -59,23 +67,11 @@ namespace RythmGame::Graphics
             tempDest.y = dest.y + dest.h - size;
             SDL_RenderCopyEx( window->renderer, corner, NULL,  &tempDest, 0, NULL, (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL) );
 
-            rectangleDest.x = dest.x;
-            rectangleDest.y = dest.y+size;
-            rectangleDest.w = dest.w;
-            rectangleDest.h = dest.h-size*2;
-            window->FillRectangle( rectangleDest, color );
+            window->FillRectangle( {dest.x, dest.y+size, dest.w, dest.h-size*2}, color );
 
-            rectangleDest.x = dest.x+size;
-            rectangleDest.y = dest.y;
-            rectangleDest.w = dest.w-size*2;
-            rectangleDest.h = size;
-            window->FillRectangle( rectangleDest, color );
+            window->FillRectangle( {dest.x+size, dest.y, dest.w-size*2, size}, color );
 
-            rectangleDest.x = dest.x+size;
-            rectangleDest.y = dest.y+dest.h-size;
-            rectangleDest.w = dest.w-size*2;
-            rectangleDest.h = size;
-            window->FillRectangle( rectangleDest, color );
+            window->FillRectangle( {dest.x+size, dest.y+dest.h-size, dest.w-size*2, size}, color );
         }
     };
 

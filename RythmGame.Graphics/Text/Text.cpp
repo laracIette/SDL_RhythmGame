@@ -3,9 +3,9 @@
 namespace RythmGame::Graphics
 {
 
-    Text::Text( std::string text, Rect dest, int position )
+    Text::Text( std::string _text, Rect _dest, int _position )
     {
-        this->text = text;
+        text = _text;
 
         const char *characters{ "0123456789abcdefghijklmnopqrstuvwxyz" };
         for( int i{ 0 }; i < 36; ++i )
@@ -24,18 +24,18 @@ namespace RythmGame::Graphics
 
         distance = 1.0f;
 
-        this->dest = dest;
+        dest = _dest;
 
-        this->position = position;
+        position = _position;
     }
 
     Text::~Text()
     {
     }
 
-    void Text::SetText( std::string text )
+    void Text::SetText( std::string _text )
     {
-        this->text = text;
+        text = _text;
     }
 
     void Text::Draw()

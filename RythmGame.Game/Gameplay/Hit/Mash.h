@@ -18,11 +18,11 @@ namespace RythmGame::Game::Gameplay::Hit
     /**
         Mash inherits from HitObject
     */
-        Mash()
-        : HitObject(
-            "assets/Skins/BaseSkin/HitObjects/Mashs",
-            {0, 0, 300, 300}
-        )
+        Mash() :
+            HitObject(
+                "assets/Skins/BaseSkin/HitObjects/Mashs",
+                {0, 0, 300, 300}
+            )
         {}
 
         void Init()

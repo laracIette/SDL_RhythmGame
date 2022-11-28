@@ -3,7 +3,7 @@
 namespace RythmGame::Graphics
 {
 
-    Image::Image( std::string path, Rect dest, int position )
+    Image::Image( std::string path, Rect _dest, int _position )
     {
         if( imageManager.imagesTextureMap.count( path ) )
         {
@@ -15,14 +15,14 @@ namespace RythmGame::Graphics
             tex = imageManager.imagesTextureMap[path];
         }
 
-        this->dest = dest;
+        dest = _dest;
 
         posX = 0;
         posY = 0;
         posW = 0;
         posH = 0;
 
-        this->position = position;
+        position = _position;
 
         zoom = 1.0f;
     }

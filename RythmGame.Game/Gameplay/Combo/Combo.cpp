@@ -8,14 +8,14 @@ namespace RythmGame::Game::Gameplay
         return combo;
     }
 
-    void Combo::AddCombo( int combo )
+    void Combo::AddCombo( int _combo )
     {
-        SetCombo( this->combo + combo );
+        SetCombo( combo + _combo );
     }
 
-    void Combo::SetCombo( int combo )
+    void Combo::SetCombo( int _combo )
     {
-        this->combo = combo;
+        combo = _combo;
         SetText( std::to_string( combo ) );
     }
 

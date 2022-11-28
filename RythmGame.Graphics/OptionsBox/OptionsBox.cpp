@@ -3,17 +3,17 @@
 namespace RythmGame::Graphics
 {
 
-    OptionsBox::OptionsBox( std::vector<std::string> optionsVector, int posY )
+    OptionsBox::OptionsBox( std::vector<std::string> _optionsVector, int _posY )
     {
-        int newPosY{ posY };
-        for( std::string option : optionsVector )
+        int newPosY{ _posY };
+        for( std::string option : _optionsVector )
         {
-            options.push_back( new TextTTF( option, optionFont, 0, newPosY ) );
+            options.push_back( new TextTTF( option, optionFont, 100, newPosY ) );
             newPosY += FONT_SIZE_OPTION;
         }
 
         box = new BoxRoundedCorners(
-            {100, posY, 1920/3, newPosY},
+            {resize( 100 ), resize( _posY ), resize( 1920/3-200 ), resize( newPosY )},
             {50, 50, 50},
             "assets/UI/Settings/SettingBoxRoundedCorner.png"
         );

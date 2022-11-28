@@ -15,11 +15,11 @@ namespace RythmGame::Game::Gameplay::Hit
     /**
         Double inherits from HitObject
     */
-        Double()
-        : HitObject(
-            "assets/Skins/BaseSkin/HitObjects/Doubles",
-            {0, 0, 100, 100}
-        )
+        Double() :
+            HitObject(
+                "assets/Skins/BaseSkin/HitObjects/Doubles",
+                {0, 0, 100, 100}
+            )
         {}
 
         void Init()
@@ -39,7 +39,7 @@ namespace RythmGame::Game::Gameplay::Hit
             if( !isUpPressed &&
                 ( ( inputManager.Left2Pressed()  && ((direction == LEFT  && isHorizontal) || (direction == UP && !isHorizontal)) )
                || ( inputManager.Right1Pressed() && (direction  == RIGHT && isHorizontal) )
-               || ( inputManager.Right2Pressed() && (direction  == DOWN  && !isHorizontal) )  )
+               || ( inputManager.Right2Pressed() && (direction  == DOWN  && !isHorizontal) ) )
             )
             {
                 isUpPressed = true;

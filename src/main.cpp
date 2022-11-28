@@ -10,7 +10,7 @@
 #include "../RythmGame.Game/Utils/Metrics.h"
 #include "../RythmGame.Game/Utils/Time.h"
 #include "../RythmGame.Game/Settings/SettingsFile.h"
-#include "../RythmGame.Game/Settings/Window/Window.h"
+#include "../RythmGame.Game/Settings/Window.h"
 
 #include "../RythmGame.Game/Run/Run.h"
 

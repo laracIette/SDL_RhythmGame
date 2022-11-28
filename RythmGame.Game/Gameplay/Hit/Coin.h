@@ -12,11 +12,11 @@ namespace RythmGame::Game::Gameplay::Hit
     /**
         Coin inherits from HitObject
     */
-        Coin()
-        : HitObject(
-            "assets/Skins/BaseSkin/HitObjects/Coins",
-            {0, 0, 50, 50}
-        )
+        Coin() :
+            HitObject(
+                "assets/Skins/BaseSkin/HitObjects/Coins",
+                {0, 0, 50, 50}
+            )
         {}
 
         void CheckHitTiming()
