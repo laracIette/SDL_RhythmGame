@@ -2,26 +2,19 @@
 
 std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::offsetTime;
 
-float  RythmGame::Game::Utils::deltaTime;
+float RythmGame::Game::Utils::deltaTime;
 float RythmGame::Game::Utils::velocity;
 bool  RythmGame::Game::Utils::isHorizontal;
-
-Window *RythmGame::Framework::window;
 
 InputManager RythmGame::Game::Events::inputManager;
 ImageManager RythmGame::Graphics::imageManager;
 
 HitSoundManager *RythmGame::Sound::hitSoundManager;
 
-TTF_Font *RythmGame::Graphics::optionFont;
-TTF_Font *RythmGame::Graphics::categoryTitleFont;
-
 namespace RythmGame::Game
 {
     Run::Run()
     {
-        window = new Window();
-
         hitSoundManager = new HitSoundManager();
 
         currentTime = std::chrono::system_clock::now();
@@ -31,10 +24,6 @@ namespace RythmGame::Game
         startScreen        = new StartScreen::Screen();
         mapSelectionScreen = new MapSelection::Screen();
 
-        optionFont        = TTF_OpenFont( "assets/UI/Fonts/OpenSans-Bold.ttf", resize( FONT_SIZE_OPTION ) );
-        categoryTitleFont = TTF_OpenFont( "assets/UI/Fonts/OpenSans-Bold.ttf", resize( FONT_SIZE_CATEGORY_TITLE ) );
-
-        settingsWindow = new Settings::Window();
         isSettings = false;
 
         player = new Player();
@@ -103,7 +92,8 @@ namespace RythmGame::Game
 
         if( isSettings )
         {
-            settingsWindow->Update();
+            settingsWindow->Scroll();
+            settingsWindow->UpdateWindow();
         }
 
 
@@ -141,7 +131,7 @@ namespace RythmGame::Game
 
         if( isSettings )
         {
-            settingsWindow->Draw();
+            settingsWindow->DrawWindow();
         }
 
         SDL_RenderPresent( window->renderer );

@@ -35,14 +35,14 @@ namespace RythmGame::Game::Menu::StartScreen::Button
     /**
         ButtonTemplate inherits from Image
     */
-        ButtonTemplate( std::string path, int position )
-         : Image(
-            path,
-            {1920/2, 1080/2, 240, 240},
-            position
-        )
+        ButtonTemplate( std::string _path, int position ) :
+            Image(
+                _path,
+                {1920/2, 1080/2, 240, 240},
+                position
+            )
         {
-            this->path = path;
+            path = _path;
         }
 
         virtual void Update()

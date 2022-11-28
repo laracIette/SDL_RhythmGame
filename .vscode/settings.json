@@ -33,7 +33,6 @@
         "istream": "cpp",
         "new": "cpp",
         "numbers": "cpp",
-        "iostream": "cpp",
         "ratio": "cpp",
         "streambuf": "cpp",
         "string": "cpp",
@@ -72,6 +71,7 @@
         "any": "cpp",
         "forward_list": "cpp",
         "ranges": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "ostream": "cpp"
     }
 }

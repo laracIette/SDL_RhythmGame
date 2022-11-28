@@ -19,10 +19,11 @@ namespace RythmGame::Graphics
     /**
         Backgorund inherits from Image
     */
-        Background( std::string path )
-         : Image(
-            path,
-            {1920/2, 1080/2, 1920, 1080} )
+        Background( std::string path ) :
+            Image(
+                path,
+                {1920/2, 1080/2, 1920, 1080}
+            )
         {}
     };
 

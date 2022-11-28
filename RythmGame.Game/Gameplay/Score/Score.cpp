@@ -8,14 +8,14 @@ namespace RythmGame::Game::Gameplay
         return score;
     }
 
-    void Score::AddScore( unsigned int score )
+    void Score::AddScore( unsigned int _score )
     {
-        SetScore( this->score + score );
+        SetScore( score + _score );
     }
 
-    void Score::SetScore( unsigned int score )
+    void Score::SetScore( unsigned int _score )
     {
-        this->score = score;
+        score = _score;
         SetText( std::to_string( score ) );
     }
 
