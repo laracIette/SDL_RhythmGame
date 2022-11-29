@@ -2,24 +2,29 @@
 
 #include <vector>
 
-#include "../../inc/SDL-release-2.24.0/include/SDL.h"
-
-#include "../TextureManager/TextureManager.h"
+#include "../RenderObject.h"
 
 namespace RythmGame::Graphics
 {
 
+    enum Types {
+        RenderSettings = 0,
+        RenderStartScreen,
+        RenderMapSelection,
+        RenderGameplay
+    };
+
     class RenderQueue
     {
-        std::vector<std::pair<SDL_Texture *, SDL_Rect &>> queue[5];
+        std::vector<RenderObject *> queue[4][10];
 
     public:
         RenderQueue();
         ~RenderQueue();
 
-        void AddQueue( SDL_Texture *_tex, SDL_Rect &_dest, int _index );
+        void AddQueue( RenderObject *_object, int _type, int _index );
 
-        void DrawRenderQueue();
+        void DrawQueue( int _type );
     };
 
     extern RenderQueue *renderQueue;

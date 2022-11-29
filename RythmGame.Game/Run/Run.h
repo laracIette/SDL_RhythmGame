@@ -1,8 +1,5 @@
 #pragma once
 
-#include <chrono>
-
-#include "../Utils/Point.h"
 #include "../Utils/Time.h"
 #include "../Utils/Metrics.h"
 #include "../Utils/GameSettings.h"
@@ -17,7 +14,6 @@
 
 #include "../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
 
-#include "../../RythmGame.Graphics/ImageManager.h"
 #include "../../RythmGame.Graphics/RenderQueue/RenderQueue.h"
 
 #include "../Settings/Window.h"

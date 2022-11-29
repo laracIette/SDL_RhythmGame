@@ -14,29 +14,29 @@ namespace RythmGame::Graphics
 /**
  * \brief Add SDL_Texture *, SDL_Rect to queue[index]
  *
- * \param _tex    The SDL_Texture * to render.
- * \param _dest   The SDL_Rect & to render to.
- * \param _index  The priority of the texture rendering,
- *                0 highest to 4 lowest.
+ * \param _object The RenderObject * to render.
+ * \param _type   The type of the rendering.
+ * \param _index  The priority of the rendering, 0 highest to 9 lowest.
  */
-    void RenderQueue::AddQueue( SDL_Texture *_tex, SDL_Rect &_dest, int _index )
+    void RenderQueue::AddQueue( RenderObject *_object, int _type, int _index )
     {
-        queue[_index].push_back( {_tex, _dest} );
+        queue[_type][_index].push_back( _object );
     }
 
 
 /**
  * \brief Render from queue[0] to queue[4]
  */
-    void RenderQueue::DrawRenderQueue()
+    void RenderQueue::DrawQueue( int _type )
     {
-        for( std::vector<std::pair<SDL_Texture *, SDL_Rect &>> &vec : queue )
+        for( int i{ 9 }; i >= 0; --i )
         {
-            for( std::pair<SDL_Texture *, SDL_Rect &> &pair : vec )
+            for( RenderObject *object : queue[_type][i] )
             {
-                TextureManager::DrawTexture( pair.first, pair.second );
+                object->Draw();
             }
         }
     }
+
 
 }

@@ -26,7 +26,7 @@ namespace RythmGame::Graphics
         std::chrono::high_resolution_clock::time_point lastImageTime;
 
     public:
-        Animation( std::string path, Rect dest );
+        Animation( std::string _path, Rect _dest, int _type, int _priority );
         ~Animation();
 
         void Draw();
@@ -36,10 +36,10 @@ namespace RythmGame::Graphics
         float W();
         float H();
 
-        void SetX( float x );
-        void SetY( float y );
-        void SetW( float w );
-        void SetH( float h );
+        void SetX( float _x );
+        void SetY( float _y );
+        void SetW( float _w );
+        void SetH( float _h );
     };
 
 }

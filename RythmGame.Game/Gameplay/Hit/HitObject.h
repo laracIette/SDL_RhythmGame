@@ -87,7 +87,9 @@ namespace RythmGame::Game::Gameplay::Hit
         HitObject( std::string path, Rect dest ) :
             Animation(
                 path,
-                dest
+                dest,
+                RenderGameplay,
+                7
             )
         {
             isHit            = false;

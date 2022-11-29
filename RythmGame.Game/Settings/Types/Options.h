@@ -45,7 +45,7 @@ namespace RythmGame::Game::Settings
             DrawBackgroundBox();
             if( isSelected )
             {
-                optionsBox->DrawOptionsBox();
+                optionsBox->Draw();
             }
             else
             {

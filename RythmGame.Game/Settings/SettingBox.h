@@ -40,10 +40,12 @@ namespace RythmGame::Game::Settings
 
         void Init()
         {
-            textTTF = new TextTTF( name, optionFont, 100, posY );
+            textTTF = new TextTTF( name, optionFont, 100, posY, RenderSettings, 6 );
 
             backgroundBox = new BoxRoundedCorners(
                 textTTF->GetRect(),
+                RenderSettings,
+                7,
                 {50, 50, 50},
                 "assets/UI/Settings/SettingBoxRoundedCorner.png"
             );

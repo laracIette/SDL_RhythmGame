@@ -10,6 +10,10 @@
 #include "../../RythmGame.Game/Utils/GameSettings.h"
 #include "../../RythmGame.Game/Events/InputManager.h"
 
+#include "../RenderObject.h"
+
+#include "../RenderQueue/RenderQueue.h"
+
 #define FONT_SIZE_OPTION                     30
 #define FONT_SIZE_CATEGORY_TITLE             36
 #define FONT_SIZE_OPTION_WITH_SPACE          42
@@ -22,7 +26,7 @@ using namespace RythmGame::Game::Events;
 namespace RythmGame::Graphics
 {
 
-    class TextTTF
+    class TextTTF : public RenderObject
     {
         SDL_Texture *textTexture;
         SDL_Rect dest;
@@ -32,7 +36,7 @@ namespace RythmGame::Graphics
     /**
      * DONT RESIZE RECT BEFORE FUNCTION CALL
      */
-        TextTTF( std::string _text, TTF_Font *_font, int _posX, int _posY );
+        TextTTF( std::string _text, TTF_Font *_font, int _posX, int _posY, int _type, int _priority );
         ~TextTTF();
 
         void Update( int _posY );

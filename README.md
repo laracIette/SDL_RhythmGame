@@ -1,24 +1,31 @@
 # RythmGame
 
+
 ## HitObject properties :
 
 	Type (char):
 
 		1. Note :
 			isUp
+
 		2. Hold :
 			isUp
 			endTime
+
 		3. Double :
 
 		4. Mash :
 			endTime
+
 		5. Ghost :
 			isUp
+
 		6. Coin :
 			isUp
+
 		7. Hammer :
 			isUp
+
 		8. Chainsaw :
 			isUp
 
@@ -28,6 +35,8 @@
 	char : type, direction
 
 	type;direction;time;...
+
+
 
 ## Hit Time / Accuracy :
 
@@ -42,6 +51,8 @@
 
 	Coin and Chainsaw Hit Time : Great
 
+
+
 ## Score :
 
 	Perfect  : +300 score
@@ -53,3 +64,143 @@
 	Coin     : +25 score
 
 	Mash hit : +10 score
+
+
+
+## Rendering Priority :
+
+	Goes from 0 : Highest priority, to 9 : Lowest priority
+
+
+### Settings :
+
+
+#### 0 :
+
+#### 1 :
+
+#### 2 :
+
+#### 3 :
+
+#### 4 :
+
+	Settings Setting Options Text
+
+#### 5 :
+
+	Settings Setting Options Box
+
+#### 6 :
+
+	Settings Setting Text
+
+#### 7 :
+
+	Settings Setting Box
+	Settings Category Text
+
+#### 8 :
+
+	Settings Category Box
+
+#### 9 :
+
+	Settings Window
+
+
+
+### StartScreen :
+
+
+#### 0 :
+
+#### 1 :
+
+#### 2 :
+
+#### 3 :
+
+#### 4 :
+
+#### 5 :
+
+#### 6 :
+
+#### 7 :
+
+	Quit Window
+
+#### 8 :
+
+	StartScreen Buttons
+
+#### 9 :
+
+	StartScreen Background
+
+
+
+### MapSelection :
+
+
+#### 0 :
+
+#### 1 :
+
+#### 2 :
+
+#### 3 :
+
+#### 4 :
+
+#### 5 :
+
+#### 6 :
+
+#### 7 :
+
+#### 8 :
+
+	MapSelection SongTile
+
+#### 9 :
+
+	MapSelection Background
+
+
+
+### Gameplay :
+
+
+#### 0 :
+
+#### 1 :
+
+#### 2 :
+
+#### 3 :
+
+#### 4 :
+
+#### 5 :
+
+	Gameplay Pause
+
+#### 6 :
+
+	Gameplay Dim
+	Gameplay Player
+
+#### 7 :
+
+	Gameplay HitObjects
+
+#### 8 :
+
+	Gameplay UI
+
+#### 9 :
+
+	Gameplay Background
+

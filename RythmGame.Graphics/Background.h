@@ -17,12 +17,14 @@ namespace RythmGame::Graphics
 
     public:
     /**
-        Backgorund inherits from Image
+        Background inherits from Image
     */
-        Background( std::string path ) :
+        Background( std::string _path, int _type ) :
             Image(
-                path,
-                {1920/2, 1080/2, 1920, 1080}
+                _path,
+                {1920/2, 1080/2, 1920, 1080},
+                _type,
+                9
             )
         {}
     };

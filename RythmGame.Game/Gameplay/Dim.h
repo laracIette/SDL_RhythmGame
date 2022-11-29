@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../RythmGame.Graphics/Image/Image.h"
+#include "../../RythmGame.Graphics/Background.h"
 #include "../Utils/GameSettings.h"
 
 using namespace RythmGame::Graphics;
@@ -12,19 +12,19 @@ namespace RythmGame::Game::Gameplay
 
     class Dim
     {
-        Image *horizontalDim;
-        Image *verticalDim;
+        Background *horizontalDim;
+        Background *verticalDim;
 
     public:
         Dim()
         {
-            horizontalDim = new Image(
+            horizontalDim = new Background(
                 "assets/Skins/BaseSkin/dim0.png",
-                {1920/2, 1080/2, 1920, 1080}
+                RenderGameplay
             );
-            verticalDim = new Image(
+            verticalDim = new Background(
                 "assets/Skins/BaseSkin/dim1.png",
-                {1920/2, 1080/2, 1920, 1080}
+                RenderGameplay
             );
         }
         ~Dim() {}

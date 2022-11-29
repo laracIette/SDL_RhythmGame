@@ -14,8 +14,8 @@ namespace RythmGame::Graphics
     class TextureManager
     {
     public:
-        static SDL_Texture *LoadTexture( const char *path );
-        static void DrawTexture( SDL_Texture *tex, SDL_Rect dest );
+        static SDL_Texture *LoadTexture( const char *_path );
+        static void DrawTexture( SDL_Texture *_tex, SDL_Rect _dest );
     };
 
 }
