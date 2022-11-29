@@ -11,7 +11,8 @@ namespace RythmGame::Game::Menu::StartScreen
         buttons[Settings] = new SettingsButton();
 
         background = new Background(
-            "assets/Skins/BaseSkin/Menu/StartScreen/background.png"
+            "assets/Skins/BaseSkin/Menu/StartScreen/background.png",
+            RenderStartScreen
         );
     }
 

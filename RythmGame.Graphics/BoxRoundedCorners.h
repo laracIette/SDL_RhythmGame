@@ -1,11 +1,15 @@
 #pragma once
 
-#include <SDL.h>
+#include "../inc/SDL-release-2.24.0/include/SDL.h"
 #include <iostream>
 
 #include "../RythmGame.Game/Utils/GameSettings.h"
 
 #include "TextureManager/TextureManager.h"
+
+#include "RenderObject.h"
+
+#include "RenderQueue/RenderQueue.h"
 
 #include "../RythmGame.Framework/Window/Window.h"
 
@@ -15,7 +19,7 @@ using namespace RythmGame::Game::Utils;
 namespace RythmGame::Graphics
 {
 
-    class BoxRoundedCorners
+    class BoxRoundedCorners : public RenderObject
     {
         SDL_Texture *corner;
         SDL_Rect     dest;
@@ -26,7 +30,7 @@ namespace RythmGame::Graphics
     /**
      * RESIZE RECT BEFORE FUNCTION CALL
      */
-        BoxRoundedCorners( SDL_Rect _dest, RGB _color = White, const char *_path = "assets/UI/RoundedCorner.png" )
+        BoxRoundedCorners( SDL_Rect _dest, int _type, int _priority, RGB _color = White, const char *_path = "assets/UI/RoundedCorner.png" )
         {
             corner = TextureManager::LoadTexture( _path );
 
@@ -41,6 +45,7 @@ namespace RythmGame::Graphics
                 size = resize( 25 );
             }
 
+            renderQueue->AddQueue( this, _type, _priority );
         }
         ~BoxRoundedCorners() {}
 

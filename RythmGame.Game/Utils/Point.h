@@ -1,7 +1,5 @@
 #pragma once
 
-#include <SDL.h>
-
 namespace RythmGame::Game::Utils
 {
     template<typename T>

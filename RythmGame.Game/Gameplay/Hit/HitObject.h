@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SDL.h>
+#include "../../../inc/SDL-release-2.24.0/include/SDL.h"
 #include <iostream>
 #include <chrono>
 
@@ -87,7 +87,9 @@ namespace RythmGame::Game::Gameplay::Hit
         HitObject( std::string path, Rect dest ) :
             Animation(
                 path,
-                dest
+                dest,
+                RenderGameplay,
+                7
             )
         {
             isHit            = false;

@@ -3,16 +3,16 @@
 namespace RythmGame::Graphics
 {
 
-    Image::Image( std::string path, Rect _dest, int _position )
+    Image::Image( std::string _path, Rect _dest, int _type, int _priority, int _position )
     {
-        if( imageManager.imagesTextureMap.count( path ) )
+        if( imageManager.imagesTextureMap.count( _path ) )
         {
-            tex = imageManager.imagesTextureMap[path];
+            tex = imageManager.imagesTextureMap[_path];
         }
         else
         {
-            imageManager.imagesTextureMap[path] = TextureManager::LoadTexture( const_cast<char *>( path.c_str() ) );
-            tex = imageManager.imagesTextureMap[path];
+            imageManager.imagesTextureMap[_path] = TextureManager::LoadTexture( const_cast<char *>( _path.c_str() ) );
+            tex = imageManager.imagesTextureMap[_path];
         }
 
         dest = _dest;
@@ -25,6 +25,8 @@ namespace RythmGame::Graphics
         position = _position;
 
         zoom = 1.0f;
+
+        renderQueue->AddQueue( this, _type, _priority );
     }
 
     Image::~Image()
@@ -35,41 +37,41 @@ namespace RythmGame::Graphics
     {
         Draw( dest );
     }
-    void Image::Draw( Rect dest )
+    void Image::Draw( Rect _dest )
     {
         switch( position )
         {
         case Center:
-            posX = resize( dest.x - dest.w*zoom/2 );
-            posY = resize( dest.y - dest.h*zoom/2 );
+            posX = resize( _dest.x - _dest.w*zoom/2 );
+            posY = resize( _dest.y - _dest.h*zoom/2 );
             break;
 
         case TopLeft:
-            posX = resize( dest.x );
-            posY = resize( dest.y );
+            posX = resize( _dest.x );
+            posY = resize( _dest.y );
             break;
 
         case TopRight:
-            posX = resize( dest.x - dest.w*zoom );
-            posY = resize( dest.y );
+            posX = resize( _dest.x - _dest.w*zoom );
+            posY = resize( _dest.y );
             break;
 
         case BottomLeft:
-            posX = resize( dest.x );
-            posY = resize( dest.y - dest.h*zoom );
+            posX = resize( _dest.x );
+            posY = resize( _dest.y - _dest.h*zoom );
             break;
 
         case BottomRight:
-            posX = resize( dest.x - dest.w*zoom );
-            posY = resize( dest.y - dest.h*zoom );
+            posX = resize( _dest.x - _dest.w*zoom );
+            posY = resize( _dest.y - _dest.h*zoom );
             break;
 
         default:
             break;
         }
 
-        posW = resize( dest.w*zoom );
-        posH = resize( dest.h*zoom );
+        posW = resize( _dest.w*zoom );
+        posH = resize( _dest.h*zoom );
 
         TextureManager::DrawTexture(
             tex,

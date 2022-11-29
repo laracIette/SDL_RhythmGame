@@ -1,27 +1,16 @@
 #include "Run.h"
 
-std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::offsetTime;
-
-float RythmGame::Game::Utils::deltaTime;
-float RythmGame::Game::Utils::velocity;
-bool  RythmGame::Game::Utils::isHorizontal;
-
-InputManager RythmGame::Game::Events::inputManager;
-ImageManager RythmGame::Graphics::imageManager;
-
-HitSoundManager *RythmGame::Sound::hitSoundManager;
 
 namespace RythmGame::Game
 {
     Run::Run()
     {
-        hitSoundManager = new HitSoundManager();
 
-        currentTime = std::chrono::system_clock::now();
 
         isRunning = true;
 
         startScreen        = new StartScreen::Screen();
+
         mapSelectionScreen = new MapSelection::Screen();
 
         isSettings = false;
@@ -29,8 +18,6 @@ namespace RythmGame::Game
         player = new Player();
 
         velocity = 0.3f;
-
-        isHorizontal = true;
 
         map = new Map();
     }
@@ -43,6 +30,8 @@ namespace RythmGame::Game
     {
         deltaTime = 0;
         lastFrameTime = currentTime;
+
+        isHorizontal = true;
 
         gameState = STARTSCREEN;
     }
@@ -113,16 +102,15 @@ namespace RythmGame::Game
         switch( gameState )
         {
         case STARTSCREEN:
-            startScreen->Draw();
+            renderQueue->DrawQueue( RenderStartScreen );
             break;
 
         case MAPSELECTION:
-            mapSelectionScreen->Draw();
+            renderQueue->DrawQueue( RenderMapSelection );
             break;
 
         case GAMEPLAY:
-            map->Draw();
-            player->Draw();
+            renderQueue->DrawQueue( RenderGameplay );
             break;
 
         default:
@@ -131,8 +119,9 @@ namespace RythmGame::Game
 
         if( isSettings )
         {
-            settingsWindow->DrawWindow();
+            renderQueue->DrawQueue( RenderSettings );
         }
+
 
         SDL_RenderPresent( window->renderer );
     }

@@ -34,10 +34,12 @@ namespace RythmGame::Game::Settings
 
         void InitCategoryName()
         {
-            text = new TextTTF( name, categoryTitleFont, 0, posY );
+            text = new TextTTF( name, categoryTitleFont, 0, posY, RenderSettings, 7 );
 
             backgroundBox = new BoxRoundedCorners(
                 {0, resize( posY ), resize( 1920/3 ), resize( boxHeight )},
+                RenderSettings,
+                8,
                 {60, 60, 60},
                 "assets/UI/Settings/SettingCategoryRoundedCorner.png"
             );

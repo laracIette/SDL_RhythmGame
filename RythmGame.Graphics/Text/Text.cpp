@@ -3,7 +3,7 @@
 namespace RythmGame::Graphics
 {
 
-    Text::Text( std::string _text, Rect _dest, int _position )
+    Text::Text( std::string _text, Rect _dest, int _type, int _priority, int _position )
     {
         text = _text;
 
@@ -13,13 +13,17 @@ namespace RythmGame::Graphics
             std::string character{ characters[i] };
             images[i] = new Image(
                 "assets/Skins/BaseSkin/Characters/" + character + ".png",
-                {0, 0, 50, 60}
+                {0, 0, 50, 60},
+                _type,
+                _priority
             );
         }
 
         images[36] = new Image(
             "assets/Skins/BaseSkin/Characters/point.png",
-            {0, 0, 50, 60}
+            {0, 0, 50, 60},
+            _type,
+            _priority
         );
 
         distance = 1.0f;

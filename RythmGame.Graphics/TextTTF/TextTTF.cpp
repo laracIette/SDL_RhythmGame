@@ -3,7 +3,7 @@
 namespace RythmGame::Graphics
 {
 
-    TextTTF::TextTTF( std::string _text, TTF_Font *_font, int _posX, int _posY )
+    TextTTF::TextTTF( std::string _text, TTF_Font *_font, int _posX, int _posY, int _type, int _priority )
     {
         TTF_SizeText( _font, _text.c_str(), &dest.w, &dest.h );
         dest.x = resize( _posX );
@@ -18,6 +18,8 @@ namespace RythmGame::Graphics
         }
 
         SDL_FreeSurface( tempSurface );
+
+        renderQueue->AddQueue( this, _type, _priority );
     }
 
     TextTTF::~TextTTF()

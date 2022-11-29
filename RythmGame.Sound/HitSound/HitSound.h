@@ -1,7 +1,7 @@
 #pragma once
 
-#include <SDL.h>
-#include <SDL_mixer.h>
+#include "../../inc/SDL-release-2.24.0/include/SDL.h"
+#include "../../inc/SDL2_mixer-2.6.2/include/SDL_mixer.h"
 #include <string>
 #include <iostream>
 

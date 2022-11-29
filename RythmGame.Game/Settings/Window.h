@@ -31,6 +31,8 @@ namespace RythmGame::Game::Settings
 
             box = new BoxRoundedCorners(
                 {0, 0, resize( 1920/3 ), resize( 1080 )},
+                RenderSettings,
+                9,
                 {69, 69, 69},
                 "assets/UI/Settings/SettingsRoundedCorner.png"
             );

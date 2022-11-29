@@ -3,16 +3,18 @@
 namespace RythmGame::Graphics
 {
 
-    Animation::Animation( std::string path, Rect dest )
+    Animation::Animation( std::string _path, Rect _dest, int _type, int _priority )
     {
-        for( const auto &entry : std::filesystem::directory_iterator( path ) )
+        for( const auto &entry : std::filesystem::directory_iterator( _path ) )
         {
             if( CheckImageExists( entry.path() ) )
             {
                 images.push_back(
                     new Image(
                         entry.path(),
-                        dest
+                        _dest,
+                        _type,
+                        _priority
                     )
                 );
             }
@@ -59,32 +61,32 @@ namespace RythmGame::Graphics
 
 
 
-    void Animation::SetX( float x )
+    void Animation::SetX( float _x )
     {
         for( Image *image : images )
         {
-            image->SetX( x );
+            image->SetX( _x );
         }
     }
-    void Animation::SetY( float y )
+    void Animation::SetY( float _y )
     {
         for( Image *image : images )
         {
-            image->SetY( y );
+            image->SetY( _y );
         }
     }
-    void Animation::SetW( float w )
+    void Animation::SetW( float _w )
     {
         for( Image *image : images )
         {
-            image->SetW( w );
+            image->SetW( _w );
         }
     }
-    void Animation::SetH( float h )
+    void Animation::SetH( float _h )
     {
         for( Image *image : images )
         {
-            image->SetH( h );
+            image->SetH( _h );
         }
     }
 

@@ -21,7 +21,14 @@ namespace RythmGame::Game::Gameplay
     /**
         Accuracy inherits from Text
     */
-        Accuracy() : Text( "100.00", {1920/2, 0, 50, 60}, Top )
+        Accuracy() :
+            Text(
+                "100.00",
+                {1920/2, 0, 50, 60},
+                RenderGameplay,
+                8,
+                Top
+            )
         {
             accuracy = 0;
             for( int &acc : accuracyHits ) acc = 0;

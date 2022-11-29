@@ -5,11 +5,12 @@
 
 #include "../TextTTF/TextTTF.h"
 #include "../BoxRoundedCorners.h"
+#include "../RenderObject.h"
 
 namespace RythmGame::Graphics
 {
 
-    class OptionsBox
+    class OptionsBox : public RenderObject
     {
         std::vector<TextTTF *> options;
         BoxRoundedCorners *box;
@@ -18,7 +19,7 @@ namespace RythmGame::Graphics
         OptionsBox( std::vector<std::string> _optionsVector, int _posY );
         ~OptionsBox();
 
-        void DrawOptionsBox();
+        void Draw();
     };
 
 }

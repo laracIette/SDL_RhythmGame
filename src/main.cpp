@@ -14,11 +14,11 @@
 
 #include "../RythmGame.Game/Run/Run.h"
 
+#include "../../RythmGame.Graphics/RenderQueue/RenderQueue.h"
 
-using namespace RythmGame::Game::Utils;
-using namespace RythmGame::Game;
-using namespace RythmGame::Game::Settings;
-using namespace RythmGame::Graphics;
+#include "../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
+
+#include "../../RythmGame.Graphics/ImageManager.h"
 
 
 RythmGame::Framework::Window      *RythmGame::Framework::window;
@@ -26,6 +26,11 @@ RythmGame::Game::Settings::Window *RythmGame::Game::Settings::settingsWindow;
 
 std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::currentTime;
 std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::lastFrameTime;
+std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::offsetTime;
+
+float RythmGame::Game::Utils::deltaTime;
+float RythmGame::Game::Utils::velocity;
+bool  RythmGame::Game::Utils::isHorizontal;
 
 SettingsFile *RythmGame::Game::Settings::settingsFile;
 
@@ -36,9 +41,22 @@ int RythmGame::Game::Utils::FPS;
 TTF_Font *RythmGame::Graphics::optionFont;
 TTF_Font *RythmGame::Graphics::categoryTitleFont;
 
+RenderQueue *RythmGame::Graphics::renderQueue;
+
+HitSoundManager *RythmGame::Sound::hitSoundManager;
+InputManager RythmGame::Game::Events::inputManager;
+ImageManager RythmGame::Graphics::imageManager;
+
+
+using namespace RythmGame::Game::Utils;
+using namespace RythmGame::Game;
+using namespace RythmGame::Game::Settings;
+using namespace RythmGame::Graphics;
+
 
 int main( int argc, char *argv[] )
 {
+    renderQueue    = new RenderQueue();
     settingsFile   = new SettingsFile();
     settingsWindow = new RythmGame::Game::Settings::Window();
 
@@ -53,8 +71,11 @@ int main( int argc, char *argv[] )
 
     settingsWindow->InitWindow();
 
+    hitSoundManager = new HitSoundManager();
 
     long images{ 1 };
+
+    currentTime = std::chrono::system_clock::now();
 
     Run *run{ new Run() };
     run->Init();

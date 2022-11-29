@@ -1,10 +1,9 @@
 #pragma once
 
-#include <json.hpp>
+#include "../../inc/json.hpp"
 #include <fstream>
 #include <iostream>
 
-using json = nlohmann::json;
 
 namespace RythmGame::Game::Settings
 {
@@ -13,13 +12,13 @@ namespace RythmGame::Game::Settings
     {
 
     public:
-        json data;
+        nlohmann::json data;
         bool writeData;
 
         SettingsFile()
         {
             std::ifstream file( "assets/Settings.json" );
-            data = json::parse( file );
+            data = nlohmann::json::parse( file );
             file.close();
 
             writeData = false;

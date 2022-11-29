@@ -1,8 +1,8 @@
 #pragma once
 
-#include <SDL.h>
-#include <SDL_mixer.h>
-#include <SDL_ttf.h>
+#include "../../inc/SDL-release-2.24.0/include/SDL.h"
+#include "../../inc/SDL2_mixer-2.6.2/include/SDL_mixer.h"
+#include "../../inc/SDL2_ttf-2.20.1/SDL_ttf.h"
 
 #include "../../RythmGame.Game/Utils/Metrics.h"
 #include "../../RythmGame.Game/Utils/GameSettings.h"
@@ -20,8 +20,8 @@ namespace RythmGame::Framework
         Window();
         ~Window();
 
-        void FillRectangle( SDL_Rect dest, RGB color );
-        void DrawBox( SDL_Rect rect, RGB color );
+        void FillRectangle( SDL_Rect _dest, RGB _color );
+        void DrawBox( SDL_Rect _rect, RGB _color );
 
         SDL_Window *window;
         SDL_Renderer *renderer;
