@@ -42,13 +42,6 @@ namespace RythmGame::Game::Settings::Video
             UpdateFPS();
         }
 
-        void DrawVideo()
-        {
-            DrawCategoryName();
-            DrawDimension();
-            DrawFPS();
-        }
-
         int GetVideoHeight() { return FONT_SIZE_CATEGORY_TITLE_WITH_SPACE+FONT_SIZE_OPTION_WITH_SPACE*2; }
 
     };

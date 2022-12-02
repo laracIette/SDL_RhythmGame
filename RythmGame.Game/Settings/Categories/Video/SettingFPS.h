@@ -43,17 +43,12 @@ namespace RythmGame::Game::Settings::Video
 
         void ScrollFPS( int _posY )
         {
-            Scroll( _posY );
+            ScrollOptions( _posY );
         }
 
         void UpdateFPS()
         {
             UpdateOptions();
-        }
-
-        void DrawFPS()
-        {
-            DrawOptions();
         }
 
 

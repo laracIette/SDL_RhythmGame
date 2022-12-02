@@ -205,6 +205,6 @@ namespace RythmGame::Game::Events
         float WheelMovementX() { return mouse.wheel.x; }
     };
 
-    extern InputManager inputManager;
+    extern InputManager *inputManager;
 
 }

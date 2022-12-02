@@ -26,7 +26,7 @@ namespace RythmGame::Game::Gameplay
                 "100.00",
                 {1920/2, 0, 50, 60},
                 RenderGameplay,
-                8,
+                5,
                 Top
             )
         {

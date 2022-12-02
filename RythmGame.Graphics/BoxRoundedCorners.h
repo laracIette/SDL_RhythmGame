@@ -7,7 +7,7 @@
 
 #include "TextureManager/TextureManager.h"
 
-#include "RenderObject.h"
+#include "Renderable.h"
 
 #include "RenderQueue/RenderQueue.h"
 
@@ -19,7 +19,7 @@ using namespace RythmGame::Game::Utils;
 namespace RythmGame::Graphics
 {
 
-    class BoxRoundedCorners : public RenderObject
+    class BoxRoundedCorners : public Renderable
     {
         SDL_Texture *corner;
         SDL_Rect     dest;

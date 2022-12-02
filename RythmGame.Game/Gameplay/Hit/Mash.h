@@ -70,8 +70,8 @@ namespace RythmGame::Game::Gameplay::Hit
 
         bool CheckHitting()
         {
-            if( ( inputManager.LeftPressed()  && ((direction == LEFT  && isHorizontal) || (direction == UP   && !isHorizontal)) )
-             || ( inputManager.RightPressed() && ((direction == RIGHT && isHorizontal) || (direction == DOWN && !isHorizontal)) )
+            if( ( inputManager->LeftPressed()  && ((direction == LEFT  && isHorizontal) || (direction == UP   && !isHorizontal)) )
+             || ( inputManager->RightPressed() && ((direction == RIGHT && isHorizontal) || (direction == DOWN && !isHorizontal)) )
             )
             {
                 return 1;
@@ -119,31 +119,31 @@ namespace RythmGame::Game::Gameplay::Hit
 
             if( (direction == LEFT && isHorizontal) || (direction == UP && !isHorizontal) )
             {
-                if( inputManager.Left1PressedNoLock() )
+                if( inputManager->Left1PressedNoLock() )
                 {
                     hits++;
-                    inputManager.LockLeft1();
+                    inputManager->LockLeft1();
                     isHitted = true;
                 }
-                if( inputManager.Left2PressedNoLock() )
+                if( inputManager->Left2PressedNoLock() )
                 {
                     hits++;
-                    inputManager.LockLeft2();
+                    inputManager->LockLeft2();
                     isHitted = true;
                 }
             }
             else if( (direction == RIGHT && isHorizontal) || (direction == DOWN && !isHorizontal) )
             {
-                if( inputManager.Right1PressedNoLock() )
+                if( inputManager->Right1PressedNoLock() )
                 {
                     hits++;
-                    inputManager.LockRight1();
+                    inputManager->LockRight1();
                     isHitted = true;
                 }
-                if( inputManager.Right2PressedNoLock() )
+                if( inputManager->Right2PressedNoLock() )
                 {
                     hits++;
-                    inputManager.LockRight2();
+                    inputManager->LockRight2();
                     isHitted = true;
                 }
             }

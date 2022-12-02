@@ -17,11 +17,14 @@ namespace RythmGame::Game::Settings
     class Window : public Video::Category, public Sound::Category
     {
         float posY;
+        int count;
 
         BoxRoundedCorners *box;
 
     public:
-        Window() : Video::Category( 0 ), Sound::Category( GetVideoHeight() )
+        Window() :
+            Video::Category( 0 ),
+            Sound::Category( GetVideoHeight() )
         {
         }
 
@@ -33,7 +36,7 @@ namespace RythmGame::Game::Settings
                 {0, 0, resize( 1920/3 ), resize( 1080 )},
                 RenderSettings,
                 9,
-                {69, 69, 69},
+                SettingsGray,
                 "assets/UI/Settings/SettingsRoundedCorner.png"
             );
 
@@ -43,26 +46,24 @@ namespace RythmGame::Game::Settings
 
         void Scroll()
         {
-            if( (posY + inputManager.WheelMovementY()) >= 0 )
+            //if( (posY + inputManager->WheelMovementY()) < 0 )
             {
-                posY += inputManager.WheelMovementY();
-                ScrollVideo( posY );
-                ScrollSound( posY );
+                posY += inputManager->WheelMovementY();
             }
+            //else
+            {
+            //    posY = 0;
+            }
+
+            ScrollVideo( posY );
+            ScrollSound( posY );
         }
 
         void UpdateWindow()
         {
+            box->IsShown( true );
             UpdateVideo();
             UpdateSound();
-        }
-
-        void DrawWindow()
-        {
-            box->Draw();
-
-            DrawVideo();
-            DrawSound();
         }
 
     };

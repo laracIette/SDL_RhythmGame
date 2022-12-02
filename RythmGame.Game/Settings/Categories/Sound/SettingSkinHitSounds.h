@@ -35,11 +35,6 @@ namespace RythmGame::Game::Settings::Sound
             UpdateCheck();
         }
 
-        void DrawSkinHitSounds()
-        {
-            DrawCheck();
-        }
-
         bool GetSkinHitSounds() { return GetValue(); }
     };
 

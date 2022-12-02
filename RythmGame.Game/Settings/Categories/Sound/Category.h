@@ -54,15 +54,6 @@ namespace RythmGame::Game::Settings::Sound
             UpdateSkinHitSounds();
         }
 
-        void DrawSound()
-        {
-            DrawCategoryName();
-            DrawGeneralVolume();
-            DrawMusicVolume();
-            DrawHitSoundsVolume();
-            DrawSkinHitSounds();
-        }
-
         int GetSoundHeight() { return FONT_SIZE_CATEGORY_TITLE_WITH_SPACE + FONT_SIZE_OPTION_WITH_SPACE*4; }
 
     };

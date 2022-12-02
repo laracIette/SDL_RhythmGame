@@ -38,14 +38,14 @@ int RythmGame::Game::Utils::WIDTH;
 int RythmGame::Game::Utils::HEIGHT;
 int RythmGame::Game::Utils::FPS;
 
-TTF_Font *RythmGame::Graphics::optionFont;
-TTF_Font *RythmGame::Graphics::categoryTitleFont;
-
 RenderQueue *RythmGame::Graphics::renderQueue;
 
 HitSoundManager *RythmGame::Sound::hitSoundManager;
-InputManager RythmGame::Game::Events::inputManager;
-ImageManager RythmGame::Graphics::imageManager;
+InputManager    *RythmGame::Game::Events::inputManager;
+ImageManager    *RythmGame::Graphics::imageManager;
+
+TTF_Font *RythmGame::Graphics::optionFont;
+TTF_Font *RythmGame::Graphics::categoryTitleFont;
 
 
 using namespace RythmGame::Game::Utils;
@@ -66,16 +66,25 @@ int main( int argc, char *argv[] )
 
     window = new RythmGame::Framework::Window();
 
+    hitSoundManager = new HitSoundManager();
+    inputManager = new InputManager();
+    imageManager = new ImageManager();
+
     optionFont        = TTF_OpenFont( "assets/UI/Fonts/OpenSans-Bold.ttf", resize( FONT_SIZE_OPTION ) );
     categoryTitleFont = TTF_OpenFont( "assets/UI/Fonts/OpenSans-Bold.ttf", resize( FONT_SIZE_CATEGORY_TITLE ) );
 
     settingsWindow->InitWindow();
 
-    hitSoundManager = new HitSoundManager();
+    velocity = 0.3f;
+
 
     long images{ 1 };
 
-    currentTime = std::chrono::system_clock::now();
+    currentTime   = std::chrono::system_clock::now();
+    deltaTime     = 0;
+    lastFrameTime = currentTime;
+
+    isHorizontal = true;
 
     Run *run{ new Run() };
     run->Init();

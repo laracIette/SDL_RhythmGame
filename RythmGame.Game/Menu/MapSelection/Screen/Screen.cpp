@@ -26,21 +26,22 @@ namespace RythmGame::Game::Menu::MapSelection
 
     void Screen::Draw()
     {
-        background->Draw();
-
-        for( SongTile *song : songs )
-        {
-            song->Draw( 2 );
-        }
     }
 
 /**
- * \returns
+ * @returns
  * Song pointer if a SongTile is Clicked
  * else 0
  */
     Song *Screen::Update()
     {
+        background->IsShown( true );
+
+        for( SongTile *song : songs )
+        {
+            song->Update( 2 );
+        }
+
         for( SongTile *song : songs )
         {
             song->GetSong()->GetBackground()->Hoover();

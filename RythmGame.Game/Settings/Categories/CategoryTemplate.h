@@ -40,7 +40,7 @@ namespace RythmGame::Game::Settings
                 {0, resize( posY ), resize( 1920/3 ), resize( boxHeight )},
                 RenderSettings,
                 8,
-                {60, 60, 60},
+                SettingsCategoryGray,
                 "assets/UI/Settings/SettingCategoryRoundedCorner.png"
             );
         }
@@ -49,12 +49,8 @@ namespace RythmGame::Game::Settings
         {
             text->Update( posY + _posY );
             backgroundBox->SetY( posY + _posY );
-        }
-
-        void DrawCategoryName()
-        {
-            backgroundBox->Draw();
-            text->Draw();
+            backgroundBox->IsShown( true );
+            text->IsShown( true );
         }
     };
 

@@ -105,22 +105,14 @@ namespace RythmGame::Game::Gameplay
 
         accuracy->Update();
 
-    }
+        song->GetBackground()->IsShown( true );
 
-    void Map::Draw()
-    {
-        song->GetBackground()->Draw();
+        (isHorizontal) ? dim->ShowHorizontalDim() : dim->ShowVerticalDim();
 
-        for( HitObject *hitObject : song->GetHitObjects() )
-        {
-            hitObject->DrawHitObject();
-        }
+        score->IsShown( true );
+        combo->IsShown( true );
+        accuracy->IsShown( true );
 
-        (isHorizontal) ? dim->DrawHorizontalDim() : dim->DrawVerticalDim();
-
-        score->Draw();
-        combo->Draw();
-        accuracy->Draw();
     }
 
     void Map::Pause()

@@ -6,7 +6,7 @@
 
 #include "../Image/Image.h"
 
-#include "../RenderObject.h"
+#include "../Renderable.h"
 
 #include "../../RythmGame.Game/Utils/Point.h"
 
@@ -16,7 +16,7 @@ using namespace RythmGame::Game::Utils;
 namespace RythmGame::Graphics
 {
 
-    class Text : public RenderObject
+    class Text : public Renderable
     {
         std::string text;
         Rect dest;

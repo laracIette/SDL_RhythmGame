@@ -46,7 +46,7 @@ namespace RythmGame::Game::Settings
                 textTTF->GetRect(),
                 RenderSettings,
                 7,
-                {50, 50, 50},
+                SettingsSettingBoxGray,
                 "assets/UI/Settings/SettingBoxRoundedCorner.png"
             );
         }
@@ -71,16 +71,18 @@ namespace RythmGame::Game::Settings
                 isSelected = false;
             }
 
+            backgroundBox->IsShown( true );
+
         }
 
-        void DrawBackgroundBox()
+        BoxRoundedCorners *GetBackgroundBox()
         {
-            backgroundBox->Draw();
+            return backgroundBox;
         }
 
-        void DrawText()
+        TextTTF *GetText()
         {
-            textTTF->Draw();
+            return textTTF;
         }
 
     };

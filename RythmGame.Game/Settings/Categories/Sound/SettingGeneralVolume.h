@@ -38,11 +38,6 @@ namespace RythmGame::Game::Settings::Sound
             UpdateSlider();
         }
 
-        void DrawGeneralVolume()
-        {
-            DrawSlider();
-        }
-
         int GetGeneralVolume() { return volume; }
     };
 

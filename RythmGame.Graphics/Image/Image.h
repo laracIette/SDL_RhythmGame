@@ -11,7 +11,7 @@
 #include "../TextureManager/TextureManager.h"
 
 #include "../ImageManager.h"
-#include "../RenderObject.h"
+#include "../Renderable.h"
 
 #include "../RenderQueue/RenderQueue.h"
 
@@ -33,7 +33,7 @@ namespace RythmGame::Graphics
     };
 
 /**
- * \returns true if the path ends with png, else false.
+ * @returns true if the path ends with png, else false.
  */
     static bool CheckImageExists( std::string _path )
     {
@@ -43,7 +43,7 @@ namespace RythmGame::Graphics
         return 1;
     }
 
-    class Image : public RenderObject
+    class Image : public Renderable
     {
         float posX, posY, posW, posH;
         SDL_Texture *tex;
@@ -60,6 +60,8 @@ namespace RythmGame::Graphics
 
         void Draw();
         void Draw( Rect _dest );
+
+        void SetPos( Rect _dest ) { dest = _dest; }
 
         float X() { return dest.x; }
         float Y() { return dest.y; }

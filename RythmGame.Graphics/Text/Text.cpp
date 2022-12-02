@@ -31,6 +31,8 @@ namespace RythmGame::Graphics
         dest = _dest;
 
         position = _position;
+
+        renderQueue->AddQueue( this, _type, _priority );
     }
 
     Text::~Text()

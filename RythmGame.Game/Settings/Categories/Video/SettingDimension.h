@@ -65,17 +65,12 @@ namespace RythmGame::Game::Settings::Video
 
         void ScrollDimension( int _posY )
         {
-            Scroll( _posY );
+            ScrollOptions( _posY );
         }
 
         void UpdateDimension()
         {
             UpdateOptions();
-        }
-
-        void DrawDimension()
-        {
-            DrawOptions();
         }
 
         int GetWidth()  { return width; }

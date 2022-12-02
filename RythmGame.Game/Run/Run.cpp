@@ -5,8 +5,6 @@ namespace RythmGame::Game
 {
     Run::Run()
     {
-
-
         isRunning = true;
 
         startScreen        = new StartScreen::Screen();
@@ -17,8 +15,6 @@ namespace RythmGame::Game
 
         player = new Player();
 
-        velocity = 0.3f;
-
         map = new Map();
     }
 
@@ -28,18 +24,15 @@ namespace RythmGame::Game
 
     void Run::Init()
     {
-        deltaTime = 0;
-        lastFrameTime = currentTime;
-
-        isHorizontal = true;
-
         gameState = STARTSCREEN;
     }
 
     void Run::Update()
     {
 
-        if( inputManager.HandleEvents() ) isRunning = false;
+        if( inputManager->HandleEvents() ) isRunning = false;
+
+        renderQueue->ResetQueue();
 
         if( gameState == STARTSCREEN )
         {
@@ -62,9 +55,9 @@ namespace RythmGame::Game
         }
         if( gameState == GAMEPLAY )
         {
-            if( inputManager.PressedNoLock( inputManager.keyboard.Escape ) )
+            if( inputManager->PressedNoLock( inputManager->keyboard.Escape ) )
             {
-                inputManager.SetKeyLock( inputManager.keyboard.Escape, true );
+                inputManager->SetKeyLock( inputManager->keyboard.Escape, true );
                 map->Pause();
             }
 
@@ -72,9 +65,9 @@ namespace RythmGame::Game
             map->Update();
         }
 
-        if( inputManager.PressedNoLock( inputManager.keyboard.S ) )
+        if( inputManager->PressedNoLock( inputManager->keyboard.S ) )
         {
-            inputManager.SetKeyLock( inputManager.keyboard.S, true );
+            inputManager->SetKeyLock( inputManager->keyboard.S, true );
 
             isSettings = !isSettings;
         }
@@ -86,8 +79,8 @@ namespace RythmGame::Game
         }
 
 
-        if( inputManager.LeftClickedNoLock() )  inputManager.SetButtonLock( inputManager.mouse.Left,  true );
-        if( inputManager.RightClickedNoLock() ) inputManager.SetButtonLock( inputManager.mouse.Right, true );
+        if( inputManager->LeftClickedNoLock() )  inputManager->SetButtonLock( inputManager->mouse.Left,  true );
+        if( inputManager->RightClickedNoLock() ) inputManager->SetButtonLock( inputManager->mouse.Right, true );
 
         hitSoundManager->Update();
     }
@@ -128,14 +121,14 @@ namespace RythmGame::Game
 
     void Run::Clear()
     {
-        SDL_DestroyWindow( window->window );
-        SDL_DestroyRenderer( window->renderer );
+        map->Close();
+        hitSoundManager->Close();
         TTF_CloseFont( optionFont );
         TTF_CloseFont( categoryTitleFont );
         TTF_Quit();
-        map->Close();
-        hitSoundManager->Close();
         Mix_CloseAudio();
+        SDL_DestroyWindow( window->window );
+        SDL_DestroyRenderer( window->renderer );
         SDL_Quit();
     }
 

@@ -38,11 +38,6 @@ namespace RythmGame::Game::Settings::Sound
             Scroll( _posY );
         }
 
-        void DrawHitSoundsVolume()
-        {
-            DrawSlider();
-        }
-
         int GetHitSoundsVolume() { return volume; }
     };
 

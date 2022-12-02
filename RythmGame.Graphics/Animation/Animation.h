@@ -29,7 +29,7 @@ namespace RythmGame::Graphics
         Animation( std::string _path, Rect _dest, int _type, int _priority );
         ~Animation();
 
-        void Draw();
+        void UpdateAnimation();
 
         float X();
         float Y();

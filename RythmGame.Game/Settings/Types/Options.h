@@ -35,21 +35,22 @@ namespace RythmGame::Game::Settings
             optionsBox = new OptionsBox( vec, posY );
         }
 
+        void ScrollOptions( int _posY )
+        {
+            Scroll( _posY );
+            optionsBox->Scroll( _posY );
+        }
+
         void UpdateOptions()
         {
             Update();
-        }
-
-        void DrawOptions()
-        {
-            DrawBackgroundBox();
             if( isSelected )
             {
-                optionsBox->Draw();
+                optionsBox->Update();
             }
             else
             {
-                DrawText();
+                GetText()->IsShown( true );
             }
         }
 

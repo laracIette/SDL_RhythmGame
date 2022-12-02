@@ -23,9 +23,9 @@ namespace RythmGame::Game::Gameplay
     {
         for( bool &b : isImageShown ) b = false;
 
-        if( !inputManager.KeyLock( inputManager.flipKey ) && inputManager.Pressed( inputManager.flipKey ) )
+        if( !inputManager->KeyLock( inputManager->flipKey ) && inputManager->Pressed( inputManager->flipKey ) )
         {
-            inputManager.SetKeyLock( inputManager.flipKey, true );
+            inputManager->SetKeyLock( inputManager->flipKey, true );
 
             (isHorizontal) ? isHorizontal = false : isHorizontal = true;
         }
@@ -36,31 +36,28 @@ namespace RythmGame::Game::Gameplay
 
 
 
-        if( inputManager.Left2Pressed() )
+        if( inputManager->Left2Pressed() )
         {
             (isHorizontal) ? isImageShown[UpLeft] = true : isImageShown[UpRight] = true;
         }
-        if( inputManager.Left1Pressed() )
+        if( inputManager->Left1Pressed() )
         {
             (isHorizontal) ? isImageShown[DownLeft] = true : isImageShown[UpLeft] = true;
         }
-        if( inputManager.Right1Pressed() )
+        if( inputManager->Right1Pressed() )
         {
             (isHorizontal) ? isImageShown[UpRight] = true : isImageShown[DownLeft] = true;
         }
-        if( inputManager.Right2Pressed() )
+        if( inputManager->Right2Pressed() )
         {
             (isHorizontal) ? isImageShown[DownRight] = true : isImageShown[DownRight] = true;
         }
 
-    }
-
-    void Player::Draw()
-    {
         for( int i{ 0 }; i < nIMAGES; ++i )
         {
-            if( isImageShown[i] ) images[i]->Draw();
+            if( isImageShown[i] ) images[i]->IsShown( true );
         }
+
     }
 
 }

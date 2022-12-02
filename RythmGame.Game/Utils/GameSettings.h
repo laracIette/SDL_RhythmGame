@@ -2,11 +2,14 @@
 
 #include "Metrics.h"
 
-#define White (RGB){255, 255, 255}
-#define Black (RGB){  0,   0,   0}
-#define Red   (RGB){255,   0, 255}
-#define Green (RGB){  0, 255,   0}
-#define Blue  (RGB){  0,   0, 255}
+#define White                  (RGB){255, 255, 255}
+#define Black                  (RGB){  0,   0,   0}
+#define Red                    (RGB){255,   0, 255}
+#define Green                  (RGB){  0, 255,   0}
+#define Blue                   (RGB){  0,   0, 255}
+#define SettingsGray           (RGB){ 69,  69,  69}
+#define SettingsSettingBoxGray (RGB){ 50,  50,  50}
+#define SettingsCategoryGray   (RGB){ 60,  60,  60}
 
 namespace RythmGame::Game::Utils
 {
@@ -51,7 +54,7 @@ namespace RythmGame::Game::Utils
 
 /**
  * number * WIDTH / 1920
- * \returns
+ * @returns
  * resized number
  */
     template<typename T>
@@ -63,7 +66,7 @@ namespace RythmGame::Game::Utils
     }
 
 /**
- * \returns
+ * @returns
  * new pointer to the passed argument
  */
     template<typename T>

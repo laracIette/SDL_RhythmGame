@@ -30,18 +30,7 @@ namespace RythmGame::Game::Settings
         void UpdateSlider()
         {
             Update();
-        }
-
-        void DrawSlider()
-        {
-            DrawBackgroundBox();
-            if( isSelected )
-            {
-            }
-            else
-            {
-                DrawText();
-            }
+            GetText()->IsShown( true );
         }
 
     };

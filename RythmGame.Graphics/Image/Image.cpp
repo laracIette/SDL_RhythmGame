@@ -5,14 +5,14 @@ namespace RythmGame::Graphics
 
     Image::Image( std::string _path, Rect _dest, int _type, int _priority, int _position )
     {
-        if( imageManager.imagesTextureMap.count( _path ) )
+        if( imageManager->imagesTextureMap.count( _path ) )
         {
-            tex = imageManager.imagesTextureMap[_path];
+            tex = imageManager->imagesTextureMap[_path];
         }
         else
         {
-            imageManager.imagesTextureMap[_path] = TextureManager::LoadTexture( const_cast<char *>( _path.c_str() ) );
-            tex = imageManager.imagesTextureMap[_path];
+            imageManager->imagesTextureMap[_path] = TextureManager::LoadTexture( const_cast<char *>( _path.c_str() ) );
+            tex = imageManager->imagesTextureMap[_path];
         }
 
         dest = _dest;
@@ -26,7 +26,16 @@ namespace RythmGame::Graphics
 
         zoom = 1.0f;
 
-        renderQueue->AddQueue( this, _type, _priority );
+        if( _type == (RenderMapSelection | RenderGameplay) )
+        {
+            renderQueue->AddQueue( this, RenderMapSelection, _priority );
+            renderQueue->AddQueue( this, RenderGameplay, _priority );
+        }
+        else
+        {
+            renderQueue->AddQueue( this, _type, _priority );
+        }
+
     }
 
     Image::~Image()
@@ -37,6 +46,7 @@ namespace RythmGame::Graphics
     {
         Draw( dest );
     }
+
     void Image::Draw( Rect _dest )
     {
         switch( position )
@@ -86,35 +96,35 @@ namespace RythmGame::Graphics
         switch( position )
         {
         case Center:
-            if( inputManager.MouseInRect( resize( dest.x - dest.w*zoom/2 ), resize( dest.y - dest.h*zoom/2 ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
+            if( inputManager->MouseInRect( resize( dest.x - dest.w*zoom/2 ), resize( dest.y - dest.h*zoom/2 ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
             {
                 isHoover = true;
             }
             break;
 
         case TopLeft:
-            if( inputManager.MouseInRect( resize( dest.x ), resize( dest.y ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
+            if( inputManager->MouseInRect( resize( dest.x ), resize( dest.y ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
             {
                 isHoover = true;
             }
             break;
 
         case TopRight:
-            if( inputManager.MouseInRect( resize( dest.x - dest.w*zoom ), resize( dest.y ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
+            if( inputManager->MouseInRect( resize( dest.x - dest.w*zoom ), resize( dest.y ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
             {
                 isHoover = true;
             }
             break;
 
         case BottomLeft:
-            if( inputManager.MouseInRect( resize( dest.x ), resize( dest.y - dest.h*zoom ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
+            if( inputManager->MouseInRect( resize( dest.x ), resize( dest.y - dest.h*zoom ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
             {
                 isHoover = true;
             }
             break;
 
         case BottomRight:
-            if( inputManager.MouseInRect( resize( dest.x - dest.w*zoom ), resize( dest.y - dest.h*zoom ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
+            if( inputManager->MouseInRect( resize( dest.x - dest.w*zoom ), resize( dest.y - dest.h*zoom ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
             {
                 isHoover = true;
             }
@@ -133,10 +143,10 @@ namespace RythmGame::Graphics
 
     bool Image::IsLeftClicked()
     {
-        return (isHoover && inputManager.LeftClickedNoLock());
+        return (isHoover && inputManager->LeftClickedNoLock());
     }
     bool Image::IsRightClicked()
     {
-        return (isHoover && inputManager.RightClickedNoLock());
+        return (isHoover && inputManager->RightClickedNoLock());
     }
 }

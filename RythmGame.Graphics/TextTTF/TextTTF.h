@@ -10,7 +10,7 @@
 #include "../../RythmGame.Game/Utils/GameSettings.h"
 #include "../../RythmGame.Game/Events/InputManager.h"
 
-#include "../RenderObject.h"
+#include "../Renderable.h"
 
 #include "../RenderQueue/RenderQueue.h"
 
@@ -26,7 +26,7 @@ using namespace RythmGame::Game::Events;
 namespace RythmGame::Graphics
 {
 
-    class TextTTF : public RenderObject
+    class TextTTF : public Renderable
     {
         SDL_Texture *textTexture;
         SDL_Rect dest;

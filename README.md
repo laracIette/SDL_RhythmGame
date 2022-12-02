@@ -182,10 +182,11 @@
 #### 3 :
 
 #### 4 :
+	Gameplay Pause
 
 #### 5 :
 
-	Gameplay Pause
+	Gameplay UI
 
 #### 6 :
 
@@ -198,9 +199,7 @@
 
 #### 8 :
 
-	Gameplay UI
+	Gameplay Background
 
 #### 9 :
-
-	Gameplay Background
 

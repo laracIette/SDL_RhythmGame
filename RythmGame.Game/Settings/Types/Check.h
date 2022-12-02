@@ -29,18 +29,7 @@ namespace RythmGame::Game::Settings
         void UpdateCheck()
         {
             Update();
-        }
-
-        void DrawCheck()
-        {
-            DrawBackgroundBox();
-            if( isSelected )
-            {
-            }
-            else
-            {
-                DrawText();
-            }
+            GetText()->IsShown( true );
         }
 
         bool GetValue() { return value; }

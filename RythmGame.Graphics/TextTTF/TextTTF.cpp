@@ -43,7 +43,7 @@ namespace RythmGame::Graphics
     {
         isHoover = false;
 
-        if( inputManager.MouseInRect( dest.x, dest.y, dest.w, dest.h ) )
+        if( inputManager->MouseInRect( dest.x, dest.y, dest.w, dest.h ) )
         {
             isHoover = true;
         }
@@ -51,18 +51,18 @@ namespace RythmGame::Graphics
 
     bool TextTTF::IsHooverLeftClicked()
     {
-        return (isHoover && inputManager.LeftClickedNoLock());
+        return (isHoover && inputManager->LeftClickedNoLock());
     }
     bool TextTTF::IsHooverRightClicked()
     {
-        return (isHoover && inputManager.RightClickedNoLock());
+        return (isHoover && inputManager->RightClickedNoLock());
     }
     bool TextTTF::IsNotHooverLeftClicked()
     {
-        return (!isHoover && inputManager.LeftClickedNoLock());
+        return (!isHoover && inputManager->LeftClickedNoLock());
     }
     bool TextTTF::IsNotHooverRightClicked()
     {
-        return (!isHoover && inputManager.RightClickedNoLock());
+        return (!isHoover && inputManager->RightClickedNoLock());
     }
 }

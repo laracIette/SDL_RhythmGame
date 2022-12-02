@@ -47,7 +47,6 @@ namespace RythmGame::Game::Gameplay
         void Init( Song *newSong );
 
         void Update();
-        void Draw();
 
         void Start();
         void Pause();

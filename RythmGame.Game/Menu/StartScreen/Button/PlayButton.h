@@ -75,19 +75,17 @@ namespace RythmGame::Game::Menu::StartScreen::Button
                     isStartGame = true;
                 }
             }
-        }
 
-        void DrawPlayButton()
-        {
             if( !isClicked )
             {
-                Draw();
-                return;
+                IsShown( true );
             }
-
-            for( ButtonTemplate *button : buttons )
+            else
             {
-                button->Draw();
+                for( ButtonTemplate *button : buttons )
+                {
+                    button->IsShown( true );
+                }
             }
         }
     };

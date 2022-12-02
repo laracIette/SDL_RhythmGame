@@ -20,5 +20,5 @@ namespace RythmGame::Graphics
     };
 
 
-    extern ImageManager imageManager;
+    extern ImageManager *imageManager;
 }

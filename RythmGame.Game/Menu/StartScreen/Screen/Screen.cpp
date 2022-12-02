@@ -28,20 +28,16 @@ namespace RythmGame::Game::Menu::StartScreen
         }
 
         playButton->Update();
-    }
 
-    void Screen::Draw()
-    {
-        background->Draw();
+        background->IsShown( true );
 
         if( !playButton->IsClicked() )
         {
             for( ButtonTemplate *button : buttons )
             {
-                button->Draw();
+                button->IsShown( true );
             }
         }
-        playButton->DrawPlayButton();
     }
 
     bool Screen::StartGame()
