@@ -49,6 +49,9 @@ namespace RythmGame::Graphics
         }
         ~BoxRoundedCorners() {}
 
+    /**
+     * GIVE NON RESIZED POSITION
+     */
         void SetY( int _posY )
         {
             dest.y = resize( _posY );

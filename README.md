@@ -1,6 +1,9 @@
 # RythmGame
 
 
+## TODO:
+	Make click on Settings Setting Options possible
+
 ## HitObject properties :
 
 	Type (char):

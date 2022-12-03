@@ -21,6 +21,8 @@ namespace RythmGame::Game::Settings
 
         std::string name;
 
+        bool isSwitchSelected;
+
     protected:
         bool isSelected;
 
@@ -30,6 +32,7 @@ namespace RythmGame::Game::Settings
         SettingBox( std::string _name, int _posY )
         {
             isSelected = false;
+            isSwitchSelected = false;
 
             name = _name;
 
@@ -57,18 +60,23 @@ namespace RythmGame::Game::Settings
             backgroundBox->SetY( posY + _posY );
         }
 
+        void SwitchSelected()
+        {
+            isSelected = isSwitchSelected;
+        }
+
         void Update()
         {
             textTTF->Hoover();
 
             if( textTTF->IsHooverLeftClicked() )
             {
-                isSelected = !isSelected;
+                isSwitchSelected = !isSelected;
             }
 
             if( textTTF->IsNotHooverLeftClicked() )
             {
-                isSelected = false;
+                isSwitchSelected = false;
             }
 
             backgroundBox->IsShown( true );

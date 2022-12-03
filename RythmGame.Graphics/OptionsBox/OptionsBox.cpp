@@ -3,9 +3,11 @@
 namespace RythmGame::Graphics
 {
 
-    OptionsBox::OptionsBox( std::vector<std::string> _optionsVector, int _posY )
+    OptionsBox::OptionsBox( std::vector<std::string> &_optionsVector, int _posY )
     {
-        int newPosY{ _posY };
+        posY = _posY;
+
+        int newPosY{ posY };
         for( std::string option : _optionsVector )
         {
             options.push_back( new TextTTF( option, optionFont, 100, newPosY, RenderSettings, 4 ) );
@@ -13,7 +15,7 @@ namespace RythmGame::Graphics
         }
 
         box = new BoxRoundedCorners(
-            {resize( 100 ), resize( _posY ), resize( 1920/3-200 ), resize( newPosY )},
+            {resize( 80 ), resize( posY-20 ), resize( 1920/3-160 ), resize( newPosY-posY+40 )},
             RenderSettings,
             5,
             SettingsSettingBoxGray,
@@ -27,8 +29,8 @@ namespace RythmGame::Graphics
 
     void OptionsBox::Scroll( int _posY )
     {
-        box->SetY( _posY );
-        int newPosY{ _posY };
+        box->SetY( posY + _posY - 20 );
+        int newPosY{ posY + _posY };
         for( TextTTF *text : options )
         {
             text->Update( newPosY );
@@ -43,6 +45,15 @@ namespace RythmGame::Graphics
         {
             text->IsShown( true );
         }
+    }
+
+    int OptionsBox::CheckClicked()
+    {
+        for( int i{ 0 }; i < options.size(); ++i )
+        {
+            if( options[i]->IsHooverLeftClicked() ) return i;
+        }
+        return -1;
     }
 
 }

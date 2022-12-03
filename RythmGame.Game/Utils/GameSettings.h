@@ -58,7 +58,7 @@ namespace RythmGame::Game::Utils
  * resized number
  */
     template<typename T>
-    static T resize( T n )
+    static inline T resize( T n )
     {
         if( n == 0 ) return n;
 
@@ -66,8 +66,7 @@ namespace RythmGame::Game::Utils
     }
 
 /**
- * @returns
- * new pointer to the passed argument
+ * @returns new pointer to the passed argument.
  */
     template<typename T>
     static T *getPointer( T arg )

@@ -70,7 +70,7 @@ namespace RythmGame::Game::Settings::Video
 
         void UpdateDimension()
         {
-            UpdateOptions();
+            UpdateOptions( "Video", "Dimension" );
         }
 
         int GetWidth()  { return width; }

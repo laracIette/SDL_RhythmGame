@@ -21,10 +21,10 @@ namespace RythmGame::Game::Settings
         std::vector<std::string> vec;
 
     public:
-        Options( std::string name, int posY ) :
+        Options( std::string _name, int _posY ) :
             SettingBox(
-                name,
-                posY
+                _name,
+                _posY
             )
         {
         }
@@ -41,17 +41,29 @@ namespace RythmGame::Game::Settings
             optionsBox->Scroll( _posY );
         }
 
-        void UpdateOptions()
+        void UpdateOptions( std::string _category, std::string _name )
         {
             Update();
+
             if( isSelected )
             {
                 optionsBox->Update();
+
+                int newIndex{ optionsBox->CheckClicked() };
+                if( (newIndex != -1) && (newIndex != index) )
+                {
+                    index = newIndex;
+
+                    settingsFile->data[_category][_name]["index"] = index;
+                    settingsFile->writeData = true;
+                }
             }
             else
             {
                 GetText()->IsShown( true );
             }
+
+            SwitchSelected();
         }
 
     };

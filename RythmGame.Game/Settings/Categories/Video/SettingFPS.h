@@ -48,16 +48,7 @@ namespace RythmGame::Game::Settings::Video
 
         void UpdateFPS()
         {
-            UpdateOptions();
-        }
-
-
-        void ChangeFPS( int _index )
-        {
-            index = _index;
-
-            settingsFile->data["Video"]["FPS"]["value"] = options[index];
-            settingsFile->writeData = true;
+            UpdateOptions( "Video", "FPS" );
         }
 
         int GetFPS() { return fps; }

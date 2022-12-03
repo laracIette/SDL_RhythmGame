@@ -30,7 +30,7 @@ namespace RythmGame::Game::Events
             {
                 if( mouse.wheel.x > 0.1 )
                 {
-                    mouse.wheel.x -= deltaTime/10;
+                    mouse.wheel.x -= deltaTime/25;
                 }
                 else if( mouse.wheel.x < -0.1 )
                 {

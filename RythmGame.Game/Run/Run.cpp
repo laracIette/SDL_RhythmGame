@@ -7,11 +7,9 @@ namespace RythmGame::Game
     {
         isRunning = true;
 
-        startScreen        = new StartScreen::Screen();
+        startScreen = new StartScreen::Screen();
 
         mapSelectionScreen = new MapSelection::Screen();
-
-        isSettings = false;
 
         player = new Player();
 
@@ -25,6 +23,8 @@ namespace RythmGame::Game
     void Run::Init()
     {
         gameState = STARTSCREEN;
+
+        isSettings = false;
     }
 
     void Run::Update()
@@ -83,6 +83,7 @@ namespace RythmGame::Game
         if( inputManager->RightClickedNoLock() ) inputManager->SetButtonLock( inputManager->mouse.Right, true );
 
         hitSoundManager->Update();
+        settingsFile->Update();
     }
 
 
