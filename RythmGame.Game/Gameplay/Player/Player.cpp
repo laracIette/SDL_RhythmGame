@@ -23,9 +23,9 @@ namespace RythmGame::Game::Gameplay
     {
         for( bool &b : isImageShown ) b = false;
 
-        if( !inputManager->KeyLock( inputManager->flipKey ) && inputManager->Pressed( inputManager->flipKey ) )
+        if( !inputManager->FlipLock() && inputManager->FlipPressed() )
         {
-            inputManager->SetKeyLock( inputManager->flipKey, true );
+            inputManager->LockFlip();
 
             (isHorizontal) ? isHorizontal = false : isHorizontal = true;
         }
@@ -55,7 +55,7 @@ namespace RythmGame::Game::Gameplay
 
         for( int i{ 0 }; i < nIMAGES; ++i )
         {
-            if( isImageShown[i] ) images[i]->IsShown( true );
+            if( isImageShown[i] ) images[i]->Show();
         }
 
     }

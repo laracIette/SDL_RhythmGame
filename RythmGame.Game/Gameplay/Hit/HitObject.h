@@ -106,15 +106,18 @@ namespace RythmGame::Game::Gameplay::Hit
     /**
      * @returns The hitValue if isReturnHitValue is true, else -1
      */
-        char GetHitValue()
+        void GetHitValue( char &_value )
         {
             if( isReturnHitValue )
             {
                 isReturnHitValue = false;
                 std::cout << 'v' << (int)hitValue << std::endl;
-                return hitValue;
+                _value = hitValue;
             }
-            return -1;
+            else
+            {
+                _value = -1;
+            }
         }
 
         virtual bool IsHit() { return isHit; }

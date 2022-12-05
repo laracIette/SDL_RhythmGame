@@ -19,7 +19,7 @@ namespace RythmGame::Game::Menu::MapSelection
     void SongTile::Update( int posY )
     {
         song->GetBackground()->SetY( (float)1080/10*(float)posY );
-        song->GetBackground()->IsShown( true );
+        song->GetBackground()->Show();
     }
 
     Song *SongTile::GetSong()

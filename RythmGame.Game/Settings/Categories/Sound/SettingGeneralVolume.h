@@ -9,18 +9,17 @@ namespace RythmGame::Game::Settings::Sound
 
     class SettingGeneralVolume : public Slider
     {
-        int volume;
 
     public:
         SettingGeneralVolume( int _posY ) :
             Slider(
-                "General",
+                "Sound",
+                "GeneralVolume",
                 _posY,
                 0,
                 100
             )
         {
-            volume = settingsFile->data["Sound"]["GeneralVolume"]["value"];
         }
 
         void InitGeneralVolume()
@@ -38,7 +37,7 @@ namespace RythmGame::Game::Settings::Sound
             UpdateSlider();
         }
 
-        int GetGeneralVolume() { return volume; }
+        int GetGeneralVolume() { return 0; }
     };
 
 

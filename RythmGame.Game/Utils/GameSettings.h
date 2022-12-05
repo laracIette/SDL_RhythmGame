@@ -18,17 +18,17 @@ namespace RythmGame::Game::Utils
     {
         unsigned char r, g, b;
 
-        inline RGB operator+( RGB a )
+        inline RGB operator+( RGB _a )
         {
-            return {(unsigned char)(r+a.r), (unsigned char)(g+a.g), (unsigned char)(b+a.b)};
+            return {(unsigned char)(r+_a.r), (unsigned char)(g+_a.g), (unsigned char)(b+_a.b)};
         }
-        inline RGB operator-( RGB a )
+        inline RGB operator-( RGB _a )
         {
-            return {(unsigned char)(r-a.r), (unsigned char)(g-a.g), (unsigned char)(b-a.b)};
+            return {(unsigned char)(r-_a.r), (unsigned char)(g-_a.g), (unsigned char)(b-_a.b)};
         }
-        inline RGB operator/( int n )
+        inline RGB operator/( int _n )
         {
-            return {(unsigned char)(r/n), (unsigned char)(g/n), (unsigned char)(b/n)};
+            return {(unsigned char)(r/_n), (unsigned char)(g/_n), (unsigned char)(b/_n)};
         }
     };
 
@@ -36,42 +36,41 @@ namespace RythmGame::Game::Utils
     extern bool isHorizontal;
 
     template<typename T>
-    static RGB getSongDifficultyColor( T diff )
+    static RGB getSongDifficultyColor( T _diff )
     {
         RGB ret = Black;
 
-        if     ( diff <= 1 ) ret = White;
-        else if( diff <= 2 ) ret = (White + Green)/2;
-        else if( diff <= 3 ) ret = Green;
-        else if( diff <= 4 ) ret = (Green + Blue)/2;
-        else if( diff <= 5 ) ret = Blue;
-        else if( diff <= 6 ) ret = (Blue + Red)/2;
-        else if( diff <= 7 ) ret = Red;
-        else if( diff <= 8 ) ret = (Red + Black)/2;
+        if     ( _diff <= 1 ) ret = White;
+        else if( _diff <= 2 ) ret = (White + Green)/2;
+        else if( _diff <= 3 ) ret = Green;
+        else if( _diff <= 4 ) ret = (Green + Blue)/2;
+        else if( _diff <= 5 ) ret = Blue;
+        else if( _diff <= 6 ) ret = (Blue + Red)/2;
+        else if( _diff <= 7 ) ret = Red;
+        else if( _diff <= 8 ) ret = (Red + Black)/2;
 
         return ret;
     }
 
 /**
- * number * WIDTH / 1920
- * @returns
- * resized number
+ * @brief number * WIDTH / 1920
+ * @returns resized number
  */
     template<typename T>
-    static inline T resize( T n )
+    static inline T resize( T _n )
     {
-        if( n == 0 ) return n;
+        if( _n == 0 ) return _n;
 
-        return (T)((float)n * (float)WIDTH) / 1920;
+        return (T)((float)_n * (float)WIDTH) / 1920;
     }
 
 /**
  * @returns new pointer to the passed argument.
  */
     template<typename T>
-    static T *getPointer( T arg )
+    static inline T *getPointer( T _arg )
     {
-        return new T( arg );
+        return new T( _arg );
     }
 
 }

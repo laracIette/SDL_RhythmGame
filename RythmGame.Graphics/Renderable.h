@@ -17,11 +17,8 @@ namespace RythmGame::Graphics
         virtual void Draw() {}
 
         bool IsShown() { return isShown; }
-        bool IsShown( bool _b )
-        {
-            isShown = _b;
-            return isShown;
-        }
+        void Show()    { isShown = true; }
+        void UnShow()  { isShown = false; }
     };
 
 }

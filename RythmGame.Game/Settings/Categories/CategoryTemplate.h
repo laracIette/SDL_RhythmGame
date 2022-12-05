@@ -49,8 +49,8 @@ namespace RythmGame::Game::Settings
         {
             text->Update( posY + _posY );
             backgroundBox->SetY( posY + _posY );
-            backgroundBox->IsShown( true );
-            text->IsShown( true );
+            backgroundBox->Show();
+            text->Show();
         }
     };
 

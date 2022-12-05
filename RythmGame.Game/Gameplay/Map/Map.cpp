@@ -68,7 +68,7 @@ namespace RythmGame::Game::Gameplay
                 std::cout << "hit" << std::endl;
             }
 
-            tempAcc = song->GetHitObjects()[j]->GetHitValue();
+            song->GetHitObjects()[j]->GetHitValue( tempAcc );
 
             if( tempAcc == 0 )      score->AddScore( 300 );
             else if( tempAcc == 1 ) score->AddScore( 100 );
@@ -105,13 +105,13 @@ namespace RythmGame::Game::Gameplay
 
         accuracy->Update();
 
-        song->GetBackground()->IsShown( true );
+        song->GetBackground()->Show();
 
         (isHorizontal) ? dim->ShowHorizontalDim() : dim->ShowVerticalDim();
 
-        score->IsShown( true );
-        combo->IsShown( true );
-        accuracy->IsShown( true );
+        score->Show();
+        combo->Show();
+        accuracy->Show();
 
     }
 

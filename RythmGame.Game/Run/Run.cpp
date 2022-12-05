@@ -55,9 +55,9 @@ namespace RythmGame::Game
         }
         if( gameState == GAMEPLAY )
         {
-            if( inputManager->PressedNoLock( inputManager->keyboard.Escape ) )
+            if( inputManager->PressedNoLock( inputManager->EscapePressed() ) )
             {
-                inputManager->SetKeyLock( inputManager->keyboard.Escape, true );
+                inputManager->SetKeyLock( inputManager->EscapePressed(), true );
                 map->Pause();
             }
 
@@ -65,10 +65,9 @@ namespace RythmGame::Game
             map->Update();
         }
 
-        if( inputManager->PressedNoLock( inputManager->keyboard.S ) )
+        if( inputManager->SettingsPressed() )
         {
-            inputManager->SetKeyLock( inputManager->keyboard.S, true );
-
+            inputManager->LockSettings();
             isSettings = !isSettings;
         }
 
@@ -79,8 +78,8 @@ namespace RythmGame::Game
         }
 
 
-        if( inputManager->LeftClickedNoLock() )  inputManager->SetButtonLock( inputManager->mouse.Left,  true );
-        if( inputManager->RightClickedNoLock() ) inputManager->SetButtonLock( inputManager->mouse.Right, true );
+        if( inputManager->LeftClickedNoLock() )  inputManager->SetButtonLock( inputManager->MouseLeft(),  true );
+        if( inputManager->RightClickedNoLock() ) inputManager->SetButtonLock( inputManager->MouseRight(), true );
 
         hitSoundManager->Update();
         settingsFile->Update();

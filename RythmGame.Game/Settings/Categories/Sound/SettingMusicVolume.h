@@ -9,18 +9,17 @@ namespace RythmGame::Game::Settings::Sound
 
     class SettingMusicVolume : public Slider
     {
-        int volume;
 
     public:
         SettingMusicVolume( int _posY ) :
             Slider(
-                "Music",
+                "Sound",
+                "MusicVolume",
                 _posY,
                 0,
                 100
             )
         {
-            volume = settingsFile->data["Sound"]["MusicVolume"]["value"];
         }
 
         void InitMusicVolume()
@@ -28,17 +27,17 @@ namespace RythmGame::Game::Settings::Sound
             InitSlider();
         }
 
-        void UpdateMusicVolume()
-        {
-            UpdateSlider();
-        }
-
         void ScrollMusicVolume( int _posY )
         {
             Scroll( _posY );
         }
 
-        int GetMusicVolume() { return volume; }
+        void UpdateMusicVolume()
+        {
+            UpdateSlider();
+        }
+
+        int GetMusicVolume() { return 0; }
     };
 
 

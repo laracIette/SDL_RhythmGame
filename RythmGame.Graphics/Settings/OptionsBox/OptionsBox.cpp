@@ -1,6 +1,6 @@
 #include "OptionsBox.h"
 
-namespace RythmGame::Graphics
+namespace RythmGame::Graphics::Settings
 {
 
     OptionsBox::OptionsBox( std::vector<std::string> &_optionsVector, int _posY )
@@ -10,14 +10,23 @@ namespace RythmGame::Graphics
         int newPosY{ posY };
         for( std::string option : _optionsVector )
         {
-            options.push_back( new TextTTF( option, optionFont, 100, newPosY, RenderSettings, 4 ) );
+            options.push_back(
+                new TextTTF(
+                    option,
+                    optionFont,
+                    100,
+                    newPosY,
+                    RenderSettings,
+                    3
+                )
+            );
             newPosY += FONT_SIZE_OPTION_WITH_SPACE;
         }
 
         box = new BoxRoundedCorners(
             {resize( 80 ), resize( posY-20 ), resize( 1920/3-160 ), resize( newPosY-posY+40 )},
             RenderSettings,
-            5,
+            4,
             SettingsSettingBoxGray,
             "assets/UI/Settings/SettingBoxRoundedCorner.png"
         );
@@ -40,20 +49,25 @@ namespace RythmGame::Graphics
 
     void OptionsBox::Update()
     {
-        box->IsShown( true );
+        box->Show();
         for( TextTTF *text : options )
         {
-            text->IsShown( true );
+            text->Show();
         }
     }
 
-    int OptionsBox::CheckClicked()
+    void OptionsBox::CheckClicked( int &_index )
     {
+        _index = -1;
+
         for( int i{ 0 }; i < options.size(); ++i )
         {
-            if( options[i]->IsHooverLeftClicked() ) return i;
+            if( options[i]->IsHooverLeftClicked() )
+            {
+                _index = i;
+                break;
+            }
         }
-        return -1;
     }
 
 }

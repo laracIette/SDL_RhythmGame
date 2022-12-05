@@ -78,13 +78,13 @@ namespace RythmGame::Game::Menu::StartScreen::Button
 
             if( !isClicked )
             {
-                IsShown( true );
+                Show();
             }
             else
             {
                 for( ButtonTemplate *button : buttons )
                 {
-                    button->IsShown( true );
+                    button->Show();
                 }
             }
         }

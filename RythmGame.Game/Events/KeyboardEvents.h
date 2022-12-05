@@ -7,7 +7,7 @@ namespace RythmGame::Game::Events
 
     struct KeyboardEvents
     {
-        static const int KEYS{ 38 };
+        static const int KEYS{ 40 };
 
         SDL_KeyCode keyCode[KEYS]{
             SDLK_0,
@@ -47,7 +47,9 @@ namespace RythmGame::Game::Events
             SDLK_x,
             SDLK_y,
             SDLK_z,
-            SDLK_ESCAPE
+            SDLK_ESCAPE,
+            SDLK_LCTRL,
+            SDLK_RCTRL
         };
 
         enum Keys {
@@ -78,7 +80,9 @@ namespace RythmGame::Game::Events
             X,
             Y,
             Z,
-            Escape
+            Escape,
+            LCtrl,
+            RCtrl
         };
 
         bool keyPressed[KEYS]{ false };

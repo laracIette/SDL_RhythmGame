@@ -21,7 +21,7 @@ namespace RythmGame::Game::Settings
 
         std::string name;
 
-        bool isSwitchSelected;
+        bool isNewSelected;
 
     protected:
         bool isSelected;
@@ -32,7 +32,7 @@ namespace RythmGame::Game::Settings
         SettingBox( std::string _name, int _posY )
         {
             isSelected = false;
-            isSwitchSelected = false;
+            isNewSelected = false;
 
             name = _name;
 
@@ -43,7 +43,14 @@ namespace RythmGame::Game::Settings
 
         void Init()
         {
-            textTTF = new TextTTF( name, optionFont, 100, posY, RenderSettings, 6 );
+            textTTF = new TextTTF(
+                name,
+                optionFont,
+                100,
+                posY,
+                RenderSettings,
+                5
+            );
 
             backgroundBox = new BoxRoundedCorners(
                 textTTF->GetRect(),
@@ -62,35 +69,26 @@ namespace RythmGame::Game::Settings
 
         void SwitchSelected()
         {
-            isSelected = isSwitchSelected;
+            isSelected = isNewSelected;
         }
 
         void Update()
         {
+            backgroundBox->Show();
+
             textTTF->Hoover();
+            textTTF->Show();
 
             if( textTTF->IsHooverLeftClicked() )
             {
-                isSwitchSelected = !isSelected;
+                isNewSelected = !isSelected;
             }
 
             if( textTTF->IsNotHooverLeftClicked() )
             {
-                isSwitchSelected = false;
+                isNewSelected = false;
             }
 
-            backgroundBox->IsShown( true );
-
-        }
-
-        BoxRoundedCorners *GetBackgroundBox()
-        {
-            return backgroundBox;
-        }
-
-        TextTTF *GetText()
-        {
-            return textTTF;
         }
 
     };

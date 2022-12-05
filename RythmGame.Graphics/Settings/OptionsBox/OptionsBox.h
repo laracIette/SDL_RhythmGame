@@ -3,10 +3,10 @@
 #include <vector>
 #include <string>
 
-#include "../TextTTF/TextTTF.h"
-#include "../BoxRoundedCorners.h"
+#include "../../TextTTF/TextTTF.h"
+#include "../../BoxRoundedCorners.h"
 
-namespace RythmGame::Graphics
+namespace RythmGame::Graphics::Settings
 {
 
     class OptionsBox
@@ -24,7 +24,7 @@ namespace RythmGame::Graphics
 
         void Update();
 
-        int CheckClicked();
+        void CheckClicked( int &_index );
     };
 
 }

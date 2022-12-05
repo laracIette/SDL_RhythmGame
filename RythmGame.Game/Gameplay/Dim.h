@@ -33,11 +33,11 @@ namespace RythmGame::Game::Gameplay
 
         void ShowHorizontalDim()
         {
-            horizontalDim->IsShown( true );
+            horizontalDim->Show();
         }
         void ShowVerticalDim()
         {
-            verticalDim->IsShown( true );
+            verticalDim->Show();
         }
     };
 

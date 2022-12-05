@@ -2,7 +2,15 @@
 
 
 ## TODO:
-	Make click on Settings Setting Options possible
+	Check
+	Slider :
+		Slider Bar under text,
+		if Hoovered, show it,
+		maybe Hide text ?
+		Or lower alpha
+
+	Menu FPS = Gameplay FPS
+	but caps at 60 or 120.
 
 ## HitObject properties :
 
@@ -86,17 +94,19 @@
 
 #### 3 :
 
-#### 4 :
-
 	Settings Setting Options Text
 
-#### 5 :
+#### 4 :
 
 	Settings Setting Options Box
 
-#### 6 :
+#### 5 :
 
 	Settings Setting Text
+
+#### 6 :
+
+	Settings Setting Slider Bar
 
 #### 7 :
 
@@ -132,7 +142,7 @@
 
 #### 7 :
 
-	Quit Window
+	StartScreen Quit Window
 
 #### 8 :
 

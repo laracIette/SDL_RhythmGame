@@ -26,7 +26,7 @@ namespace RythmGame::Graphics
 
         void ResetQueue();
 
-        int ConvertType( int _type );
+        void ConvertType( int &_type );
 
         void DrawQueue( int _type );
     };

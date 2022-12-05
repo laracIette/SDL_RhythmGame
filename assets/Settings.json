@@ -20,11 +20,8 @@
         "FPS": {
             "index": 1
         },
-        "Fullscreen": {
-            "value": true
-        },
         "Zoom": {
-            "value": 1.0
+            "value": 50
         }
     }
 }

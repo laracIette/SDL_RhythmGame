@@ -20,28 +20,31 @@ namespace RythmGame::Graphics
  */
     void RenderQueue::AddQueue( Renderable *_object, int _type, int _priority )
     {
-        _type = ConvertType( _type );
+        ConvertType( _type );
 
         queue[_type][_priority].push_back( _object );
     }
 
-    int RenderQueue::ConvertType( int _type )
+    void RenderQueue::ConvertType( int &_type )
     {
         switch( _type )
         {
         case RenderSettings:
-            return 0;
+            _type = 0;
+            break;
         case RenderStartScreen:
-            return 1;
+            _type = 1;
+            break;
         case RenderMapSelection:
-            return 2;
+            _type = 2;
+            break;
         case RenderGameplay:
-            return 3;
+            _type = 3;
+            break;
         default:
+            _type = -1;
             break;
         }
-
-        return -1;
     }
 
 
@@ -53,7 +56,7 @@ namespace RythmGame::Graphics
             {
                 for( Renderable *object : vec )
                 {
-                    object->IsShown( false );
+                    object->UnShow();
                 }
             }
         }
@@ -68,7 +71,7 @@ namespace RythmGame::Graphics
  */
     void RenderQueue::DrawQueue( int _type )
     {
-        _type = ConvertType( _type );
+        ConvertType( _type );
 
         for( int i{ 9 }; i >= 0; --i )
         {

@@ -32,7 +32,7 @@ namespace RythmGame::Graphics
 
     void Animation::UpdateAnimation()
     {
-        images[index]->IsShown( true );
+        images[index]->Show();
 
         if( getDuration<Milliseconds>(currentTime, lastImageTime) > 1000/10 )
         {

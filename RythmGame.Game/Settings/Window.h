@@ -61,7 +61,7 @@ namespace RythmGame::Game::Settings
 
         void UpdateWindow()
         {
-            box->IsShown( true );
+            box->Show();
             UpdateVideo();
             UpdateSound();
         }

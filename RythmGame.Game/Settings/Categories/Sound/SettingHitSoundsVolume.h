@@ -9,18 +9,17 @@ namespace RythmGame::Game::Settings::Sound
 
     class SettingHitSoundsVolume : public Slider
     {
-        int volume;
 
     public:
         SettingHitSoundsVolume( int _posY ) :
             Slider(
-                "HitSounds",
+                "Sound",
+                "HitSoundsVolume",
                 _posY,
                 0,
                 100
             )
         {
-            volume = settingsFile->data["Sound"]["HitSoundsVolume"]["value"];
         }
 
         void InitHitSoundsVolume()
@@ -28,17 +27,17 @@ namespace RythmGame::Game::Settings::Sound
             InitSlider();
         }
 
-        void UpdateHitSoundsVolume()
-        {
-            UpdateSlider();
-        }
-
         void ScrollHitSoundsVolume( int _posY )
         {
             Scroll( _posY );
         }
 
-        int GetHitSoundsVolume() { return volume; }
+        void UpdateHitSoundsVolume()
+        {
+            UpdateSlider();
+        }
+
+        int GetHitSoundsVolume() { return 0; }
     };
 
 

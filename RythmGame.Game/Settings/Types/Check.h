@@ -29,7 +29,6 @@ namespace RythmGame::Game::Settings
         void UpdateCheck()
         {
             Update();
-            GetText()->IsShown( true );
         }
 
         bool GetValue() { return value; }

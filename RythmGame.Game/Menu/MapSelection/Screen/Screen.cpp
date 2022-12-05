@@ -35,7 +35,7 @@ namespace RythmGame::Game::Menu::MapSelection
  */
     Song *Screen::Update()
     {
-        background->IsShown( true );
+        background->Show();
 
         for( SongTile *song : songs )
         {

@@ -5,15 +5,17 @@
 
 #include "../SettingBox.h"
 
-#include "../../../RythmGame.Graphics/OptionsBox/OptionsBox.h"
+#include "../../../RythmGame.Graphics/Settings/OptionsBox/OptionsBox.h"
 
-using namespace RythmGame::Graphics;
+using namespace RythmGame::Graphics::Settings;
 
 namespace RythmGame::Game::Settings
 {
 
     class Options : public SettingBox
     {
+        int newIndex;
+
     protected:
         int index;
 
@@ -49,18 +51,14 @@ namespace RythmGame::Game::Settings
             {
                 optionsBox->Update();
 
-                int newIndex{ optionsBox->CheckClicked() };
+                optionsBox->CheckClicked( newIndex );
                 if( (newIndex != -1) && (newIndex != index) )
                 {
                     index = newIndex;
 
                     settingsFile->data[_category][_name]["index"] = index;
-                    settingsFile->writeData = true;
+                    settingsFile->isWriteData = true;
                 }
-            }
-            else
-            {
-                GetText()->IsShown( true );
             }
 
             SwitchSelected();

@@ -29,13 +29,13 @@ namespace RythmGame::Game::Menu::StartScreen
 
         playButton->Update();
 
-        background->IsShown( true );
+        background->Show();
 
         if( !playButton->IsClicked() )
         {
             for( ButtonTemplate *button : buttons )
             {
-                button->IsShown( true );
+                button->Show();
             }
         }
     }

@@ -13,7 +13,7 @@ namespace RythmGame::Game::Settings
 
     public:
         nlohmann::json data;
-        bool writeData;
+        bool isWriteData;
 
         SettingsFile()
         {
@@ -21,19 +21,21 @@ namespace RythmGame::Game::Settings
             data = nlohmann::json::parse( file );
             file.close();
 
-            writeData = false;
+            isWriteData = false;
         }
         ~SettingsFile() {}
 
         void Update()
         {
-            if( writeData )
+            if( isWriteData )
             {
-                writeData = false;
+                isWriteData = false;
 
                 std::ofstream output( "assets/Settings.json" );
                 output << std::setw(4) << data << std::endl;
                 output.close();
+
+                std::cout << "Settings File written" << std::endl;
             }
         }
 
