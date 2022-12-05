@@ -28,6 +28,12 @@ namespace RythmGame::Graphics::Settings
     void SliderBox::Update()
     {
         sliderBar->Show();
+        sliderBar->Hoover();
+    }
+
+    bool SliderBox::IsHoover()
+    {
+        return sliderBar->IsHoover();
     }
 
 }

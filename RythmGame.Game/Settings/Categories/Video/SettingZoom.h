@@ -7,7 +7,7 @@ using namespace RythmGame::Game::Settings;
 namespace RythmGame::Game::Settings::Video
 {
 
-    class SettingZoom : public Slider
+    class SettingZoom : public Slider<float>
     {
 
     public:
@@ -16,8 +16,8 @@ namespace RythmGame::Game::Settings::Video
                 "Video",
                 "Zoom",
                 _posY,
-                50,
-                150
+                0.5f,
+                1.5f
             )
         {
         }
@@ -37,7 +37,7 @@ namespace RythmGame::Game::Settings::Video
             UpdateSlider();
         }
 
-        int GetZoom() { return 0; }
+        float GetZoom() { return GetValue(); }
 
     };
 

@@ -18,6 +18,10 @@ namespace RythmGame::Graphics::Settings
         void Scroll( int _posY );
 
         void Update();
+
+        bool IsHoover();
+
+        void SetX( int _posX ) { sliderBar->SetX( _posX ); }
     };
 
 
