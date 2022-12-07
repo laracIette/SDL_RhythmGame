@@ -3,7 +3,9 @@
 #include "../../../../RythmGame.Graphics/Image/Image.h"
 #include "../../../../RythmGame.Graphics/TextureManager/TextureManager.h"
 #include "../../../Events/InputManager.h"
+
 #include "../../../Utils/Time.h"
+#include "../../../Utils/GameSettings.h"
 
 using namespace RythmGame::Graphics;
 using namespace RythmGame::Game::Events;
@@ -11,12 +13,6 @@ using namespace RythmGame::Game::Utils;
 
 namespace RythmGame::Game::Menu::StartScreen::Button
 {
-    enum Positions {
-        TopLeft = 0,
-        TopRight,
-        BottomLeft,
-        BottomRight
-    };
 
     enum Base {
         Exit = 0,
@@ -33,116 +29,40 @@ namespace RythmGame::Game::Menu::StartScreen::Button
 
     class ButtonTemplate : public Image
     {
-        int position;
-        float zoom;
-
-        float posX, posY;
-
         std::string path;
 
     public:
-        ButtonTemplate( std::string path, int position )
-         : Image(
-            path,
-            {0, 0, 240, 240},
-            {1920/2, 1080/2, 240, 240}
-        )
+    /**
+        ButtonTemplate inherits from Image
+    */
+        ButtonTemplate( std::string _path, int _position ) :
+            Image(
+                _path,
+                {1920/2, 1080/2, 240, 240},
+                RenderStartScreen,
+                8,
+                _position
+            )
         {
-            this->path = path;
-            this->position = position;
-            zoom = 1.0f;
-
-            posX = dest.x;
-            posY = dest.y;
-
-            isHoover = false;
+            path = _path;
         }
 
-        ~ButtonTemplate()
-        {}
-
-        void Hoover()
+        virtual void Update()
         {
-            isHoover = false;
+            Hoover();
+            UpdateZoom();
+        }
 
-            switch( position )
-            {
-            case TopLeft:
-                if( (inputManager.mouse.pos.x > Resize( dest.x )) && (inputManager.mouse.pos.x < Resize( dest.x + dest.w*zoom ))
-                 && (inputManager.mouse.pos.y > Resize( dest.y )) && (inputManager.mouse.pos.y < Resize( dest.y + dest.h*zoom )) )
-                {
-                    isHoover = true;
-                }
-                break;
-
-            case TopRight:
-                if( (inputManager.mouse.pos.x > Resize( dest.x - dest.w*zoom )) && (inputManager.mouse.pos.x < Resize( dest.x ))
-                 && (inputManager.mouse.pos.y > Resize( dest.y )) && (inputManager.mouse.pos.y < Resize( dest.y + dest.h*zoom )) )
-                {
-                    isHoover = true;
-                }
-                break;
-
-            case BottomLeft:
-                if( (inputManager.mouse.pos.x > Resize( dest.x )) && (inputManager.mouse.pos.x < Resize( dest.x + dest.w*zoom ))
-                 && (inputManager.mouse.pos.y > Resize( dest.y - dest.h*zoom )) && (inputManager.mouse.pos.y < Resize( dest.y )) )
-                {
-                    isHoover = true;
-                }
-                break;
-
-            case BottomRight:
-                if( (inputManager.mouse.pos.x > Resize( dest.x - dest.w*zoom )) && (inputManager.mouse.pos.x < Resize( dest.x ))
-                 && (inputManager.mouse.pos.y > Resize( dest.y - dest.h*zoom )) && (inputManager.mouse.pos.y < Resize( dest.y )) )
-                {
-                    isHoover = true;
-                }
-                break;
-
-            default:
-                break;
-            }
-
+        void UpdateZoom()
+        {
             if( isHoover && (zoom < 1.1) )
             {
-                zoom += (float)deltaTime/500;
+                zoom += deltaTime/500;
             }
             else if( !isHoover && (zoom > 1) )
             {
-                zoom -= (float)deltaTime/500;
+                zoom -= deltaTime/500;
             }
-        }
-
-        void DrawButton()
-        {
-            switch( position )
-            {
-            case TopLeft:
-                posX = dest.x + dest.w*zoom/2;
-                posY = dest.y + dest.h*zoom/2;
-                break;
-
-            case TopRight:
-                posX = dest.x + dest.w*zoom/2 - dest.w*zoom;
-                posY = dest.y + dest.h*zoom/2;
-                break;
-
-            case BottomLeft:
-                posX = dest.x + dest.w*zoom/2;
-                posY = dest.y + dest.h*zoom/2 - dest.h*zoom;
-                break;
-
-            case BottomRight:
-                posX = dest.x + dest.w*zoom/2 - dest.w*zoom;
-                posY = dest.y + dest.h*zoom/2 - dest.h*zoom;
-                break;
-
-            default:
-                break;
-            }
-
-
-            Draw( {posX, posY, dest.w*zoom, dest.h*zoom} );
         }
     };
 

@@ -1,60 +1,81 @@
 #pragma once
 
 #include <string>
-#include <SDL.h>
+#include "../../inc/SDL-release-2.24.0/include/SDL.h"
 
 #include "../../RythmGame.Game/Utils/Point.h"
+#include "../../RythmGame.Game/Utils/GameSettings.h"
+
 #include "../../RythmGame.Game/Events/InputManager.h"
 
 #include "../TextureManager/TextureManager.h"
+
+#include "../ImageManager.h"
+#include "../Renderable.h"
+
+#include "../RenderQueue/RenderQueue.h"
 
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game::Events;
 
 namespace RythmGame::Graphics
 {
+    enum Positions {
+        Center = 0,
+        Top,
+        Left,
+        Right,
+        Bottom,
+        TopLeft,
+        TopRight,
+        BottomLeft,
+        BottomRight
+    };
 
-    // returns 1 if the path is ends with png
-    // else returns 0
-    static bool CheckImageExists( std::string path )
+/**
+ * @returns true if the path ends with png, else false.
+ */
+    static bool CheckImageExists( std::string _path )
     {
-        if( (path[path.size()-3] != 'p') || (path[path.size()-2] != 'n') || (path[path.size()-1] != 'g') )
+        if( (_path[_path.size()-3] != 'p') || (_path[_path.size()-2] != 'n') || (_path[_path.size()-1] != 'g') )
             return 0;
 
         return 1;
     }
 
-    class Image
+    class Image : public Renderable
     {
         float posX, posY, posW, posH;
         SDL_Texture *tex;
-        SDL_Rect src;
+        int position;
 
     protected:
         Rect dest;
         bool isHoover;
+        float zoom;
 
     public:
-        Image( std::string path, SDL_Rect src, Rect dest );
+        Image( std::string _path, Rect _dest, int _type, int _priority, int _position = Center );
         ~Image();
 
         void Draw();
-        void Draw( Rect dest );
+        void Draw( Rect _dest );
+
+        void SetPos( Rect _dest ) { dest = _dest; }
 
         float X() { return dest.x; }
         float Y() { return dest.y; }
         float W() { return dest.w; }
         float H() { return dest.h; }
 
-        void SetX( float x ) { dest.x = x; }
-        void SetY( float y ) { dest.y = y; }
-        void SetW( float w ) { dest.w = w; }
-        void SetH( float h ) { dest.h = h; }
+        void SetX( float _x ) { dest.x = _x; }
+        void SetY( float _y ) { dest.y = _y; }
+        void SetW( float _w ) { dest.w = _w; }
+        void SetH( float _h ) { dest.h = _h; }
 
-        template<typename T>
-        float Resize( T n );
+        Rect GetRect() { return dest; }
 
-        virtual void Hoover();
+        void Hoover();
         bool IsHoover();
 
         bool IsLeftClicked();

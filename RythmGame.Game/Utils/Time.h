@@ -21,6 +21,6 @@ namespace RythmGame::Game::Utils
     extern std::chrono::high_resolution_clock::time_point currentTime;
     extern std::chrono::high_resolution_clock::time_point lastFrameTime;
     extern std::chrono::high_resolution_clock::time_point offsetTime;
-    extern long deltaTime;
+    extern float deltaTime;
 
 }

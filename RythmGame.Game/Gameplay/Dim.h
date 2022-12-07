@@ -1,10 +1,8 @@
 #pragma once
 
 #include "../../RythmGame.Graphics/Image/Image.h"
-#include "../Utils/GameSettings.h"
 
 using namespace RythmGame::Graphics;
-using namespace RythmGame::Game::Utils;
 
 
 namespace RythmGame::Game::Gameplay
@@ -20,24 +18,26 @@ namespace RythmGame::Game::Gameplay
         {
             horizontalDim = new Image(
                 "assets/Skins/BaseSkin/dim0.png",
-                {0, 0, 1920, 1080},
-                {1920/2, 1080/2, 1920, 1080}
+                {1920/2, 1080/2, 1920, 1080},
+                RenderGameplay,
+                6
             );
             verticalDim = new Image(
                 "assets/Skins/BaseSkin/dim1.png",
-                {0, 0, 1920, 1080},
-                {1920/2, 1080/2, 1920, 1080}
+                {1920/2, 1080/2, 1920, 1080},
+                RenderGameplay,
+                6
             );
         }
         ~Dim() {}
 
-        void DrawHorizontalDim()
+        void ShowHorizontalDim()
         {
-            horizontalDim->Draw();
+            horizontalDim->Show();
         }
-        void DrawVerticalDim()
+        void ShowVerticalDim()
         {
-            verticalDim->Draw();
+            verticalDim->Show();
         }
     };
 

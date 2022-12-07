@@ -29,8 +29,6 @@ namespace RythmGame::Game::Menu::StartScreen
 
         void Update();
 
-        void Draw();
-
         bool StartGame();
         bool ExitButtonClicked();
         bool DownloadButtonClicked();

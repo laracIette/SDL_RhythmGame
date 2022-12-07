@@ -6,6 +6,8 @@
 
 #include "../../../RythmGame.Graphics/Image/Image.h"
 
+#include "../../../RythmGame.Graphics/Renderable.h"
+
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game::Events;
 using namespace RythmGame::Graphics;
@@ -13,7 +15,7 @@ using namespace RythmGame::Graphics;
 namespace RythmGame::Game::Gameplay
 {
 
-    class Player
+    class Player : public Renderable
     {
         static const int nIMAGES{ 6 };
 
@@ -34,7 +36,6 @@ namespace RythmGame::Game::Gameplay
         ~Player();
 
         void Input();
-        void Draw();
     };
 
 }

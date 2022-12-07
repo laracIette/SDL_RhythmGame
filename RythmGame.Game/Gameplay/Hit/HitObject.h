@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SDL.h>
+#include "../../../inc/SDL-release-2.24.0/include/SDL.h"
 #include <iostream>
 #include <chrono>
 
@@ -12,10 +12,13 @@
 #include "../../../RythmGame.Graphics/Animation/Animation.h"
 #include "../../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
 
+#include "../../../RythmGame.Framework/Window/Window.h"
+
 using namespace RythmGame::Game::Utils;
 using namespace RythmGame::Game::Events;
 using namespace RythmGame::Graphics;
 using namespace RythmGame::Sound;
+using namespace RythmGame::Framework;
 
 
 namespace RythmGame::Game::Gameplay::Hit
@@ -61,7 +64,6 @@ namespace RythmGame::Game::Gameplay::Hit
 
     protected:
         bool isHit;
-        bool isShown;
         bool isReturnHitValue;
 
         char hitValue;
@@ -78,29 +80,22 @@ namespace RythmGame::Game::Gameplay::Hit
 
         bool isUp;
 
-    // HitObject inherits from Animation
-        HitObject( std::string path, SDL_Rect src, Rect dest ) : Animation( path, src, dest )
+    /**
+        HitObject inherits from Animation
+    */
+        HitObject( std::string path, Rect dest ) :
+            Animation(
+                path,
+                dest,
+                RenderGameplay,
+                7
+            )
         {
             isHit            = false;
-            isShown          = false;
             isReturnHitValue = false;
 
             xOffset = 0;
             yOffset = 0;
-        }
-
-        void DrawHit( float x, float y )
-        {
-            SDL_SetRenderDrawColor( window->renderer, 255, 255, 255, 255 );
-
-            for( float x2{ x - 50 }; x2 < (x + 50); ++x2 )
-            {
-                SDL_RenderDrawPoint( window->renderer, x2, y );
-            }
-            for( float y2{ y - 50 }; y2 < (y + 50); ++y2 )
-            {
-                SDL_RenderDrawPoint( window->renderer, x, y2 );
-            }
         }
 
         bool IsHitObjectHorizontal()
@@ -108,17 +103,21 @@ namespace RythmGame::Game::Gameplay::Hit
             return ((direction == LEFT) || (direction == RIGHT));
         }
 
-    // returns the hitValue if isReturnHitValue is true
-    // else returns -1
-        char GetHitValue()
+    /**
+     * @returns The hitValue if isReturnHitValue is true, else -1
+     */
+        void GetHitValue( char &_value )
         {
             if( isReturnHitValue )
             {
                 isReturnHitValue = false;
                 std::cout << 'v' << (int)hitValue << std::endl;
-                return hitValue;
+                _value = hitValue;
             }
-            return -1;
+            else
+            {
+                _value = -1;
+            }
         }
 
         virtual bool IsHit() { return isHit; }
@@ -129,10 +128,14 @@ namespace RythmGame::Game::Gameplay::Hit
         }
 
 
-    // initialises the HitObject
+    /**
+        initialises the HitObject
+    */
         virtual void Init() {}
 
-    // sets the pos of the HitObject
+    /**
+        sets the pos of the HitObject
+    */
         void SetPos()
         {
             switch( direction )
@@ -162,7 +165,9 @@ namespace RythmGame::Game::Gameplay::Hit
             }
         }
 
-    // affects a value to hitValue
+    /**
+        affects a value to hitValue
+    */
         virtual void CheckHitTiming()
         {
             isHit = true;
@@ -189,12 +194,16 @@ namespace RythmGame::Game::Gameplay::Hit
             hitSoundManager->Play( type );
         }
 
-    // returns true if hitting the right note side
+    /**
+     * @returns
+     * true if hitting the right note side
+     * else false
+     */
         virtual bool CheckHitting()
         {
-            if( ( ((inputManager.OnlyLeft2Pressed()  && isUp) || (inputManager.OnlyLeft1Pressed()  && !isUp)) && ((direction == LEFT && isHorizontal) || (direction == UP   && !isHorizontal)) )
-             || ( ((inputManager.OnlyRight1Pressed() && isUp) || (inputManager.OnlyRight2Pressed() && !isUp)) && (direction == RIGHT && isHorizontal) )
-             || ( ((inputManager.OnlyRight2Pressed() && isUp) || (inputManager.OnlyRight1Pressed() && !isUp)) && (direction == DOWN  && !isHorizontal) )
+            if( ( ((inputManager->OnlyLeft2Pressed()  && isUp) || (inputManager->OnlyLeft1Pressed()  && !isUp)) && ((direction == LEFT && isHorizontal) || (direction == UP   && !isHorizontal)) )
+             || ( ((inputManager->OnlyRight1Pressed() && isUp) || (inputManager->OnlyRight2Pressed() && !isUp)) && (direction == RIGHT && isHorizontal) )
+             || ( ((inputManager->OnlyRight2Pressed() && isUp) || (inputManager->OnlyRight1Pressed() && !isUp)) && (direction == DOWN  && !isHorizontal) )
             )
             {
                 return 1;
@@ -204,7 +213,9 @@ namespace RythmGame::Game::Gameplay::Hit
         }
 
 
-    // does specific things by type if isHit
+    /**
+        does specific things by type if isHit
+    */
         virtual void DoThingsAfterHit()
         {
             if( W() > 2 )
@@ -226,11 +237,6 @@ namespace RythmGame::Game::Gameplay::Hit
 
             SetPos();
 
-            if( !isShown && ((X() <= WIDTH + W()/2) || (X() >= -W()/2) || (Y() <= HEIGHT + H()/2) || (Y() >= -H()/2)) )
-            {
-                isShown = true;
-            }
-
             if( !isHit && (difference < Time::Miss) && CheckHitting() )
             {
                 CheckHitTiming();
@@ -240,17 +246,16 @@ namespace RythmGame::Game::Gameplay::Hit
             {
                 DoThingsAfterHit();
             }
+
+            UpdateAnimation();
         }
 
-    // draws the HitObject if isShown is true
-        virtual void DrawHitObject()
-        {
-            if( isShown ) Draw();
 
-            DrawHit( X()-xOffset, Y()-yOffset );
-        }
-
-    // returns true if the HitObject needs to be erased
+    /**
+     * @returns
+     * true if the HitObject needs to be erased
+     * else false
+     */
         bool Erase()
         {
             if( (getDuration<Milliseconds>(currentTime, offsetTime) - endTime) > (int)Time::Miss )

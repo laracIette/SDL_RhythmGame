@@ -14,13 +14,11 @@ namespace RythmGame::Game
 
         background = new Background(
             path + "/background.png",
-            {0, 0, 1920, 1080}
+            RenderMapSelection | RenderGameplay,
+            8
         );
 
         music = new Music( path + "/song.mp3" );
-
-        music->SetVolume( 1 );
-        music->Play();
     }
 
     Song::~Song()
@@ -288,7 +286,7 @@ namespace RythmGame::Game
             }
 
             default:
-            /* create error type (maybe) */
+            /** create error type (maybe) */
                 break;
             }
 

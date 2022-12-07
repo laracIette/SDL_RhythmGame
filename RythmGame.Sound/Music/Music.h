@@ -1,7 +1,7 @@
 #pragma once
 
-#include <SDL.h>
-#include <SDL_mixer.h>
+#include "../../inc/SDL-release-2.24.0/include/SDL.h"
+#include "../../inc/SDL2_mixer-2.6.2/include/SDL_mixer.h"
 #include <string>
 
 namespace RythmGame::Sound
@@ -16,7 +16,9 @@ namespace RythmGame::Sound
         Music( std::string path );
         ~Music();
 
-    // infinite by default
+    /**
+        infinite by default
+    */
         void Play( int repeats = -1 );
         void Pause();
         void Resume();

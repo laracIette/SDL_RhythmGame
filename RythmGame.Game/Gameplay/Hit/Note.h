@@ -10,12 +10,14 @@ namespace RythmGame::Game::Gameplay::Hit
     {
 
     public:
-        Note()
-        : HitObject(
-            "assets/Skins/BaseSkin/HitObjects/Notes",
-            {0, 0, 2048, 2048},
-            {0, 0, 100, 100}
-        )
+    /**
+        Note inherits from HitObject
+    */
+        Note() :
+            HitObject(
+                "assets/Skins/BaseSkin/HitObjects/Notes",
+                {0, 0, 100, 100}
+            )
         {}
 
         void Init()

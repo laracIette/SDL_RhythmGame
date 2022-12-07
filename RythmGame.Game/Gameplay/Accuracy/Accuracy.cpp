@@ -28,13 +28,14 @@ namespace RythmGame::Game::Gameplay
 
         std::string rounded{ std::to_string( (float)((int)(accuracy * 100 + .5) ) / 100 ) };
 
-        std::string newRounded;
+        std::string newRounded{ "" };
         for( int i{ 0 }; i < rounded.size()-4; ++i )
         {
             newRounded += rounded[i];
         }
 
         SetText( newRounded );
+
     }
 
 }

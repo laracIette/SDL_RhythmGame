@@ -7,7 +7,7 @@ namespace RythmGame::Game::Menu::MapSelection
     {
         background = new Background(
             "assets/Skins/BaseSkin/Menu/MapSelection/background.png",
-            {0, 0, 1920, 1080}
+            RenderMapSelection
         );
 
         for( const auto &entry : std::filesystem::directory_iterator( "assets/Maps" ) )
@@ -24,20 +24,20 @@ namespace RythmGame::Game::Menu::MapSelection
     {
     }
 
-    void Screen::Draw()
+/**
+ * @returns
+ * Song pointer if a SongTile is Clicked
+ * else 0
+ */
+    Song *Screen::Update()
     {
-        background->Draw();
+        background->Show();
 
         for( SongTile *song : songs )
         {
-            song->Draw( 2 );
+            song->Update( 2 );
         }
-    }
 
-// returns Song * if a SongTile is LeftClicked
-// else returns 0
-    Song *Screen::Update()
-    {
         for( SongTile *song : songs )
         {
             song->GetSong()->GetBackground()->Hoover();

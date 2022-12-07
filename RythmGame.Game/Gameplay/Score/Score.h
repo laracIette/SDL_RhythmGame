@@ -17,7 +17,17 @@ namespace RythmGame::Game::Gameplay
         unsigned int score;
 
     public:
-        Score() : Text( "0", {1920, 0, 50, 60}, TopRight )
+    /**
+        Score inherits from Text
+    */
+        Score() :
+            Text(
+                "0",
+                {1920, 0, 50, 60},
+                RenderGameplay,
+                5,
+                TopRight
+            )
         {
             score = 0;
         }

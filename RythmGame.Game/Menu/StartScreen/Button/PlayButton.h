@@ -12,6 +12,9 @@ namespace RythmGame::Game::Menu::StartScreen::Button
         bool isClicked, isStartGame;
 
     public:
+    /**
+        PlayButton inherits from ButtonTemplate
+    */
         PlayButton() : ButtonTemplate(
             "assets/Skins/BaseSkin/Menu/StartScreen/PlayButton.png",
             BottomLeft
@@ -52,13 +55,19 @@ namespace RythmGame::Game::Menu::StartScreen::Button
         void Update()
         {
             Hoover();
-            if( !isClicked && IsLeftClicked() ) isClicked = true;
+            UpdateZoom();
+
+            if( !isClicked && IsLeftClicked() )
+            {
+                isClicked = true;
+                return;
+            }
 
             if( isClicked )
             {
                 for( ButtonTemplate *button : buttons )
                 {
-                    button->Hoover();
+                    button->Update();
                 }
 
                 if( buttons[PlaySolo]->IsLeftClicked() )
@@ -66,19 +75,17 @@ namespace RythmGame::Game::Menu::StartScreen::Button
                     isStartGame = true;
                 }
             }
-        }
 
-        void DrawPlayButton()
-        {
             if( !isClicked )
             {
-                DrawButton();
-                return;
+                Show();
             }
-
-            for( ButtonTemplate *button : buttons )
+            else
             {
-                button->DrawButton();
+                for( ButtonTemplate *button : buttons )
+                {
+                    button->Show();
+                }
             }
         }
     };

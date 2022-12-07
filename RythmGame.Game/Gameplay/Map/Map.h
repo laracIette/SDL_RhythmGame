@@ -38,12 +38,15 @@ namespace RythmGame::Game::Gameplay
 
         Dim *dim;
 
+        bool isInit;
+
     public:
-        Map( Song *newSong );
+        Map();
         ~Map();
 
+        void Init( Song *newSong );
+
         void Update();
-        void Draw();
 
         void Start();
         void Pause();

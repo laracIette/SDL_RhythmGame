@@ -33,9 +33,9 @@ namespace RythmGame::Sound
     {
         Mix_RewindMusic();
     }
-    void Music::SetVolume( int volume )
+    void Music::SetVolume( int _volume )
     {
-        this->volume = volume;
+        volume = _volume;
         Mix_VolumeMusic( volume );
     }
 

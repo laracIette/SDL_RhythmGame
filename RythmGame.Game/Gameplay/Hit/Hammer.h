@@ -9,12 +9,14 @@ namespace RythmGame::Game::Gameplay::Hit
     class Hammer : public HitObject
     {
     public:
-        Hammer()
-        : HitObject(
-            "assets/Skins/BaseSkin/HitObjects/Hammers",
-            {0, 0, 50, 50},
-            {0, 0, 100, 100}
-        )
+    /**
+        Hammer inherits from HitObject
+    */
+        Hammer() :
+            HitObject(
+                "assets/Skins/BaseSkin/HitObjects/Hammers",
+                {0, 0, 100, 100}
+            )
         {}
 
         void Init()

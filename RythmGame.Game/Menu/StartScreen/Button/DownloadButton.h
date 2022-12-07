@@ -9,6 +9,9 @@ namespace RythmGame::Game::Menu::StartScreen::Button
     {
 
     public:
+    /**
+        DownloadButton inherits from ButtonTemplate
+    */
         DownloadButton() : ButtonTemplate(
             "assets/Skins/BaseSkin/Menu/StartScreen/DownloadButton.png",
             BottomRight

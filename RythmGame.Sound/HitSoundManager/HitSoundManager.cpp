@@ -48,7 +48,7 @@ namespace RythmGame::Sound
         }
     }
 
-    void HitSoundManager::Play( int pos )
+    void HitSoundManager::Play( int _pos )
     {
         if( audioChannels == 255 )
         {
@@ -56,7 +56,7 @@ namespace RythmGame::Sound
             return;
         }
 
-        playingHitSounds.push_back( new HitSound( hitSounds[pos-1], audioChannels++) );
+        playingHitSounds.push_back( new HitSound( hitSounds[_pos-1], audioChannels++) );
         playingHitSounds.back()->SetVolume( 1 );
         playingHitSounds.back()->Play();
     }

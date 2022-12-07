@@ -17,7 +17,17 @@ namespace RythmGame::Game::Gameplay
         int combo;
 
     public:
-        Combo() : Text( "0", {0, 1080, 50, 60}, BottomLeft )
+    /**
+        Combo inherits from Text
+    */
+        Combo() :
+            Text(
+                "0",
+                {0, 1080, 50, 60},
+                RenderGameplay,
+                5,
+                BottomLeft
+            )
         {
             combo = 0;
         }

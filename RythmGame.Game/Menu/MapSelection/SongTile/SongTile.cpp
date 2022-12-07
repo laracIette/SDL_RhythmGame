@@ -16,10 +16,10 @@ namespace RythmGame::Game::Menu::MapSelection
     {
     }
 
-    void SongTile::Draw( int posY )
+    void SongTile::Update( float _y )
     {
-        song->GetBackground()->SetY( (float)1080/10*(float)posY );
-        song->GetBackground()->Draw();
+        song->GetBackground()->SetY( 1080/10*_y );
+        song->GetBackground()->Show();
     }
 
     Song *SongTile::GetSong()

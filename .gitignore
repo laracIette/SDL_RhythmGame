@@ -1,0 +1,4 @@
+# ignored folders
+inc/
+.vscode/
+.directory

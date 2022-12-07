@@ -9,12 +9,14 @@ namespace RythmGame::Game::Gameplay::Hit
     class Coin : public HitObject
     {
     public:
-        Coin()
-        : HitObject(
-            "assets/Skins/BaseSkin/HitObjects/Coins",
-            {0, 0, 25, 25},
-            {0, 0, 50, 50}
-        )
+    /**
+        Coin inherits from HitObject
+    */
+        Coin() :
+            HitObject(
+                "assets/Skins/BaseSkin/HitObjects/Coins",
+                {0, 0, 50, 50}
+            )
         {}
 
         void CheckHitTiming()

@@ -3,8 +3,27 @@
 namespace RythmGame::Game::Gameplay
 {
 
-    Map::Map( Song *newSong )
+    Map::Map()
     {
+        isPaused = true;
+
+        score    = new Score();
+        combo    = new Combo();
+        accuracy = new Accuracy();
+
+        dim = new Dim();
+
+        isInit = false;
+    }
+
+    Map::~Map()
+    {
+    }
+
+    void Map::Init( Song *newSong )
+    {
+        isInit = true;
+
         song = newSong;
         song->FillHitObjects();
 
@@ -17,19 +36,6 @@ namespace RythmGame::Game::Gameplay
         song->GetBackground()->SetY( 1080/2 );
         song->GetBackground()->SetW( 1920 );
         song->GetBackground()->SetH( 1080 );
-
-        isPaused = true;
-
-        score    = new Score();
-        combo    = new Combo();
-        accuracy = new Accuracy();
-
-        dim = new Dim();
-
-    }
-
-    Map::~Map()
-    {
     }
 
     void Map::Start()
@@ -42,6 +48,9 @@ namespace RythmGame::Game::Gameplay
         combo->SetCombo( 0 );
 
         highestCombo = 0;
+
+        song->GetMusic()->SetVolume( 1 );
+        song->GetMusic()->Play();
     }
 
     void Map::Update()
@@ -59,7 +68,7 @@ namespace RythmGame::Game::Gameplay
                 std::cout << "hit" << std::endl;
             }
 
-            tempAcc = song->GetHitObjects()[j]->GetHitValue();
+            song->GetHitObjects()[j]->GetHitValue( tempAcc );
 
             if( tempAcc == 0 )      score->AddScore( 300 );
             else if( tempAcc == 1 ) score->AddScore( 100 );
@@ -96,22 +105,14 @@ namespace RythmGame::Game::Gameplay
 
         accuracy->Update();
 
-    }
+        song->GetBackground()->Show();
 
-    void Map::Draw()
-    {
-        song->GetBackground()->Draw();
+        (isHorizontal) ? dim->ShowHorizontalDim() : dim->ShowVerticalDim();
 
-        for( HitObject *hitObject : song->GetHitObjects() )
-        {
-            hitObject->DrawHitObject();
-        }
+        score->Show();
+        combo->Show();
+        accuracy->Show();
 
-        (isHorizontal) ? dim->DrawHorizontalDim() : dim->DrawVerticalDim();
-
-        score->Draw();
-        combo->Draw();
-        accuracy->Draw();
     }
 
     void Map::Pause()
@@ -135,7 +136,10 @@ namespace RythmGame::Game::Gameplay
 
     void Map::Close()
     {
-        song->GetMusic()->Close();
+        if( isInit )
+        {
+            song->GetMusic()->Close();
+        }
     }
 
 }

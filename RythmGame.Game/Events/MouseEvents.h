@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SDL.h>
+#include "../../inc/SDL-release-2.24.0/include/SDL.h"
 #include "../Utils/Point.h"
 
 using namespace RythmGame::Game::Utils;
@@ -29,6 +29,8 @@ namespace RythmGame::Game::Events
         bool buttonLock[BUTTONS]{ false };
 
         vec2<int> pos;
+
+        vec2<float> wheel;
 
     };
 

@@ -15,7 +15,9 @@ namespace RythmGame::Sound
 
         std::vector<HitSound *> playingHitSounds;
 
-    // channels go from 0 to 255
+    /**
+        channels go from 0 to 255
+    */
         unsigned char audioChannels;
 
         unsigned char lastAudioChannels;
@@ -26,10 +28,10 @@ namespace RythmGame::Sound
 
         void Update();
 
-        void Play( int pos );
+        void Play( int _pos );
 
         void Close();
     };
 
+    extern HitSoundManager *hitSoundManager;
 }
-extern RythmGame::Sound::HitSoundManager *hitSoundManager;

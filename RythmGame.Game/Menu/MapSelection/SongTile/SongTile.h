@@ -23,7 +23,7 @@ namespace RythmGame::Game::Menu::MapSelection
         SongTile( std::string path );
         ~SongTile();
 
-        void Draw( int posY );
+        void Update( float _y );
 
         Song *GetSong();
     };

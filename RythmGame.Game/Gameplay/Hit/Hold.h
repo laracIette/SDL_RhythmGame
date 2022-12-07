@@ -16,13 +16,14 @@ namespace RythmGame::Game::Gameplay::Hit
 
 
     public:
-
-        Hold()
-        : HitObject(
-            "assets/Skins/BaseSkin/HitObjects/Holds",
-            {0, 0, 50, 50},
-            {0, 0, 100, 100}
-        )
+    /**
+        Hold inherits from HitObject
+    */
+        Hold() :
+            HitObject(
+                "assets/Skins/BaseSkin/HitObjects/Holds",
+                {0, 0, 100, 100}
+            )
         {}
 
         void Init()

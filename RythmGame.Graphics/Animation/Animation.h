@@ -2,7 +2,7 @@
 
 #include <filesystem>
 #include <string>
-#include <SDL.h>
+#include "../../inc/SDL-release-2.24.0/include/SDL.h"
 #include <vector>
 #include <chrono>
 
@@ -22,24 +22,24 @@ namespace RythmGame::Graphics
     class Animation
     {
         std::vector<Image *> images;
-        int indice;
+        int index;
         std::chrono::high_resolution_clock::time_point lastImageTime;
 
     public:
-        Animation( std::string path, SDL_Rect src, Rect dest );
+        Animation( std::string _path, Rect _dest, int _type, int _priority );
         ~Animation();
 
-        void Draw();
+        void UpdateAnimation();
 
         float X();
         float Y();
         float W();
         float H();
 
-        void SetX( float x );
-        void SetY( float y );
-        void SetW( float w );
-        void SetH( float h );
+        void SetX( float _x );
+        void SetY( float _y );
+        void SetW( float _w );
+        void SetH( float _h );
     };
 
 }

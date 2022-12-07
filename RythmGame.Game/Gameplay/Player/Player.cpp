@@ -9,8 +9,9 @@ namespace RythmGame::Game::Gameplay
         {
             images[i] = new Image(
                 "assets/Skins/BaseSkin/Player/Player" + std::to_string( i ) + ".png",
-                {0, 0, 60, 60},
-                {1920/2, 1080/2, 120, 120}
+                {1920/2, 1080/2, 120, 120},
+                RenderGameplay,
+                6
             );
         }
     }
@@ -22,50 +23,41 @@ namespace RythmGame::Game::Gameplay
     {
         for( bool &b : isImageShown ) b = false;
 
-        if( !inputManager.KeyLock( inputManager.flipKey ) && inputManager.Pressed( inputManager.flipKey ) )
+        if( !inputManager->FlipLock() && inputManager->FlipPressed() )
         {
-            inputManager.SetKeyLock( inputManager.flipKey, true );
+            inputManager->LockFlip();
 
             (isHorizontal) ? isHorizontal = false : isHorizontal = true;
         }
 
 
         (isHorizontal) ? isImageShown[HorizontalDefault] = true
-                    : isImageShown[VerticalDefault] = true;
+                       : isImageShown[VerticalDefault] = true;
 
 
 
-        if( inputManager.Left2Pressed() )
+        if( inputManager->Left2Pressed() )
         {
-            //isImageShown[UpLeft] = true;
             (isHorizontal) ? isImageShown[UpLeft] = true : isImageShown[UpRight] = true;
         }
-        if( inputManager.Left1Pressed() )
+        if( inputManager->Left1Pressed() )
         {
-            //isImageShown[DownLeft] = true;
             (isHorizontal) ? isImageShown[DownLeft] = true : isImageShown[UpLeft] = true;
         }
-
-
-        if( inputManager.Right1Pressed() )
+        if( inputManager->Right1Pressed() )
         {
-            //isImageShown[UpRight] = true;
             (isHorizontal) ? isImageShown[UpRight] = true : isImageShown[DownLeft] = true;
         }
-        if( inputManager.Right2Pressed() )
+        if( inputManager->Right2Pressed() )
         {
-            //isImageShown[DownRight] = true;
             (isHorizontal) ? isImageShown[DownRight] = true : isImageShown[DownRight] = true;
         }
 
-    }
-
-    void Player::Draw()
-    {
         for( int i{ 0 }; i < nIMAGES; ++i )
         {
-            if( isImageShown[i] ) images[i]->Draw();
+            if( isImageShown[i] ) images[i]->Show();
         }
+
     }
 
 }

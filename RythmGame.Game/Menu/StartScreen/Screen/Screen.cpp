@@ -12,7 +12,7 @@ namespace RythmGame::Game::Menu::StartScreen
 
         background = new Background(
             "assets/Skins/BaseSkin/Menu/StartScreen/background.png",
-            {0, 0, 1920, 1080}
+            RenderStartScreen
         );
     }
 
@@ -24,24 +24,20 @@ namespace RythmGame::Game::Menu::StartScreen
     {
         for( ButtonTemplate *button : buttons )
         {
-            button->Hoover();
+            button->Update();
         }
 
         playButton->Update();
-    }
 
-    void Screen::Draw()
-    {
-        background->Draw();
+        background->Show();
 
         if( !playButton->IsClicked() )
         {
             for( ButtonTemplate *button : buttons )
             {
-                button->DrawButton();
+                button->Show();
             }
         }
-        playButton->DrawPlayButton();
     }
 
     bool Screen::StartGame()

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <SDL.h>
+#include "../inc/SDL-release-2.24.0/include/SDL.h"
 
 #include "../RythmGame.Game/Utils/Point.h"
 #include "../RythmGame.Game/Utils/Metrics.h"
@@ -16,11 +16,16 @@ namespace RythmGame::Graphics
     {
 
     public:
-        Background( std::string path, SDL_Rect src )
-         : Image(
-            path,
-            src,
-            {1920/2, 1080/2, 1920, 1080} )
+    /**
+        Background inherits from Image
+    */
+        Background( std::string _path, int _type, int _priority = 9 ) :
+            Image(
+                _path,
+                {1920/2, 1080/2, 1920, 1080},
+                _type,
+                _priority
+            )
         {}
     };
 
