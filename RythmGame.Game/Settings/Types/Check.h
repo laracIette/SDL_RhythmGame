@@ -25,7 +25,7 @@ namespace RythmGame::Game::Settings
                 _y
             )
         {
-            value = settingsFile->data[_category][_name]["value"];
+            value = settingsFile->data[category][name]["value"];
         }
 
         void InitCheck()

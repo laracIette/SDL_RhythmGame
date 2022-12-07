@@ -1,13 +1,13 @@
 {
     "Sound": {
         "GeneralVolume": {
-            "value": 66.30000305175781
+            "value": 75.5999984741211
         },
         "HitSoundsVolume": {
-            "value": 50.099998474121094
+            "value": 84.5999984741211
         },
         "MusicVolume": {
-            "value": 53.69999694824219
+            "value": 85.125
         },
         "SkinHitSounds": {
             "value": false
@@ -15,13 +15,13 @@
     },
     "Video": {
         "Dimension": {
-            "index": 5
+            "index": 8
         },
         "FPS": {
             "index": 1
         },
         "Zoom": {
-            "value": 1.1330000162124634
+            "value": 1.2049999237060547
         }
     }
 }

@@ -2,7 +2,6 @@
 
 
 ## TODO:
-	Check
 	Slider :
 		if Hoovered, show it,
 		maybe Hide text ?
