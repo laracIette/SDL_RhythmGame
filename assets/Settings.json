@@ -1,13 +1,13 @@
 {
     "Sound": {
         "GeneralVolume": {
-            "value": 94
+            "value": 100.0
         },
         "HitSoundsVolume": {
-            "value": 65
+            "value": 0.0
         },
         "MusicVolume": {
-            "value": 94
+            "value": 0.0
         },
         "SkinHitSounds": {
             "value": true
@@ -21,7 +21,7 @@
             "index": 1
         },
         "Zoom": {
-            "value": 0.8930000066757202
+            "value": 0.5
         }
     }
 }

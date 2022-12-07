@@ -12,25 +12,24 @@ using namespace RythmGame::Framework;
 namespace RythmGame::Game::Settings
 {
 
-    template<typename T>
     class Slider : public SettingBox
     {
-        T min, max;
+        float min, max;
 
-        T value;
+        float value;
 
-        T midValue;
-
-        std::string category, name;
+        float midValue;
 
         float ratio;
+
+        std::string category, name;
 
         SliderBox *sliderBox;
 
         bool isSliderSelected;
 
     public:
-        Slider( std::string _category, std::string _name, float _y, T _min, T _max ) :
+        Slider( std::string _category, std::string _name, float _y, float _min, float _max ) :
             SettingBox(
                 _name,
                 _y
@@ -44,7 +43,7 @@ namespace RythmGame::Game::Settings
 
             midValue = (min+max)/2;
 
-            ratio = 200 / (float)(midValue-min);
+            ratio = 200 / (midValue-min);
 
             value = settingsFile->data[category][name]["value"];
             assertValueInRange( value, _min, _max );
@@ -80,23 +79,34 @@ namespace RythmGame::Game::Settings
                     settingsFile->isWriteData = true;
                 }
             }
-            else if( sliderBox->IsHoover()  )
+            else if( sliderBox->IsHoover() )
             {
                 isSliderSelected = true;
             }
 
             if( isSliderSelected )
             {
-                T tempValue{ (T)((1920/6 - 200 - 40 + inputManager->MousePosX())/ratio) };
-                if( (tempValue >= min) && (tempValue <= max) )
+                float tempValue{ min + (200 - 1920/6 + inputManager->MousePosX())/ratio };
+                if( tempValue < min )
+                {
+                    sliderBox->SetX( 1920/6 - 200 );
+                    value = min;
+                }
+                else if( tempValue > max )
+                {
+                    sliderBox->SetX( 1920/6 + 200 );
+                    value = max;
+                }
+                else
                 {
                     sliderBox->SetX( inputManager->MousePosX() );
                     value = tempValue;
                 }
+                std::cout << value << std::endl;
             }
         }
 
-        T GetValue() { return value; }
+        float GetValue() { return value; }
 
     };
 

@@ -7,7 +7,7 @@ using namespace RythmGame::Game::Settings;
 namespace RythmGame::Game::Settings::Sound
 {
 
-    class SettingGeneralVolume : public Slider<int>
+    class SettingGeneralVolume : public Slider
     {
 
     public:
@@ -16,8 +16,8 @@ namespace RythmGame::Game::Settings::Sound
                 "Sound",
                 "GeneralVolume",
                 _y,
-                0,
-                100
+                0.0f,
+                100.0f
             )
         {
         }
@@ -37,7 +37,7 @@ namespace RythmGame::Game::Settings::Sound
             UpdateSlider();
         }
 
-        int GetGeneralVolume() { return 0; }
+        int GetGeneralVolume() { return (int)GetValue(); }
     };
 
 

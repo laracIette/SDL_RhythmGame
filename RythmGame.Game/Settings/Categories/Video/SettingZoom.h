@@ -7,7 +7,7 @@ using namespace RythmGame::Game::Settings;
 namespace RythmGame::Game::Settings::Video
 {
 
-    class SettingZoom : public Slider<float>
+    class SettingZoom : public Slider
     {
 
     public:
