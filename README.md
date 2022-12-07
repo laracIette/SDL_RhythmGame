@@ -7,7 +7,6 @@
 		if Hoovered, show it,
 		maybe Hide text ?
 		Or lower alpha
-		Lock min and max slider pos
 
 	Menu FPS = Gameplay FPS
 	but caps at 60 or 120.
