@@ -19,12 +19,12 @@ namespace RythmGame::Game::Settings::Sound
     {
 
     public:
-        Category( int _posY ) :
-            CategoryTemplate( "Sound", _posY, GetSoundHeight() ),
-            SettingGeneralVolume(   _posY+FONT_SIZE_CATEGORY_TITLE_WITH_SPACE ),
-            SettingMusicVolume(     _posY+FONT_SIZE_CATEGORY_TITLE_WITH_SPACE+FONT_SIZE_OPTION_WITH_SPACE ),
-            SettingHitSoundsVolume( _posY+FONT_SIZE_CATEGORY_TITLE_WITH_SPACE+FONT_SIZE_OPTION_WITH_SPACE*2 ),
-            SettingSkinHitSounds(   _posY+FONT_SIZE_CATEGORY_TITLE_WITH_SPACE+FONT_SIZE_OPTION_WITH_SPACE*3 )
+        Category( float _y ) :
+            CategoryTemplate( "Sound", _y, GetSoundHeight() ),
+            SettingGeneralVolume(   _y+FONT_SIZE_CATEGORY_TITLE_WITH_SPACE ),
+            SettingMusicVolume(     _y+FONT_SIZE_CATEGORY_TITLE_WITH_SPACE+FONT_SIZE_OPTION_WITH_SPACE ),
+            SettingHitSoundsVolume( _y+FONT_SIZE_CATEGORY_TITLE_WITH_SPACE+FONT_SIZE_OPTION_WITH_SPACE*2 ),
+            SettingSkinHitSounds(   _y+FONT_SIZE_CATEGORY_TITLE_WITH_SPACE+FONT_SIZE_OPTION_WITH_SPACE*3 )
         {
         }
 
@@ -37,13 +37,13 @@ namespace RythmGame::Game::Settings::Sound
             InitSkinHitSounds();
         }
 
-        void ScrollSound( int _posY )
+        void ScrollSound( float _y )
         {
-            ScrollCategoryName( _posY );
-            ScrollGeneralVolume( _posY );
-            ScrollMusicVolume( _posY );
-            ScrollHitSoundsVolume( _posY );
-            ScrollSkinHitSounds( _posY );
+            ScrollCategoryName( _y );
+            ScrollGeneralVolume( _y );
+            ScrollMusicVolume( _y );
+            ScrollHitSoundsVolume( _y );
+            ScrollSkinHitSounds( _y );
         }
 
         void UpdateSound()

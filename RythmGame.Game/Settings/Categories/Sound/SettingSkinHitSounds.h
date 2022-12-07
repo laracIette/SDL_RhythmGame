@@ -11,10 +11,10 @@ namespace RythmGame::Game::Settings::Sound
     {
 
     public:
-        SettingSkinHitSounds( int _posY ) :
+        SettingSkinHitSounds( float _y ) :
             Check(
                 "Enable Skin HitSounds",
-                _posY,
+                _y,
                 settingsFile->data["Sound"]["SkinHitSounds"]["value"]
             )
         {
@@ -25,9 +25,9 @@ namespace RythmGame::Game::Settings::Sound
             InitCheck();
         }
 
-        void ScrollSkinHitSounds( int _posY )
+        void ScrollSkinHitSounds( float _y )
         {
-            Scroll( _posY );
+            Scroll( _y );
         }
 
         void UpdateSkinHitSounds()

@@ -17,11 +17,11 @@ namespace RythmGame::Game::Settings::Video
     {
 
     public:
-        Category( int _posY ) :
-            CategoryTemplate( "Video", _posY, GetVideoHeight() ),
-            SettingDimension( _posY + FONT_SIZE_CATEGORY_TITLE_WITH_SPACE ),
-            SettingFPS(       _posY + FONT_SIZE_CATEGORY_TITLE_WITH_SPACE + FONT_SIZE_OPTION_WITH_SPACE ),
-            SettingZoom(      _posY + FONT_SIZE_CATEGORY_TITLE_WITH_SPACE + FONT_SIZE_OPTION_WITH_SPACE*2 )
+        Category( float _y ) :
+            CategoryTemplate( "Video", _y, GetVideoHeight() ),
+            SettingDimension( _y + FONT_SIZE_CATEGORY_TITLE_WITH_SPACE ),
+            SettingFPS(       _y + FONT_SIZE_CATEGORY_TITLE_WITH_SPACE + FONT_SIZE_OPTION_WITH_SPACE ),
+            SettingZoom(      _y + FONT_SIZE_CATEGORY_TITLE_WITH_SPACE + FONT_SIZE_OPTION_WITH_SPACE*2 )
         {
         }
 
@@ -33,12 +33,12 @@ namespace RythmGame::Game::Settings::Video
             InitZoom();
         }
 
-        void ScrollVideo( int _posY )
+        void ScrollVideo( float _y )
         {
-            ScrollCategoryName( _posY );
-            ScrollDimension( _posY );
-            ScrollFPS( _posY );
-            ScrollZoom( _posY );
+            ScrollCategoryName( _y );
+            ScrollDimension( _y );
+            ScrollFPS( _y );
+            ScrollZoom( _y );
         }
 
         void UpdateVideo()

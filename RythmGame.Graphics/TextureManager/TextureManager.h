@@ -6,7 +6,10 @@
 
 #include "../../RythmGame.Framework/Window/Window.h"
 
+#include "../../RythmGame.Game/Utils/GameSettings.h"
+
 using namespace RythmGame::Framework;
+using namespace RythmGame::Game::Utils;
 
 namespace RythmGame::Graphics
 {
@@ -15,7 +18,7 @@ namespace RythmGame::Graphics
     {
     public:
         static SDL_Texture *LoadTexture( const char *_path );
-        static void DrawTexture( SDL_Texture *_tex, SDL_Rect _dest );
+        static void DrawTexture( SDL_Texture *_tex, Rect _dest );
     };
 
 }

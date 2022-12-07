@@ -33,7 +33,7 @@ namespace RythmGame::Game::Settings
             posY = 0;
 
             box = new BoxRoundedCorners(
-                {0, 0, resize( 1920/3 ), resize( 1080 )},
+                {0, 0, 1920/3, 1080},
                 RenderSettings,
                 9,
                 SettingsGray,

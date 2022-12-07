@@ -52,40 +52,40 @@ namespace RythmGame::Graphics
         switch( position )
         {
         case Center:
-            posX = resize( _dest.x - _dest.w*zoom/2 );
-            posY = resize( _dest.y - _dest.h*zoom/2 );
+            posX = _dest.x - _dest.w*zoom/2;
+            posY = _dest.y - _dest.h*zoom/2;
             break;
 
         case TopLeft:
-            posX = resize( _dest.x );
-            posY = resize( _dest.y );
+            posX = _dest.x;
+            posY = _dest.y;
             break;
 
         case TopRight:
-            posX = resize( _dest.x - _dest.w*zoom );
-            posY = resize( _dest.y );
+            posX = _dest.x - _dest.w*zoom;
+            posY = _dest.y;
             break;
 
         case BottomLeft:
-            posX = resize( _dest.x );
-            posY = resize( _dest.y - _dest.h*zoom );
+            posX = _dest.x;
+            posY = _dest.y - _dest.h*zoom;
             break;
 
         case BottomRight:
-            posX = resize( _dest.x - _dest.w*zoom );
-            posY = resize( _dest.y - _dest.h*zoom );
+            posX = _dest.x - _dest.w*zoom;
+            posY = _dest.y - _dest.h*zoom;
             break;
 
         default:
             break;
         }
 
-        posW = resize( _dest.w*zoom );
-        posH = resize( _dest.h*zoom );
+        posW = _dest.w*zoom;
+        posH = _dest.h*zoom;
 
         TextureManager::DrawTexture(
             tex,
-            {(int)posX, (int)posY, (int)posW, (int)posH}
+            {posX, posY, posW, posH}
         );
     }
 
@@ -96,35 +96,35 @@ namespace RythmGame::Graphics
         switch( position )
         {
         case Center:
-            if( inputManager->MouseInRect( resize( dest.x - dest.w*zoom/2 ), resize( dest.y - dest.h*zoom/2 ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
+            if( inputManager->MouseInRect( dest.x - dest.w*zoom/2, dest.y - dest.h*zoom/2, dest.w*zoom, dest.h*zoom ) )
             {
                 isHoover = true;
             }
             break;
 
         case TopLeft:
-            if( inputManager->MouseInRect( resize( dest.x ), resize( dest.y ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
+            if( inputManager->MouseInRect( dest.x, dest.y, dest.w*zoom, dest.h*zoom ) )
             {
                 isHoover = true;
             }
             break;
 
         case TopRight:
-            if( inputManager->MouseInRect( resize( dest.x - dest.w*zoom ), resize( dest.y ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
+            if( inputManager->MouseInRect( dest.x - dest.w*zoom, dest.y, dest.w*zoom, dest.h*zoom ) )
             {
                 isHoover = true;
             }
             break;
 
         case BottomLeft:
-            if( inputManager->MouseInRect( resize( dest.x ), resize( dest.y - dest.h*zoom ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
+            if( inputManager->MouseInRect( dest.x, dest.y - dest.h*zoom, dest.w*zoom, dest.h*zoom ) )
             {
                 isHoover = true;
             }
             break;
 
         case BottomRight:
-            if( inputManager->MouseInRect( resize( dest.x - dest.w*zoom ), resize( dest.y - dest.h*zoom ), resize( dest.w*zoom ), resize( dest.h*zoom ) ) )
+            if( inputManager->MouseInRect( dest.x - dest.w*zoom, dest.y - dest.h*zoom, dest.w*zoom, dest.h*zoom ) )
             {
                 isHoover = true;
             }

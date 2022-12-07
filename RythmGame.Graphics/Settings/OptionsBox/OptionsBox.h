@@ -14,13 +14,13 @@ namespace RythmGame::Graphics::Settings
         std::vector<TextTTF *> options;
         BoxRoundedCorners *box;
 
-        int posY;
+        float posY;
 
     public:
-        OptionsBox( std::vector<std::string> &_optionsVector, int _posY );
+        OptionsBox( std::vector<std::string> &_optionsVector, float _y );
         ~OptionsBox();
 
-        void Scroll( int _posY );
+        void Scroll( float _y );
 
         void Update();
 

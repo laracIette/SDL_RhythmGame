@@ -3,11 +3,11 @@
 namespace RythmGame::Graphics::Settings
 {
 
-    OptionsBox::OptionsBox( std::vector<std::string> &_optionsVector, int _posY )
+    OptionsBox::OptionsBox( std::vector<std::string> &_optionsVector, float _y )
     {
-        posY = _posY;
+        posY = _y;
 
-        int newPosY{ posY };
+        float newPosY{ posY };
         for( std::string option : _optionsVector )
         {
             options.push_back(
@@ -24,7 +24,7 @@ namespace RythmGame::Graphics::Settings
         }
 
         box = new BoxRoundedCorners(
-            {resize( 80 ), resize( posY-20 ), resize( 1920/3-160 ), resize( newPosY-posY+40 )},
+            {80, posY-20, 1920/3-160, newPosY-posY+40},
             RenderSettings,
             4,
             SettingsSettingBoxGray,
@@ -36,10 +36,10 @@ namespace RythmGame::Graphics::Settings
     {
     }
 
-    void OptionsBox::Scroll( int _posY )
+    void OptionsBox::Scroll( float _y )
     {
-        box->SetY( posY + _posY - 20 );
-        int newPosY{ posY + _posY };
+        box->SetY( posY + _y - 20 );
+        float newPosY{ posY + _y };
         for( TextTTF *text : options )
         {
             text->Update( newPosY );

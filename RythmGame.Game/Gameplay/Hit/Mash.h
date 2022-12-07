@@ -43,13 +43,13 @@ namespace RythmGame::Game::Gameplay::Hit
 
                 if( IsHitObjectHorizontal() )
                 {
-                    xOffset = (direction == LEFT) ? -((float)endTime - (float)time)*velocity
-                                                  :  ((float)endTime - (float)time)*velocity;
+                    xOffset = (direction == LEFT) ? -(float)(endTime - time)*velocity
+                                                  :  (float)(endTime - time)*velocity;
                 }
                 else
                 {
-                    yOffset = (direction == UP) ? -((float)endTime - (float)time)*velocity
-                                                :  ((float)endTime - (float)time)*velocity;
+                    yOffset = (direction == UP) ? -(float)(endTime - time)*velocity
+                                                :  (float)(endTime - time)*velocity;
                 }
             }
             else

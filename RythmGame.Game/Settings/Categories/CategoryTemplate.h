@@ -16,17 +16,17 @@ namespace RythmGame::Game::Settings
 
         std::string name;
 
-        int posY;
+        float posY;
 
         BoxRoundedCorners *backgroundBox;
 
-        int boxHeight;
+        float boxHeight;
 
     public:
-        CategoryTemplate( std::string _name, int _posY, int _boxHeight )
+        CategoryTemplate( std::string _name, float _y, float _boxHeight )
         {
             name = _name;
-            posY = _posY;
+            posY = _y;
 
             boxHeight = _boxHeight;
         }
@@ -34,10 +34,17 @@ namespace RythmGame::Game::Settings
 
         void InitCategoryName()
         {
-            text = new TextTTF( name, categoryTitleFont, 0, posY, RenderSettings, 7 );
+            text = new TextTTF(
+                name,
+                categoryTitleFont,
+                0,
+                posY,
+                RenderSettings,
+                7
+            );
 
             backgroundBox = new BoxRoundedCorners(
-                {0, resize( posY ), resize( 1920/3 ), resize( boxHeight )},
+                {0, posY, 1920/3, boxHeight},
                 RenderSettings,
                 8,
                 SettingsCategoryGray,
@@ -45,10 +52,10 @@ namespace RythmGame::Game::Settings
             );
         }
 
-        void ScrollCategoryName( int _posY )
+        void ScrollCategoryName( float _y )
         {
-            text->Update( posY + _posY );
-            backgroundBox->SetY( posY + _posY );
+            text->Update( posY + _y );
+            backgroundBox->SetY( posY + _y );
             backgroundBox->Show();
             text->Show();
         }

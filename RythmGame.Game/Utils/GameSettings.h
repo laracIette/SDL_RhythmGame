@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Metrics.h"
+#include "Point.h"
+
+#include <SDL.h>
 
 #define White                  (RGB){255, 255, 255}
 #define Black                  (RGB){  0,   0,   0}
@@ -64,6 +67,20 @@ namespace RythmGame::Game::Utils
         return (T)((float)_n * (float)WIDTH) / 1920;
     }
 
+    static inline Rect resize( Rect _dest )
+    {
+        return {resize(_dest.x), resize(_dest.y), resize(_dest.w), resize(_dest.h)};
+    }
+
+    template<typename T>
+    static inline T unsize( T _n )
+    {
+        if( _n == 0 ) return _n;
+
+        return (T)((float)_n * 1920) / (float)WIDTH;
+    }
+
+
 /**
  * @returns new pointer to the passed argument.
  */
@@ -71,6 +88,16 @@ namespace RythmGame::Game::Utils
     static inline T *getPointer( T _arg )
     {
         return new T( _arg );
+    }
+
+    static inline SDL_Rect getSDLRect( Rect _dest )
+    {
+        return {(int)_dest.x, (int)_dest.y, (int)_dest.w, (int)_dest.h};
+    }
+
+    static inline Rect getRect( SDL_Rect _dest )
+    {
+        return {(float)_dest.x, (float)_dest.y, (float)_dest.w, (float)_dest.h};
     }
 
 }

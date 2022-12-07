@@ -23,10 +23,10 @@ namespace RythmGame::Game::Settings
         std::vector<std::string> vec;
 
     public:
-        Options( std::string _name, int _posY ) :
+        Options( std::string _name, float _y ) :
             SettingBox(
                 _name,
-                _posY
+                _y
             )
         {
         }
@@ -37,10 +37,10 @@ namespace RythmGame::Game::Settings
             optionsBox = new OptionsBox( vec, posY );
         }
 
-        void ScrollOptions( int _posY )
+        void ScrollOptions( float _y )
         {
-            Scroll( _posY );
-            optionsBox->Scroll( _posY );
+            Scroll( _y );
+            optionsBox->Scroll( _y );
         }
 
         void UpdateOptions( std::string _category, std::string _name )

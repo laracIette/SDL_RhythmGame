@@ -26,17 +26,17 @@ namespace RythmGame::Game::Settings
     protected:
         bool isSelected;
 
-        int posY;
+        float posY;
 
     public:
-        SettingBox( std::string _name, int _posY )
+        SettingBox( std::string _name, float _y )
         {
-            isSelected = false;
+            isSelected    = false;
             isNewSelected = false;
 
             name = _name;
 
-            posY = _posY;
+            posY = _y;
         }
         ~SettingBox() {}
 
@@ -61,10 +61,10 @@ namespace RythmGame::Game::Settings
             );
         }
 
-        void Scroll( int _posY )
+        void Scroll( float _y )
         {
-            textTTF->Update( posY + _posY );
-            backgroundBox->SetY( posY + _posY );
+            textTTF->Update( posY + _y );
+            backgroundBox->SetY( posY + _y );
         }
 
         void SwitchSelected()

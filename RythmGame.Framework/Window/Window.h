@@ -20,8 +20,8 @@ namespace RythmGame::Framework
         Window();
         ~Window();
 
-        void FillRectangle( SDL_Rect _dest, RGB _color );
-        void DrawBox( SDL_Rect _rect, RGB _color );
+        void FillRectangle( Rect _dest, RGB _color );
+        void DrawBox( Rect _dest, RGB _color );
 
         SDL_Window *window;
         SDL_Renderer *renderer;

@@ -21,8 +21,6 @@ namespace RythmGame::Game::Menu::MapSelection
         Screen();
         ~Screen();
 
-        void Draw();
-
         Song *Update();
     };
 

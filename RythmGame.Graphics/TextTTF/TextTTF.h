@@ -33,20 +33,17 @@ namespace RythmGame::Graphics
         bool isHoover;
 
     public:
-    /**
-     * DONT RESIZE RECT BEFORE FUNCTION CALL
-     */
-        TextTTF( std::string _text, TTF_Font *_font, int _posX, int _posY, int _type, int _priority );
+        TextTTF( std::string _text, TTF_Font *_font, float _x, float _y, int _type, int _priority );
         ~TextTTF();
 
-        void Update( int _posY );
+        void Update( float _y );
 
-        int X() { return dest.x; }
-        int Y() { return dest.y; }
-        int W() { return dest.w; }
-        int H() { return dest.h; }
+        float X() { return (float)dest.x; }
+        float Y() { return (float)dest.y; }
+        float W() { return (float)dest.w; }
+        float H() { return (float)dest.h; }
 
-        SDL_Rect GetRect() { return dest; }
+        Rect GetRect() { return {(float)dest.x, (float)dest.y, (float)dest.w, (float)dest.h}; }
 
         void Draw();
 

@@ -28,7 +28,7 @@ namespace RythmGame::Sound
 
         void Update();
 
-        void Play( int pos );
+        void Play( int _pos );
 
         void Close();
     };

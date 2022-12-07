@@ -12,7 +12,7 @@ namespace RythmGame::Graphics
     }
 
 /**
- * @brief Add SDL_Texture *, SDL_Rect to queue[index]
+ * @brief Add Renderable to queue[index]
  *
  * @param _object The Renderable * to render.
  * @param _type The type of the Renderable.

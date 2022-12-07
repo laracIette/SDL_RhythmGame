@@ -12,10 +12,10 @@ namespace RythmGame::Game::Settings
         bool value;
 
     public:
-        Check( std::string _name, int _posY, bool _value ) :
+        Check( std::string _name, float _y, bool _value ) :
             SettingBox(
                 _name,
-                _posY
+                _y
             )
         {
             value = _value;

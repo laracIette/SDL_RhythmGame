@@ -9,19 +9,21 @@ namespace RythmGame::Graphics::Settings
     {
         Image *sliderBar;
 
-        int posY;
+        float posY;
 
     public:
-        SliderBox( float _posX, int _posY );
+        SliderBox( float _x, float _y );
         ~SliderBox();
 
-        void Scroll( int _posY );
+        void Scroll( float _y );
 
         void Update();
 
         bool IsHoover();
 
-        void SetX( int _posX ) { sliderBar->SetX( _posX ); }
+        void SetX( float _x ) { sliderBar->SetX( _x ); }
+
+        float X() { return sliderBar->X(); }
     };
 
 

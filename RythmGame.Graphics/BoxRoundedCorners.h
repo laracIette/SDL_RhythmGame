@@ -22,15 +22,12 @@ namespace RythmGame::Graphics
     class BoxRoundedCorners : public Renderable
     {
         SDL_Texture *corner;
-        SDL_Rect     dest;
-        int          size;
+        Rect         dest;
+        float        size;
         RGB          color;
 
     public:
-    /**
-     * RESIZE RECT BEFORE FUNCTION CALL
-     */
-        BoxRoundedCorners( SDL_Rect _dest, int _type, int _priority, RGB _color = White, const char *_path = "assets/UI/RoundedCorner.png" )
+        BoxRoundedCorners( Rect _dest, int _type, int _priority, RGB _color = White, const char *_path = "assets/UI/RoundedCorner.png" )
         {
             corner = TextureManager::LoadTexture( _path );
 
@@ -40,40 +37,40 @@ namespace RythmGame::Graphics
 
             size = lowest( dest.w, dest.h )/5;
 
-            if( size > resize( 25 ) )
+            if( size > 25 )
             {
-                size = resize( 25 );
+                size = 25;
             }
 
             renderQueue->AddQueue( this, _type, _priority );
         }
         ~BoxRoundedCorners() {}
 
-    /**
-     * GIVE NON RESIZED POSITION
-     */
-        void SetY( int _posY )
+        void SetY( float _y )
         {
-            dest.y = resize( _posY );
+            dest.y = _y;
         }
 
         void Draw()
         {
-            SDL_Rect tempDest = dest;
+            Rect  rsDest{ resize(dest) };
+            float rsSize{ resize(size) };
 
-            tempDest.w = tempDest.h = size;
-            SDL_RenderCopyEx( window->renderer, corner, NULL,  &tempDest, 0, NULL, SDL_FLIP_NONE );
+            Rect tempDest{ rsDest };
 
-            tempDest.x = dest.x + dest.w - size;
-            SDL_RenderCopyEx( window->renderer, corner, NULL,  &tempDest, 0, NULL, SDL_FLIP_HORIZONTAL );
+            tempDest.w = tempDest.h = rsSize;
+            SDL_RenderCopyEx( window->renderer, corner, NULL,  getPointer(getSDLRect(tempDest)), 0, NULL, SDL_FLIP_NONE );
 
-            tempDest.x = dest.x;
-            tempDest.y = dest.y + dest.h - size;
-            SDL_RenderCopyEx( window->renderer, corner, NULL,  &tempDest, 0, NULL, SDL_FLIP_VERTICAL );
+            tempDest.x = rsDest.x + rsDest.w - rsSize;
+            SDL_RenderCopyEx( window->renderer, corner, NULL,  getPointer(getSDLRect(tempDest)), 0, NULL, SDL_FLIP_HORIZONTAL );
 
-            tempDest.x = dest.x + dest.w - size;
-            tempDest.y = dest.y + dest.h - size;
-            SDL_RenderCopyEx( window->renderer, corner, NULL,  &tempDest, 0, NULL, (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL) );
+            tempDest.x = rsDest.x;
+            tempDest.y = rsDest.y + rsDest.h - rsSize;
+            SDL_RenderCopyEx( window->renderer, corner, NULL,  getPointer(getSDLRect(tempDest)), 0, NULL, SDL_FLIP_VERTICAL );
+
+            tempDest.x = rsDest.x + rsDest.w - rsSize;
+            tempDest.y = rsDest.y + rsDest.h - rsSize;
+            SDL_RenderCopyEx( window->renderer, corner, NULL,  getPointer(getSDLRect(tempDest)), 0, NULL, (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL) );
 
             window->FillRectangle( {dest.x, dest.y+size, dest.w, dest.h-size*2}, color );
 

@@ -24,10 +24,6 @@ namespace RythmGame::Game::Menu::MapSelection
     {
     }
 
-    void Screen::Draw()
-    {
-    }
-
 /**
  * @returns
  * Song pointer if a SongTile is Clicked

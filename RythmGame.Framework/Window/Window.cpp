@@ -33,19 +33,21 @@ namespace RythmGame::Framework
     {
     }
 
-    void Window::FillRectangle( SDL_Rect _dest, RGB _color )
+    void Window::FillRectangle( Rect _dest, RGB _color )
     {
         SDL_SetRenderDrawColor( renderer, _color.r, _color.g, _color.b, 255 );
-        SDL_RenderFillRect( renderer, getPointer<SDL_Rect>(_dest) );
+        SDL_RenderFillRect( renderer, getPointer(getSDLRect(resize(_dest))) );
     }
 
-    void Window::DrawBox( SDL_Rect _rect, RGB _color )
+    void Window::DrawBox( Rect _dest, RGB _color )
     {
+        SDL_Rect newRect{ getSDLRect(resize(_dest)) };
+
         SDL_SetRenderDrawColor( renderer, _color.r, _color.g, _color.b, 255 );
-        SDL_RenderDrawLine( renderer, _rect.x, _rect.y, _rect.x+_rect.w, _rect.y );
-        SDL_RenderDrawLine( renderer, _rect.x, _rect.y, _rect.x, _rect.y+_rect.h );
-        SDL_RenderDrawLine( renderer, _rect.x+_rect.w, _rect.y+_rect.h, _rect.x, _rect.y+_rect.h );
-        SDL_RenderDrawLine( renderer, _rect.x+_rect.w, _rect.y+_rect.h, _rect.x+_rect.w, _rect.y );
+        SDL_RenderDrawLine( renderer, newRect.x,           newRect.y,           newRect.x+newRect.w, newRect.y );
+        SDL_RenderDrawLine( renderer, newRect.x,           newRect.y,           newRect.x,           newRect.y+newRect.h );
+        SDL_RenderDrawLine( renderer, newRect.x+newRect.w, newRect.y+newRect.h, newRect.x,           newRect.y+newRect.h );
+        SDL_RenderDrawLine( renderer, newRect.x+newRect.w, newRect.y+newRect.h, newRect.x+newRect.w, newRect.y );
     }
 
 }

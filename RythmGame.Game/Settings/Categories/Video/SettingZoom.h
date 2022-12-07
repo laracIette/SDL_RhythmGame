@@ -11,11 +11,11 @@ namespace RythmGame::Game::Settings::Video
     {
 
     public:
-        SettingZoom( int _posY ) :
+        SettingZoom( float _y ) :
             Slider(
                 "Video",
                 "Zoom",
-                _posY,
+                _y,
                 0.5f,
                 1.5f
             )
@@ -27,9 +27,9 @@ namespace RythmGame::Game::Settings::Video
             InitSlider();
         }
 
-        void ScrollZoom( int _posY )
+        void ScrollZoom( float _y )
         {
-            ScrollSlider( _posY );
+            ScrollSlider( _y );
         }
 
         void UpdateZoom()

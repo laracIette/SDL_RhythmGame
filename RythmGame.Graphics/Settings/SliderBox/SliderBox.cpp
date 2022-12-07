@@ -3,16 +3,16 @@
 namespace RythmGame::Graphics::Settings
 {
 
-    SliderBox::SliderBox( float _posX, int _posY )
+    SliderBox::SliderBox( float _x, float _y )
     {
         sliderBar = new Image(
             "assets/UI/Settings/SliderBar.png",
-            {_posX, (float)_posY+20, 80, 40},
+            {_x, _y+20, 80, 40},
             RenderSettings,
             6
         );
 
-        posY = _posY;
+        posY = _y;
 
     }
 
@@ -20,9 +20,9 @@ namespace RythmGame::Graphics::Settings
     {
     }
 
-    void SliderBox::Scroll( int _posY )
+    void SliderBox::Scroll( float _y )
     {
-        sliderBar->SetY( posY+20 + _posY );
+        sliderBar->SetY( posY+20 + _y );
     }
 
     void SliderBox::Update()

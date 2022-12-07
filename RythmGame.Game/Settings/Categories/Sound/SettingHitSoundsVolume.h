@@ -11,11 +11,11 @@ namespace RythmGame::Game::Settings::Sound
     {
 
     public:
-        SettingHitSoundsVolume( int _posY ) :
+        SettingHitSoundsVolume( float _y ) :
             Slider(
                 "Sound",
                 "HitSoundsVolume",
-                _posY,
+                _y,
                 0,
                 100
             )
@@ -27,9 +27,9 @@ namespace RythmGame::Game::Settings::Sound
             InitSlider();
         }
 
-        void ScrollHitSoundsVolume( int _posY )
+        void ScrollHitSoundsVolume( float _y )
         {
-            Scroll( _posY );
+            Scroll( _y );
         }
 
         void UpdateHitSoundsVolume()

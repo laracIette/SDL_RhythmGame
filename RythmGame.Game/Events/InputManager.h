@@ -190,23 +190,18 @@ namespace RythmGame::Game::Events
 
         void LockSettings() { SetKeyLock( keyboard.S, true ); }
 
-        int MousePosX() { return mouse.pos.x; }
-        int MousePosY() { return mouse.pos.y; }
+        float MousePosX() { return unsize<float>(mouse.pos.x); }
+        float MousePosY() { return unsize<float>(mouse.pos.y); }
 
         int MouseLeft()  { return mouse.Left; }
         int MouseRight() { return mouse.Right; }
 
-        bool MouseInRect( Rect dest )
+        bool MouseInRect( Rect _dest )
         {
-            return MouseInRect( dest.x, dest.y, dest.w, dest.h );
+            return MouseInRect( _dest.x, _dest.y, _dest.w, _dest.h );
         }
 
-        bool MouseInRect( SDL_Rect dest )
-        {
-            return MouseInRect( dest.x, dest.y, dest.w, dest.h );
-        }
-
-        bool MouseInRect( int x, int y, int w, int h )
+        bool MouseInRect( float x, float y, float w, float h )
         {
             if( (MousePosX() > x) && (MousePosX() < (x + w))
              && (MousePosY() > y) && (MousePosY() < (y + h)) )
