@@ -31,8 +31,11 @@ SDL:
 	\
 	RythmGame.Graphics/Animation/Animation.cpp \
 	RythmGame.Graphics/Image/Image.cpp \
+	\
+	RythmGame.Graphics/Settings/CheckBox/CheckBox.cpp \
 	RythmGame.Graphics/Settings/OptionsBox/OptionsBox.cpp \
 	RythmGame.Graphics/Settings/SliderBox/SliderBox.cpp \
+	\
 	RythmGame.Graphics/RenderQueue/RenderQueue.cpp \
 	RythmGame.Graphics/Text/Text.cpp \
 	RythmGame.Graphics/TextTTF/TextTTF.cpp \

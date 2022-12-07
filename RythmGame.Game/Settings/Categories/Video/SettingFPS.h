@@ -23,6 +23,7 @@ namespace RythmGame::Game::Settings::Video
     public:
         SettingFPS( float _y ) :
             Options(
+                "Video",
                 "FPS",
                 _y
             )
@@ -48,7 +49,7 @@ namespace RythmGame::Game::Settings::Video
 
         void UpdateFPS()
         {
-            UpdateOptions( "Video", "FPS" );
+            UpdateOptions();
         }
 
         int GetFPS() { return fps; }

@@ -102,6 +102,7 @@
 #### 5 :
 
 	Settings Setting Text
+	Settings Setting Check Box
 
 #### 6 :
 

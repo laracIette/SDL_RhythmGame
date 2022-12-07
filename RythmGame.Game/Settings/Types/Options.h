@@ -23,8 +23,9 @@ namespace RythmGame::Game::Settings
         std::vector<std::string> vec;
 
     public:
-        Options( std::string _name, float _y ) :
+        Options( std::string _category, std::string _name, float _y ) :
             SettingBox(
+                _category,
                 _name,
                 _y
             )
@@ -43,7 +44,7 @@ namespace RythmGame::Game::Settings
             optionsBox->Scroll( _y );
         }
 
-        void UpdateOptions( std::string _category, std::string _name )
+        void UpdateOptions()
         {
             Update();
 
@@ -56,7 +57,7 @@ namespace RythmGame::Game::Settings
                 {
                     index = newIndex;
 
-                    settingsFile->data[_category][_name]["index"] = index;
+                    settingsFile->data[category][name]["index"] = index;
                     settingsFile->isWriteData = true;
                 }
             }

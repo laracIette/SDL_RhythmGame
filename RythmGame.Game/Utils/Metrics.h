@@ -12,27 +12,32 @@ namespace RythmGame::Game::Utils
 
 
     template<typename T>
-    static inline T deg( T r )
+    static inline T deg( T _r )
     {
-        return r * 180 / M_PI;
+        return _r * 180 / M_PI;
     }
 
     template<typename T>
-    static inline T rad( T d )
+    static inline T rad( T _d )
     {
-        return d * M_PI / 180;
+        return _d * M_PI / 180;
     }
 
     template<typename T>
-    static inline T highest( T a, T b )
+    static inline T highest( T _a, T _b )
     {
-        return (a > b) ? a : b;
+        return (_a > _b) ? _a : _b;
 
     }
     template<typename T>
-    static inline T lowest( T a, T b )
+    static inline T lowest( T _a, T _b )
     {
-        return (a < b) ? a : b;
+        return (_a < _b) ? _a : _b;
+    }
+
+    static inline float round( float _v, float _precision )
+    {
+        return (float)((int)(_v * pow(10, _precision) + .5)) / pow(10, _precision);
     }
 
 }

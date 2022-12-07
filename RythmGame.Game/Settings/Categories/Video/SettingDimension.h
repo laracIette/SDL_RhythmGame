@@ -44,6 +44,7 @@ namespace RythmGame::Game::Settings::Video
     public:
         SettingDimension( float _y ) :
             Options(
+                "Video",
                 "Dimension",
                 _y
             )
@@ -70,7 +71,7 @@ namespace RythmGame::Game::Settings::Video
 
         void UpdateDimension()
         {
-            UpdateOptions( "Video", "Dimension" );
+            UpdateOptions();
         }
 
         int GetWidth()  { return width; }

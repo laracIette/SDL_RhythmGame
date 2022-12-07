@@ -19,8 +19,6 @@ namespace RythmGame::Game::Settings
 
         TextTTF *textTTF;
 
-        std::string name;
-
         bool isNewSelected;
 
     protected:
@@ -28,13 +26,16 @@ namespace RythmGame::Game::Settings
 
         float posY;
 
+        std::string category, name;
+
     public:
-        SettingBox( std::string _name, float _y )
+        SettingBox( std::string _category, std::string _name, float _y )
         {
             isSelected    = false;
             isNewSelected = false;
 
-            name = _name;
+            category = _category;
+            name     = _name;
 
             posY = _y;
         }

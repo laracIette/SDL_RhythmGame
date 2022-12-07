@@ -22,8 +22,6 @@ namespace RythmGame::Game::Settings
 
         float ratio;
 
-        std::string category, name;
-
         SliderBox *sliderBox;
 
         bool isSliderSelected;
@@ -31,12 +29,11 @@ namespace RythmGame::Game::Settings
     public:
         Slider( std::string _category, std::string _name, float _y, float _min, float _max ) :
             SettingBox(
+                _category,
                 _name,
                 _y
             )
         {
-            category = _category;
-            name     = _name;
 
             min = _min;
             max = _max;
@@ -46,6 +43,7 @@ namespace RythmGame::Game::Settings
             ratio = 200 / (midValue-min);
 
             value = settingsFile->data[category][name]["value"];
+
             assertValueInRange( value, _min, _max );
 
         }
@@ -102,7 +100,6 @@ namespace RythmGame::Game::Settings
                     sliderBox->SetX( inputManager->MousePosX() );
                     value = tempValue;
                 }
-                std::cout << value << std::endl;
             }
         }
 

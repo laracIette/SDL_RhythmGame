@@ -36,6 +36,7 @@ namespace RythmGame::Graphics
             renderQueue->AddQueue( this, _type, _priority );
         }
 
+        isHoover = false;
     }
 
     Image::~Image()
@@ -143,10 +144,10 @@ namespace RythmGame::Graphics
 
     bool Image::IsLeftClicked()
     {
-        return (isHoover && inputManager->LeftClickedNoLock());
+        return (IsHoover() && inputManager->LeftClickedNoLock());
     }
     bool Image::IsRightClicked()
     {
-        return (isHoover && inputManager->RightClickedNoLock());
+        return (IsHoover() && inputManager->RightClickedNoLock());
     }
 }
