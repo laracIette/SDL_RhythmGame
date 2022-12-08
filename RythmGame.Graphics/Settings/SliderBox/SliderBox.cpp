@@ -5,7 +5,7 @@ namespace RythmGame::Graphics::Settings
 
     SliderBox::SliderBox( float _x, float _y )
     {
-        sliderBar = new Image(
+        sliderBar = new ImageCenter(
             "assets/UI/Settings/SliderBar.png",
             {_x, _y+20, 80, 40},
             RenderSettings,

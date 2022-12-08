@@ -19,6 +19,7 @@ using namespace RythmGame::Graphics;
 namespace RythmGame::Graphics
 {
 
+    template<typename T>
     class Animation
     {
         std::vector<Image *> images;
@@ -31,10 +32,10 @@ namespace RythmGame::Graphics
 
         void UpdateAnimation();
 
-        float X();
-        float Y();
-        float W();
-        float H();
+        float X(){ return images[0]->X(); }
+        float Y(){ return images[0]->Y(); }
+        float W(){ return images[0]->W(); }
+        float H(){ return images[0]->H(); }
 
         void SetX( float _x );
         void SetY( float _y );
@@ -43,3 +44,5 @@ namespace RythmGame::Graphics
     };
 
 }
+
+#include "Animation.cpp"

@@ -1,13 +1,15 @@
 #pragma once
 
-#include "../../Image/Image.h"
+#include "../../Image/Positions/ImageCenter.h"
+
+using namespace RythmGame::Graphics;
 
 namespace RythmGame::Graphics::Settings
 {
 
     class SliderBox
     {
-        Image *sliderBar;
+        ImageCenter *sliderBar;
 
         float posY;
 

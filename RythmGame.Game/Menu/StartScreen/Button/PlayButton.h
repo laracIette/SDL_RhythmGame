@@ -1,50 +1,49 @@
 #pragma once
 
-#include "ButtonTemplate.h"
+#include "Button.h"
 
 namespace RythmGame::Game::Menu::StartScreen::Button
 {
 
-    class PlayButton : public ButtonTemplate
+    class PlayButton : public Button<ImageBottomLeft>
     {
-        ButtonTemplate *buttons[4];
+        Button<ImageBottomRight> *backButton;
+        Button<ImageBottomLeft>  *soloButton;
+        Button<ImageTopLeft>     *multiplayerButton;
+        Button<ImageTopRight>    *offlineButton;
 
         bool isClicked, isStartGame;
 
     public:
     /**
-        PlayButton inherits from ButtonTemplate
+        PlayButton inherits from Button
     */
-        PlayButton() : ButtonTemplate(
-            "assets/Skins/BaseSkin/Menu/StartScreen/PlayButton.png",
-            BottomLeft
-        )
+        PlayButton() :
+            Button(
+                "assets/Skins/BaseSkin/Menu/StartScreen/PlayButton.png"
+            )
         {
-            buttons[PlayBack]    = new ButtonTemplate(
-                "assets/Skins/BaseSkin/Menu/StartScreen/PlayButton.Back.png",
-                BottomRight
+            backButton = new Button<ImageBottomRight>(
+                "assets/Skins/BaseSkin/Menu/StartScreen/PlayButton.Back.png"
             );
-            buttons[PlaySolo]    = new ButtonTemplate(
-                "assets/Skins/BaseSkin/Menu/StartScreen/PlayButton.Solo.png",
-                BottomLeft
+            soloButton = new Button<ImageBottomLeft>(
+                "assets/Skins/BaseSkin/Menu/StartScreen/PlayButton.Solo.png"
             );
-            buttons[PlayMulti]   = new ButtonTemplate(
-                "assets/Skins/BaseSkin/Menu/StartScreen/PlayButton.Multiplayer.png",
-                TopLeft
+            multiplayerButton = new Button<ImageTopLeft>(
+                "assets/Skins/BaseSkin/Menu/StartScreen/PlayButton.Multiplayer.png"
             );
-            buttons[PlayOffline] = new ButtonTemplate(
-                "assets/Skins/BaseSkin/Menu/StartScreen/PlayButton.Offline.png",
-                TopRight
+            offlineButton = new Button<ImageTopRight>(
+                "assets/Skins/BaseSkin/Menu/StartScreen/PlayButton.Offline.png"
             );
 
-            isClicked = false;
+            isClicked   = false;
             isStartGame = false;
 
         }
 
         bool StartGame()
         {
-            return (isClicked && isStartGame);
+            return (IsClicked() && isStartGame);
         }
 
         bool IsClicked()
@@ -57,7 +56,7 @@ namespace RythmGame::Game::Menu::StartScreen::Button
             Hoover();
             UpdateZoom();
 
-            if( !isClicked && IsLeftClicked() )
+            if( !isClicked && IsHooverLeftClicked() )
             {
                 isClicked = true;
                 return;
@@ -65,12 +64,12 @@ namespace RythmGame::Game::Menu::StartScreen::Button
 
             if( isClicked )
             {
-                for( ButtonTemplate *button : buttons )
-                {
-                    button->Update();
-                }
+                backButton->Update();
+                soloButton->Update();
+                multiplayerButton->Update();
+                offlineButton->Update();
 
-                if( buttons[PlaySolo]->IsLeftClicked() )
+                if( soloButton->IsHooverLeftClicked() )
                 {
                     isStartGame = true;
                 }
@@ -82,10 +81,10 @@ namespace RythmGame::Game::Menu::StartScreen::Button
             }
             else
             {
-                for( ButtonTemplate *button : buttons )
-                {
-                    button->Show();
-                }
+                backButton->Show();
+                soloButton->Show();
+                multiplayerButton->Show();
+                offlineButton->Show();
             }
         }
     };

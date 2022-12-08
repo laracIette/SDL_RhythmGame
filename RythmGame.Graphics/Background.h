@@ -6,13 +6,13 @@
 #include "../RythmGame.Game/Utils/Point.h"
 #include "../RythmGame.Game/Utils/Metrics.h"
 
-#include "Image/Image.h"
+#include "Image/Positions/ImageTopLeft.h"
 #include "TextureManager/TextureManager.h"
 
 namespace RythmGame::Graphics
 {
 
-    class Background : public Image
+    class Background : public ImageTopLeft
     {
 
     public:
@@ -20,9 +20,9 @@ namespace RythmGame::Graphics
         Background inherits from Image
     */
         Background( std::string _path, int _type, int _priority = 9 ) :
-            Image(
+            ImageTopLeft(
                 _path,
-                {1920/2, 1080/2, 1920, 1080},
+                {0, 0, 1920, 1080},
                 _type,
                 _priority
             )

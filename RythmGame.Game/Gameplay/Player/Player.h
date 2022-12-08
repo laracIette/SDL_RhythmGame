@@ -4,7 +4,7 @@
 #include "../../Utils/GameSettings.h"
 #include "../../Events/InputManager.h"
 
-#include "../../../RythmGame.Graphics/Image/Image.h"
+#include "../../../RythmGame.Graphics/Image/Positions/ImageCenter.h"
 
 #include "../../../RythmGame.Graphics/Renderable.h"
 
@@ -19,7 +19,7 @@ namespace RythmGame::Game::Gameplay
     {
         static const int nIMAGES{ 6 };
 
-        Image *images[nIMAGES];
+        ImageCenter *images[nIMAGES];
         bool isImageShown[nIMAGES]{ false };
 
         enum ImagesStates {

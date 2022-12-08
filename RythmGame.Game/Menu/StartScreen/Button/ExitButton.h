@@ -1,21 +1,21 @@
 #pragma once
 
-#include "ButtonTemplate.h"
+#include "Button.h"
 
 namespace RythmGame::Game::Menu::StartScreen::Button
 {
 
-    class ExitButton : public ButtonTemplate
+    class ExitButton : public Button<ImageTopLeft>
     {
 
     public:
     /**
-        ExitButton inherits from ButtonTemplate
+        ExitButton inherits from Button
     */
-        ExitButton() : ButtonTemplate(
-            "assets/Skins/BaseSkin/Menu/StartScreen/ExitButton.png",
-            TopLeft
-        )
+        ExitButton() :
+            Button(
+                "assets/Skins/BaseSkin/Menu/StartScreen/ExitButton.png"
+            )
         {}
     };
 

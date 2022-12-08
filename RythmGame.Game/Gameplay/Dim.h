@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../RythmGame.Graphics/Image/Image.h"
+#include "../../RythmGame.Graphics/Image/Positions/ImageTopLeft.h"
 
 using namespace RythmGame::Graphics;
 
@@ -10,21 +10,21 @@ namespace RythmGame::Game::Gameplay
 
     class Dim
     {
-        Image *horizontalDim;
-        Image *verticalDim;
+        ImageTopLeft *horizontalDim;
+        ImageTopLeft *verticalDim;
 
     public:
         Dim()
         {
-            horizontalDim = new Image(
+            horizontalDim = new ImageTopLeft(
                 "assets/Skins/BaseSkin/dim0.png",
-                {1920/2, 1080/2, 1920, 1080},
+                {0, 0, 1920, 1080},
                 RenderGameplay,
                 6
             );
-            verticalDim = new Image(
+            verticalDim = new ImageTopLeft(
                 "assets/Skins/BaseSkin/dim1.png",
-                {1920/2, 1080/2, 1920, 1080},
+                {0, 0, 1920, 1080},
                 RenderGameplay,
                 6
             );

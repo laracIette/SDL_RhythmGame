@@ -53,18 +53,18 @@ namespace RythmGame::Graphics
 
     bool TextTTF::IsHooverLeftClicked()
     {
-        return (isHoover && inputManager->LeftClickedNoLock());
+        return (IsHoover() && inputManager->LeftClickedNoLock());
     }
     bool TextTTF::IsHooverRightClicked()
     {
-        return (isHoover && inputManager->RightClickedNoLock());
+        return (IsHoover() && inputManager->RightClickedNoLock());
     }
     bool TextTTF::IsNotHooverLeftClicked()
     {
-        return (!isHoover && inputManager->LeftClickedNoLock());
+        return (!IsHoover() && inputManager->LeftClickedNoLock());
     }
     bool TextTTF::IsNotHooverRightClicked()
     {
-        return (!isHoover && inputManager->RightClickedNoLock());
+        return (!IsHoover() && inputManager->RightClickedNoLock());
     }
 }

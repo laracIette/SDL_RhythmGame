@@ -5,10 +5,10 @@ namespace RythmGame::Game::Menu::StartScreen
 
     Screen::Screen()
     {
-        playButton        = new PlayButton();
-        buttons[Exit]     = new ExitButton();
-        buttons[Download] = new DownloadButton();
-        buttons[Settings] = new SettingsButton();
+        playButton     = new PlayButton();
+        exitButton     = new ExitButton();
+        downloadButton = new DownloadButton();
+        settingsButton = new SettingsButton();
 
         background = new Background(
             "assets/Skins/BaseSkin/Menu/StartScreen/background.png",
@@ -22,21 +22,18 @@ namespace RythmGame::Game::Menu::StartScreen
 
     void Screen::Update()
     {
-        for( ButtonTemplate *button : buttons )
-        {
-            button->Update();
-        }
-
         playButton->Update();
+        exitButton->Update();
+        downloadButton->Update();
+        settingsButton->Update();
 
         background->Show();
 
         if( !playButton->IsClicked() )
         {
-            for( ButtonTemplate *button : buttons )
-            {
-                button->Show();
-            }
+            exitButton->Show();
+            downloadButton->Show();
+            settingsButton->Show();
         }
     }
 
@@ -46,14 +43,14 @@ namespace RythmGame::Game::Menu::StartScreen
     }
     bool Screen::ExitButtonClicked()
     {
-        return buttons[Exit]->IsLeftClicked();
+        return exitButton->IsHooverLeftClicked();
     }
     bool Screen::DownloadButtonClicked()
     {
-        return buttons[Download]->IsLeftClicked();
+        return downloadButton->IsHooverLeftClicked();
     }
     bool Screen::SettingsButtonClicked()
     {
-        return buttons[Settings]->IsLeftClicked();
+        return settingsButton->IsHooverLeftClicked();
     }
 }

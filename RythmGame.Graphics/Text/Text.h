@@ -4,7 +4,7 @@
 #include <vector>
 #include <iostream>
 
-#include "../Image/Image.h"
+#include "../Image/Positions/ImageCenter.h"
 
 #include "../Renderable.h"
 
@@ -20,7 +20,7 @@ namespace RythmGame::Graphics
     {
         std::string text;
         Rect dest;
-        Image *images[37];
+        ImageCenter *images[37];
 
         float distance;
 

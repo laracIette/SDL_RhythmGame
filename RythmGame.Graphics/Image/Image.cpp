@@ -3,7 +3,7 @@
 namespace RythmGame::Graphics
 {
 
-    Image::Image( std::string _path, Rect _dest, int _type, int _priority, int _position )
+    Image::Image( std::string _path, Rect _dest, int _type, int _priority )
     {
         if( imageManager->imagesTextureMap.count( _path ) )
         {
@@ -16,13 +16,6 @@ namespace RythmGame::Graphics
         }
 
         dest = _dest;
-
-        posX = 0;
-        posY = 0;
-        posW = 0;
-        posH = 0;
-
-        position = _position;
 
         zoom = 1.0f;
 
@@ -43,110 +36,17 @@ namespace RythmGame::Graphics
     {
     }
 
-    void Image::Draw()
-    {
-        Draw( dest );
-    }
-
     void Image::Draw( Rect _dest )
     {
-        switch( position )
-        {
-        case Center:
-            posX = _dest.x - _dest.w*zoom/2;
-            posY = _dest.y - _dest.h*zoom/2;
-            break;
-
-        case TopLeft:
-            posX = _dest.x;
-            posY = _dest.y;
-            break;
-
-        case TopRight:
-            posX = _dest.x - _dest.w*zoom;
-            posY = _dest.y;
-            break;
-
-        case BottomLeft:
-            posX = _dest.x;
-            posY = _dest.y - _dest.h*zoom;
-            break;
-
-        case BottomRight:
-            posX = _dest.x - _dest.w*zoom;
-            posY = _dest.y - _dest.h*zoom;
-            break;
-
-        default:
-            break;
-        }
-
-        posW = _dest.w*zoom;
-        posH = _dest.h*zoom;
-
-        TextureManager::DrawTexture(
-            tex,
-            {posX, posY, posW, posH}
-        );
+        TextureManager::DrawTexture( tex, _dest );
     }
 
-    void Image::Hoover()
-    {
-        isHoover = false;
 
-        switch( position )
-        {
-        case Center:
-            if( inputManager->MouseInRect( dest.x - dest.w*zoom/2, dest.y - dest.h*zoom/2, dest.w*zoom, dest.h*zoom ) )
-            {
-                isHoover = true;
-            }
-            break;
-
-        case TopLeft:
-            if( inputManager->MouseInRect( dest.x, dest.y, dest.w*zoom, dest.h*zoom ) )
-            {
-                isHoover = true;
-            }
-            break;
-
-        case TopRight:
-            if( inputManager->MouseInRect( dest.x - dest.w*zoom, dest.y, dest.w*zoom, dest.h*zoom ) )
-            {
-                isHoover = true;
-            }
-            break;
-
-        case BottomLeft:
-            if( inputManager->MouseInRect( dest.x, dest.y - dest.h*zoom, dest.w*zoom, dest.h*zoom ) )
-            {
-                isHoover = true;
-            }
-            break;
-
-        case BottomRight:
-            if( inputManager->MouseInRect( dest.x - dest.w*zoom, dest.y - dest.h*zoom, dest.w*zoom, dest.h*zoom ) )
-            {
-                isHoover = true;
-            }
-            break;
-
-        default:
-            break;
-        }
-
-    }
-
-    bool Image::IsHoover()
-    {
-        return isHoover;
-    }
-
-    bool Image::IsLeftClicked()
+    bool Image::IsHooverLeftClicked()
     {
         return (IsHoover() && inputManager->LeftClickedNoLock());
     }
-    bool Image::IsRightClicked()
+    bool Image::IsHooverRightClicked()
     {
         return (IsHoover() && inputManager->RightClickedNoLock());
     }

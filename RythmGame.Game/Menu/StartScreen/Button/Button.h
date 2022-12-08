@@ -1,6 +1,10 @@
 #pragma once
 
-#include "../../../../RythmGame.Graphics/Image/Image.h"
+#include "../../../../RythmGame.Graphics/Image/Positions/ImageTopLeft.h"
+#include "../../../../RythmGame.Graphics/Image/Positions/ImageTopRight.h"
+#include "../../../../RythmGame.Graphics/Image/Positions/ImageBottomLeft.h"
+#include "../../../../RythmGame.Graphics/Image/Positions/ImageBottomRight.h"
+
 #include "../../../../RythmGame.Graphics/TextureManager/TextureManager.h"
 #include "../../../Events/InputManager.h"
 
@@ -27,41 +31,39 @@ namespace RythmGame::Game::Menu::StartScreen::Button
         PlayOffline
     };
 
-    class ButtonTemplate : public Image
+    template<typename T>
+    class Button : public T
     {
-        std::string path;
 
     public:
     /**
-        ButtonTemplate inherits from Image
-    */
-        ButtonTemplate( std::string _path, int _position ) :
-            Image(
+     *  Button inherits from Image
+     */
+        Button( std::string _path ) :
+            T(
                 _path,
                 {1920/2, 1080/2, 240, 240},
                 RenderStartScreen,
-                8,
-                _position
+                8
             )
         {
-            path = _path;
         }
 
         virtual void Update()
         {
-            Hoover();
+            T::Hoover();
             UpdateZoom();
         }
 
         void UpdateZoom()
         {
-            if( isHoover && (zoom < 1.1) )
+            if( T::isHoover && (T::zoom < 1.1) )
             {
-                zoom += deltaTime/500;
+                T::zoom += deltaTime/500;
             }
-            else if( !isHoover && (zoom > 1) )
+            else if( !T::isHoover && (T::zoom > 1) )
             {
-                zoom -= deltaTime/500;
+                T::zoom -= deltaTime/500;
             }
         }
     };

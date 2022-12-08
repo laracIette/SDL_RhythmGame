@@ -7,19 +7,17 @@ namespace RythmGame::Graphics::Settings
     {
         posY = _y;
 
-        boxOn = new Image(
+        boxOn = new ImageTopLeft(
             "assets/UI/Settings/CheckBoxOn.png",
             {1920/3-200, posY, 80, 40},
             RenderSettings,
-            5,
-            TopLeft
+            5
         );
-        boxOff = new Image(
+        boxOff = new ImageTopLeft(
             "assets/UI/Settings/CheckBoxOff.png",
             {1920/3-200, posY, 80, 40},
             RenderSettings,
-            5,
-            TopLeft
+            5
         );
 
         isOn = _isOn;
@@ -38,7 +36,7 @@ namespace RythmGame::Graphics::Settings
     void CheckBox::Update()
     {
         boxOn->Hoover();
-        if( boxOn->IsLeftClicked() )
+        if( boxOn->IsHooverLeftClicked() )
         {
             isOn = !isOn;
         }

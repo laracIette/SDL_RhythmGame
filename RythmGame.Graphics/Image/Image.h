@@ -20,6 +20,8 @@ using namespace RythmGame::Game::Events;
 
 namespace RythmGame::Graphics
 {
+
+    // TO DO
     enum Positions {
         Center = 0,
         Top,
@@ -32,6 +34,8 @@ namespace RythmGame::Graphics
         BottomRight
     };
 
+
+
 /**
  * @returns true if the path ends with png, else false.
  */
@@ -43,22 +47,20 @@ namespace RythmGame::Graphics
         return 1;
     }
 
+
     class Image : public Renderable
     {
-        float posX, posY, posW, posH;
         SDL_Texture *tex;
-        int position;
 
     protected:
-        Rect dest;
-        bool isHoover;
+        Rect  dest;
+        bool  isHoover;
         float zoom;
 
     public:
-        Image( std::string _path, Rect _dest, int _type, int _priority, int _position = Center );
+        Image( std::string _path, Rect _dest, int _type, int _priority );
         ~Image();
 
-        void Draw();
         void Draw( Rect _dest );
 
         void SetPos( Rect _dest ) { dest = _dest; }
@@ -75,11 +77,11 @@ namespace RythmGame::Graphics
 
         Rect GetRect() { return dest; }
 
-        void Hoover();
-        bool IsHoover();
+        virtual void Hoover() {}
+        bool IsHoover() { return isHoover; }
 
-        bool IsLeftClicked();
-        bool IsRightClicked();
+        bool IsHooverLeftClicked();
+        bool IsHooverRightClicked();
     };
 
 }

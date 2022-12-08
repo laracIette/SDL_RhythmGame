@@ -7,7 +7,7 @@ namespace RythmGame::Game::Gameplay
     {
         for( int i{ 0 }; i < nIMAGES; ++i )
         {
-            images[i] = new Image(
+            images[i] = new ImageCenter(
                 "assets/Skins/BaseSkin/Player/Player" + std::to_string( i ) + ".png",
                 {1920/2, 1080/2, 120, 120},
                 RenderGameplay,

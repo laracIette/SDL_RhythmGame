@@ -41,7 +41,7 @@ namespace RythmGame::Game::Menu::MapSelection
         for( SongTile *song : songs )
         {
             song->GetSong()->GetBackground()->Hoover();
-            if( song->GetSong()->GetBackground()->IsLeftClicked() )
+            if( song->GetSong()->GetBackground()->IsHooverLeftClicked() )
             {
                 return song->GetSong();
             }

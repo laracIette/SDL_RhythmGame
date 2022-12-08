@@ -2,6 +2,9 @@
 
 
 ## TODO:
+
+	replace getPointer() by new
+
 	Slider :
 		if Hoovered, show it,
 		maybe Hide text ?
@@ -9,6 +12,7 @@
 
 	Menu FPS = Gameplay FPS
 	but caps at 60 or 120.
+
 
 ## HitObject properties :
 

@@ -1,21 +1,21 @@
 #pragma once
 
-#include "ButtonTemplate.h"
+#include "Button.h"
 
 namespace RythmGame::Game::Menu::StartScreen::Button
 {
 
-    class SettingsButton : public ButtonTemplate
+    class SettingsButton : public Button<ImageTopRight>
     {
 
     public:
     /**
-        SettingsButton inherits from ButtonTemplate
+        SettingsButton inherits from Button
     */
-        SettingsButton() : ButtonTemplate(
-            "assets/Skins/BaseSkin/Menu/StartScreen/SettingsButton.png",
-            TopRight
-        )
+        SettingsButton() :
+            Button(
+                "assets/Skins/BaseSkin/Menu/StartScreen/SettingsButton.png"
+            )
         {}
     };
 

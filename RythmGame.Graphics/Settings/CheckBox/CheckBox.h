@@ -1,13 +1,15 @@
 #pragma once
 
-#include "../../Image/Image.h"
+#include "../../Image/Positions/ImageTopLeft.h"
+
+using namespace RythmGame::Graphics;
 
 namespace RythmGame::Graphics::Settings
 {
 
     class CheckBox
     {
-        Image *boxOn, *boxOff;
+        ImageTopLeft *boxOn, *boxOff;
 
         float posY;
 

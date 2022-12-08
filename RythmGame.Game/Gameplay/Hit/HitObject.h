@@ -10,6 +10,8 @@
 #include "../../Events/InputManager.h"
 
 #include "../../../RythmGame.Graphics/Animation/Animation.h"
+#include "../../../RythmGame.Graphics/Image/Positions/ImageCenter.h"
+
 #include "../../../RythmGame.Sound/HitSoundManager/HitSoundManager.h"
 
 #include "../../../RythmGame.Framework/Window/Window.h"
@@ -59,7 +61,7 @@ namespace RythmGame::Game::Gameplay::Hit
     }
 
 
-    class HitObject : public Animation
+    class HitObject : public Animation<ImageCenter>
     {
 
     protected:

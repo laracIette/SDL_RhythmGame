@@ -11,7 +11,7 @@ namespace RythmGame::Graphics
         for( int i{ 0 }; i < 36; ++i )
         {
             std::string character{ characters[i] };
-            images[i] = new Image(
+            images[i] = new ImageCenter(
                 "assets/Skins/BaseSkin/Characters/" + character + ".png",
                 {0, 0, 50, 60},
                 _type,
@@ -19,7 +19,7 @@ namespace RythmGame::Graphics
             );
         }
 
-        images[36] = new Image(
+        images[36] = new ImageCenter(
             "assets/Skins/BaseSkin/Characters/point.png",
             {0, 0, 50, 60},
             _type,
@@ -105,15 +105,15 @@ namespace RythmGame::Graphics
         {
             if( (letter >= '0') && (letter <= '9') )
             {
-                images[letter-'0']->Draw( {posX, posY, dest.w, dest.h} );
+                images[letter-'0']->Image::Draw( {posX, posY, dest.w, dest.h} );
             }
             else if( ((letter >= 'a') && (letter <= 'z')) || ((letter >= 'A') && (letter <= 'Z')) )
             {
-                images[letter-'a'+10]->Draw( {posX, posY, dest.w, dest.h} );
+                images[letter-'a'+10]->Image::Draw( {posX, posY, dest.w, dest.h} );
             }
             else if( letter == '.' )
             {
-                images[36]->Draw( {posX, posY, dest.w, dest.h} );
+                images[36]->Image::Draw( {posX, posY, dest.w, dest.h} );
             }
 
             posX += dest.w*distance;
