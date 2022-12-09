@@ -65,7 +65,6 @@ namespace RythmGame::Game::Gameplay
             if( (song->GetHitObjects()[j]->type == CHAINSAW) && song->GetHitObjects()[j]->IsHit() )
             {
                 combo->SetCombo( 0 );
-                std::cout << "hit" << std::endl;
             }
 
             song->GetHitObjects()[j]->GetHitValue( tempAcc );

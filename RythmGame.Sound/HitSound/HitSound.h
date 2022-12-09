@@ -1,9 +1,14 @@
 #pragma once
 
-#include "../../inc/SDL-release-2.24.0/include/SDL.h"
-#include "../../inc/SDL2_mixer-2.6.2/include/SDL_mixer.h"
 #include <string>
 #include <iostream>
+
+#include "../../inc/SDL-release-2.24.0/include/SDL.h"
+#include "../../inc/SDL2_mixer-2.6.2/include/SDL_mixer.h"
+
+#include "../../RythmGame.Framework/Log.h"
+
+using namespace RythmGame::Framework;
 
 namespace RythmGame::Sound
 {

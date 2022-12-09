@@ -3,19 +3,17 @@
 namespace RythmGame::Graphics
 {
 
-    SDL_Texture *TextureManager::LoadTexture( const char *_path )
+    SDL_Texture *TextureManager::LoadTexture( std::string _path )
     {
-        SDL_Surface *tempSurface{ IMG_Load( _path ) };
+        SDL_Surface *tempSurface{ IMG_Load( _path.c_str() ) };
 
         SDL_Texture *tex{ SDL_CreateTextureFromSurface( window->renderer, tempSurface ) };
 
         SDL_FreeSurface( tempSurface );
 
-        std::cout << _path << std::endl;
-
         if( !tex )
         {
-            std::cout << "Error creating '" << _path << "'.\n" << SDL_GetError() << std::endl;
+            logFile->Write( "Error : creating '" + _path + "', " + SDL_GetError() );
         }
 
         return tex;

@@ -11,7 +11,7 @@ namespace RythmGame::Graphics
         }
         else
         {
-            imageManager->imagesTextureMap[_path] = TextureManager::LoadTexture( const_cast<char *>( _path.c_str() ) );
+            imageManager->imagesTextureMap[_path] = TextureManager::LoadTexture( _path );
             tex = imageManager->imagesTextureMap[_path];
         }
 

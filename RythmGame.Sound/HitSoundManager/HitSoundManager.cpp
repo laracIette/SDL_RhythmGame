@@ -36,7 +36,7 @@ namespace RythmGame::Sound
                 }
                 else
                 {
-                    std::cout << "already 0 channels affected" << std::endl;
+                    logFile->Write( "Error : already 0 audio channel affected" );
                 }
             }
         }
@@ -44,7 +44,6 @@ namespace RythmGame::Sound
         if( audioChannels != lastAudioChannels )
         {
             lastAudioChannels = audioChannels;
-            std::cout << "Audio channels : " << (int)lastAudioChannels << std::endl;
         }
     }
 
@@ -52,7 +51,7 @@ namespace RythmGame::Sound
     {
         if( audioChannels == 255 )
         {
-            std::cout << "max number of channels affected" << std::endl;
+            logFile->Write( "Error : max number of audio channels affected" );
             return;
         }
 
@@ -73,7 +72,7 @@ namespace RythmGame::Sound
             }
             else
             {
-                std::cout << "already 0 channels affected" << std::endl;
+                logFile->Write( "Error : already 0 audio channel affected" );
             }
         }
         playingHitSounds.clear();

@@ -111,7 +111,6 @@ namespace RythmGame::Game::Gameplay::Hit
             if( isReturnHitValue )
             {
                 isReturnHitValue = false;
-                std::cout << 'v' << (int)hitValue << std::endl;
                 _value = hitValue;
             }
             else

@@ -34,8 +34,6 @@ namespace RythmGame::Game::Settings
                 std::ofstream output( "assets/Settings.json" );
                 output << std::setw(4) << data << std::endl;
                 output.close();
-
-                std::cout << "Settings File written" << std::endl;
             }
         }
 
