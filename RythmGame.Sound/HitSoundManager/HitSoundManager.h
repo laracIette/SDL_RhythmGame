@@ -1,10 +1,14 @@
 #pragma once
 
-#include "../HitSound/HitSound.h"
-
 #include <vector>
 #include <string>
 #include <iostream>
+
+#include "../HitSound/HitSound.h"
+
+#include "../../RythmGame.Framework/Log.h"
+
+using namespace RythmGame::Framework;
 
 namespace RythmGame::Sound
 {

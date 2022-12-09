@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "Log.h"
+
 namespace RythmGame::Framework
 {
 
@@ -10,7 +12,7 @@ namespace RythmGame::Framework
     {
         if( _value < _min )
         {
-            std::cout << "Error : " << _value << " < " << _min << ", value has been set to " << _min << std::endl;
+            logFile->Write( "Error : " + std::to_string( _value ) + " < " + std::to_string( _min ) + ", value has been set to " + std::to_string( _min ) );
             _value = _min;
         }
     }
@@ -20,7 +22,7 @@ namespace RythmGame::Framework
     {
         if( _value > _max )
         {
-            std::cout << "Error : " << _value << " > " << _max << ", value has been set to " << _max << std::endl;
+            logFile->Write( "Error : " + std::to_string( _value ) + " < " + std::to_string( _max ) + ", value has been set to " + std::to_string( _max ) );
             _value = _max;
         }
     }

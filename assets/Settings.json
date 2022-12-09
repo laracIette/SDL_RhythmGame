@@ -4,10 +4,10 @@
             "value": 75.5999984741211
         },
         "HitSoundsVolume": {
-            "value": 84.5999984741211
+            "value": 100.0
         },
         "MusicVolume": {
-            "value": 85.125
+            "value": 21.0
         },
         "SkinHitSounds": {
             "value": false
@@ -21,7 +21,7 @@
             "index": 1
         },
         "Zoom": {
-            "value": 1.2049999237060547
+            "value": 1.5
         }
     }
 }

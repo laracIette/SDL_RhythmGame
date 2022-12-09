@@ -5,10 +5,10 @@ namespace RythmGame::Sound
 
     HitSound::HitSound( std::string path, unsigned char _channel )
     {
-        hitSound = Mix_LoadWAV( const_cast<char *>( path.c_str() ) );
+        hitSound = Mix_LoadWAV( path.c_str() );
         if( !hitSound )
         {
-            std::cout << "Error creating '" << path << "'.\n" << SDL_GetError() << std::endl;
+            logFile->Write( "Error : creating '" + path + "', " + SDL_GetError() );
         }
 
         channel = _channel;

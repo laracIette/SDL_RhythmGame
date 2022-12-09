@@ -6,7 +6,10 @@ namespace RythmGame::Framework
     File::File( std::string path )
     {
         std::ifstream file( path );
-        if( !file ) std::cout << "file error, couldn't open '" << path << "'" << std::endl;
+        if( !file.is_open() )
+        {
+            logFile->Write( "File error, couldn't open '" + path + "'" );
+        }
 
         std::string temp;
         std::string keyTemp;

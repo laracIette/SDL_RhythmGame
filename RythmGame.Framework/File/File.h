@@ -6,6 +6,8 @@
 #include <vector>
 #include <iostream>
 
+#include "../Log.h"
+
 namespace RythmGame::Framework
 {
 

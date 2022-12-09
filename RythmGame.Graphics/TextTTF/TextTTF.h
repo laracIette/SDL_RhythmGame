@@ -1,9 +1,10 @@
 #pragma once
 
-#include "../../inc/SDL-release-2.24.0/include/SDL.h"
-#include "../../inc/SDL2_ttf-2.20.1/SDL_ttf.h"
 #include <iostream>
 #include <string>
+
+#include "../../inc/SDL-release-2.24.0/include/SDL.h"
+#include "../../inc/SDL2_ttf-2.20.1/SDL_ttf.h"
 
 #include "../../RythmGame.Framework/Window/Window.h"
 
@@ -13,6 +14,8 @@
 #include "../Renderable.h"
 
 #include "../RenderQueue/RenderQueue.h"
+
+#include "../../RythmGame.Framework/Log.h"
 
 #define FONT_SIZE_OPTION                     30
 #define FONT_SIZE_CATEGORY_TITLE             36

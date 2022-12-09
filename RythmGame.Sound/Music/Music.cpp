@@ -5,7 +5,7 @@ namespace RythmGame::Sound
 
     Music::Music( std::string path )
     {
-        music = Mix_LoadMUS( const_cast<char *>( path.c_str() ) );
+        music = Mix_LoadMUS( path.c_str() );
 
         if( music == nullptr )
         {

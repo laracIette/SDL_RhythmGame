@@ -16,7 +16,7 @@ namespace RythmGame::Graphics
         textTexture = SDL_CreateTextureFromSurface( window->renderer, tempSurface );
         if( !textTexture )
         {
-            std::cout << "error creating text texture '" << _text << "'" << SDL_GetError() << std::endl;
+            logFile->Write( "Error : creating text texture '" + _text + "'" + SDL_GetError() );
         }
 
         SDL_FreeSurface( tempSurface );

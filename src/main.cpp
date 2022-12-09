@@ -3,6 +3,7 @@
 #include <iostream>
 
 
+#include "../RythmGame.Framework/Log.h"
 #include "../RythmGame.Framework/Window/Window.h"
 
 #include "../RythmGame.Graphics/TextTTF/TextTTF.h"
@@ -21,6 +22,7 @@
 #include "../../RythmGame.Graphics/ImageManager.h"
 
 
+RythmGame::Framework::Log         *RythmGame::Framework::logFile;
 RythmGame::Framework::Window      *RythmGame::Framework::window;
 RythmGame::Game::Settings::Window *RythmGame::Game::Settings::settingsWindow;
 
@@ -56,6 +58,8 @@ using namespace RythmGame::Graphics;
 
 int main( int argc, char *argv[] )
 {
+    logFile = new Log();
+
     renderQueue    = new RenderQueue();
     settingsFile   = new SettingsFile();
     settingsWindow = new RythmGame::Game::Settings::Window();
