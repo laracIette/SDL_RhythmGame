@@ -15,6 +15,8 @@ SDL:
 	RythmGame.Framework/File/File.cpp \
 	RythmGame.Framework/Window/Window.cpp \
 	\
+	RythmGame.Game/FPSWindow/FPSWindow.cpp \
+	\
 	RythmGame.Game/Gameplay/Accuracy/Accuracy.cpp \
 	RythmGame.Game/Gameplay/Combo/Combo.cpp \
 	RythmGame.Game/Gameplay/Map/Map.cpp \

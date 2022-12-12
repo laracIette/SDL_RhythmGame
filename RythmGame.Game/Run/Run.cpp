@@ -14,6 +14,8 @@ namespace RythmGame::Game
         player = new Player();
 
         map = new Map();
+
+        fpsWindow = new FPSWindow();
     }
 
     Run::~Run()
@@ -90,6 +92,9 @@ namespace RythmGame::Game
     {
         SDL_SetRenderDrawColor( window->renderer, 0, 0, 0, 255 );
         SDL_RenderClear( window->renderer );
+
+
+        fpsWindow->Update( 1000000 / (float)getDuration<Microseconds>( currentTime, lastRenderTime ) );
 
 
         switch( gameState )

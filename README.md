@@ -86,7 +86,11 @@
 
 #### 0 :
 
+	FPS Window Text
+
 #### 1 :
+
+	FPS Window Background
 
 #### 2 :
 
@@ -127,7 +131,11 @@
 
 #### 0 :
 
+	FPS Window Text
+
 #### 1 :
+
+	FPS Window Background
 
 #### 2 :
 
@@ -158,7 +166,11 @@
 
 #### 0 :
 
+	FPS Window Text
+
 #### 1 :
+
+	FPS Window Background
 
 #### 2 :
 
@@ -187,7 +199,11 @@
 
 #### 0 :
 
+	FPS Window Text
+
 #### 1 :
+
+	FPS Window Background
 
 #### 2 :
 
