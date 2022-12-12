@@ -8,7 +8,8 @@ namespace RythmGame::Game
         backgroundBox = new BoxRoundedCorners(
             {1920-300, 1080-200, 300, 200},
             {{RenderStartScreen, 1}, {RenderMapSelection, 1}, {RenderGameplay, 1}, {RenderSettings, 1}},
-            Red
+            Red,
+            "assets/UI/FPSWindowRoundedCorner.png"
         );
 
         fpsText = new Text(
