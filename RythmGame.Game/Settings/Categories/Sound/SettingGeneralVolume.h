@@ -29,7 +29,7 @@ namespace RythmGame::Game::Settings::Sound
 
         void ScrollGeneralVolume( float _y )
         {
-            Scroll( _y );
+            ScrollSlider( _y );
         }
 
         void UpdateGeneralVolume()

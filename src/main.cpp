@@ -56,7 +56,7 @@ using namespace RythmGame::Game::Settings;
 using namespace RythmGame::Graphics;
 
 
-int main( int argc, char *argv[] )
+int main( int argc, const char *argv[] )
 {
     logFile = new Log();
 
