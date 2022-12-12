@@ -10,15 +10,13 @@ namespace RythmGame::Graphics::Settings
         boxOn = new Image(
             "assets/UI/Settings/CheckBoxOn.png",
             {1920/3-200, posY, 80, 40},
-            RenderSettings,
-            5,
+            {{RenderSettings, 5}},
             TopLeft
         );
         boxOff = new Image(
             "assets/UI/Settings/CheckBoxOff.png",
             {1920/3-200, posY, 80, 40},
-            RenderSettings,
-            5,
+            {{RenderSettings, 5}},
             TopLeft
         );
 

@@ -16,8 +16,7 @@ namespace RythmGame::Graphics::Settings
                     optionFont,
                     100,
                     newPosY,
-                    RenderSettings,
-                    3
+                    {{RenderSettings, 3}}
                 )
             );
             newPosY += FONT_SIZE_OPTION_WITH_SPACE;
@@ -25,8 +24,7 @@ namespace RythmGame::Graphics::Settings
 
         box = new BoxRoundedCorners(
             {80, posY-20, 1920/3-160, newPosY-posY+40},
-            RenderSettings,
-            4,
+            {{RenderSettings, 4}},
             SettingsSettingBoxGray,
             "assets/UI/Settings/SettingBoxRoundedCorner.png"
         );

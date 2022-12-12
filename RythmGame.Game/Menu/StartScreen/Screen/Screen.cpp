@@ -12,7 +12,7 @@ namespace RythmGame::Game::Menu::StartScreen
 
         background = new Background(
             "assets/Skins/BaseSkin/Menu/StartScreen/background.png",
-            RenderStartScreen
+            {{RenderStartScreen, 9}}
         );
     }
 

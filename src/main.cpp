@@ -28,6 +28,7 @@ RythmGame::Game::Settings::Window *RythmGame::Game::Settings::settingsWindow;
 
 std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::currentTime;
 std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::lastFrameTime;
+std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::lastRenderTime;
 std::chrono::high_resolution_clock::time_point RythmGame::Game::Utils::offsetTime;
 
 float RythmGame::Game::Utils::deltaTime;
@@ -84,9 +85,10 @@ int main( int argc, const char *argv[] )
 
     long images{ 1 };
 
-    currentTime   = std::chrono::system_clock::now();
-    deltaTime     = 0;
-    lastFrameTime = currentTime;
+    currentTime    = std::chrono::system_clock::now();
+    deltaTime      = 0;
+    lastFrameTime  = currentTime;
+    lastRenderTime = currentTime;
 
     isHorizontal = true;
 
@@ -106,6 +108,7 @@ int main( int argc, const char *argv[] )
         if( getDuration<Microseconds>( currentTime, start ) > (1000000 * images / FPS) )
         {
             run->Render();
+            lastRenderTime = currentTime;
             images++;
         }
         std::this_thread::sleep_for( Milliseconds( 1 ) );

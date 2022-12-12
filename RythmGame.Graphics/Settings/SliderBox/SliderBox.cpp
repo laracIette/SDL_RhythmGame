@@ -8,8 +8,7 @@ namespace RythmGame::Graphics::Settings
         sliderBar = new Image(
             "assets/UI/Settings/SliderBar.png",
             {_x, _y+20, 80, 40},
-            RenderSettings,
-            6
+            {{RenderSettings, 6}}
         );
 
         posY = _y;

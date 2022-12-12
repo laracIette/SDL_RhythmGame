@@ -87,8 +87,7 @@ namespace RythmGame::Game::Gameplay::Hit
             Animation(
                 path,
                 dest,
-                RenderGameplay,
-                7
+                {{RenderGameplay, 8}}
             )
         {
             isHit            = false;

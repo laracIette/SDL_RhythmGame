@@ -1,13 +1,16 @@
 #pragma once
 
+#include <string>
+
+#include "../../inc/SDL-release-2.24.0/include/SDL.h"
+
+
 #include "Metrics.h"
 #include "Point.h"
 
-#include <SDL.h>
-
 #define White                  (RGB){255, 255, 255}
 #define Black                  (RGB){  0,   0,   0}
-#define Red                    (RGB){255,   0, 255}
+#define Red                    (RGB){255,   0,   0}
 #define Green                  (RGB){  0, 255,   0}
 #define Blue                   (RGB){  0,   0, 255}
 #define SettingsGray           (RGB){ 69,  69,  69}
@@ -100,4 +103,17 @@ namespace RythmGame::Game::Utils
         return {(float)_dest.x, (float)_dest.y, (float)_dest.w, (float)_dest.h};
     }
 
+    template<typename T>
+    static inline std::string shortenString( T _value, int _remove )
+    {
+        std::string value{ std::to_string( _value ) };
+
+        std::string ret;
+        for( int i{ 0 }; i < (value.size() - _remove); ++i )
+        {
+            ret += value[i];
+        }
+
+        return ret;
+    }
 }

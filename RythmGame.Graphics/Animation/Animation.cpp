@@ -3,7 +3,7 @@
 namespace RythmGame::Graphics
 {
 
-    Animation::Animation( std::string _path, Rect _dest, int _type, int _priority )
+    Animation::Animation( std::string _path, Rect _dest, std::vector<std::pair<int, int>> _pairs )
     {
         for( const auto &entry : std::filesystem::directory_iterator( _path ) )
         {
@@ -13,8 +13,7 @@ namespace RythmGame::Graphics
                     new Image(
                         entry.path(),
                         _dest,
-                        _type,
-                        _priority
+                        _pairs
                     )
                 );
             }

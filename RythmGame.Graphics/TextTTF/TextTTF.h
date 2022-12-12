@@ -36,7 +36,7 @@ namespace RythmGame::Graphics
         bool isHoover;
 
     public:
-        TextTTF( std::string _text, TTF_Font *_font, float _x, float _y, int _type, int _priority );
+        TextTTF( std::string _text, TTF_Font *_font, float _x, float _y, std::vector<std::pair<int, int>> _pairs );
         ~TextTTF();
 
         void Update( float _y );

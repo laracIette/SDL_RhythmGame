@@ -49,14 +49,12 @@ namespace RythmGame::Game::Settings
                 optionFont,
                 100,
                 posY,
-                RenderSettings,
-                5
+                {{RenderSettings, 5}}
             );
 
             backgroundBox = new BoxRoundedCorners(
                 textTTF->GetRect(),
-                RenderSettings,
-                7,
+                {{RenderSettings, 7}},
                 SettingsSettingBoxGray,
                 "assets/UI/Settings/SettingBoxRoundedCorner.png"
             );

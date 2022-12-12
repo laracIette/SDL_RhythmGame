@@ -14,8 +14,7 @@ namespace RythmGame::Game
 
         background = new Background(
             path + "/background.png",
-            RenderMapSelection | RenderGameplay,
-            8
+            {{RenderMapSelection, 8}, {RenderGameplay, 9}}
         );
 
         music = new Music( path + "/song.mp3" );

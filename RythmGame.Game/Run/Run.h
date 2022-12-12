@@ -18,6 +18,8 @@
 
 #include "../Settings/Window.h"
 
+#include "../FPSWindow/FPSWindow.h"
+
 
 using namespace RythmGame::Game::Events;
 using namespace RythmGame::Game::Gameplay;
@@ -46,6 +48,8 @@ namespace RythmGame::Game
 
         StartScreen::Screen  *startScreen;
         MapSelection::Screen *mapSelectionScreen;
+
+        FPSWindow *fpsWindow;
 
         bool isSettings;
 

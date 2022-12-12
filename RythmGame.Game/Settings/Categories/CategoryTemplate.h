@@ -39,14 +39,12 @@ namespace RythmGame::Game::Settings
                 categoryTitleFont,
                 0,
                 posY,
-                RenderSettings,
-                7
+                {{RenderSettings, 7}}
             );
 
             backgroundBox = new BoxRoundedCorners(
                 {0, posY, 1920/3, boxHeight},
-                RenderSettings,
-                8,
+                {{RenderSettings, 8}},
                 SettingsCategoryGray,
                 "assets/UI/Settings/SettingCategoryRoundedCorner.png"
             );
