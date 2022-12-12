@@ -27,7 +27,7 @@ namespace RythmGame::Graphics
         int position;
 
     public:
-        Text( std::string _text, Rect _dest, int _type, int _priority, int _position = Center );
+        Text( std::string _text, Rect _dest, std::vector<std::pair<int, int>> _pairs, int _position = Center );
         ~Text();
 
         void SetText( std::string _text );

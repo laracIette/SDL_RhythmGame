@@ -27,7 +27,7 @@ namespace RythmGame::Graphics
         RGB          color;
 
     public:
-        BoxRoundedCorners( Rect _dest, int _type, int _priority, RGB _color = White, const char *_path = "assets/UI/RoundedCorner.png" )
+        BoxRoundedCorners( Rect _dest, std::vector<std::pair<int, int>> _pairs, RGB _color = White, const char *_path = "assets/UI/RoundedCorner.png" )
         {
             corner = TextureManager::LoadTexture( _path );
 
@@ -42,7 +42,10 @@ namespace RythmGame::Graphics
                 size = 25;
             }
 
-            renderQueue->AddQueue( this, _type, _priority );
+            for( std::pair<int, int> pair : _pairs )
+            {
+                renderQueue->AddQueue( this, pair.first, pair.second );
+            }
         }
         ~BoxRoundedCorners() {}
 

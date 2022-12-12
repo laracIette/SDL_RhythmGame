@@ -25,8 +25,7 @@ namespace RythmGame::Game::Gameplay
             Text(
                 "100.00",
                 {1920/2, 0, 50, 60},
-                RenderGameplay,
-                5,
+                {{RenderGameplay, 6}},
                 Top
             )
         {

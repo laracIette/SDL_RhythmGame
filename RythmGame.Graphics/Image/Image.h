@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <vector>
+
 #include "../../inc/SDL-release-2.24.0/include/SDL.h"
 
 #include "../../RythmGame.Game/Utils/Point.h"
@@ -55,7 +57,7 @@ namespace RythmGame::Graphics
         float zoom;
 
     public:
-        Image( std::string _path, Rect _dest, int _type, int _priority, int _position = Center );
+        Image( std::string _path, Rect _dest, std::vector<std::pair<int, int>> _pairs, int _position = Center );
         ~Image();
 
         void Draw();

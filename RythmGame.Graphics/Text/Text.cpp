@@ -3,7 +3,7 @@
 namespace RythmGame::Graphics
 {
 
-    Text::Text( std::string _text, Rect _dest, int _type, int _priority, int _position )
+    Text::Text( std::string _text, Rect _dest, std::vector<std::pair<int, int>> _pairs, int _position )
     {
         text = _text;
 
@@ -14,16 +14,14 @@ namespace RythmGame::Graphics
             images[i] = new Image(
                 "assets/Skins/BaseSkin/Characters/" + character + ".png",
                 {0, 0, 50, 60},
-                _type,
-                _priority
+                _pairs
             );
         }
 
         images[36] = new Image(
             "assets/Skins/BaseSkin/Characters/point.png",
             {0, 0, 50, 60},
-            _type,
-            _priority
+            _pairs
         );
 
         distance = 1.0f;
@@ -32,7 +30,13 @@ namespace RythmGame::Graphics
 
         position = _position;
 
-        renderQueue->AddQueue( this, _type, _priority );
+
+        for( std::pair<int, int> pair : _pairs )
+        {
+            renderQueue->AddQueue( this, pair.first, pair.second );
+        }
+
+
     }
 
     Text::~Text()

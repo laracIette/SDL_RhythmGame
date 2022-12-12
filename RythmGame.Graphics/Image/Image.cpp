@@ -3,7 +3,7 @@
 namespace RythmGame::Graphics
 {
 
-    Image::Image( std::string _path, Rect _dest, int _type, int _priority, int _position )
+    Image::Image( std::string _path, Rect _dest, std::vector<std::pair<int, int>> _pairs, int _position )
     {
         if( imageManager->imagesTextureMap.count( _path ) )
         {
@@ -26,14 +26,9 @@ namespace RythmGame::Graphics
 
         zoom = 1.0f;
 
-        if( _type == (RenderMapSelection | RenderGameplay) )
+        for( std::pair<int, int> pair : _pairs )
         {
-            renderQueue->AddQueue( this, RenderMapSelection, _priority );
-            renderQueue->AddQueue( this, RenderGameplay, _priority );
-        }
-        else
-        {
-            renderQueue->AddQueue( this, _type, _priority );
+            renderQueue->AddQueue( this, pair.first, pair.second );
         }
 
         isHoover = false;

@@ -26,7 +26,7 @@ namespace RythmGame::Graphics
         std::chrono::high_resolution_clock::time_point lastImageTime;
 
     public:
-        Animation( std::string _path, Rect _dest, int _type, int _priority );
+        Animation( std::string _path, Rect _dest, std::vector<std::pair<int, int>> _pairs );
         ~Animation();
 
         void UpdateAnimation();

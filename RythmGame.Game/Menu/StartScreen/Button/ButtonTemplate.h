@@ -39,8 +39,7 @@ namespace RythmGame::Game::Menu::StartScreen::Button
             Image(
                 _path,
                 {1920/2, 1080/2, 240, 240},
-                RenderStartScreen,
-                8,
+                {{RenderStartScreen, 8}},
                 _position
             )
         {

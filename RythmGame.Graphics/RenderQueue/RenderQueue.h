@@ -8,10 +8,10 @@ namespace RythmGame::Graphics
 {
 
     enum Types {
-        RenderSettings     = 0x00000001,
-        RenderStartScreen  = 0x00000010,
-        RenderMapSelection = 0x00000100,
-        RenderGameplay     = 0x00001000
+        RenderSettings = 0,
+        RenderStartScreen,
+        RenderMapSelection,
+        RenderGameplay
     };
 
     class RenderQueue

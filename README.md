@@ -194,24 +194,27 @@
 #### 3 :
 
 #### 4 :
-	Gameplay Pause
 
 #### 5 :
 
-	Gameplay UI
+	Gameplay Pause
 
 #### 6 :
+
+	Gameplay Score
+	Gameplay Combo
+	Gameplay Accuracy
+
+#### 7 :
 
 	Gameplay Dim
 	Gameplay Player
 
-#### 7 :
+#### 8 :
 
 	Gameplay HitObjects
 
-#### 8 :
+#### 9 :
 
 	Gameplay Background
-
-#### 9 :
 
