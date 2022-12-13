@@ -3,7 +3,7 @@
 #include <string>
 
 #include "../../../RythmGame.Graphics/TextTTF/TextTTF.h"
-#include "../../../RythmGame.Graphics/BoxRoundedCorners.h"
+#include "../../../RythmGame.Graphics/BoxRoundedCorners/BoxRoundedCorners.h"
 
 using namespace RythmGame::Graphics;
 

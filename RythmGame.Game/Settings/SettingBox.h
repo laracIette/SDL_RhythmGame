@@ -5,7 +5,7 @@
 
 #include "SettingsFile.h"
 
-#include "../../RythmGame.Graphics/BoxRoundedCorners.h"
+#include "../../RythmGame.Graphics/BoxRoundedCorners/BoxRoundedCorners.h"
 #include "../../RythmGame.Graphics/TextTTF/TextTTF.h"
 
 using namespace RythmGame::Graphics;

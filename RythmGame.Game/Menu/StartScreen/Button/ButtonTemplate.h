@@ -14,12 +14,6 @@ using namespace RythmGame::Game::Utils;
 namespace RythmGame::Game::Menu::StartScreen::Button
 {
 
-    enum Base {
-        Exit = 0,
-        Download,
-        Settings
-    };
-
     enum Play {
         PlayBack = 0,
         PlaySolo,

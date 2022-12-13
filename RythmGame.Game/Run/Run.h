@@ -16,9 +16,9 @@
 
 #include "../../RythmGame.Graphics/RenderQueue/RenderQueue.h"
 
-#include "../Settings/Window.h"
-
-#include "../FPSWindow/FPSWindow.h"
+#include "../Settings/Window/Window.h"
+#include "../FPS/Window/Window.h"
+#include "../Exit/Window/Window.h"
 
 
 using namespace RythmGame::Game::Events;
@@ -44,14 +44,15 @@ namespace RythmGame::Game
         bool isRunning;
 
         Player *player;
-        Map *map;
+        Map    *map;
 
         StartScreen::Screen  *startScreen;
         MapSelection::Screen *mapSelectionScreen;
 
-        FPSWindow *fpsWindow;
+        FPS::Window  *fpsWindow;
+        Exit::Window *exitWindow;
 
-        bool isSettings;
+        bool isSettings, isExit;
 
         int gameState;
 
