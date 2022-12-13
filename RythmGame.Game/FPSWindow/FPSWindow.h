@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "../../RythmGame.Graphics/BoxRoundedCorners.h"
 #include "../../RythmGame.Graphics/Text/Text.h"
 
@@ -13,6 +15,8 @@ namespace RythmGame::Game
         BoxRoundedCorners *backgroundBox;
 
         Text *fpsText;
+
+        std::vector<float> fpsValues;
 
     public:
         FPSWindow();

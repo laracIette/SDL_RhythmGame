@@ -26,7 +26,19 @@ namespace RythmGame::Game
 
     void FPSWindow::Update( float _value )
     {
-        fpsText->SetText( shortenString( _value, 4 ) );
+        fpsValues.push_back( _value );
+        if( fpsValues.size() > 100 )
+        {
+            fpsValues.erase( fpsValues.begin() );
+        }
+
+        float sumFps{ 0 };
+        for( float value : fpsValues )
+        {
+            sumFps += value;
+        }
+
+        fpsText->SetText( shortenString( sumFps/(float)100, 4 ) );
         backgroundBox->Show();
         fpsText->Show();
     }
