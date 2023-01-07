@@ -4,7 +4,7 @@
 #include <string>
 
 #include "../../TextTTF/TextTTF.h"
-#include "../../BoxRoundedCorners.h"
+#include "../../BoxRoundedCorners/BoxRoundedCorners.h"
 
 namespace RythmGame::Graphics::Settings
 {

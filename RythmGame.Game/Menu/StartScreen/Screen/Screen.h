@@ -19,8 +19,11 @@ namespace RythmGame::Game::Menu::StartScreen
 
     class Screen
     {
-        ButtonTemplate *buttons[3];
-        PlayButton *playButton;
+        PlayButton     *playButton;
+        ExitButton     *exitButton;
+        DownloadButton *downloadButton;
+        SettingsButton *settingsButton;
+
         Background *background;
 
     public:

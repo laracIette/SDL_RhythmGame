@@ -1,9 +1,9 @@
-#include "FPSWindow.h"
+#include "Window.h"
 
-namespace RythmGame::Game
+namespace RythmGame::Game::FPS
 {
 
-    FPSWindow::FPSWindow()
+    Window::Window()
     {
         backgroundBox = new BoxRoundedCorners(
             {1920-300, 1080-200, 300, 200},
@@ -20,11 +20,11 @@ namespace RythmGame::Game
         );
     }
 
-    FPSWindow::~FPSWindow()
+    Window::~Window()
     {
     }
 
-    void FPSWindow::Update( float _value )
+    void Window::Update( float _value )
     {
         fpsValues.push_back( _value );
         if( fpsValues.size() > 100 )

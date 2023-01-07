@@ -11,7 +11,7 @@
 #include "../RythmGame.Game/Utils/Metrics.h"
 #include "../RythmGame.Game/Utils/Time.h"
 #include "../RythmGame.Game/Settings/SettingsFile.h"
-#include "../RythmGame.Game/Settings/Window.h"
+#include "../RythmGame.Game/Settings/Window/Window.h"
 
 #include "../RythmGame.Game/Run/Run.h"
 
@@ -65,9 +65,9 @@ int main( int argc, const char *argv[] )
     settingsFile   = new SettingsFile();
     settingsWindow = new RythmGame::Game::Settings::Window();
 
-    WIDTH  = settingsWindow->GetWidth();
-    HEIGHT = settingsWindow->GetHeight();
-    FPS    = settingsWindow->GetFPS();
+    WIDTH      = settingsWindow->GetWidth();
+    HEIGHT     = settingsWindow->GetHeight();
+    Utils::FPS = settingsWindow->GetFPS();
 
     window = new RythmGame::Framework::Window();
 
@@ -105,7 +105,7 @@ int main( int argc, const char *argv[] )
 
         run->Update();
 
-        if( getDuration<Microseconds>( currentTime, start ) > (1000000 * images / FPS) )
+        if( getDuration<Microseconds>( currentTime, start ) > (1000000 * images / Utils::FPS) )
         {
             run->Render();
             lastRenderTime = currentTime;

@@ -15,7 +15,8 @@ SDL:
 	RythmGame.Framework/File/File.cpp \
 	RythmGame.Framework/Window/Window.cpp \
 	\
-	RythmGame.Game/FPSWindow/FPSWindow.cpp \
+	RythmGame.Game/Exit/Window/Window.cpp \
+	RythmGame.Game/FPS/Window/Window.cpp \
 	\
 	RythmGame.Game/Gameplay/Accuracy/Accuracy.cpp \
 	RythmGame.Game/Gameplay/Combo/Combo.cpp \
@@ -29,9 +30,12 @@ SDL:
 	\
 	RythmGame.Game/Run/Run.cpp \
 	\
+	RythmGame.Game/Settings/Window/Window.cpp \
+	\
 	RythmGame.Game/Song/Song.cpp \
 	\
 	RythmGame.Graphics/Animation/Animation.cpp \
+	RythmGame.Graphics/BoxRoundedCorners/BoxRoundedCorners.cpp \
 	RythmGame.Graphics/Image/Image.cpp \
 	\
 	RythmGame.Graphics/Settings/CheckBox/CheckBox.cpp \

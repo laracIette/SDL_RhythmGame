@@ -2,15 +2,15 @@
 
 #include <vector>
 
-#include "../../RythmGame.Graphics/BoxRoundedCorners.h"
-#include "../../RythmGame.Graphics/Text/Text.h"
+#include "../../../RythmGame.Graphics/BoxRoundedCorners/BoxRoundedCorners.h"
+#include "../../../RythmGame.Graphics/Text/Text.h"
 
 using namespace RythmGame::Graphics;
 
-namespace RythmGame::Game
+namespace RythmGame::Game::FPS
 {
 
-    class FPSWindow
+    class Window
     {
         BoxRoundedCorners *backgroundBox;
 
@@ -19,8 +19,8 @@ namespace RythmGame::Game
         std::vector<float> fpsValues;
 
     public:
-        FPSWindow();
-        ~FPSWindow();
+        Window();
+        ~Window();
 
         void Update( float _value );
     };

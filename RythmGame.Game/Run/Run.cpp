@@ -15,7 +15,7 @@ namespace RythmGame::Game
 
         map = new Map();
 
-        fpsWindow = new FPSWindow();
+        fpsWindow = new FPS::Window();
     }
 
     Run::~Run()
@@ -27,6 +27,7 @@ namespace RythmGame::Game
         gameState = STARTSCREEN;
 
         isSettings = false;
+        isExit     = false;
     }
 
     void Run::Update()
@@ -43,6 +44,14 @@ namespace RythmGame::Game
             if( startScreen->StartGame() )
             {
                 gameState = MAPSELECTION;
+            }
+            if( startScreen->SettingsButtonClicked() )
+            {
+                isSettings = !isSettings;
+            }
+            if( startScreen->ExitButtonClicked() )
+            {
+                isExit = !isExit;
             }
         }
         if( gameState == MAPSELECTION )
@@ -77,6 +86,13 @@ namespace RythmGame::Game
         {
             settingsWindow->Scroll();
             settingsWindow->UpdateWindow();
+            isSettings = !settingsWindow->IsHide();
+        }
+
+        if( isExit )
+        {
+            exitWindow->Update();
+            isRunning = !exitWindow->IsExit();
         }
 
 
