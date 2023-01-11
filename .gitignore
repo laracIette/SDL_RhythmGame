@@ -1,5 +1,1 @@
-# ignored folders
-inc/
-.vscode/
-.directory
-tests/
+.vs/
